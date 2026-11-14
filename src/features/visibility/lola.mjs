@@ -71,6 +71,11 @@ export function loadLolaDem(imageBytes, labelText) {
   return dem;
 }
 
+export function isVerifiedLolaDem(dem) {
+  const expectedHash = dem && loadedRealDems.get(dem);
+  return Boolean(expectedHash && dem.sha256 === expectedHash && createHash('sha256').update(new Uint8Array(dem.valuesKm.buffer, dem.valuesKm.byteOffset, dem.valuesKm.byteLength)).digest('hex') === expectedHash);
+}
+
 export function sampleLolaHeightM(dem, latitudeDeg, longitudeDeg) {
   if (!dem || dem.width !== WIDTH || dem.height !== HEIGHT || !(dem.valuesKm instanceof Float32Array) || dem.valuesKm.length !== WIDTH * HEIGHT) throw new TypeError('Invalid LOLA DEM');
   if (!Number.isFinite(latitudeDeg) || !Number.isFinite(longitudeDeg)) throw new TypeError('Latitude and longitude must be finite');

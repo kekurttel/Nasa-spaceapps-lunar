@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { sampleLolaHeightM } from './lola.mjs';
+import { isVerifiedLolaDem, sampleLolaHeightM } from './lola.mjs';
 
 const REQUIRED_KERNELS = ['moon_080317.tf', 'moon_pa_de421_1900-2050.bpc', 'naif0012.tls', 'de421.bsp'];
 
@@ -25,7 +25,7 @@ export function buildRegisteredRequest(dem, options = {}) {
   if (!Number.isFinite(latitudeDeg) || latitudeDeg < -90 || latitudeDeg > 90 || !Number.isFinite(longitudeDeg)) throw new RangeError('Valid finite latitude and longitude required');
   if (!Number.isFinite(observerHeightM) || observerHeightM < 0) throw new RangeError('observerHeightM must be finite and non-negative');
   if (!Array.isArray(timesUtc) || timesUtc.length === 0 || timesUtc.length > 10000 || Array.from({ length: timesUtc.length }, (_, i) => i).some((i) => !(i in timesUtc) || typeof timesUtc[i] !== 'string' || !validUtc(timesUtc[i]) || (i > 0 && Date.parse(timesUtc[i]) <= Date.parse(timesUtc[i - 1])))) throw new TypeError('timesUtc must be nonempty, valid, strictly increasing UTC timestamps');
-  if (typeof dem?.sha256 !== 'string' || !HEX.test(dem.sha256) || !(dem.valuesKm instanceof Float32Array)) throw new TypeError('Verified LOLA DEM SHA-256 required');
+  if (!isVerifiedLolaDem(dem)) throw new TypeError('Verified LOLA DEM loaded from required product manifest is required');
   const actualTerrainHash = createHash('sha256').update(new Uint8Array(dem.valuesKm.buffer, dem.valuesKm.byteOffset, dem.valuesKm.byteLength)).digest('hex');
   if (actualTerrainHash !== dem.sha256.toLowerCase()) throw new TypeError('Verified LOLA DEM was modified after loading');
   const normalizedLongitude = normalizeLongitude(longitudeDeg);
@@ -48,6 +48,9 @@ export async function readKernelHashes(kernelDirectory = resolve(ROOT, 'data/ker
 }
 
 export async function validateRegistration(sky, document, request, { kernelDirectory } = {}) {
+  if (!request || !Number.isFinite(request.latitudeDeg) || request.latitudeDeg < -90 || request.latitudeDeg > 90 || !Number.isFinite(request.longitudeDeg) || !Number.isFinite(request.observerHeightM) || request.observerHeightM < 0 || !Number.isFinite(request.surfaceHeightM) || request.frame !== LOCAL_FRAME || !HEX.test(request.terrainSha256)) throw new TypeError('Invalid registered request coordinates, heights, frame, or terrain hash');
+  if (!Array.isArray(request.timesUtc) || request.timesUtc.length === 0 || Array.from(request.timesUtc).some((time, index) => !validUtc(time) || (index > 0 && Date.parse(time) <= Date.parse(request.timesUtc[index - 1])))) throw new TypeError('Invalid registered request timesUtc');
+  if (document?.profile?.model !== 'terrain' || document.profile.dataKind !== 'real' || document?.provenance?.synthetic !== false) throw new TypeError('Registered analysis requires real, nonsynthetic terrain');
   const registration = sky?.registration;
   if (!registration || typeof registration !== 'object') throw new TypeError('SkySeries registration metadata required');
   const kernelHashes = await readKernelHashes(kernelDirectory);
@@ -68,6 +71,7 @@ export async function validateRegistration(sky, document, request, { kernelDirec
   same('documentProfileObserverHeightM', document?.profile?.observerHeightM, request.observerHeightM);
   same('documentFrame', document?.coverage?.frame, request.frame);
   for (const key of ['observerHeightM', 'surfaceHeightM']) {
+    if (!Number.isFinite(request[key])) throw new TypeError(`Registration request ${key} must be finite`);
     const expected = key === 'surfaceHeightM' ? request.surfaceHeightM : request.observerHeightM;
     if (!Number.isFinite(registration[key]) || Math.abs(registration[key] - expected) > 1e-6) throw new TypeError(`SkySeries registration mismatch: ${key}`);
     checks[key] = true;

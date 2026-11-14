@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { readFile, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -42,6 +43,12 @@ test('registered request rejects invalid UTC calendar dates, non-UTC timestamps,
   for (const timesUtc of [['2026-02-30T00:00:00Z'], ['2026-01-01T00:00:00+00:00'], Array(1)]) assert.throws(() => buildRegisteredRequest(dem, { ...options, timesUtc }), /timesUtc/);
 });
 
+test('registered request rejects self-hashed fabricated terrain samples', () => {
+  const fabricated = { ...dem, valuesKm: new Float32Array(dem.valuesKm.length) };
+  fabricated.sha256 = createHash('sha256').update(new Uint8Array(fabricated.valuesKm.buffer)).digest('hex');
+  assert.throws(() => buildRegisteredRequest(fabricated, options), /manifest|source|verified/i);
+});
+
 test('registered request rejects modified real DEM samples', () => {
   const changed = { ...dem, valuesKm: dem.valuesKm.slice() };
   changed.valuesKm[0] += 1;
@@ -54,6 +61,18 @@ test('real Python generator registration validates against real terrain and veri
   assert.equal(validation.valid, true);
   assert.ok(Object.values(validation.checks).every(Boolean));
   assert.equal(sky.registration.observerRadiusM, 1737400 + request.surfaceHeightM + request.observerHeightM);
+});
+
+test('registration gate rejects NaN request heights and conflicting frame or synthetic terrain claims', async () => {
+  const sky = await generateSky();
+  await assert.rejects(validateRegistration(sky, document, { ...request, surfaceHeightM: NaN }, { kernelDirectory }));
+  await assert.rejects(validateRegistration(sky, document, { ...request, observerHeightM: NaN }, { kernelDirectory }));
+  await assert.rejects(validateRegistration(sky, document, { ...request, frame: 'OTHER' }, { kernelDirectory }));
+  for (const tamper of [d => { d.provenance.synthetic = true; }, d => { d.profile.dataKind = 'synthetic'; }, d => { d.profile.model = 'flat'; }]) {
+    const badDocument = structuredClone(document);
+    tamper(badDocument);
+    await assert.rejects(validateRegistration(sky, badDocument, request, { kernelDirectory }));
+  }
 });
 
 test('each registered SkySeries field tamper is rejected', async () => {

@@ -33,7 +33,7 @@ The bundled DEM is coarse (~7.58 km/pixel); polar extrapolation and near-field t
 | Charts | Recharts |
 | Backend | Python FastAPI |
 | Ephemeris | JPL Horizons API + Astropy |
-| Terrain | LOLA DEM (future enhancement) |
+| Terrain | Verified LOLA DEM in separate CLI; not integrated into web backend |
 
 ## 📦 Quick Start
 
@@ -55,10 +55,13 @@ Open http://localhost:3000
 
 ## 📊 Data Sources
 
-- **JPL Horizons System** — Sun & Earth ephemeris data
-- **LOLA (Lunar Orbiter Laser Altimeter)** — Surface elevation data
-- **NASA Moon Trek** — Lunar basemap tiles
-- **LROC QuickMap** — Reference & validation
+- **JPL Horizons System** — Backend query path and archived real Sun/Earth responses; not the registered terrain CLI's ephemeris source. Backend fallback policy remains separate from the CLI.
+- **LOLA (Lunar Orbiter Laser Altimeter)** — Downloaded `LDEM_4_FLOAT V3.0` elevation raster and PDS label, verified and used by the terrain CLI; not yet connected to web results.
+- **NASA/JPL NAIF SPICE / DE421** — Downloaded kernels used by the registered CLI for geometric sky directions in `MOON_ME_DE421`; auxiliary source, not a substitute for the required Horizons integration.
+- **NASA Moon Trek** — Basemap tile URL configured in frontend; successful layer delivery and scientific visual review are not established by that configuration alone.
+- **LROC QuickMap** — Required visual review still pending; no completed validation claimed.
+
+Source policy: [sources.md](sources.md). Using all four core sources in their respective roles is a user project requirement, not an asserted NASA requirement. Current source use does not yet meet that full requirement.
 
 ## 🏆 NASA Space Apps Challenge 2026
 

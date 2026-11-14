@@ -4,7 +4,7 @@
 
 Önceki bölümler kronolojik çalışma kaydıdır; başlangıçtaki erişim ve boş depo ifadeleri güncel durum değildir. Teslim gerçek uygulama tabanı `e744dc637f78546efd5a0c2e6f638499fcb6cbd3` üzerine, `feat/horizon-visibility` dalına taşındı. İlk doğrulanmış LOLA/ufuk teslimi `3ff91e6` olarak commit edildi ve aynı GitHub dalına gönderildi. Ana dal değiştirilmedi.
 
-Gökyüzü/arazi eşleştirme güncellemesi ayrı Python SPICE üreticisi, JavaScript kayıt kapısı ve CLI üzerinden hazırlanıyor. Kabul için gerçek DE421 kernel içeriği, aynı `MOON_ME_DE421` düzeni, DEM'den türeyen yüzey yüksekliği ve aynı zamanlar denetlenmelidir. Bu başlık tek başına yeni eşleştirmenin doğrulama sonucu değildir; son test ve çalışma kanıtı aşağıya eklenecektir. Mevcut backend/UI otomatik olarak bu yeni CLI'ye geçirilmedi.
+Gökyüzü/arazi eşleştirme güncellemesi `5470efc7020f3543787ba73c997071e907c176d0` olarak commit edilip aynı dala push edildi. Ayrı Python SPICE üreticisi, JavaScript kayıt kapısı ve CLI; gerçek DE421 kernel içeriğini, aynı `MOON_ME_DE421` düzenini, DEM'den türeyen yüzey yüksekliğini ve zamanları denetler. Son teslimde Node 56/56, Python 8/8 test geçti; çalışma kanıtı aşağıdadır. Mevcut backend/UI bu CLI'ye geçirilmedi; ürün entegrasyonu hâlâ açıktır. Yargıç raporuna kapsamlı yanıt: `docs/judge-response-visibility-2026-11-14.md`. Kaynak politikası: kökte `sources.md`.
 
 ### Eşleştirilmiş gerçek çalışma kanıtı
 
