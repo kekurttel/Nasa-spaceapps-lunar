@@ -108,6 +108,36 @@ test('shows API coverage error without substitute result', async () => {
   expect(screen.queryByText('Sun fraction')).not.toBeInTheDocument();
 });
 
+test('editing scenario dates invalidates results and CSV', async () => {
+  fireEvent.click(await ready());
+  await screen.findByText('Sun fraction');
+  fireEvent.change(screen.getAllByLabelText('End (UTC)')[0], { target: { value: '2026-01-01T12:00' } });
+  expect(screen.queryByText('Sun fraction')).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Export CSV' })).toBeDisabled();
+});
+
+test('failed recalculation never leaves previous export available', async () => {
+  const run = await ready();
+  fireEvent.click(run);
+  await screen.findByText('Sun fraction');
+  (analyzeScenarios as jest.Mock).mockRejectedValueOnce(new Error('coverage failure'));
+  fireEvent.click(run);
+  await screen.findByRole('alert');
+  expect(screen.getByRole('button', { name: 'Export CSV' })).toBeDisabled();
+  expect(screen.queryByText('Sun fraction')).not.toBeInTheDocument();
+});
+
+test('response for edited inputs cannot restore stale results', async () => {
+  let resolveRequest: (value: typeof fixture.result) => void = () => {};
+  (analyzeScenarios as jest.Mock).mockImplementationOnce(() => new Promise(resolve => { resolveRequest = resolve; }));
+  fireEvent.click(await ready());
+  fireEvent.change(screen.getAllByLabelText('End (UTC)')[0], { target: { value: '2026-01-01T12:00' } });
+  resolveRequest(fixture.result);
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Run comparison' })).toBeEnabled());
+  expect(screen.queryByText('Sun fraction')).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Export CSV' })).toBeDisabled();
+});
+
 test('rejects blank custom coordinates instead of treating them as zero', async () => {
   await ready();
   fireEvent.click(screen.getByRole('button', { name: 'Add custom site' }));

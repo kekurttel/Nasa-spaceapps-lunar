@@ -104,7 +104,7 @@ async function handle(req) {
   if (req.method === 'GET' && url.pathname === '/api/catalog') return api({ sites, sources });
   if (req.method === 'GET' && url.pathname === '/api/portals') return api([
     { name: 'QuickMap', state: 'planned', detail: 'Portal inspected; no layer consumed by this calculation.', url: 'https://quickmap.lroc.im-ldi.com' },
-    { name: 'Moon Trek', state: 'accessed', detail: 'Map tiles provide visual context only, not elevation data.', url: 'https://trek.nasa.gov/moon/' },
+    { name: 'Moon Trek', state: 'accessed', detail: 'Official mosaic metadata inspected; no Moon Trek tiles rendered or used in calculations. Target projection remains unverified.', url: 'https://trek.nasa.gov/moon/' },
     { name: 'JPL Horizons', state: 'accessed', detail: 'Saved comparison lineage only; app uses bundled NAIF vectors.', url: 'https://ssd.jpl.nasa.gov/horizons/' },
     { name: 'LRO / LOLA', state: 'accessed', detail: 'Bundled coarse LOLA DEM supplies registered MOON_ME_DE421 terrain; kernel hashes and DEM SHA-256 verified per terrain analysis.', url: 'https://pds-geosciences.wustl.edu/missions/lro/lola.htm' },
   ]);
