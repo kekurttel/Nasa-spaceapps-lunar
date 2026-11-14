@@ -49,14 +49,26 @@ test('acceptance: custom coordinate remains custom and unknown elevation remains
 test('acceptance: fixed Scenario embeds Site, no options.site and no input mutation', () => {
   const input = scenario();
   const original = structuredClone(input);
-  const result = validateScenario(input, { manifest, maxSamples: 60 });
+  const result = validateScenario(input, { manifest, maxSamples: 61 });
   assert.equal(result.ok, true, JSON.stringify(result));
   assert.deepEqual(result.value.site, input.site);
   assert.deepEqual(input, original);
   assert.notEqual(result.value.site, input.site);
+  assert.equal(result.value.startUtc, '2026-01-01T00:00:00.000Z');
+  assert.equal(result.value.endUtc, '2026-01-01T01:00:00.000Z');
   assert.ok(result.warnings.some(w => /synthetic/i.test(w)));
-  assert.equal(validateScenario(input, { manifest, maxSamples: 59 }).ok, false);
+  assert.equal(validateScenario(input, { manifest, maxSamples: 60 }).ok, false);
   assert.equal(validateScenario({ ...input, site: input.site.id }, { manifest }).ok, false);
+});
+
+test('acceptance: default allocation limit includes an aligned endpoint', () => {
+  const input = { ...scenario(), endUtc: '2026-01-01T00:00:09.999Z', stepSeconds: 0.001 };
+  assert.equal(validateScenario(input, { manifest }).ok, true);
+  input.endUtc = '2026-01-01T00:00:10.000Z';
+  const limited = validateScenario(input, { manifest });
+  assert.equal(limited.ok, false);
+  assert.equal(limited.errors[0].code, 'sample_limit');
+  assert.equal(validateScenario(input, { manifest, maxSamples: 10001 }).ok, true);
 });
 
 test('acceptance: real coordinates do not imply real sky date coverage', () => {

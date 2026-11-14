@@ -1,6 +1,30 @@
 # Agent 1 — Veri ve senaryo
 
-## Başlangıç — 2026-11-14
+## Güncel teslim ve yargıç onarımı — 2026-11-14
+
+- İlk teslim GitHub'a gönderildi: `feat/data-scenarios`, `b258ce0acc250bbe2243942c50e9d3523c54e723`. Aşağıdaki “commit/remote yok” ifadeleri ilk boş depo snapshot'ının **tarihsel** kaydıdır; güncel durum değildir.
+- Kullanıcı `/home/kaneki/Belgeler/YARGIC-2026-11-14.md` raporundaki kendi alanımızdaki sorunları düzeltmemizi istedi. Kapsam: yalnız `src/features/data/**` ve bu not. Default dala push/merge veya diğer agent dosyalarında değişiklik yok.
+- Raporun P2 UTC bulgusu doğrulandı: Agent 1 saniyeli UTC'yi koruyor, Agent 2 yalnız `.sssZ` tüketiyordu. Kabul edilen girişler korunarak başarılı `Scenario.startUtc/endUtc` artık `Date.toISOString()` ile milisaniyeli UTC üretiyor; girdi nesnesi değişmiyor.
+- Örnek bütçesi artık Agent 2'nin gerçekten ayırdığı dizi boyunu sayar: `floor(durationMs / stepMs) + 1`. Tam bitiş ızgaraya denk gelirse sıfır süreli sınır örneği bütçeye dahildir. Bu, analiz süresini değiştirmez: süre `[start,end)`; son aralık bitişte kesilir. Bir saat / 60 saniye için bütçe **61**, süre **3600 saniye**. Eski `ceil` kuralı aşağıda yalnız ilk sürümün kaydıdır.
+- `stepSeconds * 1000` pozitif güvenli tamsayı olmalıdır; 0.0001 saniye reddedilir, 0.001 saniye desteklenir. `maxSamples:null` artık varsayılana sessiz dönmez; `invalid_limit` olur. Varsayılan 10000, çağrı bazında ayarlanabilir; tüketici ayrıca kendi 100000 sınırını uygular.
+- Üç bağımsız alt görev, tamamı `9router/nasa-luna`: doğrulama + kendi testleri; iki gerçek modüllü sözleşme testi/çalıştırıcısı; yalnız modül README'si. Ana oturum kendi kabul testleri ve bu notu günceller. Her dosyanın tek yazarı var. Ana model `nasa-sol` sapması değişmedi; `duo` ve `prowl-agent` hâlâ kullanılamıyor (`prowl-agent wip`: `zsh:1: command not found: prowl-agent`).
+- `git fetch origin` bu onarımda başarılı. Agent 2'nin `docs/team/02-ephemeris.md` notu ve `scenario.ts` kaynağı uzak daldan okundu. Gerçek iki-modül testi, sabitlenmiş Agent 2 snapshot'ını yalnız `/tmp/opencode/` içine açar; modülümüzün içine ikinci hesaplama motoru kopyalanmaz.
+- Katalog tek kaynaklı API olarak hazırdır; uygulamanın Python kataloğunu buna bağlamak Agent 5'in adapter işidir. Buradan o dosyalar değiştirilmedi. Koordinat çerçevesi/yükseklik dönüşümü uygulanmadı; bu onarım terrain entegrasyonunun hazır olduğu iddiası değildir.
+
+### Onarım test sonucu
+
+- Bağımsız önce/sonra yeniden üretimi: ilk teslimin `validation.mjs` dosyası `b258ce0` snapshot'ından temp dizinine alındı; aynı gerçek Agent 2 modülüne aynı saniyeli UTC girdi verildi. Önce: `EPHEMERIS_INVALID_UTC`, `startUtc must be a UTC ISO timestamp ending in Z with millisecond precision`. Sonra: `2026-01-01T00:00:00.000Z`, **2 örnek**, `quality.dataKind:real`. Konum açık `custom` IAU_MOON test noktasıdır; katalog çerçeve dönüşümü yapıldığı iddia edilmez.
+- `node --test src/features/data/tests/acceptance.test.mjs src/features/data/tests/catalog.test.mjs src/features/data/tests/integration.test.mjs src/features/data/tests/validation.test.mjs`: **33 geçti, 0 hata, 0 atlama**. Yeni bağımsız bütçe testi: 0.001 saniye adımda 9.999 saniye aralık 10000 örnek kabul; 10.000 saniye 10001 örnek varsayılan limitte ret; `maxSamples:10001` ile kabul.
+- `tsc --noEmit --strict --module nodenext --moduleResolution nodenext --target es2022 src/features/data/tests/typecheck.mts`: exit 0. `node src/features/data/examples/demo.mjs`: exit 0, açık `synthetic` etiketi korunur.
+- İlk dış-modül test teslimi reddedildi: milisaniyeli girdi kullanması asıl UTC regresyonunu yakalamıyordu; test başlığındaki süre kesme iddiasının sayısal kontrolü yoktu. İptal edilen iki alt görev çıktısı teslim kanıtı sayılmadı; yeni `nasa-luna` göreviyle test kapsamı tamamlanır.
+- Gerçek Agent 2 snapshot: `84d02a566ae38d4f785720d3d2e4a4531daaa23e`. README'deki `git archive` tarifiyle dosyalar `/tmp/opencode/agent1-contract-verify-iT4dyP/src/features/ephemeris` içine açıldı, `index.ts` mevcut. İptal edilen belge alt görevinin “arşivde index.ts yok” iddiası bağımsız kontrolde **yanlış** bulundu; kullanılmadı.
+- `node --experimental-strip-types src/features/data/tests/run-ephemeris-contract.mjs /tmp/opencode/agent1-contract-verify-iT4dyP/src/features/ephemeris`: **3 geçti, 0 hata**. Gerçek `validateScenario` çıktısı değiştirilmeden gerçek `computeSkySeries` girdisi olur. Saniyeli UTC, özel konum, katalog kaynak bağlantısı, 60/61 bütçe sınırı, 61 gerçek örnekte 3600 saniye ve 3 düzensiz örnekte 9000 saniye, tarih kapsamı sınırı ve kapsam dışı ret kontrol edilir. Süre toplamı test yardımcı hesabıdır; Agent 4'ün uygulanmış/bağlanmış olduğuna kanıt değildir.
+- `EPHEMERIS_MODULE_ROOT=/tmp/opencode/agent1-contract-verify-iT4dyP/src/features/ephemeris node --experimental-strip-types --test src/features/data/tests/*.test.mjs`: **36 geçti, 0 hata, 0 atlama**. Dış kök tanımlanmazsa standart test paketi bunu açıkça atlar; required runner kök yokken exit 2, yanlış kökte `ERR_MODULE_NOT_FOUND`, exit 1 verir.
+- Agent 2 snapshot'ının kendi testleri ayrıca salt okunur çalıştırıldı: `node --experimental-strip-types --test /tmp/opencode/agent1-contract-verify-iT4dyP/src/features/ephemeris/tests/*.test.ts`: **36 geçti, 0 hata**. Node v24.18.1. Başka agent dosyası depoya eklenmedi/değiştirilmedi.
+- Alt görev doğrulaması: doğrulama yazarı yalnız iki atanmış dosyada kod + test üretti, 15 test stdout'u gösterdi; dış-modül yazarı ilk yetersiz testi gerçek regresyon kontrolleriyle düzeltti, nihai kanıtı ana oturum yeniden çalıştırdı; belge görevi kısmi/iptal kaldı, komut tarifi ana oturumda tamamlandı. Hiçbir alt görev commit/push yapmadı. Random/biçimsiz çıktı test kanıtı sayılmadı.
+- Yayın: kullanıcı onarım ve önceki dal teslim yetkisi kapsamında yalnız `feat/data-scenarios` dalına gönderilir; teslim SHA'sı final mesajda ve GitHub dalında bulunur. Default dal/merge/diğer modüllerin UI adapter işi bu teslimin kapsamında değildir.
+
+## Tarihsel başlangıç — 2026-11-14
 
 - Durum: Agent 1 kapsamındaki yerel uygulama hazır ve bağımsız testlerden geçti; commit/push/PR insan mimari teyidi ve uzaktaki temel dal yokluğu nedeniyle yapılmadı. Tam uygulama/gerçek gökyüzü hesaplaması teslimi değildir.
 - Hedef: `kekurttel/Nasa-spaceapps-lunar` (private), erişim `ADMIN` doğrulandı.

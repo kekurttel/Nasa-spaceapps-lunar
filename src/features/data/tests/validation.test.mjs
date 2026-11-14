@@ -55,7 +55,11 @@ test('scenario rejects malformed input, options and required ID', () => {
 });
 test('UTC accepts seconds and milliseconds and rejects malformed calendar dates', () => {
   assert.equal(validateScenario(scenario, options).ok, true);
-  assert.equal(validateScenario({ ...scenario, startUtc: '2025-01-01T00:00:00.123Z', endUtc: '2025-01-01T01:00:00.123Z' }, options).ok, true);
+  assert.equal(validateScenario(scenario, options).value.startUtc, '2025-01-01T00:00:00.000Z');
+  assert.equal(validateScenario(scenario, options).value.endUtc, '2025-01-01T01:00:00.000Z');
+  assert.equal(scenario.startUtc, '2025-01-01T00:00:00Z');
+  assert.equal(validateScenario({ ...scenario, startUtc: '2025-01-01T00:00:00.123Z', endUtc: '2025-01-01T01:00:00.123Z' }, options).value.startUtc, '2025-01-01T00:00:00.123Z');
+  assert.equal(validateScenario({ ...scenario, startUtc: '0000-02-29T00:00:00Z', endUtc: '0000-02-29T00:01:00Z' }, { ...options, manifest: { ...manifest, dateCoverage: { startUtc: '0000-01-01T00:00:00Z', endUtc: '0000-12-31T23:59:59Z' } } }).ok, true);
   for (const value of ['2025-01-01T00:00:00', '2025-01-01T00:00:00.12Z', '2025-02-30T00:00:00Z', '2025-13-01T00:00:00Z', 'bad']) assert.equal(validateScenario({ ...scenario, startUtc: value }, options).ok, false);
 });
 test('scenario interval ordering and inclusive date coverage', () => {
@@ -77,11 +81,17 @@ test('location bounds are checked and antimeridian crossing rejected', () => {
   const narrow = { ...manifest, locationCoverage: { latMinDeg: -1, latMaxDeg: 1, lonMinDeg: -1, lonMaxDeg: 1 } };
   assert.equal(validateScenario(scenario, { manifest: narrow }).errors[0].code, 'outside_location_coverage');
 });
-test('step and maxSamples bounds; fractional duration rounds sample budget up', () => {
-  for (const stepSeconds of [0, -1, NaN, Infinity, '', '0x10']) assert.equal(validateScenario({ ...scenario, stepSeconds }, options).ok, false);
-  const short = { ...scenario, endUtc: '2025-01-01T00:00:02.001Z', stepSeconds: 1 };
-  assert.equal(validateScenario(short, { ...options, maxSamples: 3 }).ok, true);
-  assert.equal(validateScenario(short, { ...options, maxSamples: 2 }).ok, false);
+test('step and maxSamples bounds use inclusive consumer grid', () => {
+  for (const stepSeconds of [0, -1, NaN, Infinity, '', '0x10', 0.0001]) assert.equal(validateScenario({ ...scenario, stepSeconds }, options).ok, false);
+  const aligned = { ...scenario, endUtc: '2025-01-01T00:01:00Z', stepSeconds: 1 };
+  assert.equal(validateScenario(aligned, { ...options, maxSamples: 61 }).ok, true);
+  assert.equal(validateScenario(aligned, { ...options, maxSamples: 60 }).ok, false);
+  const irregular = { ...scenario, endUtc: '2025-01-01T00:00:02.001Z', stepSeconds: 1 };
+  assert.equal(validateScenario(irregular, { ...options, maxSamples: 3 }).ok, true);
+  assert.equal(validateScenario(irregular, { ...options, maxSamples: 2 }).ok, false);
+  const fractionalMs = { ...scenario, endUtc: '2025-01-01T00:00:00.002Z', stepSeconds: 0.001 };
+  assert.equal(validateScenario(fractionalMs, { ...options, maxSamples: 3 }).ok, true);
+  assert.equal(validateScenario(scenario, { ...options, maxSamples: null }).errors[0].code, 'invalid_limit');
   for (const maxSamples of [0, -1, 1.5, Infinity, Number.MAX_SAFE_INTEGER + 1]) assert.equal(validateScenario(scenario, { ...options, maxSamples }).ok, false);
 });
 test('synthetic/mixed warn and real data does not warn', () => {

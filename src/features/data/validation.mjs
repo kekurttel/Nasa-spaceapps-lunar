@@ -91,7 +91,7 @@ function validateCoverage(manifest) {
   return { dates: { start: start.value, end: end.value }, bounds: values };
 }
 
-/** Validate a half-open sampled scenario against its embedded Site and manifest coverage. */
+/** Validate a half-open duration, budgeting Agent 2's endpoint-inclusive sample grid. */
 export function validateScenario(input, options = {}) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) return failure('scenario', 'invalid_object', 'Scenario must be an object.');
   if (!options || typeof options !== 'object' || Array.isArray(options)) return failure('options', 'invalid_object', 'Options must be an object.');
@@ -112,11 +112,13 @@ export function validateScenario(input, options = {}) {
   const site = siteResult.value;
   const b = coverage.bounds;
   if (site.latDeg < b.latMinDeg || site.latDeg > b.latMaxDeg || site.lonDeg < b.lonMinDeg || site.lonDeg > b.lonMaxDeg) return failure('site', 'outside_location_coverage', 'Scenario site is outside manifest location coverage.');
-  const maxSamples = options.maxSamples ?? 10000;
+  const stepMilliseconds = step.value * 1000;
+  if (!Number.isSafeInteger(stepMilliseconds) || stepMilliseconds <= 0) return failure('stepSeconds', 'invalid_step', 'stepSeconds must resolve to a positive safe integer number of milliseconds.');
+  const maxSamples = options.maxSamples === undefined ? 10000 : options.maxSamples;
   if (!Number.isSafeInteger(maxSamples) || maxSamples < 1) return failure('maxSamples', 'invalid_limit', 'maxSamples must be a positive safe integer.');
-  const durationSeconds = (end.value - start.value) / 1000;
-  const sampleRatio = durationSeconds / step.value;
-  if (!Number.isFinite(sampleRatio) || sampleRatio <= 0 || !Number.isSafeInteger(Math.ceil(sampleRatio)) || Math.ceil(sampleRatio) > maxSamples) return failure('stepSeconds', 'sample_limit', `Scenario requires ${Math.ceil(sampleRatio)} samples, exceeding maxSamples ${maxSamples}.`);
+  // Agent 2's time grid includes both start and each step at or before end.
+  const sampleCount = Math.floor((end.value - start.value) / stepMilliseconds) + 1;
+  if (!Number.isSafeInteger(sampleCount) || sampleCount > maxSamples) return failure('stepSeconds', 'sample_limit', `Scenario requires ${sampleCount} samples, exceeding maxSamples ${maxSamples}.`);
   const warnings = ['synthetic', 'mixed'].includes(options.manifest.dataKind) ? [`Scenario uses ${options.manifest.dataKind} data.`] : [];
-  return { ok: true, value: { id: input.id.trim(), site, startUtc: input.startUtc, endUtc: input.endUtc, stepSeconds: step.value }, warnings };
+  return { ok: true, value: { id: input.id.trim(), site, startUtc: new Date(start.value).toISOString(), endUtc: new Date(end.value).toISOString(), stepSeconds: step.value }, warnings };
 }
