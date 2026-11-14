@@ -1,0 +1,571 @@
+{
+  "kind": "diagnostic-only",
+  "independentSourceClaim": false,
+  "method": {
+    "reference": "SPICE spkpos geometric vectors; IAU_MOON, observer MOON",
+    "kernels": [
+      "lsk/naif0012.tls",
+      "spk/de440s.bsp",
+      "pck/pck00011.tpc"
+    ],
+    "dates": [
+      "2026-01-01",
+      "2026-02-01",
+      "2026-03-01",
+      "2026-04-01",
+      "2026-05-01",
+      "2026-06-01",
+      "2026-07-01",
+      "2026-08-01",
+      "2026-09-01",
+      "2026-10-01",
+      "2026-11-01",
+      "2026-12-01",
+      "2027-01-01",
+      "2028-01-01"
+    ],
+    "sites": [
+      {
+        "latDeg": 0.0,
+        "lonDeg": 0.0
+      },
+      {
+        "latDeg": 45.0,
+        "lonDeg": 30.0
+      },
+      {
+        "latDeg": -89.5,
+        "lonDeg": 45.0
+      },
+      {
+        "latDeg": 0.0,
+        "lonDeg": 180.0
+      }
+    ],
+    "samplesPerDate": 25,
+    "comparisonTimesPerDate": 72,
+    "observerRadiusKm": 1737.402,
+    "refraction": "none"
+  },
+  "dateCount": 14,
+  "dates": [
+    {
+      "dateUtc": "2026-01-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 4.27420097689251e-05,
+          "p95": 9.979022459641767e-05,
+          "max": 0.00010129200088748012
+        },
+        "localTopocentricDirection": {
+          "p50": 4.257092534263304e-05,
+          "p95": 9.988147693349542e-05,
+          "max": 0.00010179975360847115
+        },
+        "angularRadius": {
+          "p50": 1.096103102171675e-06,
+          "p95": 2.6336949990740655e-06,
+          "max": 2.634144410595951e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-01-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 0.00010179975360847115
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 0.00010179975360847115,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-02-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 3.156383783371522e-05,
+          "p95": 7.498847802522165e-05,
+          "max": 7.534515494876839e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 3.1447006776917256e-05,
+          "p95": 7.511267441731768e-05,
+          "max": 7.571196146291667e-05
+        },
+        "angularRadius": {
+          "p50": 1.055896079127372e-06,
+          "p95": 2.6300491836328543e-06,
+          "max": 2.630318867324899e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-02-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 7.571196146291667e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 7.571196146291667e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-03-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.143207419566358e-05,
+          "p95": 5.699250433219052e-05,
+          "max": 5.9085116954172855e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.137979689349252e-05,
+          "p95": 5.703849174671044e-05,
+          "max": 5.9366436963392506e-05
+        },
+        "angularRadius": {
+          "p50": 1.0149907858358898e-06,
+          "p95": 2.6224706827782107e-06,
+          "max": 2.623037557047958e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-03-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 5.9366436963392506e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 5.9366436963392506e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-04-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.281101890209519e-05,
+          "p95": 5.410925315531266e-05,
+          "max": 5.6290090608459366e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.2739300556295794e-05,
+          "p95": 5.421628187742658e-05,
+          "max": 5.653632098185393e-05
+        },
+        "angularRadius": {
+          "p50": 1.0002320834090472e-06,
+          "p95": 2.6057075886432024e-06,
+          "max": 2.6060812651773624e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-04-01T23:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 5.653632098185393e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 5.653632098185393e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-05-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.9491212888714035e-05,
+          "p95": 6.309340255340494e-05,
+          "max": 6.395338843048221e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.9413252434706864e-05,
+          "p95": 6.31388430669876e-05,
+          "max": 6.422057899188813e-05
+        },
+        "angularRadius": {
+          "p50": 1.0171800983033163e-06,
+          "p95": 2.589967211225064e-06,
+          "max": 2.590252669298909e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-05-01T23:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 45.0,
+          "lonDeg": 30.0
+        },
+        "errorDeg": 6.422057899188813e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 6.422057899188813e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-06-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.80763823768216e-05,
+          "p95": 5.844608448379351e-05,
+          "max": 5.966510589464805e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.8015763377653545e-05,
+          "p95": 5.8502187491978435e-05,
+          "max": 5.992250342467794e-05
+        },
+        "angularRadius": {
+          "p50": 1.0313068598000186e-06,
+          "p95": 2.5786954235967885e-06,
+          "max": 2.578881515780118e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-06-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 45.0,
+          "lonDeg": 30.0
+        },
+        "errorDeg": 5.992250342467794e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 5.992250342467794e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-07-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.0569132796436356e-05,
+          "p95": 4.2191389614340305e-05,
+          "max": 4.402573068396854e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.0513527848064762e-05,
+          "p95": 4.2279035806283536e-05,
+          "max": 4.4207011050845296e-05
+        },
+        "angularRadius": {
+          "p50": 1.0282624748336744e-06,
+          "p95": 2.575374599092517e-06,
+          "max": 2.575697341800076e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-07-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 45.0,
+          "lonDeg": 30.0
+        },
+        "errorDeg": 4.4207011050845296e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 4.4207011050845296e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-08-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.0775317008286663e-05,
+          "p95": 5.4378951176419367e-05,
+          "max": 5.787054027896034e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.073820582522564e-05,
+          "p95": 5.450289903893878e-05,
+          "max": 5.812562214653434e-05
+        },
+        "angularRadius": {
+          "p50": 1.0052568118756877e-06,
+          "p95": 2.5813581618905346e-06,
+          "max": 2.581951138724836e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-08-01T23:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 5.812562214653434e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 5.812562214653434e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-09-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 3.309519156752937e-05,
+          "p95": 8.793075517308998e-05,
+          "max": 8.955256214586591e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 3.296789123958844e-05,
+          "p95": 8.803084783336665e-05,
+          "max": 8.996684106398496e-05
+        },
+        "angularRadius": {
+          "p50": 9.916157905076606e-07,
+          "p95": 2.594594617433277e-06,
+          "max": 2.5954213742629406e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-09-01T23:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 8.996684106398496e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 8.996684106398496e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-10-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 3.716741103059171e-05,
+          "p95": 8.879554720170857e-05,
+          "max": 8.968217614268659e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 3.702858658083439e-05,
+          "p95": 8.8908340812842e-05,
+          "max": 9.011660712807929e-05
+        },
+        "angularRadius": {
+          "p50": 1.0236493607762576e-06,
+          "p95": 2.609063519412591e-06,
+          "max": 2.6099768772325227e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-10-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 9.011660712807929e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 9.011660712807929e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-11-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 2.9736044652202937e-05,
+          "p95": 6.674495127484028e-05,
+          "max": 6.981744272100897e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 2.9649348266865877e-05,
+          "p95": 6.688786131376937e-05,
+          "max": 7.014985846683802e-05
+        },
+        "angularRadius": {
+          "p50": 9.9689076557552e-07,
+          "p95": 2.6276350940795945e-06,
+          "max": 2.628636848689414e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-11-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 7.014985846683802e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 7.014985846683802e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2026-12-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 3.465826083593757e-05,
+          "p95": 7.447000794006642e-05,
+          "max": 7.538230199095724e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 3.455634576785595e-05,
+          "p95": 7.456113303078541e-05,
+          "max": 7.572640158411913e-05
+        },
+        "angularRadius": {
+          "p50": 1.0246459445639733e-06,
+          "p95": 2.640760158587052e-06,
+          "max": 2.6417408105494644e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2026-12-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 7.572640158411913e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 7.572640158411913e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2027-01-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 3.6469365624967144e-05,
+          "p95": 8.72953636323008e-05,
+          "max": 8.884066434287522e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 3.635589805569112e-05,
+          "p95": 8.7399276655728e-05,
+          "max": 8.92101542167258e-05
+        },
+        "angularRadius": {
+          "p50": 1.058656777214173e-06,
+          "p95": 2.6512261021294226e-06,
+          "max": 2.6520845795574566e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2027-01-01T00:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": 0.0,
+          "lonDeg": 0.0
+        },
+        "errorDeg": 8.92101542167258e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 8.92101542167258e-05,
+        "passed": true
+      }
+    },
+    {
+      "dateUtc": "2028-01-01T00:00:00Z",
+      "sourceSampleCount": 25,
+      "comparisonCount": 288,
+      "sampleCadence": "hourly source; 15-minute subdivisions exact-reference comparison",
+      "errorsDeg": {
+        "vectorDirection": {
+          "p50": 1.2311767536425987e-05,
+          "p95": 3.3499714214004174e-05,
+          "max": 3.8238497546444354e-05
+        },
+        "localTopocentricDirection": {
+          "p50": 1.2303206568747673e-05,
+          "p95": 3.365101918957915e-05,
+          "max": 3.8429299284301505e-05
+        },
+        "angularRadius": {
+          "p50": 1.0974293242205224e-06,
+          "p95": 2.656739388637308e-06,
+          "max": 2.6573734803747584e-06
+        }
+      },
+      "worstLocalDirection": {
+        "timeUtc": "2028-01-01T23:30:00Z",
+        "body": "EARTH",
+        "site": {
+          "latDeg": -89.5,
+          "lonDeg": 45.0
+        },
+        "errorDeg": 3.8429299284301505e-05
+      },
+      "acceptance": {
+        "thresholdDeg": 0.1,
+        "measuredMaxLocalDirectionErrorDeg": 3.8429299284301505e-05,
+        "passed": true
+      }
+    }
+  ]
+}

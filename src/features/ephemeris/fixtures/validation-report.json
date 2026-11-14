@@ -1,0 +1,1023 @@
+{
+  "targetDeg": 0.1,
+  "maxSeparationDeg": 0.00775688093675673,
+  "passed": true,
+  "comparison": "SPICE DE440s geometric IAU_MOON vs Horizons DE441 airless apparent lunar surface observer. Frame/correction differences are included, not fitted away.",
+  "limitations": "Three sites x thirteen ten-minute times over two hours. Between-grid error is measured here, not guaranteed for other dates or datasets.",
+  "measurements": [
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 92.503437,
+      "referenceAltDeg": 57.455366,
+      "actualAzDeg": 92.49892258013762,
+      "actualAltDeg": 57.44799959570571,
+      "separationDeg": 0.007756481834372413
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 92.509008,
+      "referenceAltDeg": 57.539512,
+      "actualAzDeg": 92.50449479602185,
+      "actualAltDeg": 57.532146329117296,
+      "separationDeg": 0.007753832214140374
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 92.514609,
+      "referenceAltDeg": 57.623657,
+      "actualAzDeg": 92.51009281954089,
+      "actualAltDeg": 57.616293191731565,
+      "separationDeg": 0.007750813462811443
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 92.520243,
+      "referenceAltDeg": 57.707802,
+      "actualAzDeg": 92.51571683029476,
+      "actualAltDeg": 57.70043981814542,
+      "separationDeg": 0.007749185030964835
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 92.525908,
+      "referenceAltDeg": 57.791946,
+      "actualAzDeg": 92.52136700955293,
+      "actualAltDeg": 57.78458584293945,
+      "separationDeg": 0.007747972987975721
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 92.531604,
+      "referenceAltDeg": 57.87609,
+      "actualAzDeg": 92.5270435402735,
+      "actualAltDeg": 57.86873090068716,
+      "separationDeg": 0.0077484407780860085
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 92.537333,
+      "referenceAltDeg": 57.960233,
+      "actualAzDeg": 92.53274660712316,
+      "actualAltDeg": 57.95287462596427,
+      "separationDeg": 0.007750286520778131
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 92.543095,
+      "referenceAltDeg": 58.044376,
+      "actualAzDeg": 92.53850916060031,
+      "actualAltDeg": 58.03701803299993,
+      "separationDeg": 0.007748016713901285
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 92.548889,
+      "referenceAltDeg": 58.128518,
+      "actualAzDeg": 92.54429892981318,
+      "actualAltDeg": 58.12116155931391,
+      "separationDeg": 0.007745476798140034
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 92.554715,
+      "referenceAltDeg": 58.212659,
+      "actualAzDeg": 92.5501161079032,
+      "actualAltDeg": 58.205304839378336,
+      "separationDeg": 0.0077429735022631245
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 92.560575,
+      "referenceAltDeg": 58.2968,
+      "actualAzDeg": 92.5559608898426,
+      "actualAltDeg": 58.28944750764729,
+      "separationDeg": 0.007742095095670065
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 92.566469,
+      "referenceAltDeg": 58.380941,
+      "actualAzDeg": 92.5618334724561,
+      "actualAltDeg": 58.373589198565966,
+      "separationDeg": 0.007743151801284646
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 92.572396,
+      "referenceAltDeg": 58.46508,
+      "actualAzDeg": 92.5677340544429,
+      "actualAltDeg": 58.45772954657986,
+      "separationDeg": 0.007744393301774154
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 190.988776,
+      "referenceAltDeg": 83.288323,
+      "actualAzDeg": 190.97496445859503,
+      "actualAltDeg": 83.28992027655369,
+      "separationDeg": 0.002270751241700632
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 190.879322,
+      "referenceAltDeg": 83.289848,
+      "actualAzDeg": 190.86544399542979,
+      "actualAltDeg": 83.29150000191473,
+      "separationDeg": 0.002314746167171902
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 190.769792,
+      "referenceAltDeg": 83.291371,
+      "actualAzDeg": 190.75586646024271,
+      "actualAltDeg": 83.29305551384871,
+      "separationDeg": 0.0023416570566219966
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 190.660186,
+      "referenceAltDeg": 83.292893,
+      "actualAzDeg": 190.6462326106168,
+      "actualAltDeg": 83.29458679122946,
+      "separationDeg": 0.002350338110795435
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 190.550503,
+      "referenceAltDeg": 83.294412,
+      "actualAzDeg": 190.53654320656327,
+      "actualAltDeg": 83.29609381318343,
+      "separationDeg": 0.0023419864046879445
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 190.440744,
+      "referenceAltDeg": 83.29593,
+      "actualAzDeg": 190.42679901049263,
+      "actualAltDeg": 83.29757655909073,
+      "separationDeg": 0.002315329280197728
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 190.330909,
+      "referenceAltDeg": 83.297447,
+      "actualAzDeg": 190.3170007871855,
+      "actualAltDeg": 83.29903500858619,
+      "separationDeg": 0.00227073616175502
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 190.220998,
+      "referenceAltDeg": 83.298961,
+      "actualAzDeg": 190.20702353867418,
+      "actualAltDeg": 83.3006039375814,
+      "separationDeg": 0.0023146608245420367
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 190.111011,
+      "referenceAltDeg": 83.300473,
+      "actualAzDeg": 190.09698953632235,
+      "actualAltDeg": 83.30214847835424,
+      "separationDeg": 0.0023414389327597214
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 190.000949,
+      "referenceAltDeg": 83.301984,
+      "actualAzDeg": 189.98689954845332,
+      "actualAltDeg": 83.30366860990891,
+      "separationDeg": 0.002349999904658443
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 189.89081,
+      "referenceAltDeg": 83.303492,
+      "actualAzDeg": 189.87675434582601,
+      "actualAltDeg": 83.30516431150681,
+      "separationDeg": 0.0023414496014308654
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 189.780596,
+      "referenceAltDeg": 83.304999,
+      "actualAzDeg": 189.76655470160497,
+      "actualAltDeg": 83.30663556266764,
+      "separationDeg": 0.002314611798948077
+    },
+    {
+      "site": {
+        "latDeg": 0,
+        "lonDeg": 0
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 189.670306,
+      "referenceAltDeg": 83.306503,
+      "actualAzDeg": 189.6563013913304,
+      "actualAltDeg": 83.30808234317034,
+      "separationDeg": 0.0022711810600390503
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 176.520873,
+      "referenceAltDeg": 43.599,
+      "actualAzDeg": 176.51046624029073,
+      "actualAltDeg": 43.60083351806632,
+      "separationDeg": 0.007756126625973838
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 176.637034,
+      "referenceAltDeg": 43.602666,
+      "actualAzDeg": 176.6266314471004,
+      "actualAltDeg": 43.60450353816119,
+      "separationDeg": 0.007753672039319981
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 176.753209,
+      "referenceAltDeg": 43.606212,
+      "actualAzDeg": 176.74281111827042,
+      "actualAltDeg": 43.6080559388214,
+      "separationDeg": 0.0077514744631396485
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 176.869397,
+      "referenceAltDeg": 43.609637,
+      "actualAzDeg": 176.85900430095387,
+      "actualAltDeg": 43.61149067539359,
+      "separationDeg": 0.007749735899851582
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 176.985597,
+      "referenceAltDeg": 43.612942,
+      "actualAzDeg": 176.97521004163798,
+      "actualAltDeg": 43.614807706193226,
+      "separationDeg": 0.00774818623173164
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 177.10181,
+      "referenceAltDeg": 43.616126,
+      "actualAzDeg": 177.09142738619028,
+      "actualAltDeg": 43.61800699250706,
+      "separationDeg": 0.007748442800112426
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 177.218036,
+      "referenceAltDeg": 43.61919,
+      "actualAzDeg": 177.2076553799062,
+      "actualAltDeg": 43.62108849859554,
+      "separationDeg": 0.007750939355451017
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 177.334272,
+      "referenceAltDeg": 43.622133,
+      "actualAzDeg": 177.3238966658672,
+      "actualAltDeg": 43.62403498192522,
+      "separationDeg": 0.007747727033439468
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 177.45052,
+      "referenceAltDeg": 43.624955,
+      "actualAzDeg": 177.44014964344535,
+      "actualAltDeg": 43.626863687570854,
+      "separationDeg": 0.0077455418025781046
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 177.566778,
+      "referenceAltDeg": 43.627657,
+      "actualAzDeg": 177.55641335708071,
+      "actualAltDeg": 43.62957457975304,
+      "separationDeg": 0.007743403439352987
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 177.683046,
+      "referenceAltDeg": 43.630238,
+      "actualAzDeg": 177.67268685068314,
+      "actualAltDeg": 43.632167625669354,
+      "separationDeg": 0.007742231722615033
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 177.799324,
+      "referenceAltDeg": 43.632698,
+      "actualAzDeg": 177.7889691676795,
+      "actualAltDeg": 43.634642795496504,
+      "separationDeg": 0.00774270412871079
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 177.915611,
+      "referenceAltDeg": 43.635037,
+      "actualAzDeg": 177.90525935106075,
+      "actualAltDeg": 43.63700006239201,
+      "separationDeg": 0.007744800543013104
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 217.136554,
+      "referenceAltDeg": 31.071825,
+      "actualAzDeg": 217.13519419417577,
+      "actualAltDeg": 31.073768912037337,
+      "separationDeg": 0.002266119490409326
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 217.122568,
+      "referenceAltDeg": 31.076474,
+      "actualAzDeg": 217.12121990427264,
+      "actualAltDeg": 31.078475098178707,
+      "separationDeg": 0.002310303779375612
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 217.108584,
+      "referenceAltDeg": 31.081144,
+      "actualAzDeg": 217.10724344431088,
+      "actualAltDeg": 31.083180042040443,
+      "separationDeg": 0.002337429374651071
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 217.094601,
+      "referenceAltDeg": 31.085836,
+      "actualAzDeg": 217.09326481544866,
+      "actualAltDeg": 31.08788374248726,
+      "separationDeg": 0.002345772122724962
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 217.08062,
+      "referenceAltDeg": 31.090549,
+      "actualAzDeg": 217.07928401884564,
+      "actualAltDeg": 31.092586198384122,
+      "separationDeg": 0.002336460251144876
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 217.066641,
+      "referenceAltDeg": 31.095282,
+      "actualAzDeg": 217.0653010556627,
+      "actualAltDeg": 31.09728740859629,
+      "separationDeg": 0.0023104499938802546
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 217.052664,
+      "referenceAltDeg": 31.100037,
+      "actualAzDeg": 217.0513159270623,
+      "actualAltDeg": 31.101987371989278,
+      "separationDeg": 0.0022663528390282923
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 217.038689,
+      "referenceAltDeg": 31.104813,
+      "actualAzDeg": 217.03735306825675,
+      "actualAltDeg": 31.106819929688243,
+      "separationDeg": 0.0023100100875947487
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 217.024716,
+      "referenceAltDeg": 31.10961,
+      "actualAzDeg": 217.02338803644798,
+      "actualAltDeg": 31.111651242134222,
+      "separationDeg": 0.0023365267005238293
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 217.010745,
+      "referenceAltDeg": 31.114428,
+      "actualAzDeg": 217.00942083278838,
+      "actualAltDeg": 31.116481308175466,
+      "separationDeg": 0.0023454745765006035
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 216.996776,
+      "referenceAltDeg": 31.119267,
+      "actualAzDeg": 216.9954514584316,
+      "actualAltDeg": 31.12131012666048,
+      "separationDeg": 0.002336694004746025
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 216.982809,
+      "referenceAltDeg": 31.124127,
+      "actualAzDeg": 216.9814799145328,
+      "actualAltDeg": 31.12613769643806,
+      "separationDeg": 0.0023102764469069325
+    },
+    {
+      "site": {
+        "latDeg": 45,
+        "lonDeg": 30
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 216.968844,
+      "referenceAltDeg": 31.129008,
+      "actualAzDeg": 216.96750620224842,
+      "actualAltDeg": 31.130964016357293,
+      "separationDeg": 0.002266576576022352
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 347.516465,
+      "referenceAltDeg": 1.833929,
+      "actualAzDeg": 347.52392414601405,
+      "actualAltDeg": 1.831787211103065,
+      "separationDeg": 0.00775688093675673
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 347.432224,
+      "referenceAltDeg": 1.833657,
+      "actualAzDeg": 347.43968231547296,
+      "actualAltDeg": 1.8315223921970611,
+      "separationDeg": 0.00775410423127238
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 347.347983,
+      "referenceAltDeg": 1.833384,
+      "actualAzDeg": 347.35544013538976,
+      "actualAltDeg": 1.831253615447693,
+      "separationDeg": 0.007751809700350039
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 347.263742,
+      "referenceAltDeg": 1.83311,
+      "actualAzDeg": 347.27119796999114,
+      "actualAltDeg": 1.8309808825709335,
+      "separationDeg": 0.007750342658530142
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 347.179502,
+      "referenceAltDeg": 1.832834,
+      "actualAzDeg": 347.18695618350336,
+      "actualAltDeg": 1.8307041953596714,
+      "separationDeg": 0.007748815757692602
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 347.095262,
+      "referenceAltDeg": 1.832558,
+      "actualAzDeg": 347.10271514014283,
+      "actualAltDeg": 1.8304235556836599,
+      "separationDeg": 0.007749090901524602
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 347.011022,
+      "referenceAltDeg": 1.83228,
+      "actualAzDeg": 347.0184752041069,
+      "actualAltDeg": 1.8301389654894438,
+      "separationDeg": 0.007750971291000401
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 346.926782,
+      "referenceAltDeg": 1.832002,
+      "actualAzDeg": 346.9342346692171,
+      "actualAltDeg": 1.8298676939067688,
+      "separationDeg": 0.007748602572489369
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 346.842542,
+      "referenceAltDeg": 1.831722,
+      "actualAzDeg": 346.8499937803134,
+      "actualAltDeg": 1.8295924681268125,
+      "separationDeg": 0.007746435787661412
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 346.758303,
+      "referenceAltDeg": 1.831441,
+      "actualAzDeg": 346.76575290160565,
+      "actualAltDeg": 1.8293132899066282,
+      "separationDeg": 0.007744130786841056
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 346.674064,
+      "referenceAltDeg": 1.831159,
+      "actualAzDeg": 346.6815123973035,
+      "actualAltDeg": 1.8290301610801163,
+      "separationDeg": 0.007742996534809417
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 346.589825,
+      "referenceAltDeg": 1.830876,
+      "actualAzDeg": 346.5972726316069,
+      "actualAltDeg": 1.828743083557961,
+      "separationDeg": 0.007743384024382328
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "sun",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 346.505586,
+      "referenceAltDeg": 1.830592,
+      "actualAzDeg": 346.5130339686966,
+      "actualAltDeg": 1.8284520593275677,
+      "separationDeg": 0.007745646743933691
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:00:00.000Z",
+      "referenceAzDeg": 313.678545,
+      "referenceAltDeg": 6.62799,
+      "actualAzDeg": 313.6804495831777,
+      "actualAltDeg": 6.626749514483691,
+      "separationDeg": 0.0022622830218804128
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:10:00.000Z",
+      "referenceAzDeg": 313.691417,
+      "referenceAltDeg": 6.629004,
+      "actualAzDeg": 313.6933376919104,
+      "actualAltDeg": 6.627707818283098,
+      "separationDeg": 0.0023065108278795075
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:20:00.000Z",
+      "referenceAzDeg": 313.704297,
+      "referenceAltDeg": 6.629996,
+      "actualAzDeg": 313.7062265680049,
+      "actualAltDeg": 6.6286658430216345,
+      "separationDeg": 0.0023330083882123044
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:30:00.000Z",
+      "referenceAzDeg": 313.717185,
+      "referenceAltDeg": 6.630967,
+      "actualAzDeg": 313.7191162102251,
+      "actualAltDeg": 6.629623588502315,
+      "separationDeg": 0.0023419236437853637
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:40:00.000Z",
+      "referenceAzDeg": 313.73008,
+      "referenceAltDeg": 6.631915,
+      "actualAzDeg": 313.7320066173344,
+      "actualAltDeg": 6.63058105452825,
+      "separationDeg": 0.002332759288894308
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T00:50:00.000Z",
+      "referenceAzDeg": 313.742982,
+      "referenceAltDeg": 6.632842,
+      "actualAzDeg": 313.74489778809595,
+      "actualAltDeg": 6.6315382409026356,
+      "separationDeg": 0.0023067453005081004
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:00:00.000Z",
+      "referenceAzDeg": 313.755892,
+      "referenceAltDeg": 6.633747,
+      "actualAzDeg": 313.7577897212724,
+      "actualAltDeg": 6.632495147428771,
+      "separationDeg": 0.0022628363993699163
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:10:00.000Z",
+      "referenceAzDeg": 313.768809,
+      "referenceAltDeg": 6.634631,
+      "actualAzDeg": 313.77072181295665,
+      "actualAltDeg": 6.63332283530908,
+      "separationDeg": 0.0023067978004018114
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:20:00.000Z",
+      "referenceAzDeg": 313.781734,
+      "referenceAltDeg": 6.635492,
+      "actualAzDeg": 313.78365463586545,
+      "actualAltDeg": 6.634150232265317,
+      "separationDeg": 0.002332367444143444
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:30:00.000Z",
+      "referenceAzDeg": 313.794665,
+      "referenceAltDeg": 6.636332,
+      "actualAzDeg": 313.79658818874293,
+      "actualAltDeg": 6.634977338120776,
+      "separationDeg": 0.002341874358483388
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:40:00.000Z",
+      "referenceAzDeg": 313.807604,
+      "referenceAltDeg": 6.63715,
+      "actualAzDeg": 313.8095224703326,
+      "actualAltDeg": 6.635804152698861,
+      "separationDeg": 0.002332954147355757
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T01:50:00.000Z",
+      "referenceAzDeg": 313.82055,
+      "referenceAltDeg": 6.637946,
+      "actualAzDeg": 313.8224574793777,
+      "actualAltDeg": 6.636630675823077,
+      "separationDeg": 0.0023065009779542683
+    },
+    {
+      "site": {
+        "latDeg": -89.5,
+        "lonDeg": 45
+      },
+      "body": "earth",
+      "timeUtc": "2026-01-01T02:00:00.000Z",
+      "referenceAzDeg": 313.833503,
+      "referenceAltDeg": 6.638721,
+      "actualAzDeg": 313.8353932146209,
+      "actualAltDeg": 6.637456907317036,
+      "separationDeg": 0.0022634260738001806
+    }
+  ]
+}
