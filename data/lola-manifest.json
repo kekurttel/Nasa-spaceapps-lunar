@@ -1,0 +1,25 @@
+{
+  "productId": "LDEM_4_FLOAT",
+  "productVersion": "V3.0",
+  "dataSetId": "LRO-L-LOLA-4-GDR-V1.0",
+  "source": "NASA PDS Geosciences Node, LRO/LOLA",
+  "catalogUrl": "https://pds-geosciences.wustl.edu/missions/lro/lola.htm",
+  "attribution": "LRO/LOLA LDEM_4_FLOAT, PRODUCT_VERSION_ID V3.0; data acquired 2009-07-13 through 2016-11-29. Public PDS scientific data; no separate SPDX license assertion. NASA/PDS endorsement is not implied.",
+  "epoch": { "start": "2009-07-13", "end": "2016-11-29" },
+  "frame": "ME_DE421_LOCAL_NORTH_EAST",
+  "resolution": "4 pixels/degree (~7.58084 km/pixel); global low-resolution raster, not suitable for claims of local high-resolution terrain fidelity.",
+  "files": {
+    "image": {
+      "path": "data/raw/lola_ldem_4_float.img",
+      "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/cylindrical/float_img/ldem_4_float.img",
+      "bytes": 4147200,
+      "sha256": "6EAEE9376442DC851B8F8E94790499EC339D923367D7B8608A4316088B85BD45"
+    },
+    "label": {
+      "path": "data/raw/lola_ldem_4_float.lbl",
+      "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/cylindrical/float_img/ldem_4_float.lbl",
+      "bytes": 5125,
+      "sha256": "37315910C3064D66623180FE49E91ABC6C0C6B43B064042D2AC8002D997479D4"
+    }
+  }
+}

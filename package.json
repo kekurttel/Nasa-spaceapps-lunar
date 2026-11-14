@@ -1,0 +1,13 @@
+{
+  "name": "lunar-sight-unified",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.6.0" },
+  "scripts": {
+    "start": "node --experimental-strip-types server/app.mjs",
+    "test:integration": "node --experimental-strip-types --test tests/integration/app*.test.mjs",
+    "test:data": "node --test src/features/data/tests/*.test.mjs tests/integration/data-contract.test.mjs",
+    "test:ephemeris": "node --experimental-strip-types --test src/features/ephemeris/tests/*.test.ts",
+    "build": "npm --prefix frontend run build"
+  }
+}

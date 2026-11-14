@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-14",
+  "target": {
+    "lat": -85.29,
+    "lon": 31.95,
+    "status": "development proposal; user selected demo scope, coordinate not human-confirmed"
+  },
+  "settings": {
+    "tlsVerification": "enabled",
+    "cors": "unchanged",
+    "screenshotFontBypass": "PW_TEST_SCREENSHOT_NO_FONTS_READY=1"
+  },
+  "quickmap": {
+    "resultFile": "/tmp/opencode/lunar-source-check/quickmap-retry.json",
+    "error": null,
+    "requests": 10,
+    "screenshot": "/tmp/opencode/lunar-source-check/quickmap-retry.png",
+    "screenshotError": null
+  },
+  "moon-trek": {
+    "resultFile": "/tmp/opencode/lunar-source-check/moon-trek-retry.json",
+    "error": null,
+    "requests": 386,
+    "screenshot": "/tmp/opencode/lunar-source-check/moon-trek-retry.png",
+    "screenshotError": null
+  }
+}

@@ -1,134 +1,27 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { MoonMap } from './components/MoonMap';
-import { HorizonChart } from './components/HorizonChart';
-import { TimelineBar } from './components/TimelineBar';
-import { ComparePanel } from './components/ComparePanel';
-import { getPresetSites, fetchEphemerisMulti } from './services/api';
-import { PresetSite, SiteEphemeris, SiteRequest } from './types';
+import React, { useEffect, useMemo, useState } from 'react';
+import { getCatalog, getPortals, analyzeScenarios, type ResultEntry, type ScenarioInput, type PortalInfo, type SiteRecord } from './services/api';
+import './App.css';
 
-export const App: React.FC = () => {
-  const [presets, setPresets] = useState<PresetSite[]>([]);
-  const [selectedSites, setSelectedSites] = useState<SiteRequest[]>([
-    { name: 'Shackleton Crater Rim', lat: -89.9, lon: 0 },
-    { name: 'Nobile Rim / Ridge 1', lat: -85.2, lon: 35.5 },
-  ]);
-  const [activeSiteIdx, setActiveSiteIdx] = useState(0);
-  const [startDate, setStartDate] = useState('2026-06-01T00:00');
-  const [endDate, setEndDate] = useState('2026-06-30T00:00');
-  const [stepHours, setStepHours] = useState(2);
-  const [ephemerisData, setEphemerisData] = useState<SiteEphemeris[]>([]);
-  const [dataSource, setDataSource] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [catalogError, setCatalogError] = useState(false);
-  const requestId = useRef(0);
-
-  useEffect(() => {
-    let mounted = true;
-    getPresetSites().then(data => { if (mounted) setPresets(data); })
-      .catch(() => { if (mounted) setCatalogError(true); });
-    return () => { mounted = false; };
-  }, []);
-
-  const runSimulation = useCallback(async () => {
-    const id = ++requestId.current;
-    setEphemerisData([]);
-    setDataSource('');
-    setErrorMsg(null);
-    if (!startDate || !endDate || startDate >= endDate) {
-      setLoading(false);
-      setErrorMsg('Choose an end date after the start date');
-      return;
-    }
-    setLoading(true);
-    try {
-      const res = await fetchEphemerisMulti(selectedSites, startDate, endDate, stepHours);
-      if (id !== requestId.current) return;
-      setEphemerisData(res.sites);
-      setDataSource(res.source);
-    } catch {
-      if (id === requestId.current) setErrorMsg('Ephemeris service unavailable. Check the backend connection, then retry. No substitute data is shown.');
-    } finally {
-      if (id === requestId.current) setLoading(false);
-    }
-  }, [selectedSites, startDate, endDate, stepHours]);
-
-  useEffect(() => {
-    runSimulation();
-    return () => { requestId.current += 1; };
-  }, [runSimulation]);
-
-  const handleSelectMapSite = (site: SiteRequest) => {
-    const index = selectedSites.findIndex(s => Math.abs(s.lat - site.lat) < 0.01 && Math.abs(s.lon - site.lon) < 0.01);
-    if (index >= 0) setActiveSiteIdx(index);
-    else setSelectedSites(sites => sites.map((s, i) => i === activeSiteIdx ? site : s));
-  };
-  const handleAddSite = (preset: PresetSite) => {
-    if (selectedSites.some(s => Math.abs(s.lat - preset.lat) < 0.01 && Math.abs(s.lon - preset.lon) < 0.01)) return;
-    setSelectedSites([...selectedSites, { name: preset.name, lat: preset.lat, lon: preset.lon }]);
-    setActiveSiteIdx(selectedSites.length);
-  };
-  const handleRemoveSite = (index: number) => {
-    if (selectedSites.length <= 1) return;
-    setSelectedSites(selectedSites.filter((_, i) => i !== index));
-    setActiveSiteIdx(current => current === index ? 0 : current > index ? current - 1 : current);
-  };
-  const activeSite = selectedSites[activeSiteIdx] || selectedSites[0];
-  const activeEphemeris = ephemerisData[activeSiteIdx];
-  const summary = activeEphemeris?.summary;
-  const handleExportJSON = () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify({ source: dataSource, startUtc: startDate, endUtc: endDate, stepHours, sites: ephemerisData }, null, 2)], { type: 'application/json' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `lunarsight-${startDate.slice(0, 10)}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
-  };
-  const metrics = [
-    { label: 'Solar illumination', value: summary ? `${summary.sun_percentage}%` : '—', detail: summary ? `${summary.sun_hours} h illuminated` : 'Awaiting ephemeris', tone: 'sun' },
-    { label: 'Earth visibility', value: summary ? `${summary.earth_percentage}%` : '—', detail: summary ? `${summary.earth_visible_hours} h line of sight` : 'Awaiting ephemeris', tone: 'earth' },
-    { label: 'Longest darkness', value: summary ? `${summary.max_continuous_dark_hours} h` : '—', detail: 'Continuous interval without sunlight' },
-    { label: 'Longest communication gap', value: summary ? `${summary.max_continuous_no_comm_hours} h` : '—', detail: 'Continuous interval without Earth visibility' },
-  ];
-
-  return (
-    <div className="mission-shell">
-      <a className="skip-link" href="#mission">Skip to mission controls</a>
-      <header className="app-header">
-        <a className="wordmark" href="#mission" aria-label="LunarSight mission console"><span className="lunar-mark" aria-hidden="true" />LunarSight</a>
-        <span className="header-context">Lunar landing site navigator</span>
-        <div className="header-actions"><span className={`connection-state ${errorMsg ? 'is-offline' : ''}`} role="status">{loading ? 'Calculating' : errorMsg ? 'Service unavailable' : dataSource ? 'Results available' : 'Not connected'}</span><button className="button secondary" onClick={handleExportJSON} disabled={!ephemerisData.length}>Export JSON</button></div>
-      </header>
-      <main id="mission">
-        <div className="page-intro"><div><p className="eyebrow">Mission workspace / South pole</p><h1>Lunar site assessment</h1></div><nav className="workspace-nav" aria-label="Workspace sections"><a href="#terrain">Terrain</a><a href="#geometry">Geometry</a><a href="#comparison">Comparison</a></nav></div>
-        <div className="workspace-grid">
-        <aside className="scenario-sidebar" aria-label="Scenario setup">
-        <div className="sidebar-heading"><h2>Mission setup</h2><span className="meta">UTC</span></div>
-        <section className="mission-controls" aria-label="Mission controls">
-          <label>Mission start date <span>UTC</span><input aria-label="Mission start date UTC" type="datetime-local" value={startDate} onChange={e => setStartDate(e.target.value)} /></label>
-          <label>Mission end date <span>UTC</span><input aria-label="Mission end date UTC" type="datetime-local" value={endDate} onChange={e => setEndDate(e.target.value)} /></label>
-          <label>Sampling interval<select value={stepHours} onChange={e => setStepHours(Number(e.target.value))}>{[1, 2, 4, 6, 12].map(h => <option key={h} value={h}>{h} {h === 1 ? 'hour' : 'hours'}</option>)}</select></label>
-          <div className="control-action"><button className="button primary" disabled={loading} onClick={runSimulation}>{loading ? 'Calculating…' : 'Run analysis'}</button></div>
-        </section>
-        <div className="candidate-list"><h2>Compared sites <span>{selectedSites.length}</span></h2>{selectedSites.map((site, index) => <button key={`${site.lat}-${site.lon}`} className={`candidate-item ${index === activeSiteIdx ? 'is-selected' : ''}`} aria-pressed={index === activeSiteIdx} onClick={() => setActiveSiteIdx(index)}><span>{site.name}</span><small>{site.lat.toFixed(3)}° / {site.lon.toFixed(3)}°</small></button>)}</div>
-        <p className="sidebar-note">Select a site to inspect its terrain and visibility. All mission dates use UTC.</p>
-        </aside>
-        <div className="observation-grid" id="terrain">
-          <section className="map-section" aria-labelledby="map-title"><div className="section-heading"><div><span className="section-index">01</span><h2 id="map-title">Landing region</h2></div><span className="meta">NASA Moon Trek</span></div>
-            <div className="site-selector"><label htmlFor="candidate">Candidate site</label><select id="candidate" value="" onChange={e => { const site = presets.find(p => p.id === e.target.value); if (site) handleAddSite(site); }}><option value="" disabled>{catalogError ? 'Catalog unavailable' : 'Add a landing site'}</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select></div>
-            <MoonMap selectedSite={activeSite} presetSites={presets} onSelectSite={handleSelectMapSite} />
-            <div className="coordinate-readout"><span>{activeSite.name}</span><strong>{activeSite.lat.toFixed(3)}° <span>lat</span> / {activeSite.lon.toFixed(3)}° <span>lon</span></strong></div>
-          </section>
-        </div>
-        <aside className="site-inspector" aria-label="Selected site details"><p className="eyebrow">Selected landing site</p><h2>{activeSite.name}</h2><div className="inspector-coordinates"><span>Latitude<strong>{activeSite.lat.toFixed(3)}°</strong></span><span>Longitude<strong>{activeSite.lon.toFixed(3)}°</strong></span></div><section className="metrics" aria-label="Selected site metrics">{metrics.map(metric => <div className="metric" key={metric.label}><span>{metric.label}</span><strong className={metric.tone}>{metric.value}</strong><small>{metric.detail}</small></div>)}</section>{errorMsg && <div className="error-notice" role="alert"><strong>Analysis unavailable</strong><span>{errorMsg}</span><button className="button secondary" onClick={runSimulation}>Retry analysis</button></div>}</aside>
-        </div>
-        <section className="geometry-section" id="geometry" aria-labelledby="geometry-title"><div className="section-heading"><div><h2 id="geometry-title">Sun & Earth geometry</h2></div><span className="meta">Elevation / time · UTC</span></div><HorizonChart data={activeEphemeris?.data || []} siteName={activeSite.name || 'Selected site'} /></section>
-        {activeEphemeris && <TimelineBar data={activeEphemeris.data} />}
-        <div id="comparison"><ComparePanel sites={ephemerisData} activeSiteIndex={activeSiteIdx} onSelectActiveIndex={setActiveSiteIdx} onRemoveSite={handleRemoveSite} /></div>
-        <section className="provenance"><span>Data provenance</span><p>{dataSource || 'No calculation source received. Scientific results remain empty until the service responds.'}</p><span>Map imagery: NASA Moon Trek / LROC / USGS</span></section>
-      </main>
-      <footer className="app-footer"><span>LunarSight · NASA Space Apps 2026</span><span>Site assessment, not flight certification</span></footer>
-    </div>
-  );
-};
-export default App;
+const DEFAULT_START = '2026-01-01T00:00';
+const DEFAULT_END = '2026-01-02T00:00';
+const initial = (site: SiteRecord, start = DEFAULT_START) => ({ site, start, end: DEFAULT_END, elevation: site.surfaceElevationM == null ? '' : String(site.surfaceElevationM), stepHours: '1' });
+export default function App() {
+ const [catalog,setCatalog]=useState<SiteRecord[]>([]),[portals,setPortals]=useState<PortalInfo[]>([]),[rows,setRows]=useState<ReturnType<typeof initial>[]>([]),[active,setActive]=useState(0),[results,setResults]=useState<ResultEntry[]>([]),[csv,setCsv]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[playing,setPlaying]=useState(false),[cursor,setCursor]=useState(0),[customName,setCustomName]=useState(''),[customLat,setCustomLat]=useState(''),[customLon,setCustomLon]=useState(''),[customElevation,setCustomElevation]=useState(''),[consentUnknown,setConsentUnknown]=useState(false);
+ useEffect(()=>{Promise.all([getCatalog(),getPortals()]).then(([data,portalData])=>{setCatalog(data.sites.map((site:any)=>({...site,sources:site.sourceIds.map((id:string)=>data.sources.find((s:any)=>s.id===id)).filter(Boolean)})));setPortals(portalData);}).catch(e=>setError(e.message));},[]);
+ useEffect(()=>{if(!playing||!results[active])return;const timer=window.setInterval(()=>setCursor(v=>(v+1)%results[active].sky.timesUtc.length),700);return()=>window.clearInterval(timer);},[playing,results,active]);
+ const addSite=(id:string)=>{const site=catalog.find(x=>x.id===id);if(site&&rows.length<4&&!rows.some(r=>r.site.id===id))setRows([...rows,initial(site)]);};
+ const update=(index:number,field:string,value:string)=>setRows(current=>current.map((row,i)=>i===index?{...row,[field]:value}:row));
+ const addCustom=()=>{try{const lat=Number(customLat),rawLon=Number(customLon),elev=customElevation.trim()===''?null:Number(customElevation);if(!customLat.trim()||!customLon.trim()||!Number.isFinite(lat)||lat < -90||lat>90||!Number.isFinite(rawLon)||rawLon < -180||rawLon>360||(elev!==null&&!Number.isFinite(elev)))throw Error('Enter finite latitude [-90,90], longitude [-180,360], and optional elevation.');if(rows.length>=4)throw Error('Remove scenario first; maximum is four.');const site:SiteRecord={id:`custom-${Date.now()}`,name:customName.trim()||'Custom site',latDeg:lat,lonDeg:((rawLon+180)%360+360)%360-180,surfaceElevationM:elev,observerHeightM:1.6,kind:'custom',sourceIds:[],sources:[]};setCatalog(c=>[...c,site]);setRows(r=>[...r,initial(site)]);setCustomName('');}catch(e){setError((e as Error).message);}};
+ const calculate=async()=>{setBusy(true);setError('');setResults([]);setPlaying(false);setCursor(0);try{if(rows.length<2||rows.length>4)throw Error('Add 2–4 scenarios for comparison.');if(rows.some(r=>!r.elevation.trim())&&!consentUnknown)throw Error('Some catalog elevations are unknown. Enter assumed elevation, or confirm 0 m reference-sphere assumption.');const scenarios:ScenarioInput[]=rows.map((r,i)=>({id:`scenario-${i+1}`,site:{id:r.site.id,name:r.site.name,latDeg:r.site.latDeg,lonDeg:r.site.lonDeg,surfaceElevationM:r.elevation.trim()?Number(r.elevation):0,observerHeightM:r.site.observerHeightM,kind:r.site.kind,sourceIds:r.site.sourceIds},startUtc:`${r.start}:00Z`,endUtc:`${r.end}:00Z`,stepSeconds:Number(r.stepHours)*3600,horizonModel:'flat'}));const data=await analyzeScenarios(scenarios);setResults(data.entries);setCsv(data.csv);setActive(0);}catch(e){setError((e as Error).message);}finally{setBusy(false);}};
+ const entry=results[active],comparison=useMemo(()=>results.length>=2?results.map(r=>r.analysis):[],[results]),pointIndex=entry?Math.min(cursor,entry.sky.timesUtc.length-1):0,point=entry?{time:entry.sky.timesUtc[pointIndex],sun:entry.sky.sunAltDeg[pointIndex],earth:entry.sky.earthAltDeg[pointIndex],sunFraction:entry.visibility.sunVisibleFraction[pointIndex],earthVisible:entry.visibility.earthVisible[pointIndex]}:null;
+ const downloadCsv=()=>{if(!csv)return;const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.href=url;a.download='lunar-site-comparison.csv';a.click();URL.revokeObjectURL(url);};
+ const plotPoints=entry?entry.sky.timesUtc.map((_:string,i:number)=>`${i/Math.max(1,entry.sky.timesUtc.length-1)*100},${50-entry.sky.sunAltDeg[i]/1.8}`).join(' '):'';
+ return <div className="mission-shell"><a className="skip-link" href="#mission">Skip to mission controls</a><header className="app-header"><a className="wordmark" href="#mission"><span className="lunar-mark"/>LunarSight</a><span className="header-context">Open data demonstration · geometric visibility only</span><div className="header-actions"><span className="connection-state">{busy?'Calculating':results.length?'Demo results':'Ready'}</span><button className="button secondary" disabled={!results.length} onClick={downloadCsv}>Export CSV</button></div></header>
+ <main id="mission"><div className="page-intro"><div><p className="eyebrow">PACKAGE COVERAGE · 2026-01-01 — 2026-01-02 UTC</p><h1>Lunar site assessment</h1><p className="intro-copy">Compare sky geometry using bundled vector data. No terrain, power, link-budget, or landing-safety guarantee.</p></div><span className="demo-badge">OPEN DEMO / NOT FOR FLIGHT</span></div><div className="workspace-grid"><aside className="scenario-sidebar"><div className="sidebar-heading"><h2>Scenarios</h2><span className="meta">{rows.length}/4</span></div>
+ {rows.map((r,i)=><section className={`scenario-card ${active===i?'is-active':''}`} key={`${r.site.id}-${i}`}><button className="scenario-title" onClick={()=>setActive(i)}><span className="scenario-index">0{i+1}</span>{r.site.name}</button><label>Start (UTC)<input type="datetime-local" value={r.start} min="2026-01-01T00:00" max="2026-01-02T00:00" onChange={e=>update(i,'start',e.target.value)}/></label><label>End (UTC)<input type="datetime-local" value={r.end} min="2026-01-01T00:00" max="2026-01-02T00:00" onChange={e=>update(i,'end',e.target.value)}/></label><label>Surface elevation (m){r.site.surfaceElevationM==null&&<small>Catalog: unknown</small>}<input type="number" value={r.elevation} onChange={e=>update(i,'elevation',e.target.value)} placeholder="Required if unknown"/></label><label>Sampling interval<select value={r.stepHours} onChange={e=>update(i,'stepHours',e.target.value)}>{['1','2','4','6','12'].map(v=><option key={v}>{v}</option>)}</select></label><small>{r.site.sourceIds.length?`Catalog source: ${r.site.sourceIds.join(', ')}`:'Custom coordinate · no catalog source'}</small></section>)}
+ <label className="add-catalog">Add catalog location<select value="" onChange={e=>addSite(e.target.value)} disabled={rows.length>=4}><option value="">Select site…</option>{catalog.filter(s=>!rows.some(r=>r.site.id===s.id)).map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label><details className="custom-form"><summary>Add custom coordinates</summary><label>Name<input value={customName} onChange={e=>setCustomName(e.target.value)}/></label><label>Latitude °<input type="number" value={customLat} onChange={e=>setCustomLat(e.target.value)} min="-90" max="90" step="any"/></label><label>Longitude ° east-positive<input type="number" value={customLon} onChange={e=>setCustomLon(e.target.value)} min="-180" max="360" step="any"/></label><label>Surface elevation m<input type="number" value={customElevation} onChange={e=>setCustomElevation(e.target.value)} step="any" placeholder="Optional; requires assumption"/></label><button className="button secondary" onClick={addCustom}>Add custom site</button></details>{rows.some(r=>!r.elevation.trim())&&<label className="assumption-check"><input type="checkbox" checked={consentUnknown} onChange={e=>setConsentUnknown(e.target.checked)}/>I understand 0 m is an explicit reference-sphere assumption, not measured elevation.</label>}<button className="button primary run-button" disabled={busy||rows.length<2} onClick={calculate}>{busy?'Calculating…':'Run comparison'}</button>{error&&<div className="error-notice" role="alert"><strong>Analysis unavailable</strong><span>{error}</span></div>}</aside>
+ <div className="observation-grid"><section className="map-section"><div className="section-heading"><div><span className="section-index">01</span><h2>Landing region</h2></div><span className="meta">Visual context only</span></div><div className="map-frame"><div className="map-orbit"/><div className="map-moon"/><span className="map-site-pin">{rows[active]?.site.latDeg.toFixed(3)}°, {rows[active]?.site.lonDeg.toFixed(3)}°</span><span className="map-caption">Lunar surface · schematic, not terrain data</span></div><div className="coordinate-readout"><span>{rows[active]?.site.name}</span><strong>{rows[active]?.site.latDeg.toFixed(4)}° / {rows[active]?.site.lonDeg.toFixed(4)}° E</strong></div></section><section className="site-inspector"><p className="eyebrow">SELECTED SCENARIO</p><h2>{rows[active]?.site.name||'Add scenarios'}</h2>{entry?<div className="metric-grid"><div className="metric"><span>Sun visible</span><strong>{(entry.analysis.metrics.sunEquivalentFraction*100).toFixed(1)}%</strong><small>fraction-weighted duration</small></div><div className="metric"><span>Earth center visible</span><strong>{(entry.analysis.metrics.earthVisibleFraction*100).toFixed(1)}%</strong><small>geometric only, not communications</small></div><div className="metric"><span>Longest dark interval</span><strong>{(entry.analysis.metrics.longestDarkSeconds/3600).toFixed(1)} h</strong><small>sample-held estimate</small></div><div className="metric"><span>Power / landing safety</span><strong>Unknown</strong><small>not modeled</small></div></div>:<p className="empty-state">Run comparison to show actual analysis results. No substitute values shown.</p>}</section></div></div>
+ <section className="geometry-section"><div className="section-heading"><div><span className="section-index">02</span><h2>Sun & Earth altitude</h2></div><span className="meta">local tangent plane · geometric</span></div>{entry?<><div className="chart-wrap"><div className="chart-axis"><span>+90°</span><span>0°</span><span>−90°</span></div><svg className="altitude-chart" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="Sun and Earth center altitude across sampled times"><line x1="0" y1="50" x2="100" y2="50" className="horizon-line"/><polyline points={plotPoints} className="sun-line"/><polyline points={entry.sky.timesUtc.map((_:string,i:number)=>`${i/Math.max(1,entry.sky.timesUtc.length-1)*100},${50-entry.sky.earthAltDeg[i]/1.8}`).join(' ')} className="earth-line"/>{point&&<line x1={`${pointIndex/Math.max(1,entry.sky.timesUtc.length-1)*100}%`} y1="0" x2={`${pointIndex/Math.max(1,entry.sky.timesUtc.length-1)*100}%`} y2="100%" className="cursor-line"/>}</svg><div className="chart-legend"><span className="sun-key">Sun center</span><span className="earth-key">Earth center</span><span>Idealized 0° horizon</span></div></div><div className="playback-controls"><button className="button secondary" onClick={()=>setPlaying(v=>!v)}>{playing?'Pause':'Play'}</button><input aria-label="Time sample" type="range" min="0" max={entry.sky.timesUtc.length-1} value={pointIndex} onChange={e=>{setPlaying(false);setCursor(Number(e.target.value));}}/><time>{point?.time.replace('T',' ').replace('.000Z','Z')} · Sun {point?.sun.toFixed(2)}° ({(point!.sunFraction*100).toFixed(0)}% disk) · Earth {point?.earth.toFixed(2)}° ({point?.earthVisible?'center above idealized horizon':'center below idealized horizon'})</time></div></>:<p className="empty-state">No analysis yet. Select dates within supported package coverage.</p>}</section>
+ <section className="comparison-section" data-csv={results.length>=2?undefined:undefined}><div className="section-heading"><div><span className="section-index">03</span><h2>Comparison</h2></div><button className="button secondary" disabled={!results.length} onClick={downloadCsv}>Download metadata CSV</button></div>{comparison.length?<div className="table-scroll"><table><thead><tr><th>Scenario</th><th>Sun fraction</th><th>Earth center</th><th>Both available</th><th>Model / source / cadence</th></tr></thead><tbody>{comparison.map((item:any,i:number)=><tr key={item.scenarioId}><td><button className="text-button" onClick={()=>setActive(i)}>{results[i].scenario.site.name}</button></td><td>{(item.metrics.sunEquivalentFraction*100).toFixed(2)}%</td><td>{(item.metrics.earthVisibleFraction*100).toFixed(2)}%</td><td>{(item.metrics.bothFraction*100).toFixed(2)}%</td><td>{item.quality.dataKind} · {item.quality.horizonModel} · {item.quality.resolutionSeconds}s<br/><small>{item.quality.sourceIds.join(', ')||'no catalog source'} · {results[i].sky.quality.model}</small></td></tr>)}</tbody></table></div>:<p className="empty-state">Two to four scenarios needed. No ranking or feasibility score.</p>}</section>
+ <section className="quality-section"><div className="section-heading"><div><span className="section-index">04</span><h2>Sources & limitations</h2></div><span className="meta">Honest integration state</span></div><div className="portal-grid">{portals.map(p=><a className="portal-card" key={p.name} href={p.url} target="_blank" rel="noreferrer"><span className={`portal-state ${p.state}`}>{p.state}</span><strong>{p.name}</strong><small>{p.detail}</small></a>)}</div>{entry&&<div className="warnings"><strong>Result quality</strong><span>Sky model: {entry.sky.quality.model}</span><span>Frame: {entry.sky.quality.frame} · Horizon: explicit flat synthetic.</span>{entry.analysis.quality.warnings.map((w:string,i:number)=><span key={i}>• {w}</span>)}</div>}<div className="safety-note">Visibility is geometric context only. Electrical output, communication link, surface hazard, and safe landing remain unmodeled and unknown.</div></section></main><footer className="app-footer"><span>LunarSight · open data demonstration</span><span>Not for flight planning or landing certification</span></footer></div>;
+}

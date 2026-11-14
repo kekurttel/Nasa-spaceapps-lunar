@@ -22,10 +22,17 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Data files (too large for git)
+# Large raw / generated mission data; keep small fixtures, labels and manifests tracked.
 backend/data/*.tif
 backend/data/*.img
 backend/data/*.bsp
+data/raw/*.img
+data/raw/*.tif
+data/raw/*.bsp
+data/kernels/*.bsp
+data/kernels/*.bpc
+*.part
+output/
 
 # Logs
 *.log

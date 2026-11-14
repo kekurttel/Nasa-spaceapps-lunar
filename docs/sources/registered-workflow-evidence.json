@@ -1,0 +1,77 @@
+{
+  "recordedAtUtc": "2026-11-14T12:05:33.383Z",
+  "kind": "local-existing-real-data-workflow",
+  "rawResultPath": "/tmp/opencode/lunar-real-evidence/registered-analysis.json",
+  "rawResultSha256": "054e7faabaf89a43ba17478fa83d0037220ea5f8c485243e5d8eb04881be3d41",
+  "notMissionValidation": true,
+  "siteId": "registered-Shackleton-reference-example",
+  "timesUtc": [
+    "2026-11-14T00:00:00Z",
+    "2026-11-14T02:00:00Z",
+    "2026-11-14T04:00:00Z",
+    "2026-11-14T06:00:00Z",
+    "2026-11-14T08:00:00Z",
+    "2026-11-14T10:00:00Z",
+    "2026-11-14T12:00:00Z",
+    "2026-11-14T14:00:00Z",
+    "2026-11-14T16:00:00Z",
+    "2026-11-14T18:00:00Z",
+    "2026-11-14T20:00:00Z",
+    "2026-11-14T22:00:00Z",
+    "2026-11-15T00:00:00Z"
+  ],
+  "skyQuality": {
+    "dataKind": "real",
+    "model": "SPICE DE421 geometric positions; aberration correction NONE",
+    "frame": "ME_DE421_LOCAL_NORTH_EAST",
+    "warnings": []
+  },
+  "visibilityQuality": {
+    "dataKind": "real",
+    "horizonModel": "terrain",
+    "earthRule": "center",
+    "warnings": [
+      "LOLA LDEM_4_FLOAT is coarse (~7.58 km per pixel); not suitable for landing-safety or local hazard/near-field horizon assessment.",
+      "Finite radial search ignores terrain beyond maxDistanceM; features between raster sample points or within one pixel may be under-resolved.",
+      "Polar cap uses the nearest latitude row; longitude-varying extrapolation can create artificial slopes; not reliable for a local polar horizon.",
+      "Geometric Earth visibility is not a communication-link guarantee.",
+      "Terrain provenance is caller-declared; source authenticity is not verified."
+    ]
+  },
+  "registrationValidation": {
+    "valid": true,
+    "checks": {
+      "scenarioId": true,
+      "siteId": true,
+      "latitudeDeg": true,
+      "longitudeDeg": true,
+      "documentProfileSiteId": true,
+      "documentCoverageSiteId": true,
+      "documentCoverageLatitudeDeg": true,
+      "documentCoverageLongitudeDeg": true,
+      "documentCoverageObserverHeightM": true,
+      "documentProvenanceLatitudeDeg": true,
+      "documentProvenanceLongitudeDeg": true,
+      "documentProvenanceObserverHeightM": true,
+      "documentProfileObserverHeightM": true,
+      "documentFrame": true,
+      "observerHeightM": true,
+      "surfaceHeightM": true,
+      "observerRadiusM": true,
+      "bodyFixedFrame": true,
+      "localFrame": true,
+      "frame": true,
+      "timesUtc": true,
+      "terrainSha256": true,
+      "documentTerrainSha256": true,
+      "aberrationCorrection": true,
+      "kernelHashes": true
+    },
+    "kernelHashes": {
+      "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+      "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+      "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+      "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+    }
+  }
+}

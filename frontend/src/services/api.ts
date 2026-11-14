@@ -1,50 +1,19 @@
-import axios from 'axios';
-import { CompareResponse, PresetSite, SiteEphemeris, SiteRequest } from '../types';
+export interface PortalInfo { name: string; state: 'accessed' | 'planned' | 'blocked' | 'integrated'; detail: string; url: string; }
+export interface ScenarioInput { id: string; site: { id: string; name: string; latDeg: number; lonDeg: number; surfaceElevationM: number | null; observerHeightM: number; kind: string; sourceIds: string[] }; startUtc: string; endUtc: string; stepSeconds: number; horizonModel: 'flat'; }
+export interface SiteRecord { id:string; name:string; latDeg:number; lonDeg:number; surfaceElevationM:number|null; observerHeightM:number; kind:'landed'|'planned-region'|'candidate'|'custom'; sourceIds:string[]; sources: {id:string;url:string;productId:string;agency:string}[]; }
+export interface CatalogResponse { sites:SiteRecord[]; sources:{id:string;url:string;productId:string;agency:string}[]; }
+export interface ResultEntry { scenario: ScenarioInput; sky: { timesUtc:string[]; sunAltDeg:number[]; sunAzDeg:number[]; earthAltDeg:number[]; earthAzDeg:number[]; quality:{model:string;frame:string;warnings:string[]} }; horizon:any; visibility:any; analysis:any; siteName:string; }
+export interface AnalysisResponse { entries:ResultEntry[]; comparisons:{comparisons:any[]}; csv:string; }
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
-
-const api = axios.create({
-  baseURL: API_BASE,
-  timeout: 30000,
-});
-
-export const getPresetSites = async (): Promise<PresetSite[]> => {
-  const res = await api.get<PresetSite[]>('/presets');
-  return res.data;
-};
-
-export const fetchEphemerisMulti = async (
-  sites: SiteRequest[],
-  startDate: string,
-  endDate: string,
-  stepHours: number = 2
-): Promise<CompareResponse> => {
-  const res = await api.post<CompareResponse>('/ephemeris', {
-    sites,
-    start_date: startDate,
-    end_date: endDate,
-    step_hours: stepHours,
-  });
-  return res.data;
-};
-
-export const fetchSingleSite = async (
-  lat: number,
-  lon: number,
-  name: string,
-  startDate: string,
-  endDate: string,
-  stepHours: number = 2
-): Promise<SiteEphemeris> => {
-  const res = await api.get<SiteEphemeris>('/ephemeris/single', {
-    params: {
-      lat,
-      lon,
-      name,
-      start_date: startDate,
-      end_date: endDate,
-      step_hours: stepHours,
-    },
-  });
-  return res.data;
-};
+async function request<T>(url: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(url, init);
+  const body = await response.json();
+  if (!response.ok) throw new Error(body.error || `Request failed (${response.status})`);
+  return body as T;
+}
+export const getCatalog = () => request<CatalogResponse>('/api/catalog');
+export const getPortals = () => request<PortalInfo[]>('/api/portals');
+export async function analyzeScenarios(scenarios: ScenarioInput[]) {
+  return request<{ entries: ResultEntry[]; comparisons: { comparisons: any[] }; csv: string }>('/api/analyze', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ scenarios }) });
+}
+export const downloadCsvContent = (response:AnalysisResponse) => response.csv;

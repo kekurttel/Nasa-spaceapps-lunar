@@ -1,0 +1,1118 @@
+{
+  "catalog": {
+    "sites": [
+      {
+        "id": "apollo-11",
+        "name": "Apollo 11 Lunar Module",
+        "latDeg": 0.67416,
+        "lonDeg": 23.47314,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "apollo-12",
+        "name": "Apollo 12 Lunar Module",
+        "latDeg": -3.0128,
+        "lonDeg": -23.4219,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "apollo-14",
+        "name": "Apollo 14 Lunar Module",
+        "latDeg": -3.64589,
+        "lonDeg": -17.47194,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "apollo-15",
+        "name": "Apollo 15 Lunar Module",
+        "latDeg": 26.13239,
+        "lonDeg": 3.6333,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "apollo-16",
+        "name": "Apollo 16 Lunar Module",
+        "latDeg": -8.9734,
+        "lonDeg": 15.5011,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "apollo-17",
+        "name": "Apollo 17 Lunar Module",
+        "latDeg": 20.1911,
+        "lonDeg": 30.7723,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-nssdc-apollo"
+        ]
+      },
+      {
+        "id": "im-1-odysseus",
+        "name": "IM-1 Odysseus landed location (Malapert A region)",
+        "latDeg": -80.13,
+        "lonDeg": 1.44,
+        "surfaceElevationM": 2579,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "nasa-im1-odysseus"
+        ]
+      },
+      {
+        "id": "blue-ghost-m1",
+        "name": "Blue Ghost Mission 1 landed location",
+        "latDeg": 18.5623,
+        "lonDeg": 61.8103,
+        "surfaceElevationM": -3650,
+        "observerHeightM": 1.6,
+        "kind": "landed",
+        "sourceIds": [
+          "lroc-blue-ghost"
+        ]
+      },
+      {
+        "id": "viper-mons-mouton-region",
+        "name": "Mons Mouton feature centre (representative marker for announced VIPER region)",
+        "latDeg": -84.6,
+        "lonDeg": 31,
+        "surfaceElevationM": null,
+        "observerHeightM": 1.6,
+        "kind": "planned-region",
+        "sourceIds": [
+          "nasa-viper-mons-mouton",
+          "usgs-mons-mouton"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nasa-nssdc-apollo",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/lunar_sites.html",
+        "productId": "Apollo Landing Site Coordinates; Apollo 11/12/14/15/16/17 Lunar Module rows",
+        "agency": "NASA Goddard Space Flight Center, National Space Science Data Center (NSSDCA)",
+        "accessedDate": "2026-11-14",
+        "coordinateFrame": "Planetocentric Mean Earth/Polar Axis Lunar Reference System, DE421 ephemeris (as stated by source).",
+        "usageTerms": "No explicit license stated on source page. Factual coordinates transcribed with attribution; check NASA terms before redistributing source text or imagery.",
+        "evidence": "The page explicitly identifies the frame and gives each Lunar Module latitude and east longitude. Values retained at the precision published by NASA.",
+        "coordinatePrecision": "As published: 5 decimal places for Apollo 11/14/15; 4 for Apollo 12/16/17.",
+        "snapshotPath": "src/features/data/sources/nasa-nssdc-apollo.md"
+      },
+      {
+        "id": "nasa-im1-odysseus",
+        "url": "https://www.nasa.gov/missions/lro/nasas-lro-images-intuitive-machines-odysseus-lander/",
+        "productId": "NASA LRO images IM-1 Odysseus; LROC NAC frame M1463440322L",
+        "agency": "NASA Goddard Space Flight Center / Arizona State University",
+        "accessedDate": "2026-11-14",
+        "coordinateFrame": "Not specified by this source; use only its rounded published coordinates, without asserting a named realization.",
+        "usageTerms": "NASA content; NASA/Goddard/ASU attribution shown, no explicit license statement. Check NASA/ASU terms before reusing text or imagery.",
+        "evidence": "Source says landed at 80.13° south, 1.44° east and elevation 8,461 ft (2,579 m); frame M1463440322L. Coordinates are rounded to 0.01°.",
+        "coordinatePrecision": "0.01° as published; no more precision inferred.",
+        "snapshotPath": "src/features/data/sources/nasa-im1-odysseus.md"
+      },
+      {
+        "id": "lroc-blue-ghost",
+        "url": "https://www.lroc.im-ldi.com/images/1407",
+        "productId": "LROC featured image “Blue Ghost Lunar Lander Seen From Above”; NAC M1495619099LR",
+        "agency": "NASA/GSFC/Arizona State University LROC Science Operations Center",
+        "accessedDate": "2026-11-14",
+        "coordinateFrame": "Not specified by this source; no ME/PA or DE421 precision is asserted.",
+        "usageTerms": "Follow https://www.lroc.im-ldi.com/about/terms; credit NASA/GSFC/Arizona State University.",
+        "evidence": "Source explicitly reports landed Blue Ghost coordinates 18.5623°N, 61.8103°E, elevation -3650 m, at image center.",
+        "coordinatePrecision": "0.0001° as published; no more precision inferred.",
+        "snapshotPath": "src/features/data/sources/lroc-blue-ghost.md"
+      },
+      {
+        "id": "nasa-viper-mons-mouton",
+        "url": "https://www.nasa.gov/news-release/nasa-selects-mons-mouton-for-viper-moon-rover-touchdown/",
+        "productId": "NASA release: NASA Selects Mons Mouton for VIPER Moon Rover Touchdown",
+        "agency": "NASA",
+        "accessedDate": "2026-11-14",
+        "coordinateFrame": "No point coordinates/frame published; historical selection of named Mons Mouton region only.",
+        "usageTerms": "NASA release; no explicit license stated. Attribute NASA and check NASA terms before reuse.",
+        "evidence": "At announcement time NASA selected Mons Mouton as a VIPER planned touchdown region, but supplied no point coordinate. The Site point is separately sourced as USGS Gazetteer feature centre, not touchdown point.",
+        "coordinatePrecision": "No point coordinates published by NASA; no point precision claimed.",
+        "snapshotPath": "src/features/data/sources/nasa-viper-mons-mouton.md"
+      },
+      {
+        "id": "usgs-mons-mouton",
+        "url": "https://planetarynames.wr.usgs.gov/Feature/16070",
+        "productId": "Gazetteer of Planetary Nomenclature feature 16070 Mons Mouton; Control Network LOLA 2011",
+        "agency": "USGS Astrogeology Science Center / IAU Working Group for Planetary System Nomenclature (NASA-supported)",
+        "accessedDate": "2026-11-14",
+        "coordinateFrame": "Planetographic, east-positive, longitude [-180, 180], as stated in the Gazetteer; centre of named feature.",
+        "usageTerms": "USGS/DOI website; follow applicable USGS legal/site terms and attribute Gazetteer of Planetary Nomenclature / IAU.",
+        "evidence": "Feature record explicitly gives Mons Mouton centre at -84.60°, +31.00° and approximate diameter 130 km. Used only as representative point for the named planned region, never as touchdown point.",
+        "coordinatePrecision": "0.01° as published for the feature centre; no touchdown precision claimed.",
+        "snapshotPath": "src/features/data/sources/usgs-mons-mouton.md"
+      }
+    ]
+  },
+  "result": {
+    "entries": [
+      {
+        "scenario": {
+          "id": "s0",
+          "site": {
+            "id": "apollo-11",
+            "name": "Apollo 11 Lunar Module",
+            "latDeg": 0.67416,
+            "lonDeg": 23.47314,
+            "surfaceElevationM": 0,
+            "observerHeightM": 1.6,
+            "kind": "landed",
+            "sourceIds": [
+              "nasa-nssdc-apollo"
+            ]
+          },
+          "startUtc": "2026-01-01T00:00:00.000Z",
+          "endUtc": "2026-01-02T00:00:00.000Z",
+          "stepSeconds": 3600
+        },
+        "sky": {
+          "scenarioId": "s0",
+          "timesUtc": [
+            "2026-01-01T00:00:00.000Z",
+            "2026-01-01T01:00:00.000Z",
+            "2026-01-01T02:00:00.000Z",
+            "2026-01-01T03:00:00.000Z",
+            "2026-01-01T04:00:00.000Z",
+            "2026-01-01T05:00:00.000Z",
+            "2026-01-01T06:00:00.000Z",
+            "2026-01-01T07:00:00.000Z",
+            "2026-01-01T08:00:00.000Z",
+            "2026-01-01T09:00:00.000Z",
+            "2026-01-01T10:00:00.000Z",
+            "2026-01-01T11:00:00.000Z",
+            "2026-01-01T12:00:00.000Z",
+            "2026-01-01T13:00:00.000Z",
+            "2026-01-01T14:00:00.000Z",
+            "2026-01-01T15:00:00.000Z",
+            "2026-01-01T16:00:00.000Z",
+            "2026-01-01T17:00:00.000Z",
+            "2026-01-01T18:00:00.000Z",
+            "2026-01-01T19:00:00.000Z",
+            "2026-01-01T20:00:00.000Z",
+            "2026-01-01T21:00:00.000Z",
+            "2026-01-01T22:00:00.000Z",
+            "2026-01-01T23:00:00.000Z",
+            "2026-01-02T00:00:00.000Z"
+          ],
+          "sunAltDeg": [
+            80.72445758416028,
+            81.21711792988903,
+            81.70824977622395,
+            82.19756598237757,
+            82.68470376975328,
+            83.16919871126903,
+            83.65044753870245,
+            84.12765396329405,
+            84.5997481842829,
+            85.06526485891112,
+            85.5221543641071,
+            85.96748566181894,
+            86.39697310729139,
+            86.80422535615399,
+            87.17959717864235,
+            87.50864000376075,
+            87.77074763787459,
+            87.94021121714614,
+            87.99342338222218,
+            87.9214403594245,
+            87.7361766564927,
+            87.46232526973526,
+            87.12509358602644,
+            86.74411851964928,
+            86.3330104888156
+          ],
+          "sunAzDeg": [
+            102.56862839031828,
+            103.28164489798792,
+            104.07925230106503,
+            104.97708078398773,
+            105.99474879910599,
+            107.15717355164168,
+            108.49640820166911,
+            110.05425206070635,
+            111.88600463191,
+            114.06591569573652,
+            116.69512279497707,
+            119.91309478326014,
+            123.91348372112896,
+            128.96364849440238,
+            135.42038748121985,
+            143.71403242080572,
+            154.22917218660314,
+            166.98106254887534,
+            181.17601732178122,
+            195.2399891869828,
+            207.6783734486155,
+            217.83967501769658,
+            225.82500643798284,
+            232.04089203916502,
+            236.91040517009253
+          ],
+          "earthAltDeg": [
+            64.14317660961223,
+            64.21610537983754,
+            64.28946616568412,
+            64.36325028706455,
+            64.43744891077753,
+            64.51205305149125,
+            64.5870535732581,
+            64.6624411906142,
+            64.73820647018576,
+            64.8143398318821,
+            64.8908315505454,
+            64.96767175745651,
+            65.04485044194081,
+            65.12235745292888,
+            65.20018250087112,
+            65.27831515928149,
+            65.35674486678283,
+            65.43546092871024,
+            65.5144525192407,
+            65.59370868324811,
+            65.67321833850256,
+            65.75297027737089,
+            65.8329531693133,
+            65.91315556290412,
+            65.99356588799888
+          ],
+          "earthAzDeg": [
+            253.30194397232117,
+            253.2430153877861,
+            253.18534508590085,
+            253.1289503229712,
+            253.07384850377267,
+            253.02005717998964,
+            252.9675940481896,
+            252.9164769479449,
+            252.86672385949237,
+            252.81835290152992,
+            252.7713823285709,
+            252.72583052824587,
+            252.68171601838645,
+            252.63905744397977,
+            252.59787357371945,
+            252.55818329663697,
+            252.52000561821086,
+            252.48335965659845,
+            252.44826463831157,
+            252.41473989388498,
+            252.38280485309917,
+            252.35247904034233,
+            252.3237820691966,
+            252.2967336371275,
+            252.2713535198426
+          ],
+          "sunRadiusDeg": [
+            0.2704250288172084,
+            0.27042163289616183,
+            0.27041828570644966,
+            0.27041498760473287,
+            0.2704117389418709,
+            0.27040854006284765,
+            0.27040539130669733,
+            0.270402293006434,
+            0.2703992454889808,
+            0.2703962490751015,
+            0.27039330407933243,
+            0.27039041080991655,
+            0.2703875695687394,
+            0.270384780651266,
+            0.27038204434647867,
+            0.27037936093681836,
+            0.2703767306981256,
+            0.27037415389958463,
+            0.27037163080366877,
+            0.2703691616660861,
+            0.2703667467357303,
+            0.2703643862546296,
+            0.27036208045790044,
+            0.27035982957370097,
+            0.2703576338231876
+          ],
+          "quality": {
+            "dataKind": "real",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors."
+            ]
+          }
+        },
+        "horizon": {
+          "siteId": "apollo-11",
+          "azimuthDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "elevationDeg": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "model": "flat",
+          "dataKind": "synthetic",
+          "sourceIds": [],
+          "observerHeightM": 1.6,
+          "warnings": [
+            "Flat synthetic horizon assumption; no terrain data was used."
+          ]
+        },
+        "visibility": {
+          "scenarioId": "s0",
+          "timesUtc": [
+            "2026-01-01T00:00:00.000Z",
+            "2026-01-01T01:00:00.000Z",
+            "2026-01-01T02:00:00.000Z",
+            "2026-01-01T03:00:00.000Z",
+            "2026-01-01T04:00:00.000Z",
+            "2026-01-01T05:00:00.000Z",
+            "2026-01-01T06:00:00.000Z",
+            "2026-01-01T07:00:00.000Z",
+            "2026-01-01T08:00:00.000Z",
+            "2026-01-01T09:00:00.000Z",
+            "2026-01-01T10:00:00.000Z",
+            "2026-01-01T11:00:00.000Z",
+            "2026-01-01T12:00:00.000Z",
+            "2026-01-01T13:00:00.000Z",
+            "2026-01-01T14:00:00.000Z",
+            "2026-01-01T15:00:00.000Z",
+            "2026-01-01T16:00:00.000Z",
+            "2026-01-01T17:00:00.000Z",
+            "2026-01-01T18:00:00.000Z",
+            "2026-01-01T19:00:00.000Z",
+            "2026-01-01T20:00:00.000Z",
+            "2026-01-01T21:00:00.000Z",
+            "2026-01-01T22:00:00.000Z",
+            "2026-01-01T23:00:00.000Z",
+            "2026-01-02T00:00:00.000Z"
+          ],
+          "sunVisibleFraction": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "earthVisible": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "bothAvailable": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "quality": {
+            "dataKind": "mixed",
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee."
+            ],
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "naif-de440s-moon-fixed-2026-01"
+            ]
+          }
+        },
+        "analysis": {
+          "scenarioId": "s0",
+          "metrics": {
+            "durationSeconds": 86400,
+            "sunAnyFraction": 1,
+            "sunEquivalentFraction": 1,
+            "earthVisibleFraction": 1,
+            "bothFraction": 1,
+            "longestDarkSeconds": 0,
+            "longestEarthGapSeconds": 0
+          },
+          "windows": {
+            "sun": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "earth": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "both": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ]
+          },
+          "quality": {
+            "dataKind": "mixed",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee.",
+              "Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events."
+            ],
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "nasa-nssdc-apollo",
+              "naif-de440s-moon-fixed-2026-01"
+            ],
+            "resolutionSeconds": 3600
+          }
+        }
+      },
+      {
+        "scenario": {
+          "id": "s1",
+          "site": {
+            "id": "apollo-12",
+            "name": "Apollo 12 Lunar Module",
+            "latDeg": -3.0128,
+            "lonDeg": -23.4219,
+            "surfaceElevationM": 0,
+            "observerHeightM": 1.6,
+            "kind": "landed",
+            "sourceIds": [
+              "nasa-nssdc-apollo"
+            ]
+          },
+          "startUtc": "2026-01-01T00:00:00.000Z",
+          "endUtc": "2026-01-02T00:00:00.000Z",
+          "stepSeconds": 3600
+        },
+        "sky": {
+          "scenarioId": "s1",
+          "timesUtc": [
+            "2026-01-01T00:00:00.000Z",
+            "2026-01-01T01:00:00.000Z",
+            "2026-01-01T02:00:00.000Z",
+            "2026-01-01T03:00:00.000Z",
+            "2026-01-01T04:00:00.000Z",
+            "2026-01-01T05:00:00.000Z",
+            "2026-01-01T06:00:00.000Z",
+            "2026-01-01T07:00:00.000Z",
+            "2026-01-01T08:00:00.000Z",
+            "2026-01-01T09:00:00.000Z",
+            "2026-01-01T10:00:00.000Z",
+            "2026-01-01T11:00:00.000Z",
+            "2026-01-01T12:00:00.000Z",
+            "2026-01-01T13:00:00.000Z",
+            "2026-01-01T14:00:00.000Z",
+            "2026-01-01T15:00:00.000Z",
+            "2026-01-01T16:00:00.000Z",
+            "2026-01-01T17:00:00.000Z",
+            "2026-01-01T18:00:00.000Z",
+            "2026-01-01T19:00:00.000Z",
+            "2026-01-01T20:00:00.000Z",
+            "2026-01-01T21:00:00.000Z",
+            "2026-01-01T22:00:00.000Z",
+            "2026-01-01T23:00:00.000Z",
+            "2026-01-02T00:00:00.000Z"
+          ],
+          "sunAltDeg": [
+            34.07172970882577,
+            34.576320114511006,
+            35.080901171129305,
+            35.585472833466135,
+            36.09003505295678,
+            36.59458777758617,
+            37.09913095147667,
+            37.603664514761135,
+            38.10818840307032,
+            38.612702547474264,
+            39.11720687399031,
+            39.62170130328129,
+            40.12618575030693,
+            40.63066012396174,
+            41.13512432657241,
+            41.6395782536197,
+            42.14402179306364,
+            42.64845482513759,
+            43.15287722161734,
+            43.65728884539794,
+            44.16168954974904,
+            44.66607917800757,
+            45.17045756264587,
+            45.67482452464866,
+            46.179179872837544
+          ],
+          "sunAzDeg": [
+            89.58537900755272,
+            89.55541724419686,
+            89.52521650147958,
+            89.4947675490298,
+            89.46406085797508,
+            89.43308658597346,
+            89.40183456142984,
+            89.37029426680476,
+            89.33845482099491,
+            89.30630496066783,
+            89.27383302053522,
+            89.24102691244883,
+            89.20787410325096,
+            89.17436159128806,
+            89.14047588149805,
+            89.10620295894387,
+            89.07152826071825,
+            89.03643664604078,
+            89.0009123644777,
+            88.96493902208408,
+            88.92849954535177,
+            88.8915761427383,
+            88.85415026366263,
+            88.81620255469716,
+            88.77771281275761
+          ],
+          "earthAltDeg": [
+            67.54885911853279,
+            67.47169949450445,
+            67.39439476995717,
+            67.31695556910165,
+            67.23939252524043,
+            67.16171627941294,
+            67.08393747853864,
+            67.00606677403289,
+            66.92811481994431,
+            66.85009227156073,
+            66.77200978358631,
+            66.69387800850815,
+            66.61570759489977,
+            66.53750918581008,
+            66.45929341682682,
+            66.38107091455952,
+            66.30285229464226,
+            66.2246481602295,
+            66.14646909998426,
+            66.06832568638531,
+            65.99022847371401,
+            65.91218799659026,
+            65.83421476772152,
+            65.75631927617579,
+            65.67851198553824
+          ],
+          "earthAzDeg": [
+            99.94159709527815,
+            99.92709768325892,
+            99.91059488433075,
+            99.89210868234096,
+            99.87165920580827,
+            99.84926671715948,
+            99.82495160201466,
+            99.79873435886748,
+            99.7706355888235,
+            99.74067598573185,
+            99.70887632639187,
+            99.67525746105343,
+            99.63984030411893,
+            99.60264582510064,
+            99.5636950396867,
+            99.52300900117359,
+            99.48060879195566,
+            99.43651551539676,
+            99.39075028774903,
+            99.34333423039203,
+            99.2942884621786,
+            99.24363409216932,
+            99.19139221231575,
+            99.13758389052384,
+            99.08223016387745
+          ],
+          "sunRadiusDeg": [
+            0.2704236687460979,
+            0.2704202917403119,
+            0.2704169635688697,
+            0.27041368458696496,
+            0.27041045514398254,
+            0.2704072755834243,
+            0.27040414624283615,
+            0.2704010674537367,
+            0.2703980395415471,
+            0.27039506282552206,
+            0.27039213761868275,
+            0.2703892642277507,
+            0.27038644295308345,
+            0.27038367408861186,
+            0.2703809579217782,
+            0.27037829473347735,
+            0.27037568479799806,
+            0.27037312838296684,
+            0.27037062574929344,
+            0.2703681771511178,
+            0.2703657828357589,
+            0.270363443043666,
+            0.2703611580083705,
+            0.2703589279564412,
+            0.27035675310743973
+          ],
+          "quality": {
+            "dataKind": "real",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors."
+            ]
+          }
+        },
+        "horizon": {
+          "siteId": "apollo-12",
+          "azimuthDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "elevationDeg": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "model": "flat",
+          "dataKind": "synthetic",
+          "sourceIds": [],
+          "observerHeightM": 1.6,
+          "warnings": [
+            "Flat synthetic horizon assumption; no terrain data was used."
+          ]
+        },
+        "visibility": {
+          "scenarioId": "s1",
+          "timesUtc": [
+            "2026-01-01T00:00:00.000Z",
+            "2026-01-01T01:00:00.000Z",
+            "2026-01-01T02:00:00.000Z",
+            "2026-01-01T03:00:00.000Z",
+            "2026-01-01T04:00:00.000Z",
+            "2026-01-01T05:00:00.000Z",
+            "2026-01-01T06:00:00.000Z",
+            "2026-01-01T07:00:00.000Z",
+            "2026-01-01T08:00:00.000Z",
+            "2026-01-01T09:00:00.000Z",
+            "2026-01-01T10:00:00.000Z",
+            "2026-01-01T11:00:00.000Z",
+            "2026-01-01T12:00:00.000Z",
+            "2026-01-01T13:00:00.000Z",
+            "2026-01-01T14:00:00.000Z",
+            "2026-01-01T15:00:00.000Z",
+            "2026-01-01T16:00:00.000Z",
+            "2026-01-01T17:00:00.000Z",
+            "2026-01-01T18:00:00.000Z",
+            "2026-01-01T19:00:00.000Z",
+            "2026-01-01T20:00:00.000Z",
+            "2026-01-01T21:00:00.000Z",
+            "2026-01-01T22:00:00.000Z",
+            "2026-01-01T23:00:00.000Z",
+            "2026-01-02T00:00:00.000Z"
+          ],
+          "sunVisibleFraction": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "earthVisible": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "bothAvailable": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "quality": {
+            "dataKind": "mixed",
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee."
+            ],
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "naif-de440s-moon-fixed-2026-01"
+            ]
+          }
+        },
+        "analysis": {
+          "scenarioId": "s1",
+          "metrics": {
+            "durationSeconds": 86400,
+            "sunAnyFraction": 1,
+            "sunEquivalentFraction": 1,
+            "earthVisibleFraction": 1,
+            "bothFraction": 1,
+            "longestDarkSeconds": 0,
+            "longestEarthGapSeconds": 0
+          },
+          "windows": {
+            "sun": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "earth": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "both": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ]
+          },
+          "quality": {
+            "dataKind": "mixed",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee.",
+              "Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events."
+            ],
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "nasa-nssdc-apollo",
+              "naif-de440s-moon-fixed-2026-01"
+            ],
+            "resolutionSeconds": 3600
+          }
+        }
+      }
+    ],
+    "comparisons": {
+      "comparisons": [
+        {
+          "scenarioId": "s0",
+          "metrics": {
+            "durationSeconds": 86400,
+            "sunAnyFraction": 1,
+            "sunEquivalentFraction": 1,
+            "earthVisibleFraction": 1,
+            "bothFraction": 1,
+            "longestDarkSeconds": 0,
+            "longestEarthGapSeconds": 0
+          },
+          "windows": {
+            "sun": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "earth": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "both": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ]
+          },
+          "quality": {
+            "dataKind": "mixed",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee.",
+              "Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events."
+            ],
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "nasa-nssdc-apollo",
+              "naif-de440s-moon-fixed-2026-01"
+            ],
+            "resolutionSeconds": 3600
+          }
+        },
+        {
+          "scenarioId": "s1",
+          "metrics": {
+            "durationSeconds": 86400,
+            "sunAnyFraction": 1,
+            "sunEquivalentFraction": 1,
+            "earthVisibleFraction": 1,
+            "bothFraction": 1,
+            "longestDarkSeconds": 0,
+            "longestEarthGapSeconds": 0
+          },
+          "windows": {
+            "sun": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "earth": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ],
+            "both": [
+              {
+                "startUtc": "2026-01-01T00:00:00.000Z",
+                "endUtc": "2026-01-02T00:00:00.000Z",
+                "durationSeconds": 86400
+              }
+            ]
+          },
+          "quality": {
+            "dataKind": "mixed",
+            "warnings": [
+              "Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.",
+              "Geometric vectors: no light-time, aberration or atmospheric refraction.",
+              "Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.",
+              "Linear vector interpolation; cadence-dependent error has not been independently validated.",
+              "Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.",
+              "Flat synthetic horizon assumption; no terrain data was used.",
+              "Flat horizon is an explicit assumption; terrain obstruction is not represented.",
+              "Geometric Earth visibility is not a communication-link guarantee.",
+              "Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events."
+            ],
+            "horizonModel": "flat",
+            "earthRule": "center",
+            "model": "NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)",
+            "frame": "IAU_MOON",
+            "sourceIds": [
+              "nasa-nssdc-apollo",
+              "naif-de440s-moon-fixed-2026-01"
+            ],
+            "resolutionSeconds": 3600
+          }
+        }
+      ]
+    },
+    "csv": "\"scenarioId\",\"durationSeconds\",\"sunAnyFraction\",\"sunEquivalentFraction\",\"earthVisibleFraction\",\"bothFraction\",\"longestDarkSeconds\",\"longestEarthGapSeconds\",\"dataKind\",\"horizonModel\",\"earthRule\",\"model\",\"frame\",\"sourceIds\",\"resolutionSeconds\",\"warnings\"\r\n\"s0\",\"86400\",\"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"mixed\",\"flat\",\"center\",\"NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)\",\"IAU_MOON\",\"nasa-nssdc-apollo;naif-de440s-moon-fixed-2026-01\",\"3600\",\"Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.; Geometric vectors: no light-time, aberration or atmospheric refraction.; Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.; Linear vector interpolation; cadence-dependent error has not been independently validated.; Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.; Flat synthetic horizon assumption; no terrain data was used.; Flat horizon is an explicit assumption; terrain obstruction is not represented.; Geometric Earth visibility is not a communication-link guarantee.; Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events.\"\r\n\"s1\",\"86400\",\"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"mixed\",\"flat\",\"center\",\"NASA/JPL NAIF SPICE DE440s, PCK00011, NAIF0012; Moon-fixed vectors with linear interpolation (naif-de440s-moon-fixed-2026-01)\",\"IAU_MOON\",\"nasa-nssdc-apollo;naif-de440s-moon-fixed-2026-01\",\"3600\",\"Spherical Moon radius 1737.4 km; local tangent plane, not terrain horizon.; Geometric vectors: no light-time, aberration or atmospheric refraction.; Lunar orientation/libration and UTC time conversion must be resolved by the source dataset provider.; Linear vector interpolation; cadence-dependent error has not been independently validated.; Dataset provenance is supplied by its provider; real does not imply independent accuracy validation. See bundled validation reports for tested dates, sites and interpolation errors.; Flat synthetic horizon assumption; no terrain data was used.; Flat horizon is an explicit assumption; terrain obstruction is not represented.; Geometric Earth visibility is not a communication-link guarantee.; Sampled visibility held constant over intervals; temporal resolution is bounded by 3600 s cadence. Window boundaries are sample boundaries, not interpolated astronomical events.\""
+  }
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "source_name": "quickmap",
+    "source_url": "https://quickmap.lroc.im-ldi.com",
+    "retrieved_at_utc": "2026-11-14T11:27:12.878453+00:00",
+    "final_url": "https://quickmap.lroc.im-ldi.com",
+    "http_status": 200,
+    "content_type": "text/html",
+    "downloaded_bytes": 8160,
+    "raw_file_sha256": "dcc94e36096df527b123f5d4dbf5cf1ed313a119d009ba02e173dfe815bb6f1e",
+    "status": "erişildi",
+    "limitation": "HTML erişimi; bilimsel katman veya sayısal entegrasyon kanıtı değil"
+  },
+  {
+    "source_name": "moon-trek",
+    "source_url": "https://trek.nasa.gov/moon/",
+    "retrieved_at_utc": "2026-11-14T11:27:15.518004+00:00",
+    "final_url": "https://trek.nasa.gov/moon/",
+    "http_status": 200,
+    "content_type": "text/html",
+    "downloaded_bytes": 8029,
+    "raw_file_sha256": "70ac2c0495b3c8431d07a582a073cdc012c4864c68fa93f9bd6765e02a90694c",
+    "status": "erişildi",
+    "limitation": "HTML erişimi; bilimsel katman veya sayısal entegrasyon kanıtı değil"
+  },
+  {
+    "source_name": "lola-pds",
+    "source_url": "https://pds-geosciences.wustl.edu/missions/lro/lola.htm",
+    "retrieved_at_utc": "2026-11-14T11:27:18.382643+00:00",
+    "final_url": "https://pds-geosciences.wustl.edu/missions/lro/lola.htm",
+    "http_status": 200,
+    "content_type": "text/html",
+    "downloaded_bytes": 34532,
+    "raw_file_sha256": "416affba870c6b5e3bcf73241fe56ea112a761a2d57077f974a53ec7fb8ce431",
+    "status": "erişildi",
+    "limitation": "HTML erişimi; bilimsel katman veya sayısal entegrasyon kanıtı değil"
+  },
+  {
+    "source_name": "lola-nasa",
+    "source_url": "https://science.nasa.gov/mission/lro/lola/",
+    "retrieved_at_utc": "2026-11-14T11:27:20.450454+00:00",
+    "final_url": "https://science.nasa.gov/mission/lro/lola/",
+    "http_status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "downloaded_bytes": 285939,
+    "raw_file_sha256": "8f1a2c8f339ca09ab487ffc5ad75a85b9fb90c8a578b7ed4abefe614eaaf7343",
+    "status": "erişildi",
+    "limitation": "HTML erişimi; bilimsel katman veya sayısal entegrasyon kanıtı değil"
+  },
+  {
+    "source_name": "polar-method",
+    "source_url": "https://ntrs.nasa.gov/citations/20120010094",
+    "retrieved_at_utc": "2026-11-14T11:27:22.689650+00:00",
+    "status": "engellendi",
+    "error": "The read operation timed out"
+  }
+]
