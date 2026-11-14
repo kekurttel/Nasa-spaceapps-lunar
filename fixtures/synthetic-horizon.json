@@ -1,0 +1,25 @@
+{
+  "profile": {
+    "siteId": "site-a",
+    "azimuthDeg": [0, 90, 180, 270],
+    "elevationDeg": [0, 8, 2, 0],
+    "model": "terrain",
+    "dataKind": "synthetic",
+    "sourceIds": ["synthetic-ridge-v1"],
+    "observerHeightM": 1.5,
+    "warnings": ["Synthetic illustrative ridge profile; not measured lunar terrain."]
+  },
+  "coverage": {
+    "siteId": "site-a",
+    "observerHeightM": 1.5,
+    "frame": "lunar-local",
+    "azimuthCoverage": "full-circle"
+  },
+  "sources": [
+    {
+      "id": "synthetic-ridge-v1",
+      "url": "https://example.invalid/synthetic-horizon.json",
+      "description": "Explicitly synthetic test ridge; not NASA/LOLA data."
+    }
+  ]
+}

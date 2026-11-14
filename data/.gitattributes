@@ -1,0 +1,4 @@
+# Preserve archived bytes: the product loader verifies SHA-256 hashes.
+raw/*.img -text
+raw/*.lbl -text
+raw/horizons-*.json -text
