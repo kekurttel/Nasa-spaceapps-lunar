@@ -1,6 +1,7 @@
 import { createReadStream } from 'node:fs';
 import { readFile, writeFile, mkdtemp, rm, mkdir, stat } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, win32 } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -9,6 +10,15 @@ import { computeVisibility } from '../src/features/visibility/visibility.mjs';
 import { validateRegistration, LOCAL_FRAME } from '../src/features/visibility/registration.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+export function selectTempRoot({ platform = process.platform, localAppData, tempDir = tmpdir() } = {}) {
+  if (platform === 'win32' && localAppData === undefined) localAppData = process.env.LOCALAPPDATA;
+  if (platform !== 'win32') return tempDir;
+  const base = localAppData || tempDir;
+  const normalized = base.replace(/[\\/]+$/, '');
+  if (/\\Temp$/i.test(normalized)) return win32.join(normalized, 'opencode');
+  return win32.join(normalized, 'Temp', 'opencode');
+}
+
 const PRODUCT = 'LDEM_80S_80M';
 const DEFAULT_MANIFEST = 'data/polar-lola-manifest.json';
 const VERIFIED_RASTER_SHA256 = 'c088dd4f510e879375ee7e6f0d320ba84115f535f45fb592dd7f83a7d2e83ae3';
@@ -53,7 +63,7 @@ export async function runPolarAnalysis(options = {}) {
   const rasterStat = await stat(rasterPath);
   if (rasterHash !== VERIFIED_RASTER_SHA256 || labelHash !== VERIFIED_LABEL_SHA256 || rasterHash !== manifest.raster?.sha256?.toLowerCase() || labelHash !== manifest.label?.sha256?.toLowerCase() || rasterStat.size !== manifest.raster?.downloaded_bytes) throw new TypeError('Local polar LOLA files do not match pinned source and manifest hashes and size');
   if (manifest.product !== PRODUCT || manifest.version !== 'V2.1' || manifest.dataset_id !== 'LRO-L-LOLA-4-GDR-V1.0' || manifest.raster?.url !== 'https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m.jp2' || manifest.label?.url !== 'https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m_jp2.lbl' || manifest.raster?.downloaded_bytes !== 29837992 || manifest.raster?.http_status !== 200 || manifest.label?.http_status !== 200 || !/^https:\/\/pds-geosciences\.wustl\.edu\//.test(manifest.raster?.final_url ?? '') || !/^https:\/\/pds-geosciences\.wustl\.edu\//.test(manifest.label?.final_url ?? '') || manifest.raster?.sha256?.toLowerCase() !== VERIFIED_RASTER_SHA256 || manifest.label?.sha256?.toLowerCase() !== VERIFIED_LABEL_SHA256 || !strictUtc(manifest.raster?.retrieved_at_utc?.replace(/\+00:00$/, 'Z')) || !strictUtc(manifest.label?.retrieved_at_utc?.replace(/\+00:00$/, 'Z'))) throw new TypeError(`Polar terrain manifest must verify trusted ${PRODUCT} V2.1 PDS image and label records`);
-  const tempRoot = resolve(process.env.LOCALAPPDATA ?? process.env.TEMP ?? ROOT, 'Temp', 'opencode');
+  const tempRoot = selectTempRoot();
   await mkdir(tempRoot, { recursive: true });
   const temp = await mkdtemp(join(tempRoot, 'polar-analysis-'));
   try {

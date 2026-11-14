@@ -57,6 +57,29 @@ class FetchPolarLolaTests(unittest.TestCase):
         with patch.object(fetcher, "urlopen", return_value=response):
             return fetcher.fetch(TRUSTED_URL, self.target, **kwargs)
 
+    def test_verified_cached_product_reuses_manifest_without_network_or_timestamp_changes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            label_path, image_path, manifest_path = base / "ldem_80s_80m_jp2.lbl", base / "ldem_80s_80m.jp2", base / "manifest.json"
+            label = b"synthetic valid label"
+            image = b"synthetic raster"
+            label_path.write_bytes(label)
+            image_path.write_bytes(image)
+            label_hash, image_hash = hashlib.sha256(label).hexdigest(), hashlib.sha256(image).hexdigest()
+            prior = {"product": "LDEM_80S_80M", "version": "V2.1", "dataset_id": "LRO-L-LOLA-4-GDR-V1.0", "label": {"url": fetcher.LABEL_URL, "final_url": fetcher.LABEL_URL, "sha256": label_hash, "downloaded_bytes": len(label), "retrieved_at_utc": "2020-01-01T00:00:00+00:00"},
+                     "raster": {"url": fetcher.IMAGE_URL, "final_url": fetcher.IMAGE_URL, "sha256": image_hash, "downloaded_bytes": len(image), "retrieved_at_utc": "2020-01-02T00:00:00+00:00"}}
+            manifest_path.write_text(__import__("json").dumps(prior), encoding="utf-8")
+            with (patch.object(fetcher, "DEST", base), patch.object(fetcher, "MANIFEST", manifest_path),
+                  patch.object(fetcher, "EXPECTED_BYTES", len(image)),
+                  patch.object(fetcher, "EXPECTED_LABEL_SHA256", label_hash),
+                  patch.object(fetcher, "EXPECTED_LABEL_BYTES", len(label)),
+                  patch.object(fetcher, "EXPECTED_SHA256", image_hash),
+                  patch.object(fetcher, "validate_label") as validate,
+                  patch.object(fetcher, "urlopen", side_effect=AssertionError("unexpected request"))):
+                fetcher.main()
+            self.assertEqual(__import__("json").loads(manifest_path.read_text()), prior)
+            validate.assert_called_once()
+
     def test_rejects_oversized_content_length_before_creating_target(self):
         with self.assertRaisesRegex(RuntimeError, "larger than"):
             self.fetch_with(FakeResponse(b"" , declared=11), limit=10)

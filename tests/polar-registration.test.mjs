@@ -3,9 +3,15 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { parseArgs, runPolarAnalysis } from '../scripts/run-polar-analysis.mjs';
+import { parseArgs, runPolarAnalysis, selectTempRoot } from '../scripts/run-polar-analysis.mjs';
 
-const testTempRoot = resolve(process.env.LOCALAPPDATA ?? process.env.TEMP ?? tmpdir(), 'Temp', 'opencode');
+const testTempRoot = selectTempRoot({ platform: process.platform, localAppData: process.env.LOCALAPPDATA, tempDir: process.env.TEMP ?? tmpdir() });
+
+test('temporary root uses platform-native temp paths without duplicating Temp', () => {
+  assert.equal(selectTempRoot({ platform: 'linux', tempDir: '/tmp' }), '/tmp');
+  assert.equal(selectTempRoot({ platform: 'win32', localAppData: 'C:\\Users\\test\\AppData\\Local', tempDir: 'C:\\Temp' }), 'C:\\Users\\test\\AppData\\Local\\Temp\\opencode');
+  assert.equal(selectTempRoot({ platform: 'win32', localAppData: '', tempDir: 'C:\\Users\\test\\AppData\\Local\\Temp' }), 'C:\\Users\\test\\AppData\\Local\\Temp\\opencode');
+});
 
 test('polar analysis rejects exact pole because local azimuth is undefined', async () => {
   await assert.rejects(runPolarAnalysis({ latitudeDeg: -90 }), /latitude in \(-90, -80\]/);

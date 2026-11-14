@@ -18,6 +18,7 @@ from src.features.visibility.polar_lola import EXPECTED_BYTES, EXPECTED_LABEL_SH
 DEST = ROOT / "data" / "raw" / "polar"
 MANIFEST = ROOT / "data" / "polar-lola-manifest.json"
 MAX_TRANSFER = 30_000_000
+EXPECTED_LABEL_BYTES = 6354
 TIMEOUT_SECONDS = 45
 
 
@@ -66,6 +67,32 @@ def fetch(url: str, target: Path, limit: int, expected_sha256: str | None = None
 def main() -> None:
     DEST.mkdir(parents=True, exist_ok=True)
     label_path, image_path = DEST / "ldem_80s_80m_jp2.lbl", DEST / "ldem_80s_80m.jp2"
+    if MANIFEST.exists() and label_path.is_file() and image_path.is_file():
+        try:
+            manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+            label_bytes, image_bytes = label_path.read_bytes(), image_path.read_bytes()
+            label_text = label_bytes.decode("ascii")
+            validate_label(label_text)
+            if (manifest.get("product") == "LDEM_80S_80M"
+                    and manifest.get("version") == "V2.1"
+                    and manifest.get("dataset_id") == "LRO-L-LOLA-4-GDR-V1.0"
+                    and manifest.get("label", {}).get("url") == LABEL_URL
+                    and manifest.get("label", {}).get("final_url") == LABEL_URL
+                    and manifest.get("raster", {}).get("final_url") == IMAGE_URL
+                    and manifest.get("raster", {}).get("url") == IMAGE_URL
+                    and len(label_bytes) == EXPECTED_LABEL_BYTES
+                    and hashlib.sha256(label_bytes).hexdigest() == EXPECTED_LABEL_SHA256
+                    and len(image_bytes) == EXPECTED_BYTES
+                    and hashlib.sha256(image_bytes).hexdigest() == EXPECTED_SHA256
+                    and manifest["label"].get("sha256") == EXPECTED_LABEL_SHA256
+                    and manifest["label"].get("downloaded_bytes") == EXPECTED_LABEL_BYTES
+                    and manifest["raster"].get("sha256") == EXPECTED_SHA256
+                    and manifest["raster"].get("downloaded_bytes") == EXPECTED_BYTES
+                    and all(isinstance(manifest[k].get("retrieved_at_utc"), str) and manifest[k]["retrieved_at_utc"].endswith("+00:00") for k in ("label", "raster"))):
+                print(json.dumps(manifest, indent=2))
+                return
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError):
+            pass
     label_record = fetch(LABEL_URL, label_path, 100_000, expected_sha256=EXPECTED_LABEL_SHA256, expected_bytes=6354)
     label_text = label_path.read_bytes().decode("ascii")
     validate_label(label_text)
