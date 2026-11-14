@@ -27,6 +27,9 @@ backend/data/*.tif
 backend/data/*.img
 backend/data/*.bsp
 
+# Downloaded regional scientific rasters: retain manifests, not large payloads
+/data/raw/polar/
+
 # Generated analysis reports (reproduce using scripts/run-registered-analysis.mjs)
 output/
 

@@ -13,7 +13,13 @@ python -m pip install -r scripts/requirements-registration.txt
 node scripts/run-registered-analysis.mjs --output output/registered-analysis.json
 ```
 
-The bundled DEM is coarse (~7.58 km/pixel); polar extrapolation and near-field terrain are not landing-safety quality. This CLI does not replace the web backend's ephemeris path.
+The bundled global DEM is coarse (~7.58 km/pixel); polar extrapolation and near-field terrain are not landing-safety quality. A separate [80 m polar workflow](docs/polar-workflow.md) downloads a 29.84 MB regional height product and defaults to 80 m radial sampling. Measured default terrain/sky child stages total about 5.43 s; terrain Python process peaks around 208 MiB working set / 922 MiB private commit on the tested Windows machine. Neither CLI replaces the web backend's ephemeris path.
+
+```sh
+python -m pip install -r scripts/requirements-registration.txt -r scripts/requirements-polar.txt
+python scripts/fetch-polar-lola.py
+node scripts/run-polar-analysis.mjs --output output/polar-analysis.json
+```
 
 ## 🚀 Features
 
@@ -55,10 +61,10 @@ Open http://localhost:3000
 
 ## 📊 Data Sources
 
-- **JPL Horizons System** — Backend query path and archived real Sun/Earth responses; not the registered terrain CLI's ephemeris source. Backend fallback policy remains separate from the CLI.
-- **LOLA (Lunar Orbiter Laser Altimeter)** — Downloaded `LDEM_4_FLOAT V3.0` elevation raster and PDS label, verified and used by the terrain CLI; not yet connected to web results.
+- **JPL Horizons System** — Backend query path and archived real Sun/Earth responses, plus new Moon-center DE441 vector queries and reproducible same-epoch comparison with local DE421. Comparison is not surface-observer registration. Registered terrain CLI still uses DE421 SPICE, not Horizons. Backend fallback policy remains separate. See [Horizons evidence](docs/research/horizons-registration-options.md).
+- **LOLA (Lunar Orbiter Laser Altimeter)** — Verified global `LDEM_4_FLOAT V3.0` used by existing terrain CLI. Regional `LDEM_80S_80M V2.1` JP2 and label also downloaded and decoded; separate polar CLI verified through real terrain, registered SPICE sky and visibility; 80 m radial sampling is default. Neither terrain path is connected to web results. See [coordinator validation](docs/research/coordinator-polar-validation.md) for actual pixel checks, measured sampling sensitivity and memory limits.
 - **NASA/JPL NAIF SPICE / DE421** — Downloaded kernels used by the registered CLI for geometric sky directions in `MOON_ME_DE421`; auxiliary source, not a substitute for the required Horizons integration.
-- **NASA Moon Trek** — Basemap tile URL configured in frontend; successful layer delivery and scientific visual review are not established by that configuration alone.
+- **NASA Moon Trek** — Frontend basemap configured; independent WMTS capabilities read and target-containing JPEG tile retrieved. Frontend rendering, interactive visual review and numeric elevation use remain unverified. See [map-source evidence](docs/research/map-source-evidence.md).
 - **LROC QuickMap** — Required visual review still pending; no completed validation claimed.
 
 Source policy: [sources.md](sources.md). Using all four core sources in their respective roles is a user project requirement, not an asserted NASA requirement. Current source use does not yet meet that full requirement.

@@ -1,0 +1,39 @@
+{
+  "source_name": "LRO/LOLA PDS Geosciences LDEM_80S_80M",
+  "product": "LDEM_80S_80M",
+  "version": "V2.1",
+  "dataset_id": "LRO-L-LOLA-4-GDR-V1.0",
+  "label": {
+    "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m_jp2.lbl",
+    "final_url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m_jp2.lbl",
+    "retrieved_at_utc": "2026-11-14T12:26:07.232866+00:00",
+    "http_status": 200,
+    "content_type": "text/plain",
+    "content_length_header": "6354",
+    "downloaded_bytes": 6354,
+    "sha256": "497512747bb56490d50cf3f4945f2cb736bf61cd19b65fa61a826825e2a35d79"
+  },
+  "raster": {
+    "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m.jp2",
+    "final_url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/jp2/ldem_80s_80m.jp2",
+    "retrieved_at_utc": "2026-11-14T12:26:51.279611+00:00",
+    "http_status": 200,
+    "content_type": "application/octet-stream",
+    "content_length_header": "29837992",
+    "downloaded_bytes": 29837992,
+    "sha256": "c088dd4f510e879375ee7e6f0d320ba84115f535f45fb592dd7f83a7d2e83ae3"
+  },
+  "storage": {
+    "compression": "JPEG2000",
+    "compressed_bytes": 29837992,
+    "decoded_shape": [7600, 7600],
+    "decoded_dtype": "signed int16",
+    "decoded_bytes": 115520000,
+    "peak_python_raster_memory_estimate_bytes": 115520000,
+    "gdal_cache_bytes": 67108864
+  },
+  "processing": "Raw label and JP2 retained unchanged. Runtime verifies label/product and pinned JP2 SHA-256 before opening raster.",
+  "vertical_reference": "Radius from 1737.4 km sphere; DN × 0.5 m + 1737400 m.",
+  "coordinate_frame": "MEAN EARTH/POLAR AXIS OF DE421; body-fixed rotating; planetocentric; longitude east-positive",
+  "status": "downloaded and decoded; source hashes, polar CRS/orientation and reference-site interpolation tested; registered CLI verified at latitude -89.9 longitude 0; not absolute terrain accuracy or landing-safety validation"
+}

@@ -1,0 +1,18 @@
+{
+  "earth.headers.txt": {
+    "bytes": 149,
+    "sha256": "811400b37cb777bb6d2786ee19041a0ca157de117c20d2dc8e8ae06472956747"
+  },
+  "earth.txt": {
+    "bytes": 7458,
+    "sha256": "e5a1745ca7543f665c73009a0a6387f809581854245fbf771e4fd8c5e0b613bd"
+  },
+  "sun.headers.txt": {
+    "bytes": 149,
+    "sha256": "4ffff5e2b2f44943d95b3828c8ccceef85d03b6653b68ec71be05e28ed0e14ac"
+  },
+  "sun.txt": {
+    "bytes": 6910,
+    "sha256": "9ddf8ca10f7ee134d5b843e2de4e743d67b4e5a6b5b04847b608cfd79b87dfee"
+  }
+}

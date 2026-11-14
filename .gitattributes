@@ -1,0 +1,2 @@
+# Preserve archived HTTP response bytes; manifests hash exact payloads/headers.
+/docs/research/horizons/*.txt -text -whitespace
