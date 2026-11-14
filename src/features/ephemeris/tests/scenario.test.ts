@@ -56,8 +56,16 @@ describe("buildScenarioTimes", () => {
     assert.equal(buildScenarioTimes(withSite({ latDeg: 89.999, lonDeg: 180, surfaceElevationM: -500, observerHeightM: 10 })).length, 3);
   });
 
-  it("rejects malformed dates, impossible dates, offsets and missing millisecond precision", () => {
-    for (const value of ["2024-02-30T00:00:00.000Z", "2024-01-01T00:00:00+00:00", "2024-01-01T00:00:00Z", "bad"]) {
+  it("accepts seconds and one-to-three fractional digits, normalizing output to milliseconds", () => {
+    const expected = ["2024-01-01T00:00:00.000Z", "2024-01-01T00:00:01.000Z", "2024-01-01T00:00:02.000Z"];
+    assert.deepEqual(buildScenarioTimes({ ...base, startUtc: "2024-01-01T00:00:00Z", endUtc: "2024-01-01T00:00:02Z" }), expected);
+    assert.deepEqual(buildScenarioTimes({ ...base, startUtc: "2024-01-01T00:00:00.1Z", endUtc: "2024-01-01T00:00:02.12Z" }), [
+      "2024-01-01T00:00:00.100Z", "2024-01-01T00:00:01.100Z", "2024-01-01T00:00:02.100Z",
+    ]);
+  });
+
+  it("rejects malformed dates, impossible dates, offsets, leap seconds and excess precision", () => {
+    for (const value of ["2024-02-30T00:00:00.000Z", "2024-01-01T00:00:00+00:00", "2024-01-01T00:00:60Z", "2024-01-01T00:00:00.1234Z", "bad"]) {
       expectCode({ ...base, startUtc: value }, "EPHEMERIS_INVALID_UTC");
     }
     expectCode({ ...base, endUtc: "2024-02-30T00:00:00.000Z" }, "EPHEMERIS_INVALID_UTC");

@@ -28,7 +28,7 @@ Runtime never refreshes reference fixtures automatically. Benchmark measurements
 
 ## Inputs and scientific boundaries
 
-- Scenario UTC strings currently require `YYYY-MM-DDTHH:mm:ss.sssZ`. Leap seconds and timezone offsets are rejected. Dates are validated by round-trip conversion.
+- Scenario UTC strings accept `YYYY-MM-DDTHH:mm:ssZ` and optional 1–3 fractional digits. Output is canonical `.sssZ`. Leap seconds and timezone offsets are rejected. Dates are validated by round-trip conversion.
 - Step must resolve to positive integer milliseconds, maximum 100000 output samples. Start included; end included only if grid aligned.
 - Longitude east-positive [-180,180], latitude [-90,90], exact geographic poles rejected because north/azimuth is undefined.
 - Surface elevation in metres relative to the 1737.4 km reference sphere. Negative elevation valid. Null assumes 0 with warning. Observer height metres above surface, nonnegative.
@@ -55,7 +55,17 @@ Errors expose `.code`; failed computations throw, never return empty successful 
 | EPHEMERIS_POLAR_AZIMUTH | Exact pole has no local north bearing |
 | EPHEMERIS_DISTANCE_RANGE | Target distance arithmetic overflow |
 
-Additional low-level coordinate argument codes are declared as the `EphemerisCoordinateErrorCode` union in `coordinates.ts`.
+Additional low-level coordinate argument codes are declared as the `EphemerisErrorCode` union in `coordinates.ts`.
+
+## Integration policy
+
+`computationPolicy` declares error-on-failure, no automatic synthetic fallback, and an explicitly flat local tangent horizon by default. Terrain use additionally requires frame/height validation; a passed gate does not turn on terrain automatically. It does not modify or control the existing Python backend by itself. Agent 5 must wire this explicit policy into its adapter; no third science engine is introduced.
+
+`assertCompatibleTerrain` refuses unmatched lunar frame, radial height reference or reference radius. Current DE421 ME terrain is NOT compatible with bundled IAU_MOON vectors without a measured transformation. A passed metadata gate is not independent scientific validation.
+
+`sampleDurationsSeconds(timesUtc, endUtc)` defines half-open state support intervals: the exact end boundary has zero duration; an irregular final segment ends at endUtc. Never use `timesUtc.length * stepSeconds` for total duration. Agent 4 remains owner of visibility windows and AnalysisResult, including event interpolation.
+
+Agent 1’s sample budget counts half-open state intervals; this module can include one additional zero-duration end boundary. Budget adapters must account for that extra boundary; this is not an extra mission interval.
 
 ## Review evidence
 

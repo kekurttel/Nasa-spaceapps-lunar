@@ -7,6 +7,9 @@ export { createMoonFixedSampler, sampleMoonFixedVectors } from './vectorData.ts'
 import type { MoonFixedDataset } from './vectorData.ts';
 
 export type { Site, Scenario } from './scenario.ts';
+export { sampleDurationsSeconds } from './intervals.ts';
+export { assertCompatibleTerrain, computationPolicy, TerrainCompatibilityError } from './integrationPolicy.ts';
+export type { TerrainIntegrationMetadata, TerrainCompatibilityErrorCode } from './integrationPolicy.ts';
 export type { MoonFixedDataset, MoonFixedSample, Vector3 } from './vectorData.ts';
 
 export interface SkySeries {

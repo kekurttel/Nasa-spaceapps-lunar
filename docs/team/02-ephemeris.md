@@ -1,5 +1,9 @@
 # Agent 2 — Ephemeris / yerel teslim
 
+## Güncel durum — yargıç onarımı
+
+Ortak repo erişimi var; `feat/lunar-ephemeris-review` dalındaki önceki teslim SHA `84d02a5`. Aşağıdaki erişim/commit yok ifadeleri yalnız başlangıç geçmişidir. Güncel kaynak yapısı frontend/backend; modül bağımsızdır, mevcut backend'e bağlandı iddiası yok. UTC saniyeli Z ve 1–3 kesir basamağı artık kabul edilir. Agent 1 gerçek modül sözleşmesi ve Agent 3 frame sınırı için yeni test/politika eklendi; ayrıntılar `02-ephemeris-judge-fixes.md` içindedir.
+
 ## Başlangıç ve koordinasyon
 
 2026-11-14. Başlangıç SHA: yok; yerel Git deposu henüz commit içermiyor, remote yok. Kullanıcı sonradan yerelde başlamayı ve erişim geldiğinde senkronizasyonu istedi. `git ls-remote https://github.com/kekurttel/Nasa-spaceapps-lunar.git HEAD` iki kez `Could not resolve host: github.com` verdi. Web fetch özel repo için HTTP 404 verdi; bu özel depoya erişim yetkisinin olmadığını kesin kanıtlamaz. AGENTS.md/ortak stack mevcut değil. Kullanıcı dosyaları korunmuştur. Ayrı worktree henüz oluşturulamaz. Commit, push, PR yok. Ortak depo geri gelince başlangıç SHA ve ekip notları okunarak `feat/lunar-ephemeris` izole dalına yalnız sahip olunan yollar taşınmalı, çatışmalar incelenmeli ve testler yeniden çalıştırılmalı. Otomatik arka plan senkronizasyonu kurulmadı.

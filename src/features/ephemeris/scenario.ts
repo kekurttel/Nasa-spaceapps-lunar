@@ -28,14 +28,16 @@ export class ScenarioError extends Error {
 }
 
 const MAX_SAMPLES = 100_000;
-const UTC_ISO_MILLIS = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+const UTC_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.(\d{1,3}))?Z$/;
 
 function parseUtc(value: string, field: string): number {
-  if (typeof value !== "string" || !UTC_ISO_MILLIS.test(value)) {
-    throw new ScenarioError("EPHEMERIS_INVALID_UTC", `${field} must be a UTC ISO timestamp ending in Z with millisecond precision`);
+  const match = typeof value === "string" ? UTC_ISO.exec(value) : null;
+  if (!match) {
+    throw new ScenarioError("EPHEMERIS_INVALID_UTC", `${field} must be a UTC ISO timestamp ending in Z with up to millisecond precision`);
   }
-  const millis = Date.parse(value);
-  if (!Number.isFinite(millis) || new Date(millis).toISOString() !== value) {
+  const normalized = value.replace(/(\.\d{1,3})?Z$/, (_, fraction: string | undefined) => `.${(fraction?.slice(1) ?? "").padEnd(3, "0")}Z`);
+  const millis = Date.parse(normalized);
+  if (!Number.isFinite(millis) || new Date(millis).toISOString() !== normalized) {
     throw new ScenarioError("EPHEMERIS_INVALID_UTC", `${field} is not a valid round-tripping UTC date`);
   }
   return millis;
