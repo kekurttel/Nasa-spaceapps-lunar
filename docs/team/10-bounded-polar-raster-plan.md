@@ -1,6 +1,12 @@
 # Bounded polar illumination raster plan
 
-Status: SNAPSHOT-ONLY SCOPE APPROVED by user on 2026-11-14: 3×3 grid, three UTC instants; no duration model, large downloads, advanced Sol agent or HTTP/UI exposure. Implementation and real acceptance BLOCKED_ON_LOCAL_POLAR_DATA. Read-only `glob **/ldem_80s*` found no matching assets under `/home/ytwrie/Projects/NasaSpaceApp` or `/tmp/opencode`; this bounded search is not a whole-machine inventory. User must supply authorized local image/label paths or explicitly approve a bounded official download. No real-polar product or test executed.
+Status: SNAPSHOT-ONLY SCOPE APPROVED by user on 2026-11-14: 3×3 grid, three UTC instants; no duration model, large downloads, advanced Sol agent or HTTP/UI exposure. User subsequently approved official NASA/PDS LDEM_80S_80M V2.1 download (29,837,992-byte raster plus label). Download underway; real acceptance remains BLOCKED_ON_VERIFIED_LOCAL_POLAR_DATA until complete size/hash/label validation. Snapshot producer implementation is authorized, with mocks permitted while transfer runs. Read-only `glob **/ldem_80s*` found no matching assets under `/home/ytwrie/Projects/NasaSpaceApp` or `/tmp/opencode`; this bounded search is not a whole-machine inventory. User must supply authorized local image/label paths or explicitly approve a bounded official download. No real-polar product or test executed.
+
+## Current implementation update — 2026-11-14
+
+Authorized raster and label now local, size/SHA-256 verified; see `docs/sources/polar-download-verification.md`. Isolated `.venv` dependencies installed. Remaining sections preserve original proposal and decision gates, not current asset inventory. Real bounded 27-value CLI acceptance passed; nine registration validations true. Actual results and resource limits recorded in `11-polar-snapshot-acceptance.md`. This does not certify physical illumination accuracy or temporal persistence.
+
+Implemented contract uses `timestampsUtc` plus three `frames` containing `timestampUtc` and nine `fractions` each. Rows follow **decreasing projected y**, columns increasing projected x; these are not local east/north axes across polar footprint. Actual smoke budget is **20 km**, 80 m distance steps, 5° azimuth steps, nine site horizons and three timestamps/site. Earlier 200 km/single-timestamp planning text below is superseded, not executed evidence. No new ray engine, HTTP/UI, inferred intervals or duration claims.
 
 ## Purpose and boundary
 

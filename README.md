@@ -21,6 +21,21 @@ Amaç tek bir “en iyi iniş noktası” ilan etmek değil; konum, tarih ve mod
 - [Sınırlar ve sonraki hedefler](#sınırlar-ve-sonraki-hedefler)
 - [Teknik belgeler](#teknik-belgeler)
 
+## Sınırlı polar snapshot CLI
+
+Web hattından bağımsız kabul çalışması: onaylı **LDEM_80S_80M V2.1**, 3×3 hücre, 80 m örnekleme aralığı; 2026-11-14 **00:00, 00:05, 00:10 UTC**. Mevcut `runPolarAnalysis` motoru kullanılır; yeni ışın motoru yok. Merkez: −89.9° enlem, 0° boylam, `MOON_ME_DE421`.
+
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install --only-binary=:all: -r scripts/requirements-polar.txt
+npm run test:polar-snapshots
+npm run polar:snapshots -- --output output/polar-snapshots.json
+```
+
+Bu CLI, `data/raw/polar/LDEM_80S_80M.jp2` ve `LDEM_80S_80M.lbl` dosyalarının onaylı indirmesini; mevcut DE421 kernel dosyalarını gerektirir. Genel `prepare:science` komutu polar rasterı indirmez. Raster Git'e eklenmez; hash/boyut kaydı [polar indirme kanıtında](docs/sources/polar-download-verification.md).
+
+Çıktı `polar-illumination-snapshot/v1`: üç ayrı andaki 9 Güneş diski görünürlük kesri, kaynak/çerçeve kayıtları. **Aralık desteği, aydınlanma süresi, PSR veya kalıcı gölge çıkarılmaz.** Ufuk yalnız 20 km menzil, 80 m ışın adımı, 5° azimut aralığı kullanır; yakınsama veya tam ufuk iddiası yok. Bu menzil dışındaki engeller hesaba katılmaz. 80 m grid aralığı, bağımsız doğruluk garantisi değildir. HTTP/UI entegrasyonu bu aşamanın kapsamı dışında.
+
 ## Çalışan MVP ve kapsamı
 
 Web hattı iki açık modeli destekler: **`flat` için paketli IAU_MOON vektörleri**, **`terrain` için LOLA DEM + kayıtlı DE421/SPICE hesabı**. İki hat aynı görünürlük/analiz/CSV modüllerine bağlanır; koordinat çerçeveleri karıştırılmaz.

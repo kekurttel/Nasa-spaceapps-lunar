@@ -9,6 +9,8 @@
     "test:data": "node --test src/features/data/tests/*.test.mjs tests/integration/data-contract.test.mjs",
     "prepare:science": "node scripts/prepare-data.mjs --setup-python --test",
     "verify:science-data": "node scripts/prepare-data.mjs --verify-only",
+    "polar:snapshots": "node --experimental-strip-types scripts/run-polar-snapshots.mjs",
+    "test:polar-snapshots": "node --experimental-strip-types --test src/features/analysis/tests/polar-snapshot.test.mjs tests/polar-snapshot-grid.test.mjs",
     "test:ephemeris": "node --experimental-strip-types --test src/features/ephemeris/tests/*.test.ts",
     "build": "npm --prefix frontend run build"
   }

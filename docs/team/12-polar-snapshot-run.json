@@ -1,0 +1,19 @@
+{
+  "scope": "bounded software and registration acceptance; not independent physical illumination validation",
+  "schemaVersion": "polar-illumination-snapshot/v1",
+  "grid": "3x3; 80 m projected spacing; center -89.9 degrees, 0 degrees",
+  "timestampsUtc": ["2026-11-14T00:00:00Z", "2026-11-14T00:05:00Z", "2026-11-14T00:10:00Z"],
+  "finiteFractions": 27,
+  "fractionRange": [0, 0],
+  "registrationValidationsPassed": 9,
+  "rasterSha256": "c088dd4f510e879375ee7e6f0d320ba84115f535f45fb592dd7f83a7d2e83ae3",
+  "horizonMaximumDistanceM": 20000,
+  "distanceStepM": 80,
+  "azimuthStepDeg": 5,
+  "wallSeconds": 11.99780378700234,
+  "childrenMaxRssKiB": 181612,
+  "memoryMeaning": "Linux RUSAGE_CHILDREN maximum resident set; not summed process-tree peak",
+  "timeSemantics": "snapshots only; no interval support or permanent-shadow claim",
+  "localOutput": "/tmp/opencode/polar-snapshots-real.json",
+  "command": "npm run polar:snapshots -- --output /tmp/opencode/polar-snapshots-real.json"
+}

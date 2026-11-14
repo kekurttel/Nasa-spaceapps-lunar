@@ -1,0 +1,5 @@
+numpy==2.5.4
+rasterio==1.5.2
+pyproj==3.7.2
+# Reuses registered-sky.py dependency; pin same wheel-compatible version here.
+spiceypy==8.0.0
