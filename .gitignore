@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+
+# Build
+frontend/build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files (too large for git)
+backend/data/*.tif
+backend/data/*.img
+backend/data/*.bsp
+
+# Logs
+*.log

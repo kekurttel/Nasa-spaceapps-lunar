@@ -1,0 +1,56 @@
+## 🚀 NASA Space Apps Challenge 2026: Mühendislik Takımı Yol Haritası & Katılım Rehberi
+Bu rehber, 14–15 Kasım 2026 tarihlerinde gerçekleşecek olan dünyanın en büyük küresel hackathonuna ilk kez katılacak olan, TEKNOFEST İHA ve Roket yarışmaları tecrübesine sahip 5 kişilik mühendislik ekibimiz için özel olarak hazırlanmıştır.
+Yarışma tamamen ücretsizdir ve bu yılki ana tema "The Next Frontier" (Sonraki Sınır) olarak belirlenmiştir.
+------------------------------
+## 👥 1. Takım Yapımız ve Kurallar
+
+* Yarışmacı Sınırı (1-6 Kişi): Ekibimiz 5 kişiden (3 Yazılımcı + 2 Diğer Rol) oluştuğu için kurallara tamamen uygundur.
+* Danışman (Mentör) Durumu: Dışarıdan destek aldığımız danışmanımız 6 kişilik resmi sınırı etkilemez. Projeyi resmi olarak teslim edecek ve ödül alacak olan "yarışmacı" statüsünde olmadığı sürece danışmanlar takım kontenjanını doldurmaz.
+* Avantajımız: Havacılık, aerodinamik, telemetri verileri, otonomi ve sistem mimarisi alanlarındaki tecrübemiz sayesinde teknik altyapı olarak yarışmaya 1-0 önde başlıyoruz.
+
+------------------------------
+## 💻 2. Yarışmanın Mantığı: Ne Geliştireceğiz?
+NASA Space Apps, fiziksel bir roket veya İHA üretip sahada uçurduğumuz bir yarışma değildir. Bu yarışma, "NASA ve ortak uzay ajanslarının sağladığı açık kaynaklı verileri kullanarak dijital çözümler ve kavram kanıtı (Proof of Concept) üretme" yarışmasıdır.
+Yazılım odaklı gücümüzü (Python / Veri Analizi / Yapay Zeka) roket/İHA reflekslerimizle birleştirerek odaklanabileceğimiz alanlar ve örnek proje fikirleri şunlardır:
+## 🛰️ A. Bilgisayarlı Görü ve Otonomi (İHA/Roket Deneyimi)
+
+* Gezegen Yüzeyi Kriter Analizi: Mars veya Ay yüzey haritalarını analiz ederek, gelecekteki insansız araçlar (Rover) veya roket inişleri için en güvenli, kayasız ve eğimsiz bölgeleri otonom tespit eden bir bilgisayarlı görü (Computer Vision) modeli.
+* Doğal Afet ve Yangın Takibi: MODIS veya Landsat uydularından gelen anlık termal/görsel verileri PyTorch / TensorFlow ile işleyerek, orman yangınlarının yayılma yönünü rüzgar verileriyle tahmin eden derin öğrenme modeli.
+
+## 📊 B. Büyük Veri Analitiği ve Zaman Serisi (Telemetri Deneyimi)
+
+* Güneş Fırtınası Erken Uyarı Sistemi: Roket yarışmalarındaki veri okuma tecrübemizi kullanarak; Parker Solar Probe veya SOHO uydularından gelen manyetik alan verilerini Pandas ve Scikit-Learn ile işlemek. Dünyadaki uyduları veya astronotları tehlikeye atabilecek Güneş fırtınalarını (CME) önceden tahmin eden yapay zeka modeli.
+
+## 🗺️ C. Anomali Tespiti ve Dünya Gözlemi
+
+* Sera Gazı ve Karbon İzleme: Uydu verilerindeki gaz emisyon yoğunluklarını inceleyerek dünya üzerindeki yasa dışı veya aşırı salınım yapan endüstriyel bölgeleri otomatik saptayan anomali tespit (Anomaly Detection) algoritmaları.
+
+------------------------------
+## 🛠️ 3. Kullanacağımız Teknik Araçlar & Kütüphaneler
+48 saatlik kısıtlı sürede hızlı ve etkili çıktı almak için şu Python ekosistemini kullanacağız:
+
+* Analiz & AI: Pandas, NumPy, Scikit-Learn, TensorFlow / PyTorch
+* Uydu ve Coğrafi Veri İşleme: Geopandas, Rasterio (Uydu fotoğraflarını piksellere döküp AI ile işlemek için), Shapely
+* Hızlı Dashboard / Arayüz: Streamlit veya Dash (Yapay zeka çıktılarımızı jüriye interaktif bir harita veya panel olarak sunmak için harika araçlardır).
+* Veri İnceleme (Şimdiden Bakılması Gerekenler): [NASA Earthdata Search](https://search.earthdata.nasa.gov/) ve [NASA Open Data](https://data.nasa.gov/) portalları.
+
+------------------------------
+## ⏱️ 4. Hackathon Hafta Sonu Rol Dağılımı (48 Saat Stratejisi)
+Teknofest'teki yüzlerce sayfalık rapor mantığının aksine, NASA jürisi bizden en fazla 7 sayfalık bir web proje dökümanı ve en fazla 240 saniyelik (4 dakika) bir tanıtım videosu bekler. Bu yüzden zaman yönetimi hayati önem taşır:
+
+* Yazılımcı 1 & Yazılımcı 2 (Veri & Model Mühendisleri): 48 saat boyunca ham NASA verilerini çekmeye, temizlemeye ve yapay zeka / veri analizi modelini ayağa kaldırmaya odaklanacaklar. Kusursuz bir model değil, çalışan bir prototip (kavram kanıtı) üretmek yeterlidir.
+* Yarışmacı Yazılımcı 3 (Arayüz & Entegrasyon Mühendisi): Modelin ürettiği çıktıları Streamlit gibi araçlarla görsel bir web paneline veya haritaya dönüştürecek. Kodun GitHub entegrasyonunu yönetecek.
+* Diğer 2 Takım Üyesi (Proje Yönetimi, Tasarım & Hikaye Anlatımı): Yarışmanın kaderini bu rol belirleyecek. 48 saat boyunca projenin NASA dökümantasyonunu hazırlayacak, UI/UX tasarımlarını yapacak, kullanılan NASA verilerinin doğruluğunu (Validation) savunacak ve en kritik kısım olan 4 dakikalık teslim videosunun senaryosunu yazıp kurgulayacak.
+
+------------------------------
+## 📅 5. Kritik Tarihler ve Çorlu Katılım Adımları
+Yarışmaya Çorlu Yerel Etkinliği üzerinden katılacağız. Bu bize bölgedeki ekosistemle networking yapma şansı tanıyacak.
+
+* Şu Anda (Kayıt Dönemi): Ekipteki her üye tek tek resmi [NASA Space Apps](https://www.spaceappschallenge.org/) sitesinden hesap açmalı ve lokasyon olarak Çorlu'yu seçmeli. Ardından portal üzerinden birbirimizi bularak resmi takımımızı kuracağız.
+* 28 Ekim (Mücadele Metinleri): NASA tüm detaylı görev başlıklarını ve veri setlerini açacak. Bu tarihte toplanıp odaklanacağımız 2-3 görevi seçeceğiz ve ön hazırlık yapacağız.
+* 14–15 Kasım (Hackathon Hafta Sonu): Cumartesi sabah 09:00'da panel açılacak, Pazar 23:59'da video, kod ve sunum teslimiyle süreç bitecek.
+* Aralık 2026 - Ocak 2027: Önce yerel jüri sonuçları, ardından küresel finalistler açıklanacak.
+
+------------------------------
+Takım olarak rehberi inceledikten sonra, geçmiş yıllarda TEKNOFEST arka planıyla girip küresel başarı yakalamış projelerin sunum ve video örneklerini incelemek ister misiniz? Ya da şimdiden Çorlu lokasyonuna kayıt ve takım birleştirme adımlarında desteğe ihtiyacınız var mı?
+
