@@ -37,6 +37,7 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
   const presetRef = useRef<string | null>(null);
   const [dragging, setDragging] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
+  const [textureError, setTextureError] = useState(false);
   const tr = language === 'tr';
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
       return;
     }
     setUnavailable(false);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 600 ? 1.5 : 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     host.appendChild(renderer.domElement);
 
@@ -64,24 +65,7 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
     presetRef.current = preset;
     scene.add(root);
     const geometry = new THREE.SphereGeometry(1, 160, 112);
-    const pos = geometry.attributes.position as THREE.BufferAttribute;
-    const colors: number[] = [];
-    const color = new THREE.Color();
-    for (let i = 0; i < pos.count; i++) {
-      const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-      const lat = Math.asin(y), lon = Math.atan2(z, x);
-      const n = Math.sin(lon * 17 + Math.sin(lat * 9)) * Math.sin(lat * 23 + lon * 4)
-        + Math.sin(lon * 43 - lat * 27) * 0.45 + Math.cos(lat * 61 + lon * 31) * 0.24;
-      const basin = Math.sin(lon * 5 + lat * 8) * Math.cos(lat * 13 - lon * 3);
-      const h = 1 + (fineTexture ? n * 0.0035 + basin * 0.0022 : 0);
-      pos.setXYZ(i, x * h, y * h, z * h);
-      const shade = THREE.MathUtils.clamp(0.55 + (fineTexture ? n * 0.045 + basin * 0.04 : 0), 0.34, 0.74);
-      color.setRGB(shade, shade * 0.985, shade * 0.94);
-      colors.push(color.r, color.g, color.b);
-    }
-    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-    geometry.computeVertexNormals();
-    const moon = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1 }));
+    const moon = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 1 }));
     root.add(moon);
 
     const grid = new THREE.Group();
@@ -139,25 +123,18 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
     scene.add(new THREE.AmbientLight('#bfc4c7', liftShadows ? 1.5 : preset === 'physical' ? 0.04 : 0.35));
     const sun = new THREE.DirectionalLight('#fff0d5', 2.6);
     sun.position.set(-3, 2, 4);
-    if (selectedSite && moment && Number.isFinite(moment.sun_azimuth) && Number.isFinite(moment.sun_elevation)) {
-      const up = toPoint(selectedSite.lat, selectedSite.lon, 1);
-      const lat = THREE.MathUtils.degToRad(selectedSite.lat), lon = THREE.MathUtils.degToRad(selectedSite.lon);
-      const north = new THREE.Vector3(-Math.sin(lat) * Math.cos(lon), Math.cos(lat), -Math.sin(lat) * Math.sin(lon));
-      const east = new THREE.Vector3(-Math.sin(lon), 0, Math.cos(lon));
-      const az = THREE.MathUtils.degToRad(moment.sun_azimuth), el = THREE.MathUtils.degToRad(moment.sun_elevation);
-      sun.position.copy(up.multiplyScalar(Math.sin(el)).addScaledVector(north, Math.cos(el) * Math.cos(az))
-        .addScaledVector(east, Math.cos(el) * Math.sin(az)).multiplyScalar(5));
-    }
     scene.add(sun);
     // Keep ephemeris lighting in lunar coordinates while the globe is rotated.
     scene.remove(sun);
     root.add(sun);
     root.add(sun.target);
     const render = () => {
+      if (document.hidden) return;
       viewRef.current = { x: root.rotation.x, y: root.rotation.y, z: camera.position.z };
       renderer.render(scene, camera);
     };
     let disposed = false;
+    setTextureError(false);
     const texture = new THREE.TextureLoader().load(`${process.env.PUBLIC_URL}/textures/moon-lroc-2k.jpg`, loaded => {
       if (disposed) { loaded.dispose(); return; }
       loaded.colorSpace = THREE.SRGBColorSpace;
@@ -166,7 +143,11 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
       moon.material.color.set('#ffffff');
       moon.material.needsUpdate = true;
       render();
-    });
+    }, undefined, () => { if (!disposed) setTextureError(true); });
+    const normal = new THREE.TextureLoader().load(`${process.env.PUBLIC_URL}/textures/moon_normal.jpg`, loaded => {
+      if (disposed) { loaded.dispose(); return; }
+      moon.material.normalMap = loaded; moon.material.normalScale.set(0.7, 0.7); moon.material.needsUpdate = true; render();
+    }, undefined, () => { if (!disposed) setTextureError(true); });
     const resize = () => {
       const width = host.clientWidth, height = host.clientHeight;
       if (!width || !height) return;
@@ -178,6 +159,7 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : null;
     observer?.observe(host);
     window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', render);
     resize();
 
     let down = false, moved = false, lastX = 0, lastY = 0;
@@ -218,6 +200,26 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
       if (hit && surfaceHit && surfaceHit.distance < hit.distance) return;
       if (hit?.object.userData.marker) onSelectSite(hit.object.userData.marker as LunarSurfaceMarker);
     };
+    // Selection changes orientation only. Never derive scientific results from the globe.
+    let flightFrame = 0;
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (selectedSite) {
+      const point = toPoint(selectedSite.lat, selectedSite.lon, 1).normalize();
+      const goal = new THREE.Quaternion().setFromUnitVectors(point, new THREE.Vector3(0, 0, 1));
+      if (reduced) { root.quaternion.copy(goal); render(); }
+      else {
+        const start = root.quaternion.clone();
+        const began = performance.now();
+        const fly = (now: number) => {
+          if (document.hidden || down) return;
+          const progress = Math.min(1, (now - began) / 900);
+          root.quaternion.slerpQuaternions(start, goal, 1 - Math.pow(1 - progress, 3));
+          render();
+          if (progress < 1) flightFrame = requestAnimationFrame(fly);
+        };
+        flightFrame = requestAnimationFrame(fly);
+      }
+    }
     const canvas = renderer.domElement;
     canvas.tabIndex = 0;
     canvas.setAttribute('role', 'img');
@@ -233,7 +235,8 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
     render();
     return () => {
       resetRef.current = null;
-      observer?.disconnect(); window.removeEventListener('resize', resize);
+      cancelAnimationFrame(flightFrame);
+      observer?.disconnect(); window.removeEventListener('resize', resize); document.removeEventListener('visibilitychange', render);
       canvas.removeEventListener('keydown', onKey);
       canvas.removeEventListener('webglcontextlost', onContextLost);
       canvas.removeEventListener('webglcontextrestored', onContextRestored);
@@ -247,17 +250,18 @@ const LunarSurface3D: React.FC<LunarSurface3DProps> = ({ markers = EMPTY_MARKERS
           materials.forEach(material => material.dispose());
         }
       });
-      disposed = true; texture.dispose(); renderer.dispose(); canvas.remove();
+      disposed = true; texture.dispose(); normal.dispose(); renderer.dispose(); canvas.remove();
     };
   }, [markers, selectedSite, onSelectSite, gridVisible, liftShadows, fineTexture, rangeRings, preset, moment, tr]);
 
   return <section className="lunar3d" aria-label={tr ? 'Etkileşimli 3B Ay küresi' : 'Interactive 3D lunar globe'}>
     <div className="lunar3d-stage" ref={mountRef} />
     {unavailable && <div className="lunar3d-fallback" role="status">{tr ? '3B görünüm kullanılamıyor. WebGL gerekli. Konumlar için 2B haritayı kullanın.' : '3D view unavailable. WebGL required. Use the 2D map for site locations.'}</div>}
+    {textureError && <p className="lunar3d-texture-error" role="status">{tr ? 'Bir veya daha fazla Ay dokusu kullanılamıyor. Görsel ayrıntılar eksik.' : 'One or more Moon textures unavailable. Visual detail incomplete.'}</p>}
     <div className="lunar3d-heading"><span>{tr ? 'KÜRESEL GÖRÜNÜM' : 'GLOBAL VIEW'}</span><strong>{tr ? 'Ay · 3B' : 'Moon · 3D'}</strong></div>
     <button type="button" className="lunar3d-reset" disabled={unavailable} onClick={() => resetRef.current?.()}>{tr ? 'Görünümü sıfırla' : 'Reset view'}</button>
     <div className="lunar3d-legend"><i /> {tr ? 'Seçili' : 'Selected'} <i className="candidate" /> {tr ? 'Aday' : 'Candidate'}</div>
-    <div className="lunar3d-note">{tr ? 'Sentetik rölyef · DEM değil · yükseklik ölçümü yok' : 'Synthetic relief · not DEM-derived · no elevation measurement'}<br />{moment && selectedSite ? (tr ? 'Işık: seçili konumun Güneş efemerisi' : 'Lighting: selected-site solar ephemeris') : (tr ? 'Işık: örnek, zamana bağlı değil' : 'Lighting: illustrative, not time-based')}{rangeRings && (tr ? ' · Halkalar: 15° / 30°' : ' · Rings: 15° / 30°')}</div>
+    <div className="lunar3d-note">{tr ? 'Temsili küre · yükseklik ölçümü değil' : 'Illustrative globe · not an elevation measurement'}<br />{tr ? 'Işık temsilidir; bilimsel gölge hesabı değildir' : 'Lighting is illustrative; not a scientific shadow calculation'}</div>
     <div className={`lunar3d-hint ${dragging ? 'is-dragging' : ''}`}>{tr ? 'Sürükle / ok tuşları: döndür · +/−: yakınlaştır' : 'Drag / arrow keys: rotate · +/−: zoom'}</div>
   </section>;
 };

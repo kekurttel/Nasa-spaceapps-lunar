@@ -5,6 +5,8 @@ import App from './App';
 import { getPresetSites, fetchEphemerisMulti, fetchHorizon } from './services/api';
 import { SiteEphemeris, SiteRequest } from './types';
 
+jest.mock('./components/ScenePanel', () => ({ ScenePanel: ({ children }: { children: React.ReactNode }) => <div>{children}</div> }));
+
 jest.mock('./components/SciencePanel', () => ({ __esModule: true, default: () => <div>Science inspection</div> }));
 jest.mock('./components/MoonMap', () => ({ MoonMap: ({ onSelectSite }: { onSelectSite: (site: SiteRequest) => void }) => <div aria-label="Moon site map"><button onClick={() => onSelectSite({ name: 'Custom map point', lat: -89.44, lon: -137.19 })}>Pick custom map point</button></div> }));
 jest.mock('./components/LunarSurface3D', () => ({ __esModule: true, default: () => <div aria-label="3D Moon" /> }));
@@ -75,8 +77,8 @@ test('renders scenario controls without automatically requesting calculations', 
   await renderApp();
   expect(screen.getByRole('heading', { name: 'Lunar site assessment' })).toBeInTheDocument();
   expect(screen.getAllByLabelText('Mission start date · UTC')).toHaveLength(2);
-  expect(screen.getByLabelText('Measured terrain')).toBeInTheDocument();
-  expect(screen.queryByLabelText('3D Moon')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('3D Moon')).toBeInTheDocument();
+  expect(screen.queryByLabelText('Measured terrain')).not.toBeInTheDocument();
   expect(screen.getByText('Backend dataset inventory received. Details below.')).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledWith(
     `${process.env.REACT_APP_API_URL || '/api'}/data/status`,
