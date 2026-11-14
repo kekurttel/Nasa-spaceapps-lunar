@@ -11,7 +11,7 @@ test('API serves real pipeline results, metadata CSV and strict input errors', a
  server=createNavigatorServer(); await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve)); origin=`http://127.0.0.1:${server.address().port}`;
  t.after(()=>new Promise(resolve=>server.close(resolve)));
  const catalog=await fetch(`${origin}/api/catalog`).then(r=>r.json()); assert.equal(catalog.sites.length,9);
- const portals=await fetch(`${origin}/api/portals`).then(r=>r.json()); assert.deepEqual(portals.map(p=>p.state),['planned','accessed','accessed','blocked']);
+ const portals=await fetch(`${origin}/api/portals`).then(r=>r.json()); assert.deepEqual(portals.map(p=>p.state),['planned','accessed','accessed','accessed']);
  const response=await fetch(`${origin}/api/analyze`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({scenarios:[good('one','custom-one'),good('two','custom-two','2026-01-01T06:00:00Z','2026-01-01T09:00:00Z')]})});
  assert.equal(response.status,200); const result=await response.json(); assert.equal(result.entries.length,2); assert.equal(result.entries[0].sky.quality.frame,'IAU_MOON'); assert.equal(result.entries[0].visibility.quality.horizonModel,'flat'); assert.equal(result.entries[0].analysis.quality.sourceIds[0],'naif-de440s-moon-fixed-2026-01'); assert.match(result.csv,/sourceIds/); assert.match(result.csv,/model=|NASA\/JPL NAIF/);
  const request=async scenarios=>fetch(`${origin}/api/analyze`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({scenarios})});

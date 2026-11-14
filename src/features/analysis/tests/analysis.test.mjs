@@ -77,6 +77,22 @@ test('CSV keeps model/frame/source metadata and protects formula-like text cells
   assert.match(csv, /"unknown"/);
 });
 
+test('CSV guards whitespace-prefixed formulas and escapes multiline Unicode metadata without mutation', () => {
+  const metadata = [' =1+1', '\t=1+1', '\ttext', '\rtext', '\ntext', '=HYPERLINK("bad","click")', 'Ay, Dünya "ufuk"\r\nİzmir'];
+  for (const model of metadata) {
+    const entries = ['one', 'two'].map(id => {
+      const v = series(id, times, [1, 0, 1], [true, false, true]);
+      v.quality.model = model;
+      return { scenario: scenario(id), series: v };
+    });
+    const before = structuredClone(entries);
+    const csv = serializeComparisonCsv(entries);
+    const safe = /^\s*[=+@-]/.test(model) || /^[\t\r\n]/.test(model) ? `'${model}` : model;
+    assert.ok(csv.includes(`"${safe.replaceAll('"', '""')}"`));
+    assert.deepEqual(entries, before);
+  }
+});
+
 test('comparison supports unequal durations, CSV retains quality and source metadata, and rejects outside 2–4', () => {
   const entries = [
     { scenario: scenario('s'), series: series('s', times, [1, 0, 1], [true, false, true]) },

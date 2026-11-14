@@ -1,4 +1,7 @@
 /* Design redline informed by unslop, Damir Sokolovsky (@heydamir), CC BY 4.0. */
+.result-metadata { min-width:0; max-width:100%; }
+.result-metadata summary { cursor:pointer; }
+.result-metadata pre { max-height:28rem; overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-size:11px; }
 .mission-shell { --surface:#181a1c; --raised:#222528; --line:#ffffff18; --primary:#eceeed; --secondary:#b1b5b7; --muted:#969c9f; --sun:#dfb979; --earth:#82b6c0; min-height:100vh; color:var(--primary); background:#111315; font-size:14px; line-height:1.5; }
 .mission-shell button,.mission-shell input,.mission-shell select { font:inherit; }
 .mission-shell button { color:inherit; }

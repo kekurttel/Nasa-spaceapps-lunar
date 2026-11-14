@@ -135,7 +135,7 @@ export function serializeComparisonCsv(entries) {
   const columns = ['scenarioId', 'durationSeconds', 'sunAnyFraction', 'sunEquivalentFraction', 'earthVisibleFraction', 'bothFraction', 'longestDarkSeconds', 'longestEarthGapSeconds', 'dataKind', 'horizonModel', 'earthRule', 'model', 'frame', 'sourceIds', 'resolutionSeconds', 'warnings'];
   const quote = (value) => {
     let text = String(value ?? '');
-    if (/^[=+@-]/.test(text)) text = `'${text}`;
+    if (typeof value === 'string' && (/^\s*[=+@-]/.test(text) || /^[\t\r\n]/.test(text))) text = `'${text}`;
     return `"${text.replaceAll('"', '""')}"`;
   };
   const rows = comparisons.map(({ scenarioId, metrics, quality }) => [scenarioId, metrics.durationSeconds, metrics.sunAnyFraction, metrics.sunEquivalentFraction, metrics.earthVisibleFraction, metrics.bothFraction, metrics.longestDarkSeconds, metrics.longestEarthGapSeconds, quality.dataKind, quality.horizonModel, quality.earthRule, quality.model, quality.frame, quality.sourceIds.length ? quality.sourceIds.join(';') : 'unknown', quality.resolutionSeconds, quality.warnings.join('; ')]);

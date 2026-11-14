@@ -7,6 +7,8 @@
     "start": "node --experimental-strip-types server/app.mjs",
     "test:integration": "node --experimental-strip-types --test tests/integration/app*.test.mjs",
     "test:data": "node --test src/features/data/tests/*.test.mjs tests/integration/data-contract.test.mjs",
+    "prepare:science": "node scripts/prepare-data.mjs --setup-python --test",
+    "verify:science-data": "node scripts/prepare-data.mjs --verify-only",
     "test:ephemeris": "node --experimental-strip-types --test src/features/ephemeris/tests/*.test.ts",
     "build": "npm --prefix frontend run build"
   }

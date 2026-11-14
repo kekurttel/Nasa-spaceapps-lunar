@@ -1,5 +1,18 @@
 # Doğrulama kaydı — 2026-11-14
 
+## Hakem düzeltmesi: güncel kabul
+
+Aşağıdaki MVP kayıtları tarihseldir. Web terrain kapısı artık gerçek `runRegisteredAnalysis` ile bağlı. Güncel ayrıntılı kanıt: [`docs/team/06-review-remediation.md`](team/06-review-remediation.md).
+
+- Temiz snapshot, resmi ikili indirmeleri, yeni venv ve bilimsel testler: **61 geçti, 0 skip**.
+- Downloader olumsuz durum testleri: **5 geçti**.
+- Gerçek iki terrain senaryosu dahil HTTP: **3 geçti, 0 skip**.
+- Analiz/CSV güvenlik testleri: **9 geçti**.
+- Frontend: **8 geçti**; üretim derlemesi uyarısız.
+- Chromium: iki gerçek terrain sonucu, kayıtlı frame/DEM hash'i ve indirilen CSV doğrulandı; **0 pageerror**.
+
+Sayılar farklı/örtüşen koşulardır; toplanmaz. Portal hedef katman doğrulaması, güç/link/iniş güvenliği açık kalır.
+
 ## Son acil MVP kontrolü
 
 Önceki açık HTTP/UI kapıları bu koşuda kapandı. `npm run build` uyarısız; frontend UI 4/4; HTTP 1/1; veri/ephemeris/analiz/kabul yeniden koşusu 83/83. Sayılar eski koşularla örtüşür, toplanmaz. Chromium production smoke iki senaryo hesapladı ve CSV indirdi; sıfır pageerror. Yerel kanıt `/tmp/opencode/lunar-mvp-smoke.png`, `/tmp/opencode/lunar-smoke.csv`.
