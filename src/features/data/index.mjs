@@ -1,6 +1,7 @@
 import { sites as catalogSites, sources as catalogSources } from './catalog.mjs';
 export { normalizeLongitude, validateSite, createCustomSite, validateScenario } from './validation.mjs';
 export { sites, sources, dataManifest, validateCatalog } from './catalog.mjs';
+export * from './polar/index.mjs';
 
 /** Return a defensive copy of a catalog site, or null when not found. */
 export function getSiteById(id) {
