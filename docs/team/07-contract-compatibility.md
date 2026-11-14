@@ -13,6 +13,14 @@ from app.contracts_router import router as contracts_router
 app.include_router(contracts_router)
 ```
 
+## Current UI integration (not this bridge)
+
+The ephemeris/terrain UI currently uses the existing local LunaNav `/api/ephemeris`, `/api/ephemeris/single` and `/api/terrain/{id}` paths. Mission search uses `/api/mission/search`. These UI paths do **not** call `/api/contracts/local-analysis` or teammate CLI engines. Bridge availability and transport compatibility must not be presented as an integrated teammate science pipeline.
+
+Mission-search rank is a fixed heuristic: 40% sampled sunlight fraction, 30% sampled Earth visibility, 30% normalized battery margin, with a ×0.25 multiplier for model-threshold failures, then rounding to one decimal. `go`/`feasible_*` mean selected user thresholds under that model (slope prefiltered), **not scientific feasibility, landing safety or GO/NO-GO**. See `06-reference-parity.md` for the inspected formula and tie rules. This score is separate from this bridge's preserved summary.
+
+NASA/USGS data-source attribution is distinct from MIT code licensing. SHA-256 checks artifact byte integrity, not source authentication, reference-frame correctness or scientific validation.
+
 ## Endpoints
 
 - `GET /api/contracts/capabilities`: machine-readable supported transport, limits, explicit incompatibilities.

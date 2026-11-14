@@ -50,7 +50,7 @@ class ScienceTests(unittest.TestCase):
 
     def test_router_paths(self):
         self.assertEqual({r.path for r in router.routes},
-                         {"/api/science/dsn", "/api/science/layers", "/api/science/regions"})
+                         {"/api/science/dsn", "/api/science/dsn/windows", "/api/science/layers", "/api/science/regions"})
 
     def test_native_and_interpolation(self):
         native = dsn("2026-11-01T00:00:00Z")

@@ -8,6 +8,27 @@ const api = axios.create({
   timeout: 30000,
 });
 
+export interface DsnWindowsRequest {
+  start_utc: string;
+  end_utc: string;
+  step_seconds: number;
+  elevation_mask_deg: number;
+}
+
+export interface DsnWindowsResponse {
+  times_utc: string[];
+  step_seconds: number;
+  elevation_mask_deg: number;
+  earth_moon_km: number[];
+  stations: Array<{ name: string; lat: number; lon: number; height_m: number; moon_elevation_deg: number[]; above_mask: boolean[]; sampled_windows: Array<{ start_index: number; end_index: number; start_utc: string; end_utc: string }> }>;
+  provenance: { ephemeris: string; dsn_sha256: string; earth_distance_sha256: string; dsn_coverage: { start_utc: string; end_utc: string }; distance_coverage: { start_utc: string; end_utc: string }; interpolated: boolean; sampling: string; frame: string; limits: string };
+}
+
+export const fetchDsnWindows = async (request: DsnWindowsRequest, signal?: AbortSignal): Promise<DsnWindowsResponse> => {
+  const response = await api.post<DsnWindowsResponse>('/science/dsn/windows', request, { signal });
+  return response.data;
+};
+
 export interface HorizonProfile {
   site_id: string;
   azimuths_deg: number[];

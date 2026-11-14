@@ -1,55 +1,83 @@
 # Local reference backend
 
-> **Compatibility change:** `/api/ephemeris` keeps the existing request/response contract, not the original network engine's domain of support. The active endpoint intentionally accepts only exact catalog coordinates and bundled time coverage. Unsupported input returns 422; unavailable/invalid reference data returns 503. `backend/app/ephemeris.py` is now a strict local-data facade; the original network engine is not retained. No automatic network or geometric fallback is invoked. Mission atlas search does not expand supported ephemeris coordinates.
+## Compatibility boundary
 
-## Hosting / CORS
+`/api/ephemeris` preserves request/response shape, **not** the original network engine's arbitrary-coordinate/date domain. Only bundled catalog coordinates and coverage are supported. Unsupported input returns 422; unavailable/invalid reference artifacts return 503. No network/geometric fallback, extrapolation or nearest-site snapping. `app/ephemeris.py` is a local-data facade. Mission atlas search does not expand ephemeris coordinates.
 
-Run the Uvicorn command below from repository root. Production hosts should bind `--host 0.0.0.0` and use the port required by their platform. Install dependencies and deploy the reference bundle alongside the Python app; a static frontend host alone cannot run this backend. Check `/api/data/status` to verify deployed data availability.
+## Install, run, test
 
-For same-origin deployment, reverse-proxy `/api/*` to FastAPI preserving the `/api` prefix. Frontend production builds default to relative `/api`; development defaults to `http://localhost:8000/api`.
-
-A static production preview at `http://localhost:3001` has no `/api` proxy by default. Set frontend `REACT_APP_API_URL=http://localhost:8000/api` before building; set backend `CORS_ALLOW_ORIGINS=http://localhost:3001`. Without this configuration, relative `/api` reaches the static server instead of FastAPI.
-
-For separate origins, set frontend `REACT_APP_API_URL=https://api.example.com/api` before building, then set backend `CORS_ALLOW_ORIGINS=https://your-frontend.example`. Multiple origins are comma-separated, without paths. Defaults: `http://localhost:3000,http://127.0.0.1:3000`. CORS credentials are disabled; browser calls do not require cookies. Prefer exact production origins rather than `*`. CORS is not authentication or an API access-control boundary.
-
-See `.env.example`. Export variables in the shell or hosting platform; the file is not automatically loaded. No Vercel/Netlify config is present; configure an API service/proxy explicitly.
-
-Run from repository root (Python 3.10+):
+From repository root, Python 3.10+:
 
 ```powershell
 python -m pip install -r backend/requirements.txt
 python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
-python -m pip install pytest httpx
-python -m pytest backend/tests -q
 ```
 
-Default bundle: packaged repository `data/lunanav`, not the upstream checkout. Deploy this directory with the backend. Override before server startup:
+Fresh test environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest backend/tests -q
+```
+
+Direct runtime and test dependencies are pinned. `httpx==0.27.2` satisfies the required `<0.28` boundary: FastAPI 0.110.0 / Starlette 0.36.x TestClient still passes the deprecated `app` argument. pytest 8.3.5 and pytest-subtests 0.14.2 support these unittest subtests. These are direct dependency pins, not a transitive lockfile.
+
+Unused Astropy, requests and SciPy removed: repository Python import search found no runtime uses. Runtime reads local artifacts, not live JPL Horizons or Astropy calculations.
+
+### Clean-environment verification — 2026-11-14
+
+Fresh Windows virtual environment, Python 3.13.13; `pip install -r backend/requirements-dev.txt` succeeded. `python -m pytest backend/tests -q`: **67 passed, 15 subtests passed, 3 warnings, 22.85 s**. Warnings: one Starlette/AnyIO alias deprecation; two httpx `app` shortcut deprecations. No failures.
+
+Logs outside repository:
+
+- `%LOCALAPPDATA%\Temp\opencode\e1550ca-backend-clean-venv-install.log`
+- `%LOCALAPPDATA%\Temp\opencode\e1550ca-backend-clean-venv-tests.log`
+
+## Hosting and data paths
+
+Deploy `data/lunanav` alongside the backend. Default path is repository-root `data/lunanav`, not an upstream checkout; `app/reference_data.py` resolves the root through `Path(__file__).resolve().parents[2]`. Override before startup:
 
 ```powershell
 $env:LUNANAV_DATA_DIR = 'C:\path\to\data\lunanav'
 ```
 
-`Path(__file__).resolve().parents[2]` in `backend/app/reference_data.py` is the repository root (`parents[0]=app`, `[1]=backend`, `[2]=repository`). Tests verify the default directory.
+Check `/api/data/status`. Static frontend hosting cannot execute Python. Production Uvicorn may bind `--host 0.0.0.0` with the platform's required port.
 
-## API
+Same-origin deployment must proxy `/api/*` to FastAPI **preserving `/api`**, excluding API paths from SPA fallback. Frontend development default: `http://localhost:8000/api`; production default: relative `/api`.
 
-- `GET /api/presets`: all local skyline + series site pairs; metadata from `sites.yaml`, `derived_sites.yaml`, `landed_missions.yaml`. Derived points remain labelled derived; no invented elevation.
-- `GET /api/data/status`: per-site UTC coverage, native cadence, terrain label, source citations, upstream coordinate verification flag, limitations.
-- `GET /api/terrain/{site_id}`: original azimuth/elevation skyline, observer height, search radius, source label. Unknown IDs: 404.
-- Existing `POST /api/ephemeris` and `GET /api/ephemeris/single` contracts retained. Additive per-site `provenance`, point `sun_visible_fraction`, `sun_horizon`, `earth_horizon`.
-- `step_hours`: float, 0.25–24. UTC normalization; naive ISO dates interpreted UTC. Reversed/invalid windows: 422. Request limit: 100000 samples across sites.
-- **Strict local data only.** Unsupported coordinates/coverage: 422. Missing/invalid reference data: 503. No geometric fallback, network request, extrapolation, nearest-site snapping, or legacy approximation endpoint.
+For separate origins, set frontend `REACT_APP_API_URL=https://api.example.com/api` before building; set backend `CORS_ALLOW_ORIGINS=https://your-frontend.example` (comma-separated exact origins, no paths). Defaults: `http://localhost:3000,http://127.0.0.1:3000`. Credentials disabled. CORS is not authentication or an API access-control boundary.
 
-## Actual data / precision limits
+Static preview at `http://localhost:3001` has no API proxy by default: build with `REACT_APP_API_URL=http://localhost:8000/api`, run backend with `CORS_ALLOW_ORIGINS=http://localhost:3001`. Environment examples require explicit export/configuration; backend does not auto-load `.env.example`.
 
-Inspected local bundle contains 33 series and 33 skyline profiles. Shackleton series: 19008 hourly samples, 2026-11-01T00:00:00Z through 2028-12-31T23:00:00Z. Other sites report their own coverage through status; do not assume common coverage.
+## Native API
 
-Coordinates must match catalog within 1e-6 degrees (roundoff tolerance); longitude periodicity supported. Entire window must fit one series. No arbitrary-coordinate DEM calculation. Runtime reads precomputed NPZ + JSON; never loads reference Python or DEM.
+- `GET /api/presets`: catalog from paired skyline/series files and site metadata. Derived sites remain labelled derived.
+- `GET /api/data/status`: per-site UTC coverage, cadence, terrain labels, citations and upstream coordinate-verification flag.
+- `GET /api/terrain/{site_id}`: precomputed skyline azimuth/elevation, observer height, search radius and source label. Unknown ID: 404.
+- `POST /api/ephemeris`, `GET /api/ephemeris/single`: existing shapes with additive provenance, `sun_visible_fraction`, `sun_horizon`, `earth_horizon`.
+- `step_hours`: 0.25–24; naive ISO timestamps interpreted as UTC, aware timestamps normalized. Invalid/reversed windows: 422. Maximum 100000 requested samples across sites.
 
-Native timestamps retain precomputed solar visible disk fractions and Earth booleans. Non-native timestamps use linear altitude/disk-fraction interpolation, unwrapped azimuth interpolation, periodic skyline lookup; Earth center compared against skyline. These estimates are explicitly `LUNANAV_PRECOMPUTED_INTERPOLATED`, **not 15-minute SPICE calculations or newly resolved terrain transitions**. Hourly native data cannot establish sub-hour event accuracy. Solar fraction interpolation can smear short transitions.
+## Actual data and scientific limits
 
-`solar_flux_pct` means visible solar disk percentage, not panel irradiance, generated electrical power, or incidence-angle-adjusted flux. Summary hours use left-held sample intervals; final endpoint contributes zero hours. Summary windows approximate sampled transitions, not exact root-found event times. Earth visibility means Earth center clears terrain; no DSN station visibility, RF link budget, relay, propagation, occultation margin, or availability guarantee.
+Bundle contains **33 NPZ series and 33 skyline profiles**. Coordinates must match catalog within native roundoff tolerance of 1e-6 degrees; longitude periodicity supported. This is exact-site support, not arbitrary coordinates. Contracts adapter below requires exact equality and matching ID.
 
-Provenance includes SHA-256 of local series and horizons files, original terrain label and coordinate citation. Hashes identify artifacts; they do not independently verify the upstream astronomical model, DEM generation, publications, or claimed coordinate verification. `coordinate_verified_upstream` repeats upstream metadata only. Source DEM is not bundled in this backend. Reference attribution below does not replace source-data terms.
+Native series cadence is **hourly**. Shackleton coverage: 19008 samples, 2026-11-01T00:00:00Z through 2028-12-31T23:00:00Z. Other sites report their own coverage. Entire request window must fit a series.
 
-Tests exercise native values, quarter-hour estimates, strict failures, duration accounting, timezone normalization, skyline lookup, missing data, default path. Tests require the supplied local bundle. No frontend/reference files changed.
+Intermediate samples interpolate altitude, azimuth and disk fraction; they do not recompute SPICE geometry or establish validated 15-minute visibility/event timing. Source is labelled `LUNANAV_PRECOMPUTED_INTERPOLATED` where applicable. Summary intervals use the existing duration-weighted local analysis, not root-found events. Visible solar-disk fraction is not incidence-angle-adjusted panel power. Earth-center horizon clearance is not DSN station visibility, RF link budget, relay, propagation or guaranteed communications availability.
+
+Ephemeris reads precomputed NPZ and JSON; it does not load reference Python or recompute skyline from DEM. Separate mission/science services and the frontend terrain renderer consume exported terrain assets. Displayed south-polar DEM is sampled at **200 m spacing**, decimated from 40 m data: spacing is not measurement accuracy. Mesh rendering does not replace backend skyline calculations or expand supported sites. See [terrain attribution](../frontend/public/terrain-data/ATTRIBUTION.md). The original source DEM is not part of the backend reference bundle.
+
+## Contracts adapter and independent engines
+
+- `GET /api/contracts/capabilities`, `POST /api/contracts/local-analysis`: opt-in transport field mapping over this local engine. Current frontend does **not** call it.
+- Full UTC `Z` timestamps; 900–86400 second step; exact profile ID/coordinate match; observer height fixed at 2 m; verified surface elevation unavailable.
+- Upstream frame remains unverified; `skySeriesCompatible=false`. `IAU_MOON` and `MOON_ME_DE421` requests rejected. Field renaming is not a frame transformation.
+- `sunRadiusDeg` is null, not inferred from disk fraction. Caller names/kind/source IDs are labels, not verified provenance.
+- Independent CLI engines retain independent frame assumptions. Adapter does not execute them, transform their frames or silently substitute outputs. Agent4 is future integration work, **not integrated** into this runtime.
+
+## Integrity, provenance and license
+
+SHA-256 values identify local artifacts and detect changes; they do **not** prove scientific provenance, frame correctness, upstream geometry, DEM processing, accuracy or publications. `coordinate_verified_upstream` repeats source metadata, not an independent verification. Original terrain labels/citations remain metadata claims.
+
+Reference software: copyright (c) 2026 yutuf, MIT; retain upstream notices in `data/lunanav/LICENSE` and applicable copied assets. MIT is a software license, **not a NASA data license**. NASA/PDS products retain source credits and terms; NASA names imply no endorsement. See [imagery credits](../frontend/public/textures/SOURCES.md) and [terrain attribution](../frontend/public/terrain-data/ATTRIBUTION.md).

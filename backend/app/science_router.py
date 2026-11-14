@@ -183,3 +183,9 @@ def regions():
             "source": "NASA Artemis III candidate regions (Oct 2024), USGS region grids; local LunaNav manifest",
             "coordinates": "South-polar stereographic [x_km,y_km], not [lon,lat]; radius 1737.4 km, +x toward 90E, +y toward 0E",
             "limits": "Upstream region outlines, not certified landing sites; no independent boundary validation. Generic manifest ephemeris claims not used."}}
+
+
+# Imported after shared artifact helpers to avoid a circular initialization dependency.
+from .dsn_windows import WindowsRequest, windows
+
+router.post('/dsn/windows')(windows)

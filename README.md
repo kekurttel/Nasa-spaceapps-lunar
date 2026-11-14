@@ -1,74 +1,66 @@
-# 🌙 LunarSight — Lunar Landing Site Navigator
+# LunarSight — Lunar Landing Site Navigator
 
-> **NASA Space Apps Challenge 2026** — *The Next Frontier*
+NASA Space Apps Challenge 2026 — The Next Frontier.
 
-An intuitive web tool that helps mission planners, educators, and the public evaluate lunar landing sites by visualizing **Sun and Earth positions** relative to the local horizon, enabling rapid assessment of **solar power availability** and **direct-to-Earth communication windows**.
+Compare local Sun visibility and Earth-center horizon clearance at supported lunar sites. Educational planning aid, not a flight-qualified power or communications model.
 
-## 🚀 Features
+## Features and limits
 
-- **Interactive Moon Map** — Click anywhere on the lunar surface to select a landing site
-- **Sun & Earth Horizon Charts** — Visualize elevation angles over time
-- **Power Window Analysis** — When is solar energy available at your site?
-- **Communication Window Analysis** — When can you communicate directly with Earth?
-- **Multi-Site Comparison** — Compare multiple landing sites and dates side-by-side
-- **Preset Sites** — Quick access to notable South Pole candidate sites (Shackleton, Nobile, de Gerlache, etc.)
+- React + TypeScript interface, lunar globe, horizon charts, independent A/B dates and comparison windows.
+- FastAPI reads bundled precomputed NPZ series and JSON skyline profiles for **33 exact catalog sites**. No live JPL Horizons, Astropy runtime, arbitrary-coordinate ephemeris, nearest-site snapping or network fallback.
+- Native series cadence is **hourly**. Intermediate samples, including 15-minute requests, use interpolation; they are not new SPICE calculations or validated sub-hour events. Query `/api/data/status` for each site's actual coverage.
+- Separate measured south-polar LOLA terrain view uses a DEM sampled at **200 m spacing**, decimated from a 40 m source. Sampling spacing is not measurement accuracy. This rendered mesh does not recompute the backend skyline or expand supported ephemeris sites. See [terrain attribution and limits](frontend/public/terrain-data/ATTRIBUTION.md).
+- Solar visible-disk percentage is not panel output. Earth-center visibility is not a DSN link budget, relay model or communications guarantee. Battery estimates remain simplified planning aids.
+- Mission atlas search is informational; returned coordinates are not automatically supported analysis sites.
 
-## 🛠️ Tech Stack
+## Quick start
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React + TypeScript |
-| Moon Map | Leaflet + NASA Moon Trek tiles |
-| Charts | Recharts |
-| Backend | Python FastAPI |
-| Ephemeris | JPL Horizons API + Astropy |
-| Terrain | LOLA DEM (future enhancement) |
+From repository root, Python 3.10+:
 
-## 📦 Quick Start
-
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+```powershell
+python -m pip install -r backend/requirements.txt
+python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
-### Frontend
-```bash
+In another terminal:
+
+```powershell
 cd frontend
 npm install
 npm start
 ```
 
-Open http://localhost:3000
+Open http://localhost:3000.
+
+Backend tests, preferably in a fresh virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest backend/tests -q
+```
+
+Test tooling pins `httpx==0.27.2` (required `<0.28` for FastAPI 0.110.0 / Starlette TestClient), pytest and pytest-subtests. See [backend documentation](backend/README.md).
 
 ## Deployment / API compatibility
 
-**Behavior change:** the active `/api/ephemeris` endpoints retain their request/response shape, but now intentionally use strict local reference data. They do **not** preserve the original network engine's arbitrary-coordinate or arbitrary-date behavior. Unsupported coordinates/coverage return 422; missing/invalid reference artifacts return 503. No silent network/geometric fallback. `backend/app/ephemeris.py` is now a strict local-data facade; the original network engine is not retained. See [backend documentation](backend/README.md) for precision and provenance limits. Atlas mission search is informational; its coordinates are not automatically supported analysis sites.
+**Behavior change:** `/api/ephemeris` retains request/response shape, not the former network engine's arbitrary-coordinate/date support. Unsupported coordinates or coverage return 422; missing/invalid local reference data returns 503. No silent geometric/network fallback.
 
-- Development: run FastAPI on port 8000, then `npm start` in `frontend`. The default API URL is `http://localhost:8000/api`.
-- Production: run `npm ci` then `npm run build` in `frontend`; serve `frontend/build`. The default API URL is relative `/api`, never a visitor's localhost.
-- Static preview on `http://localhost:3001` has no `/api` proxy by default. Before building, set `REACT_APP_API_URL=http://localhost:8000/api`; start the backend with `CORS_ALLOW_ORIGINS=http://localhost:3001`. Rebuild after changing the frontend variable. Otherwise relative `/api` targets the static preview server, not FastAPI.
-- Same-origin hosting: forward `/api/*` to FastAPI **preserving `/api`**. Apply SPA fallback to frontend routes only, not API requests. The static build does not include a Python API.
-- Separate backend: set `REACT_APP_API_URL=https://api.example.com/api` **before building**. Set backend `CORS_ALLOW_ORIGINS=https://your-frontend.example` (comma-separated exact origins for multiple sites). CRA environment values are build-time, not runtime.
-- Backend: install `backend/requirements.txt`; start `python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000` from repository root. Deploy the packaged `data/lunanav` reference bundle (the default, not the upstream checkout); set `LUNANAV_DATA_DIR` only if stored elsewhere. Check `/api/data/status` after deployment.
-- No Vercel/Netlify deployment configuration is checked in. On a static platform, configure an external FastAPI service plus an `/api` proxy/rewrite, or use the separate-backend setting above. Do not assume Python runs alongside the CRA build.
+- Deploy `data/lunanav` with FastAPI; override via `LUNANAV_DATA_DIR` before startup. Check `/api/data/status`.
+- Development API default: `http://localhost:8000/api`.
+- Production: run `npm ci` then `npm run build` inside `frontend`; serve `frontend/build`. Default API URL is relative `/api`, never the visitor's localhost.
+- Same-origin hosting must proxy `/api/*` to FastAPI **preserving `/api`**. Apply SPA fallback only to frontend routes. A static build cannot run Python.
+- Separate origins: set `REACT_APP_API_URL=https://api.example.com/api` **before building**; set backend `CORS_ALLOW_ORIGINS=https://your-frontend.example`. Multiple origins are comma-separated. CRA variables are build-time values.
+- Static preview at `http://localhost:3001` has no API proxy by default. Build with `REACT_APP_API_URL=http://localhost:8000/api`; run backend with `CORS_ALLOW_ORIGINS=http://localhost:3001`.
+- Production backend command: `python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000`.
+- Environment examples: [`frontend/.env.example`](frontend/.env.example), [`backend/.env.example`](backend/.env.example). Export/configure values explicitly; backend does not auto-load the example.
 
-Environment templates: [`frontend/.env.example`](frontend/.env.example), [`backend/.env.example`](backend/.env.example). Backend environment variables must be exported/configured by the host; the example file is not automatically loaded. Browser API calls do not use cookie credentials. Cross-origin access defaults to local development origins only.
+## Integration boundaries
 
-## 📊 Data Sources
+`/api/contracts/capabilities` and `/api/contracts/local-analysis` expose an opt-in transport adapter; the current frontend does **not** invoke it. Mapping fields is not a coordinate-frame transformation. Local series frame metadata remains unverified; `IAU_MOON` and `MOON_ME_DE421` requests are rejected. Independent engines retain independent frame assumptions and are not invoked or interchangeable through this adapter. Agent4 remains future integration work, not an integrated runtime engine.
 
-- **JPL Horizons System** — Sun & Earth ephemeris data
-- **LOLA (Lunar Orbiter Laser Altimeter)** — Surface elevation data
-- **NASA Moon Trek** — Lunar basemap tiles
-- **LROC QuickMap** — Reference & validation
+## Sources, integrity and license
 
-## 🏆 NASA Space Apps Challenge 2026
+Source citations and terrain labels describe upstream metadata, not independently validated accuracy. SHA-256 hashes check artifact identity/integrity; they do **not** establish scientific provenance, frame correctness or model validity. See [backend limits](backend/README.md), [imagery credits](frontend/public/textures/SOURCES.md) and [terrain attribution](frontend/public/terrain-data/ATTRIBUTION.md).
 
-**Challenge:** Lunar Landing Site Navigator  
-**Theme:** The Next Frontier  
-**Team:** 5 members  
-
-## 📄 License
-
-MIT License — Built for NASA Space Apps Challenge 2026
+Project/reference software uses MIT licensing with applicable copyright notices retained. MIT is **not a NASA data license**; NASA/PDS imagery and science products retain their source terms and credits. NASA names do not imply endorsement.

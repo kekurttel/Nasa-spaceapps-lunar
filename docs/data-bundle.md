@@ -6,6 +6,12 @@ Algorithms remain unchanged. This is a byte-identical subset of the locally
 supplied LunaNav snapshot, not reproduction of the upstream science pipeline.
 The snapshot's repository URL/revision was not independently verified.
 
+## Runtime and interpretation boundary
+
+Current ephemeris/terrain UI paths consume local LunaNav artifacts through the existing backend; they do not invoke teammate CLI engines or `/api/contracts/local-analysis`. Mission search uses local `/api/mission/search`, not that contract bridge.
+
+Mission-search scores are exploratory heuristics, not scientific feasibility, landing safety or GO/NO-GO. Inspected `backend/app/mission_search.py`: `round(100 * (0.4 * sun_fraction + 0.3 * earth_fraction + 0.3 * battery_margin) * multiplier, 1)`, where battery margin is `clip((minimum_soc - min_soc)/(1 - min_soc), 0, 1)`. Multiplier is 1 for model-threshold passes, 0.25 otherwise. Sun fraction counts hourly samples with at least 50% solar-disk visibility; Earth fraction is geometric visibility. Slope is a prefilter; `go` checks only user-selected Sun, Earth, longest-darkness and battery-reserve thresholds. Fixed 40/30/30 weights are reference choices, not scientifically validated trade-offs. Passing those thresholds does not establish mission safety.
+
 ## Contents and size
 
 47 payload files: **31,349,382 bytes (29.90 MiB)**, plus the 8,307-byte hash manifest.

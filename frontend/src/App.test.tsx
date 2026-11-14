@@ -6,7 +6,7 @@ import { getPresetSites, fetchEphemerisMulti, fetchHorizon } from './services/ap
 import { SiteEphemeris, SiteRequest } from './types';
 
 jest.mock('./components/SciencePanel', () => ({ __esModule: true, default: () => <div>Science inspection</div> }));
-jest.mock('./components/MoonMap', () => ({ MoonMap: () => <div aria-label="Moon site map" /> }));
+jest.mock('./components/MoonMap', () => ({ MoonMap: ({ onSelectSite }: { onSelectSite: (site: SiteRequest) => void }) => <div aria-label="Moon site map"><button onClick={() => onSelectSite({ name: 'Custom map point', lat: -89.44, lon: -137.19 })}>Pick custom map point</button></div> }));
 jest.mock('./components/LunarSurface3D', () => ({ __esModule: true, default: () => <div aria-label="3D Moon" /> }));
 jest.mock('./components/MeasuredTerrain', () => ({
   __esModule: true,
@@ -53,7 +53,10 @@ beforeEach(() => {
   });
   (fetchHorizon as jest.Mock).mockRejectedValue(new Error('No horizon fixture'));
   setLanguage('en');
-  (getPresetSites as jest.Mock).mockResolvedValue([]);
+  (getPresetSites as jest.Mock).mockResolvedValue([
+    { id: 'ridge', name: 'Catalog ridge', lat: -89.4395, lon: -137.1934 },
+    { id: 'malapert', name: 'Malapert Massif', lat: -86, lon: 0 },
+  ]);
   (fetchEphemerisMulti as jest.Mock).mockImplementation(async (sites: SiteRequest[], start: string, end: string, step: number) => ({
     sites: sites.map(site => result(site, start)), source: 'Test service',
     query_start: start, query_end: end, step_hours: step,
@@ -147,6 +150,69 @@ test.each(['rejection', 'incomplete response'])('shows service failure for %s wi
   expect(screen.getByRole('button', { name: 'Export JSON' })).toBeDisabled();
   expect(screen.getByRole('button', { name: 'CSV' })).toBeDisabled();
   expect(screen.queryByText('Local horizon chart')).not.toBeInTheDocument();
+});
+
+test.each(['manual A', 'manual B', 'map'])('custom %s selection stays visual-only; direct handler cannot request science', async (mode) => {
+  await renderApp();
+  if (mode === 'manual B') fireEvent.click(screen.getByRole('button', { name: /B .* Malapert Massif/ }));
+  if (mode === 'map') {
+    fireEvent.click(screen.getByRole('button', { name: '2D' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pick custom map point' }));
+  } else fireEvent.change(screen.getByLabelText('Latitude'), { target: { value: '-88' } });
+  expect(screen.getByRole('alert')).toHaveTextContent('visual inspection only');
+  expect(screen.getByRole('alert')).toHaveTextContent('Scientific analysis is unsupported');
+  expect(screen.getByLabelText('Latitude')).toHaveValue(mode === 'map' ? -89.44 : -88);
+  const buttons = screen.getAllByRole('button', { name: 'Run analysis' });
+  buttons.forEach(button => expect(button).toBeDisabled());
+  // Invoke React's handler directly, bypassing the disabled DOM control.
+  const button = buttons[0];
+  const propsKey = Object.keys(button).find(key => key.startsWith('__reactProps$'))!;
+  const props = (button as unknown as Record<string, { onClick: () => Promise<void> }>)[propsKey];
+  await act(async () => { await props.onClick(); });
+  expect(fetchEphemerisMulti).not.toHaveBeenCalled();
+  expect(screen.getByRole('button', { name: 'Export JSON' })).toBeDisabled();
+  fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'tr' } });
+  expect(screen.getByText(/özel konum yalnızca görsel inceleme içindir/)).toBeInTheDocument();
+});
+
+test.each(['loading', 'empty', 'rejected'])('catalog %s blocks both analysis controls without fallback', async (state) => {
+  if (state === 'loading') (getPresetSites as jest.Mock).mockReturnValue(new Promise(() => {}));
+  if (state === 'empty') (getPresetSites as jest.Mock).mockResolvedValue([]);
+  if (state === 'rejected') (getPresetSites as jest.Mock).mockRejectedValue(new Error('offline'));
+  await renderApp();
+  expect(screen.getByText(state === 'loading' ? /Catalog loading;/ : /Catalog unavailable;/)).toBeInTheDocument();
+  screen.getAllByRole('button', { name: 'Run analysis' }).forEach(button => {
+    expect(button).toBeDisabled();
+    fireEvent.click(button);
+  });
+  expect(fetchEphemerisMulti).not.toHaveBeenCalled();
+});
+
+test.each([0.0000005, 0.000002])('catalog tolerance %s degrees includes periodic longitude', async (offset) => {
+  (getPresetSites as jest.Mock).mockResolvedValue([
+    { id: 'ridge', name: 'Ridge', lat: -89.4395 + offset, lon: -137.1934 + 360 },
+    { id: 'malapert', name: 'Malapert', lat: -86, lon: 360 },
+  ]);
+  await renderApp();
+  if (offset < 1e-6) await runAnalysis();
+  else {
+    expect(screen.getByRole('alert')).toHaveTextContent('Scientific analysis is unsupported');
+    expect(screen.getAllByRole('button', { name: 'Run analysis' })[0]).toBeDisabled();
+    expect(fetchEphemerisMulti).not.toHaveBeenCalled();
+  }
+});
+
+test.each(['2026-10-31', '2028-12-25'])('warns about whole-window native coverage for %s', async (date) => {
+  await renderApp();
+  fireEvent.change(screen.getAllByLabelText(/Mission start date/)[1], { target: { value: date } });
+  expect(screen.getByRole('alert')).toHaveTextContent('2028-12-31T23:00Z');
+  screen.getAllByRole('button', { name: 'Run analysis' }).forEach(button => expect(button).toBeDisabled());
+  expect(fetchEphemerisMulti).not.toHaveBeenCalled();
+});
+
+test('states current engine provenance without claiming IAU_MOON execution', async () => {
+  await renderApp();
+  expect(screen.getByText(/Engine: local precomputed LunaNav data; not an IAU_MOON runtime calculation/)).toBeInTheDocument();
 });
 
 test('ignores stale responses after scenario changes', async () => {
