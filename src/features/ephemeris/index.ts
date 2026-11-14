@@ -13,6 +13,15 @@ export { assertCompatibleTerrain, computationPolicy, TerrainCompatibilityError }
 export type { TerrainIntegrationMetadata, TerrainCompatibilityErrorCode } from './integrationPolicy.ts';
 export type { MoonFixedDataset, MoonFixedSample, Vector3 } from './vectorData.ts';
 
+export {
+  SOLAR_RADIUS_KM, SOLAR_FRAME, SolarEphemerisError,
+  validateSolarVectorDataset, createSolarVectorLookup, projectSolarVector,
+} from './solarVectors.ts';
+export type { SolarVectorDataset, SolarVectorSample, SolarObserver, SolarErrorCode } from './solarVectors.ts';
+
+export { planEpochChunks, planRequestedEpochChunks, refineTransitionWindows, MAX_EPOCH_CHUNK_SIZE } from './solarSampling.ts';
+export type { EpochCoverage, EpochInterval, TransitionRefinementPlan } from './solarSampling.ts';
+
 export interface SkySeries {
   scenarioId: string;
   timesUtc: string[];

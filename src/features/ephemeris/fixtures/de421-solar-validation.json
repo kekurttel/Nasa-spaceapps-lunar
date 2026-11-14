@@ -1,0 +1,3588 @@
+{
+  "description": "Real DE421 same-model independent implementation cross-validation; not independent astronomical truth",
+  "sourcePin": "e241cee6d9f149767379a4891cb0344cf2a7d28d",
+  "queriedOriginHorizonSha": "e241cee6d9f149767379a4891cb0344cf2a7d28d",
+  "registeredSourcePath": "src/features/visibility/registered-sky.py",
+  "registeredSourceSha256": "9ecf65fe64eb4111ee68b6377c4946cc2d010eb2e3cba25edbd257ec7e2d7b30",
+  "generatorPath": "src/features/ephemeris/tools/generate_solar_vectors.py",
+  "generatorSourceSha256": "f63467c03ce634039d799a085ca2e1238fdaadf5414f962688461b608017ce2e",
+  "spiceypyVersion": "8.4.0",
+  "kernelManifest": {
+    "files": [
+      {
+        "fileName": "moon_080317.tf",
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/satellites/moon_080317.tf",
+        "bytes": 21437,
+        "sha256": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993"
+      },
+      {
+        "fileName": "moon_pa_de421_1900-2050.bpc",
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/moon_pa_de421_1900-2050.bpc",
+        "bytes": 1770496,
+        "sha256": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf"
+      },
+      {
+        "fileName": "naif0012.tls",
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls",
+        "bytes": 5257,
+        "sha256": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b"
+      },
+      {
+        "fileName": "de421.bsp",
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de421.bsp",
+        "bytes": 16790528,
+        "sha256": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+      }
+    ],
+    "ephemeris": "DE421"
+  },
+  "tolerancesChosenBeforeEvaluation": {
+    "azDeg": 1e-08,
+    "altDeg": 1e-08,
+    "radiusDeg": 1e-08,
+    "topocentricDistanceKm": 1e-05,
+    "centerDistanceKm": 1e-05,
+    "vectorComponentKm": 1e-05,
+    "centerRadiusDeg": 1e-08
+  },
+  "maximumAbsoluteResiduals": {
+    "azDeg": 0.0,
+    "altDeg": 1.7763568394002505e-15,
+    "radiusDeg": 5.551115123125783e-17,
+    "topocentricDistanceKm": 5.960464477539063e-08,
+    "centerDistanceKm": 0.0,
+    "vectorComponentKm": 0.0,
+    "centerRadiusDeg": 0.0
+  },
+  "passed": true,
+  "minimumHorizontalFraction": 0.9832611189520989,
+  "sampleCount": 64,
+  "rawComparisons": [
+    {
+      "utc": "2000-01-01T00:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -54384985.726442434,
+        -136474957.94335315,
+        1613168.273158595
+      ],
+      "centerDistanceKm": 146920873.70412308,
+      "centerRadiusDeg": 0.27130809778109855,
+      "independentLocal": {
+        "azDeg": 248.6747605830231,
+        "altDeg": -4.307157477652328,
+        "topocentricDistanceKm": 146921004.1785252,
+        "radiusDeg": 0.2713078568419175,
+        "horizontalFraction": 0.9971757592855467
+      },
+      "registeredActual": {
+        "azDeg": 248.6747605830231,
+        "altDeg": -4.307157477652327,
+        "radiusDeg": 0.2713078568419175,
+        "topocentricDistanceKm": 146921004.1785252
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -54384985.726442434,
+          "y": -136474957.94335315,
+          "z": 1613168.273158595
+        },
+        "centerDistanceKm": 146920873.70412308,
+        "centerRadiusDeg": 0.27130809778109855
+      },
+      "topocentricMinusCenterRadiusDeg": -2.409391810509476e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T00:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -54384985.726442434,
+        -136474957.94335315,
+        1613168.273158595
+      ],
+      "centerDistanceKm": 146920873.70412308,
+      "centerRadiusDeg": 0.27130809778109855,
+      "independentLocal": {
+        "azDeg": 203.37403597024345,
+        "altDeg": -5.221667357566579,
+        "topocentricDistanceKm": 146921031.8134738,
+        "radiusDeg": 0.27130780581018554,
+        "horizontalFraction": 0.9958500531795751
+      },
+      "registeredActual": {
+        "azDeg": 203.37403597024345,
+        "altDeg": -5.221667357566579,
+        "radiusDeg": 0.27130780581018554,
+        "topocentricDistanceKm": 146921031.8134738
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -54384985.726442434,
+          "y": -136474957.94335315,
+          "z": 1613168.273158595
+        },
+        "centerDistanceKm": 146920873.70412308,
+        "centerRadiusDeg": 0.27130809778109855
+      },
+      "topocentricMinusCenterRadiusDeg": -2.9197091300225964e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T00:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -54384985.726442434,
+        -136474957.94335315,
+        1613168.273158595
+      ],
+      "centerDistanceKm": 146920873.70412308,
+      "centerRadiusDeg": 0.27130809778109855,
+      "independentLocal": {
+        "azDeg": 113.2669858653167,
+        "altDeg": -0.8273213994769026,
+        "topocentricDistanceKm": 146920898.78016627,
+        "radiusDeg": 0.27130805147465414,
+        "horizontalFraction": 0.9998957524854177
+      },
+      "registeredActual": {
+        "azDeg": 113.2669858653167,
+        "altDeg": -0.8273213994769026,
+        "radiusDeg": 0.27130805147465414,
+        "topocentricDistanceKm": 146920898.78016627
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -54384985.726442434,
+          "y": -136474957.94335315,
+          "z": 1613168.273158595
+        },
+        "centerDistanceKm": 146920873.70412308,
+        "centerRadiusDeg": 0.27130809778109855
+      },
+      "topocentricMinusCenterRadiusDeg": -4.630644440117848e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T00:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -54384985.726442434,
+        -136474957.94335315,
+        1613168.273158595
+      ],
+      "centerDistanceKm": 146920873.70412308,
+      "centerRadiusDeg": 0.27130809778109855,
+      "independentLocal": {
+        "azDeg": 338.27319791124233,
+        "altDeg": -0.536893046661867,
+        "topocentricDistanceKm": 146920889.9740277,
+        "radiusDeg": 0.2713080677364271,
+        "horizontalFraction": 0.9999560967045277
+      },
+      "registeredActual": {
+        "azDeg": 338.27319791124233,
+        "altDeg": -0.5368930466618669,
+        "radiusDeg": 0.27130806773642707,
+        "topocentricDistanceKm": 146920889.97402772
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -54384985.726442434,
+          "y": -136474957.94335315,
+          "z": 1613168.273158595
+        },
+        "centerDistanceKm": 146920873.70412308,
+        "centerRadiusDeg": 0.27130809778109855
+      },
+      "topocentricMinusCenterRadiusDeg": -3.0044671417428503e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T06:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -61545675.984324835,
+        -133379627.11893357,
+        1601019.592921868
+      ],
+      "centerDistanceKm": 146903228.1009855,
+      "centerRadiusDeg": 0.27134068679137147,
+      "independentLocal": {
+        "azDeg": 245.66096336080363,
+        "altDeg": -4.789499288475887,
+        "topocentricDistanceKm": 146903373.1555327,
+        "radiusDeg": 0.271340418863591,
+        "horizontalFraction": 0.9965081783188652
+      },
+      "registeredActual": {
+        "azDeg": 245.66096336080363,
+        "altDeg": -4.789499288475888,
+        "radiusDeg": 0.27134041886359106,
+        "topocentricDistanceKm": 146903373.15553266
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -61545675.984324835,
+          "y": -133379627.11893357,
+          "z": 1601019.592921868
+        },
+        "centerDistanceKm": 146903228.1009855,
+        "centerRadiusDeg": 0.27134068679137147
+      },
+      "topocentricMinusCenterRadiusDeg": -2.6792778046180743e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T06:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -61545675.984324835,
+        -133379627.11893357,
+        1601019.592921868
+      ],
+      "centerDistanceKm": 146903228.1009855,
+      "centerRadiusDeg": 0.27134068679137147,
+      "independentLocal": {
+        "azDeg": 200.3198132708104,
+        "altDeg": -5.315687748497061,
+        "topocentricDistanceKm": 146903389.0493089,
+        "radiusDeg": 0.2713403895065002,
+        "horizontalFraction": 0.9956993695298036
+      },
+      "registeredActual": {
+        "azDeg": 200.3198132708104,
+        "altDeg": -5.315687748497061,
+        "radiusDeg": 0.2713403895065002,
+        "topocentricDistanceKm": 146903389.0493089
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -61545675.984324835,
+          "y": -133379627.11893357,
+          "z": 1601019.592921868
+        },
+        "centerDistanceKm": 146903228.1009855,
+        "centerRadiusDeg": 0.27134068679137147
+      },
+      "topocentricMinusCenterRadiusDeg": -2.972848712756715e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T06:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -61545675.984324835,
+        -133379627.11893357,
+        1601019.592921868
+      ],
+      "centerDistanceKm": 146903228.1009855,
+      "centerRadiusDeg": 0.27134068679137147,
+      "independentLocal": {
+        "azDeg": 110.22404989748374,
+        "altDeg": -0.7979967856208293,
+        "topocentricDistanceKm": 146903252.28789523,
+        "radiusDeg": 0.2713406421161062,
+        "horizontalFraction": 0.9999030115535035
+      },
+      "registeredActual": {
+        "azDeg": 110.22404989748374,
+        "altDeg": -0.7979967856208292,
+        "radiusDeg": 0.2713406421161062,
+        "topocentricDistanceKm": 146903252.28789523
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -61545675.984324835,
+          "y": -133379627.11893357,
+          "z": 1601019.592921868
+        },
+        "centerDistanceKm": 146903228.1009855,
+        "centerRadiusDeg": 0.27134068679137147
+      },
+      "topocentricMinusCenterRadiusDeg": -4.4675265264970676e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T06:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -61545675.984324835,
+        -133379627.11893357,
+        1601019.592921868
+      ],
+      "centerDistanceKm": 146903228.1009855,
+      "centerRadiusDeg": 0.27134068679137147,
+      "independentLocal": {
+        "azDeg": 335.2302947330914,
+        "altDeg": -0.5343262082527305,
+        "topocentricDistanceKm": 146903244.29305705,
+        "radiusDeg": 0.271340656883246,
+        "horizontalFraction": 0.9999565154935738
+      },
+      "registeredActual": {
+        "azDeg": 335.2302947330914,
+        "altDeg": -0.5343262082527305,
+        "radiusDeg": 0.271340656883246,
+        "topocentricDistanceKm": 146903244.29305705
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -61545675.984324835,
+          "y": -133379627.11893357,
+          "z": 1601019.592921868
+        },
+        "centerDistanceKm": 146903228.1009855,
+        "centerRadiusDeg": 0.27134068679137147
+      },
+      "topocentricMinusCenterRadiusDeg": -2.9908125476207914e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -68532138.17642653,
+        -129909014.06798258,
+        1588974.8810777217
+      ],
+      "centerDistanceKm": 146886114.865636,
+      "centerRadiusDeg": 0.27137230007053015,
+      "independentLocal": {
+        "azDeg": 242.64290784325303,
+        "altDeg": -5.2604671272693535,
+        "topocentricDistanceKm": 146886274.146607,
+        "radiusDeg": 0.27137200579683485,
+        "horizontalFraction": 0.9957881949081763
+      },
+      "registeredActual": {
+        "azDeg": 242.64290784325303,
+        "altDeg": -5.2604671272693535,
+        "radiusDeg": 0.27137200579683485,
+        "topocentricDistanceKm": 146886274.146607
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -68532138.17642653,
+          "y": -129909014.06798258,
+          "z": 1588974.8810777217
+        },
+        "centerDistanceKm": 146886114.865636,
+        "centerRadiusDeg": 0.27137230007053015
+      },
+      "topocentricMinusCenterRadiusDeg": -2.942736953004399e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -68532138.17642653,
+        -129909014.06798258,
+        1588974.8810777217
+      ],
+      "centerDistanceKm": 146886114.865636,
+      "centerRadiusDeg": 0.27137230007053015,
+      "independentLocal": {
+        "azDeg": 197.26443256798328,
+        "altDeg": -5.396497201900457,
+        "topocentricDistanceKm": 146886278.25367785,
+        "radiusDeg": 0.2713719982089758,
+        "horizontalFraction": 0.9955677160882055
+      },
+      "registeredActual": {
+        "azDeg": 197.26443256798328,
+        "altDeg": -5.396497201900457,
+        "radiusDeg": 0.2713719982089758,
+        "topocentricDistanceKm": 146886278.25367785
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -68532138.17642653,
+          "y": -129909014.06798258,
+          "z": 1588974.8810777217
+        },
+        "centerDistanceKm": 146886114.865636,
+        "centerRadiusDeg": 0.27137230007053015
+      },
+      "topocentricMinusCenterRadiusDeg": -3.0186155436373596e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -68532138.17642653,
+        -129909014.06798258,
+        1588974.8810777217
+      ],
+      "centerDistanceKm": 146886114.865636,
+      "centerRadiusDeg": 0.27137230007053015,
+      "independentLocal": {
+        "azDeg": 107.18079837404451,
+        "altDeg": -0.7682191332433738,
+        "topocentricDistanceKm": 146886138.1496695,
+        "radiusDeg": 0.2713722570529313,
+        "horizontalFraction": 0.9999101147413892
+      },
+      "registeredActual": {
+        "azDeg": 107.18079837404451,
+        "altDeg": -0.7682191332433738,
+        "radiusDeg": 0.27137225705293133,
+        "topocentricDistanceKm": 146886138.14966947
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -68532138.17642653,
+          "y": -129909014.06798258,
+          "z": 1588974.8810777217
+        },
+        "centerDistanceKm": 146886114.865636,
+        "centerRadiusDeg": 0.27137230007053015
+      },
+      "topocentricMinusCenterRadiusDeg": -4.3017598871930574e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -68532138.17642653,
+        -129909014.06798258,
+        1588974.8810777217
+      ],
+      "centerDistanceKm": 146886114.865636,
+      "centerRadiusDeg": 0.27137230007053015,
+      "independentLocal": {
+        "azDeg": 332.187050753993,
+        "altDeg": -0.532052886217022,
+        "topocentricDistanceKm": 146886130.9887745,
+        "radiusDeg": 0.27137227028279004,
+        "horizontalFraction": 0.9999568847185365
+      },
+      "registeredActual": {
+        "azDeg": 332.187050753993,
+        "altDeg": -0.532052886217022,
+        "radiusDeg": 0.27137227028279004,
+        "topocentricDistanceKm": 146886130.9887745
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -68532138.17642653,
+          "y": -129909014.06798258,
+          "z": 1588974.8810777217
+        },
+        "centerDistanceKm": 146886114.865636,
+        "centerRadiusDeg": 0.27137230007053015
+      },
+      "topocentricMinusCenterRadiusDeg": -2.9787740107867222e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T18:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -75324717.27658592,
+        -126072878.85934737,
+        1577015.0636160076
+      ],
+      "centerDistanceKm": 146869570.68498617,
+      "centerRadiusDeg": 0.27140286913880357,
+      "independentLocal": {
+        "azDeg": 239.6202892785605,
+        "altDeg": -5.7187120354784495,
+        "topocentricDistanceKm": 146869743.79774123,
+        "radiusDeg": 0.2714025492386757,
+        "horizontalFraction": 0.9950230803938269
+      },
+      "registeredActual": {
+        "azDeg": 239.6202892785605,
+        "altDeg": -5.718712035478449,
+        "radiusDeg": 0.2714025492386757,
+        "topocentricDistanceKm": 146869743.79774123
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -75324717.27658592,
+          "y": -126072878.85934737,
+          "z": 1577015.0636160076
+        },
+        "centerDistanceKm": 146869570.68498617,
+        "centerRadiusDeg": 0.27140286913880357
+      },
+      "topocentricMinusCenterRadiusDeg": -3.19900127887518e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T18:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -75324717.27658592,
+        -126072878.85934737,
+        1577015.0636160076
+      ],
+      "centerDistanceKm": 146869570.68498617,
+      "centerRadiusDeg": 0.27140286913880357,
+      "independentLocal": {
+        "azDeg": 194.20801739166754,
+        "altDeg": -5.463837346190322,
+        "topocentricDistanceKm": 146869736.10584635,
+        "radiusDeg": 0.27140256345273744,
+        "horizontalFraction": 0.9954564938539255
+      },
+      "registeredActual": {
+        "azDeg": 194.20801739166754,
+        "altDeg": -5.463837346190322,
+        "radiusDeg": 0.27140256345273744,
+        "topocentricDistanceKm": 146869736.10584635
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -75324717.27658592,
+          "y": -126072878.85934737,
+          "z": 1577015.0636160076
+        },
+        "centerDistanceKm": 146869570.68498617,
+        "centerRadiusDeg": 0.27140286913880357
+      },
+      "topocentricMinusCenterRadiusDeg": -3.056860661265759e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T18:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -75324717.27658592,
+        -126072878.85934737,
+        1577015.0636160076
+      ],
+      "centerDistanceKm": 146869570.68498617,
+      "centerRadiusDeg": 0.27140286913880357,
+      "independentLocal": {
+        "azDeg": 104.13724142241438,
+        "altDeg": -0.7380517983621773,
+        "topocentricDistanceKm": 146869593.05432168,
+        "radiusDeg": 0.27140282780181124,
+        "horizontalFraction": 0.9999170354771426
+      },
+      "registeredActual": {
+        "azDeg": 104.13724142241438,
+        "altDeg": -0.7380517983621774,
+        "radiusDeg": 0.27140282780181124,
+        "topocentricDistanceKm": 146869593.05432165
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -75324717.27658592,
+          "y": -126072878.85934737,
+          "z": 1577015.0636160076
+        },
+        "centerDistanceKm": 146869570.68498617,
+        "centerRadiusDeg": 0.27140286913880357
+      },
+      "topocentricMinusCenterRadiusDeg": -4.13369923291107e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2000-01-01T18:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -75324717.27658592,
+        -126072878.85934737,
+        1577015.0636160076
+      ],
+      "centerDistanceKm": 146869570.68498617,
+      "centerRadiusDeg": 0.27140286913880357,
+      "independentLocal": {
+        "azDeg": 329.1434770651669,
+        "altDeg": -0.5300589881267715,
+        "topocentricDistanceKm": 146869586.7476644,
+        "radiusDeg": 0.2714028394560785,
+        "horizontalFraction": 0.9999572072645977
+      },
+      "registeredActual": {
+        "azDeg": 329.1434770651669,
+        "altDeg": -0.5300589881267715,
+        "radiusDeg": 0.2714028394560785,
+        "topocentricDistanceKm": 146869586.7476644
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -75324717.27658592,
+          "y": -126072878.85934737,
+          "z": 1577015.0636160076
+        },
+        "centerDistanceKm": 146869570.68498617,
+        "centerRadiusDeg": 0.27140286913880357
+      },
+      "topocentricMinusCenterRadiusDeg": -2.96827250556575e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T00:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -50147906.08864838,
+        140636399.55980074,
+        3564917.132771561
+      ],
+      "centerDistanceKm": 149352328.40630022,
+      "centerRadiusDeg": 0.2668911719260651,
+      "independentLocal": {
+        "azDeg": 109.12447369377028,
+        "altDeg": -4.693406020661807,
+        "topocentricDistanceKm": 149352470.55711076,
+        "radiusDeg": 0.26689091790234076,
+        "horizontalFraction": 0.9966468102463016
+      },
+      "registeredActual": {
+        "azDeg": 109.12447369377028,
+        "altDeg": -4.693406020661806,
+        "radiusDeg": 0.2668909179023407,
+        "topocentricDistanceKm": 149352470.55711076
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -50147906.08864838,
+          "y": 140636399.55980074,
+          "z": 3564917.132771561
+        },
+        "centerDistanceKm": 149352328.40630022,
+        "centerRadiusDeg": 0.2668911719260651
+      },
+      "topocentricMinusCenterRadiusDeg": -2.5402372433314113e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T00:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -50147906.08864838,
+        140636399.55980074,
+        3564917.132771561
+      ],
+      "centerDistanceKm": 149352328.40630022,
+      "centerRadiusDeg": 0.2668911719260651,
+      "independentLocal": {
+        "azDeg": 64.60183578689036,
+        "altDeg": 0.7763239848920057,
+        "topocentricDistanceKm": 149352304.8561455,
+        "radiusDeg": 0.2668912140102757,
+        "horizontalFraction": 0.9999082081540902
+      },
+      "registeredActual": {
+        "azDeg": 64.60183578689036,
+        "altDeg": 0.7763239848920058,
+        "radiusDeg": 0.2668912140102757,
+        "topocentricDistanceKm": 149352304.8561455
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -50147906.08864838,
+          "y": 140636399.55980074,
+          "z": 3564917.132771561
+        },
+        "centerDistanceKm": 149352328.40630022,
+        "centerRadiusDeg": 0.2668911719260651
+      },
+      "topocentricMinusCenterRadiusDeg": 4.208421061635548e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T00:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -50147906.08864838,
+        140636399.55980074,
+        3564917.132771561
+      ],
+      "centerDistanceKm": 149352328.40630022,
+      "centerRadiusDeg": 0.2668911719260651,
+      "independentLocal": {
+        "azDeg": 334.62940819364934,
+        "altDeg": -0.91662920910821,
+        "topocentricDistanceKm": 149352356.19031233,
+        "radiusDeg": 0.26689112227595324,
+        "horizontalFraction": 0.9998720315642871
+      },
+      "registeredActual": {
+        "azDeg": 334.62940819364934,
+        "altDeg": -0.9166292091082098,
+        "radiusDeg": 0.2668911222759532,
+        "topocentricDistanceKm": 149352356.19031236
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -50147906.08864838,
+          "y": 140636399.55980074,
+          "z": 3564917.132771561
+        },
+        "centerDistanceKm": 149352328.40630022,
+        "centerRadiusDeg": 0.2668911719260651
+      },
+      "topocentricMinusCenterRadiusDeg": -4.965011185520396e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T00:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -50147906.08864838,
+        140636399.55980074,
+        3564917.132771561
+      ],
+      "centerDistanceKm": 149352328.40630022,
+      "centerRadiusDeg": 0.2668911719260651,
+      "independentLocal": {
+        "azDeg": 199.62596731170848,
+        "altDeg": -1.4625900647945742,
+        "topocentricDistanceKm": 149352372.74206683,
+        "radiusDeg": 0.2668910926979278,
+        "horizontalFraction": 0.9996742035152056
+      },
+      "registeredActual": {
+        "azDeg": 199.62596731170848,
+        "altDeg": -1.4625900647945742,
+        "radiusDeg": 0.26689109269792777,
+        "topocentricDistanceKm": 149352372.74206683
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -50147906.08864838,
+          "y": 140636399.55980074,
+          "z": 3564917.132771561
+        },
+        "centerDistanceKm": 149352328.40630022,
+        "centerRadiusDeg": 0.2668911719260651
+      },
+      "topocentricMinusCenterRadiusDeg": -7.922813727301303e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T06:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -42603309.710727654,
+        143134274.4003948,
+        3575104.184441114
+      ],
+      "centerDistanceKm": 149382876.78434,
+      "centerRadiusDeg": 0.26683659303762436,
+      "independentLocal": {
+        "azDeg": 106.10800841087347,
+        "altDeg": -4.192297983051944,
+        "topocentricDistanceKm": 149383003.78555554,
+        "radiusDeg": 0.26683636617904066,
+        "horizontalFraction": 0.9973243132988581
+      },
+      "registeredActual": {
+        "azDeg": 106.10800841087347,
+        "altDeg": -4.192297983051944,
+        "radiusDeg": 0.2668363661790407,
+        "topocentricDistanceKm": 149383003.78555548
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -42603309.710727654,
+          "y": 143134274.4003948,
+          "z": 3575104.184441114
+        },
+        "centerDistanceKm": 149382876.78434,
+        "centerRadiusDeg": 0.26683659303762436
+      },
+      "topocentricMinusCenterRadiusDeg": -2.2685858369619893e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 5.960464477539063e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T06:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -42603309.710727654,
+        143134274.4003948,
+        3575104.184441114
+      ],
+      "centerDistanceKm": 149382876.78434,
+      "centerRadiusDeg": 0.26683659303762436,
+      "independentLocal": {
+        "azDeg": 61.56155251543174,
+        "altDeg": 1.009681062775772,
+        "topocentricDistanceKm": 149382846.1588764,
+        "radiusDeg": 0.2668366477430585,
+        "horizontalFraction": 0.9998447320131083
+      },
+      "registeredActual": {
+        "azDeg": 61.56155251543174,
+        "altDeg": 1.009681062775772,
+        "radiusDeg": 0.26683664774305854,
+        "topocentricDistanceKm": 149382846.15887636
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -42603309.710727654,
+          "y": 143134274.4003948,
+          "z": 3575104.184441114
+        },
+        "centerDistanceKm": 149382876.78434,
+        "centerRadiusDeg": 0.26683659303762436
+      },
+      "topocentricMinusCenterRadiusDeg": 5.4705434127111374e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T06:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -42603309.710727654,
+        143134274.4003948,
+        3575104.184441114
+      ],
+      "centerDistanceKm": 149382876.78434,
+      "centerRadiusDeg": 0.26683659303762436,
+      "independentLocal": {
+        "azDeg": 331.5801971511671,
+        "altDeg": -0.9322951218192885,
+        "topocentricDistanceKm": 149382905.04333594,
+        "radiusDeg": 0.26683654255936706,
+        "horizontalFraction": 0.9998676201206554
+      },
+      "registeredActual": {
+        "azDeg": 331.5801971511671,
+        "altDeg": -0.9322951218192885,
+        "radiusDeg": 0.26683654255936706,
+        "topocentricDistanceKm": 149382905.04333594
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -42603309.710727654,
+          "y": 143134274.4003948,
+          "z": 3575104.184441114
+        },
+        "centerDistanceKm": 149382876.78434,
+        "centerRadiusDeg": 0.26683659303762436
+      },
+      "topocentricMinusCenterRadiusDeg": -5.047825729631583e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T06:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -42603309.710727654,
+        143134274.4003948,
+        3575104.184441114
+      ],
+      "centerDistanceKm": 149382876.78434,
+      "centerRadiusDeg": 0.26683659303762436,
+      "independentLocal": {
+        "azDeg": 196.57612047647885,
+        "altDeg": -1.4678720902702647,
+        "topocentricDistanceKm": 149382921.28022525,
+        "radiusDeg": 0.2668365135558726,
+        "horizontalFraction": 0.9996718462197984
+      },
+      "registeredActual": {
+        "azDeg": 196.57612047647885,
+        "altDeg": -1.467872090270265,
+        "radiusDeg": 0.2668365135558726,
+        "topocentricDistanceKm": 149382921.28022525
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -42603309.710727654,
+          "y": 143134274.4003948,
+          "z": 3575104.184441114
+        },
+        "centerDistanceKm": 149382876.78434,
+        "centerRadiusDeg": 0.26683659303762436
+      },
+      "topocentricMinusCenterRadiusDeg": -7.94817517357771e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 4.440892098500626e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T12:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -34936036.7515682,
+        145227732.77278692,
+        3585516.714309331
+      ],
+      "centerDistanceKm": 149413777.6791,
+      "centerRadiusDeg": 0.26678140703535175,
+      "independentLocal": {
+        "azDeg": 103.0951754926437,
+        "altDeg": -3.683606379678258,
+        "topocentricDistanceKm": 149413889.29152328,
+        "radiusDeg": 0.26678120774775765,
+        "horizontalFraction": 0.9979340415792701
+      },
+      "registeredActual": {
+        "azDeg": 103.0951754926437,
+        "altDeg": -3.683606379678257,
+        "radiusDeg": 0.26678120774775765,
+        "topocentricDistanceKm": 149413889.29152328
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -34936036.7515682,
+          "y": 145227732.77278692,
+          "z": 3585516.714309331
+        },
+        "centerDistanceKm": 149413777.6791,
+        "centerRadiusDeg": 0.26678140703535175
+      },
+      "topocentricMinusCenterRadiusDeg": -1.992875940937111e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T12:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -34936036.7515682,
+        145227732.77278692,
+        3585516.714309331
+      ],
+      "centerDistanceKm": 149413777.6791,
+      "centerRadiusDeg": 0.26678140703535175,
+      "independentLocal": {
+        "azDeg": 58.52094157703047,
+        "altDeg": 1.2362105621545827,
+        "topocentricDistanceKm": 149413740.1858225,
+        "radiusDeg": 0.266781473980879,
+        "horizontalFraction": 0.9997672483376752
+      },
+      "registeredActual": {
+        "azDeg": 58.52094157703047,
+        "altDeg": 1.2362105621545827,
+        "radiusDeg": 0.266781473980879,
+        "topocentricDistanceKm": 149413740.1858225
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -34936036.7515682,
+          "y": 145227732.77278692,
+          "z": 3585516.714309331
+        },
+        "centerDistanceKm": 149413777.6791,
+        "centerRadiusDeg": 0.26678140703535175
+      },
+      "topocentricMinusCenterRadiusDeg": 6.694552723285341e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T12:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -34936036.7515682,
+        145227732.77278692,
+        3585516.714309331
+      ],
+      "centerDistanceKm": 149413777.6791,
+      "centerRadiusDeg": 0.26678140703535175,
+      "independentLocal": {
+        "azDeg": 328.5313815265485,
+        "altDeg": -0.9492863334631341,
+        "topocentricDistanceKm": 149413806.45325974,
+        "radiusDeg": 0.26678135565812977,
+        "horizontalFraction": 0.9998627509769077
+      },
+      "registeredActual": {
+        "azDeg": 328.5313815265485,
+        "altDeg": -0.9492863334631343,
+        "radiusDeg": 0.26678135565812977,
+        "topocentricDistanceKm": 149413806.45325974
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -34936036.7515682,
+          "y": 145227732.77278692,
+          "z": 3585516.714309331
+        },
+        "centerDistanceKm": 149413777.6791,
+        "centerRadiusDeg": 0.26678140703535175
+      },
+      "topocentricMinusCenterRadiusDeg": -5.13772219767894e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T12:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -34936036.7515682,
+        145227732.77278692,
+        3585516.714309331
+      ],
+      "centerDistanceKm": 149413777.6791,
+      "centerRadiusDeg": 0.26678140703535175,
+      "independentLocal": {
+        "azDeg": 193.52666877719798,
+        "altDeg": -1.472964226581127,
+        "topocentricDistanceKm": 149413822.32934737,
+        "radiusDeg": 0.26678132731085424,
+        "horizontalFraction": 0.9996695656259983
+      },
+      "registeredActual": {
+        "azDeg": 193.52666877719798,
+        "altDeg": -1.4729642265811267,
+        "radiusDeg": 0.26678132731085424,
+        "topocentricDistanceKm": 149413822.32934737
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -34936036.7515682,
+          "y": 145227732.77278692,
+          "z": 3585516.714309331
+        },
+        "centerDistanceKm": 149413777.6791,
+        "centerRadiusDeg": 0.26678140703535175
+      },
+      "topocentricMinusCenterRadiusDeg": -7.972449750370814e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T18:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        -27167749.682061173,
+        146910786.7261484,
+        3596153.928160661
+      ],
+      "centerDistanceKm": 149444967.13626063,
+      "centerRadiusDeg": 0.26672572883126466,
+      "independentLocal": {
+        "azDeg": 100.0855397572397,
+        "altDeg": -3.168758960901301,
+        "topocentricDistanceKm": 149445063.16471532,
+        "radiusDeg": 0.26672555744089516,
+        "horizontalFraction": 0.9984710529362345
+      },
+      "registeredActual": {
+        "azDeg": 100.0855397572397,
+        "altDeg": -3.1687589609013016,
+        "radiusDeg": 0.26672555744089516,
+        "topocentricDistanceKm": 149445063.16471532
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -27167749.682061173,
+          "y": 146910786.7261484,
+          "z": 3596153.928160661
+        },
+        "centerDistanceKm": 149444967.13626063,
+        "centerRadiusDeg": 0.26672572883126466
+      },
+      "topocentricMinusCenterRadiusDeg": -1.7139036950775122e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 4.440892098500626e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T18:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        -27167749.682061173,
+        146910786.7261484,
+        3596153.928160661
+      ],
+      "centerDistanceKm": 149444967.13626063,
+      "centerRadiusDeg": 0.26672572883126466,
+      "independentLocal": {
+        "azDeg": 55.479938138073905,
+        "altDeg": 1.45526448075012,
+        "topocentricDistanceKm": 149444923.0023668,
+        "radiusDeg": 0.2667258076009531,
+        "horizontalFraction": 0.9996774587603635
+      },
+      "registeredActual": {
+        "azDeg": 55.479938138073905,
+        "altDeg": 1.45526448075012,
+        "radiusDeg": 0.2667258076009531,
+        "topocentricDistanceKm": 149444923.0023668
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -27167749.682061173,
+          "y": 146910786.7261484,
+          "z": 3596153.928160661
+        },
+        "centerDistanceKm": 149444967.13626063,
+        "centerRadiusDeg": 0.26672572883126466
+      },
+      "topocentricMinusCenterRadiusDeg": 7.876968843856247e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T18:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        -27167749.682061173,
+        146910786.7261484,
+        3596153.928160661
+      ],
+      "centerDistanceKm": 149444967.13626063,
+      "centerRadiusDeg": 0.26672572883126466,
+      "independentLocal": {
+        "azDeg": 325.4829669831453,
+        "altDeg": -0.9675649449613047,
+        "topocentricDistanceKm": 149444996.46461442,
+        "radiusDeg": 0.26672567648636697,
+        "horizontalFraction": 0.9998574147276809
+      },
+      "registeredActual": {
+        "azDeg": 325.4829669831453,
+        "altDeg": -0.9675649449613047,
+        "radiusDeg": 0.26672567648636697,
+        "topocentricDistanceKm": 149444996.46461442
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -27167749.682061173,
+          "y": 146910786.7261484,
+          "z": 3596153.928160661
+        },
+        "centerDistanceKm": 149444967.13626063,
+        "centerRadiusDeg": 0.26672572883126466
+      },
+      "topocentricMinusCenterRadiusDeg": -5.2344897694123205e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2009-04-01T18:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        -27167749.682061173,
+        146910786.7261484,
+        3596153.928160661
+      ],
+      "centerDistanceKm": 149444967.13626063,
+      "centerRadiusDeg": 0.26672572883126466,
+      "independentLocal": {
+        "azDeg": 190.4776191786986,
+        "altDeg": -1.4778628741020043,
+        "topocentricDistanceKm": 149445011.93500447,
+        "radiusDeg": 0.2667256488750067,
+        "horizontalFraction": 0.9996673642374864
+      },
+      "registeredActual": {
+        "azDeg": 190.4776191786986,
+        "altDeg": -1.4778628741020043,
+        "radiusDeg": 0.2667256488750067,
+        "topocentricDistanceKm": 149445011.93500447
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": -27167749.682061173,
+          "y": 146910786.7261484,
+          "z": 3596153.928160661
+        },
+        "centerDistanceKm": 149444967.13626063,
+        "centerRadiusDeg": 0.26672572883126466
+      },
+      "topocentricMinusCenterRadiusDeg": -7.995625794787742e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T00:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        95511207.32920358,
+        -118398304.08260292,
+        215496.25031845272
+      ],
+      "centerDistanceKm": 152120332.54549676,
+      "centerRadiusDeg": 0.2620347463940497,
+      "independentLocal": {
+        "azDeg": 308.4760834770763,
+        "altDeg": 6.178219398841174,
+        "topocentricDistanceKm": 152120145.55400547,
+        "radiusDeg": 0.2620350684987218,
+        "horizontalFraction": 0.9941919473605494
+      },
+      "registeredActual": {
+        "azDeg": 308.4760834770763,
+        "altDeg": 6.178219398841173,
+        "radiusDeg": 0.2620350684987218,
+        "topocentricDistanceKm": 152120145.55400547
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 95511207.32920358,
+          "y": -118398304.08260292,
+          "z": 215496.25031845272
+        },
+        "centerDistanceKm": 152120332.54549676,
+        "centerRadiusDeg": 0.2620347463940497
+      },
+      "topocentricMinusCenterRadiusDeg": 3.221046721013643e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T00:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        95511207.32920358,
+        -118398304.08260292,
+        215496.25031845272
+      ],
+      "centerDistanceKm": 152120332.54549676,
+      "centerRadiusDeg": 0.2620347463940497,
+      "independentLocal": {
+        "azDeg": 263.9230114502115,
+        "altDeg": -0.6127832662280522,
+        "topocentricDistanceKm": 152120351.11688513,
+        "radiusDeg": 0.26203471440370174,
+        "horizontalFraction": 0.9999428081171987
+      },
+      "registeredActual": {
+        "azDeg": 263.9230114502115,
+        "altDeg": -0.6127832662280522,
+        "radiusDeg": 0.26203471440370174,
+        "topocentricDistanceKm": 152120351.11688513
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 95511207.32920358,
+          "y": -118398304.08260292,
+          "z": 215496.25031845272
+        },
+        "centerDistanceKm": 152120332.54549676,
+        "centerRadiusDeg": 0.2620347463940497
+      },
+      "topocentricMinusCenterRadiusDeg": -3.199034798173628e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T00:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        95511207.32920358,
+        -118398304.08260292,
+        215496.25031845272
+      ],
+      "centerDistanceKm": 152120332.54549676,
+      "centerRadiusDeg": 0.2620347463940497,
+      "independentLocal": {
+        "azDeg": 173.8926059561358,
+        "altDeg": -0.5789828470583385,
+        "topocentricDistanceKm": 152120350.0919973,
+        "radiusDeg": 0.26203471616913326,
+        "horizontalFraction": 0.9999489433355359
+      },
+      "registeredActual": {
+        "azDeg": 173.8926059561358,
+        "altDeg": -0.5789828470583385,
+        "radiusDeg": 0.26203471616913326,
+        "topocentricDistanceKm": 152120350.09199727
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 95511207.32920358,
+          "y": -118398304.08260292,
+          "z": 215496.25031845272
+        },
+        "centerDistanceKm": 152120332.54549676,
+        "centerRadiusDeg": 0.2620347463940497
+      },
+      "topocentricMinusCenterRadiusDeg": -3.0224916458543305e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T00:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        95511207.32920358,
+        -118398304.08260292,
+        215496.25031845272
+      ],
+      "centerDistanceKm": 152120332.54549676,
+      "centerRadiusDeg": 0.2620347463940497,
+      "independentLocal": {
+        "azDeg": 38.892865808175074,
+        "altDeg": -0.003988475656959251,
+        "topocentricDistanceKm": 152120332.6565192,
+        "radiusDeg": 0.2620347462028068,
+        "horizontalFraction": 0.9999999975770824
+      },
+      "registeredActual": {
+        "azDeg": 38.892865808175074,
+        "altDeg": -0.00398847565695925,
+        "radiusDeg": 0.2620347462028068,
+        "topocentricDistanceKm": 152120332.6565192
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 95511207.32920358,
+          "y": -118398304.08260292,
+          "z": 215496.25031845272
+        },
+        "centerDistanceKm": 152120332.54549676,
+        "centerRadiusDeg": 0.2620347463940497
+      },
+      "topocentricMinusCenterRadiusDeg": -1.9124291039673835e-10,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.673617379884035e-19,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T06:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        89063988.26012005,
+        -123297362.90894705,
+        233428.29503937066
+      ],
+      "centerDistanceKm": 152100914.50700852,
+      "centerRadiusDeg": 0.26206819942284154,
+      "independentLocal": {
+        "azDeg": 305.4396762945901,
+        "altDeg": 5.748296865807239,
+        "topocentricDistanceKm": 152100740.48163158,
+        "radiusDeg": 0.2620684992690822,
+        "horizontalFraction": 0.9949714959314517
+      },
+      "registeredActual": {
+        "azDeg": 305.4396762945901,
+        "altDeg": 5.748296865807238,
+        "radiusDeg": 0.2620684992690822,
+        "topocentricDistanceKm": 152100740.48163155
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 89063988.26012005,
+          "y": -123297362.90894705,
+          "z": 233428.29503937066
+        },
+        "centerDistanceKm": 152100914.50700852,
+        "centerRadiusDeg": 0.26206819942284154
+      },
+      "topocentricMinusCenterRadiusDeg": 2.9984624067003196e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T06:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        89063988.26012005,
+        -123297362.90894705,
+        233428.29503937066
+      ],
+      "centerDistanceKm": 152100914.50700852,
+      "centerRadiusDeg": 0.26206819942284154,
+      "independentLocal": {
+        "azDeg": 260.8843338860826,
+        "altDeg": -0.8830196497066428,
+        "topocentricDistanceKm": 152100941.27217314,
+        "radiusDeg": 0.2620681533064444,
+        "horizontalFraction": 0.9998812436394972
+      },
+      "registeredActual": {
+        "azDeg": 260.8843338860826,
+        "altDeg": -0.8830196497066429,
+        "radiusDeg": 0.2620681533064444,
+        "topocentricDistanceKm": 152100941.2721731
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 89063988.26012005,
+          "y": -123297362.90894705,
+          "z": 233428.29503937066
+        },
+        "centerDistanceKm": 152100914.50700852,
+        "centerRadiusDeg": 0.26206819942284154
+      },
+      "topocentricMinusCenterRadiusDeg": -4.611639714546811e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T06:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        89063988.26012005,
+        -123297362.90894705,
+        233428.29503937066
+      ],
+      "centerDistanceKm": 152100914.50700852,
+      "centerRadiusDeg": 0.26206819942284154,
+      "independentLocal": {
+        "azDeg": 170.84204137723614,
+        "altDeg": -0.5822129961730841,
+        "topocentricDistanceKm": 152100932.15145186,
+        "radiusDeg": 0.26206816902145164,
+        "horizontalFraction": 0.9999483720603627
+      },
+      "registeredActual": {
+        "azDeg": 170.84204137723614,
+        "altDeg": -0.5822129961730842,
+        "radiusDeg": 0.26206816902145164,
+        "topocentricDistanceKm": 152100932.15145186
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 89063988.26012005,
+          "y": -123297362.90894705,
+          "z": 233428.29503937066
+        },
+        "centerDistanceKm": 152100914.50700852,
+        "centerRadiusDeg": 0.26206819942284154
+      },
+      "topocentricMinusCenterRadiusDeg": -3.040138990551e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T06:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        89063988.26012005,
+        -123297362.90894705,
+        233428.29503937066
+      ],
+      "centerDistanceKm": 152100914.50700852,
+      "centerRadiusDeg": 0.26206819942284154,
+      "independentLocal": {
+        "azDeg": 35.8424578604232,
+        "altDeg": -0.007522975981870364,
+        "topocentricDistanceKm": 152100914.72520772,
+        "radiusDeg": 0.2620681990468841,
+        "horizontalFraction": 0.999999991380063
+      },
+      "registeredActual": {
+        "azDeg": 35.8424578604232,
+        "altDeg": -0.007522975981870364,
+        "radiusDeg": 0.26206819904688405,
+        "topocentricDistanceKm": 152100914.72520775
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 89063988.26012005,
+          "y": -123297362.90894705,
+          "z": 233428.29503937066
+        },
+        "centerDistanceKm": 152100914.50700852,
+        "centerRadiusDeg": 0.26206819942284154
+      },
+      "topocentricMinusCenterRadiusDeg": -3.7595743185292463e-10,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 5.551115123125783e-17,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T12:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        82365111.25655437,
+        -127845583.99208291,
+        251304.34739729762
+      ],
+      "centerDistanceKm": 152080794.48916724,
+      "centerRadiusDeg": 0.26210287082000433,
+      "independentLocal": {
+        "azDeg": 302.4077195236344,
+        "altDeg": 5.302099962049985,
+        "topocentricDistanceKm": 152080633.9310788,
+        "radiusDeg": 0.26210314753524666,
+        "horizontalFraction": 0.9957213120181251
+      },
+      "registeredActual": {
+        "azDeg": 302.4077195236344,
+        "altDeg": 5.302099962049986,
+        "radiusDeg": 0.26210314753524666,
+        "topocentricDistanceKm": 152080633.93107876
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 82365111.25655437,
+          "y": -127845583.99208291,
+          "z": 251304.34739729762
+        },
+        "centerDistanceKm": 152080794.48916724,
+        "centerRadiusDeg": 0.26210287082000433
+      },
+      "topocentricMinusCenterRadiusDeg": 2.767152423310826e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T12:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        82365111.25655437,
+        -127845583.99208291,
+        251304.34739729762
+      ],
+      "centerDistanceKm": 152080794.48916724,
+      "centerRadiusDeg": 0.26210287082000433,
+      "independentLocal": {
+        "azDeg": 257.84498508664774,
+        "altDeg": -1.1510257274075273,
+        "topocentricDistanceKm": 152080829.37989607,
+        "radiusDeg": 0.26210281068734975,
+        "horizontalFraction": 0.9997982190346094
+      },
+      "registeredActual": {
+        "azDeg": 257.84498508664774,
+        "altDeg": -1.1510257274075275,
+        "radiusDeg": 0.26210281068734975,
+        "topocentricDistanceKm": 152080829.37989607
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 82365111.25655437,
+          "y": -127845583.99208291,
+          "z": 251304.34739729762
+        },
+        "centerDistanceKm": 152080794.48916724,
+        "centerRadiusDeg": 0.26210287082000433
+      },
+      "topocentricMinusCenterRadiusDeg": -6.013265457793793e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T12:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        82365111.25655437,
+        -127845583.99208291,
+        251304.34739729762
+      ],
+      "centerDistanceKm": 152080794.48916724,
+      "centerRadiusDeg": 0.26210287082000433,
+      "independentLocal": {
+        "azDeg": 167.79122130387987,
+        "altDeg": -0.5840248584464631,
+        "topocentricDistanceKm": 152080812.18854824,
+        "radiusDeg": 0.26210284031588704,
+        "horizontalFraction": 0.9999480502281148
+      },
+      "registeredActual": {
+        "azDeg": 167.79122130387987,
+        "altDeg": -0.5840248584464632,
+        "radiusDeg": 0.26210284031588704,
+        "topocentricDistanceKm": 152080812.18854824
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 82365111.25655437,
+          "y": -127845583.99208291,
+          "z": 251304.34739729762
+        },
+        "centerDistanceKm": 152080794.48916724,
+        "centerRadiusDeg": 0.26210287082000433
+      },
+      "topocentricMinusCenterRadiusDeg": -3.050411728766633e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T12:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        82365111.25655437,
+        -127845583.99208291,
+        251304.34739729762
+      ],
+      "centerDistanceKm": 152080794.48916724,
+      "centerRadiusDeg": 0.26210287082000433,
+      "independentLocal": {
+        "azDeg": 32.79179719266762,
+        "altDeg": -0.011268026677246966,
+        "topocentricDistanceKm": 152080794.82092774,
+        "radiusDeg": 0.26210287024822937,
+        "horizontalFraction": 0.999999980661603
+      },
+      "registeredActual": {
+        "azDeg": 32.79179719266762,
+        "altDeg": -0.011268026677246964,
+        "radiusDeg": 0.26210287024822937,
+        "topocentricDistanceKm": 152080794.82092774
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 82365111.25655437,
+          "y": -127845583.99208291,
+          "z": 251304.34739729762
+        },
+        "centerDistanceKm": 152080794.48916724,
+        "centerRadiusDeg": 0.26210287082000433
+      },
+      "topocentricMinusCenterRadiusDeg": -5.717749607114797e-10,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.734723475976807e-18,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T18:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        75433646.58742332,
+        -132030065.14563861,
+        269124.880517222
+      ],
+      "centerDistanceKm": 152060006.4712585,
+      "centerRadiusDeg": 0.2621387029714947,
+      "independentLocal": {
+        "azDeg": 299.3799876842422,
+        "altDeg": 4.840876571481099,
+        "topocentricDistanceKm": 152059859.84421948,
+        "radiusDeg": 0.26213895574622476,
+        "horizontalFraction": 0.9964329073080906
+      },
+      "registeredActual": {
+        "azDeg": 299.3799876842422,
+        "altDeg": 4.840876571481099,
+        "radiusDeg": 0.26213895574622476,
+        "topocentricDistanceKm": 152059859.84421948
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 75433646.58742332,
+          "y": -132030065.14563861,
+          "z": 269124.880517222
+        },
+        "centerDistanceKm": 152060006.4712585,
+        "centerRadiusDeg": 0.2621387029714947
+      },
+      "topocentricMinusCenterRadiusDeg": 2.5277473003626483e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T18:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        75433646.58742332,
+        -132030065.14563861,
+        269124.880517222
+      ],
+      "centerDistanceKm": 152060006.4712585,
+      "centerRadiusDeg": 0.2621387029714947,
+      "independentLocal": {
+        "azDeg": 254.8048255467546,
+        "altDeg": -1.4160668177139062,
+        "topocentricDistanceKm": 152060049.39690736,
+        "radiusDeg": 0.26213862897077933,
+        "horizontalFraction": 0.9996945992318637
+      },
+      "registeredActual": {
+        "azDeg": 254.8048255467546,
+        "altDeg": -1.4160668177139066,
+        "radiusDeg": 0.26213862897077933,
+        "topocentricDistanceKm": 152060049.39690736
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 75433646.58742332,
+          "y": -132030065.14563861,
+          "z": 269124.880517222
+        },
+        "centerDistanceKm": 152060006.4712585,
+        "centerRadiusDeg": 0.2621387029714947
+      },
+      "topocentricMinusCenterRadiusDeg": -7.400071538876674e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 4.440892098500626e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T18:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        75433646.58742332,
+        -132030065.14563861,
+        269124.880517222
+      ],
+      "centerDistanceKm": 152060006.4712585,
+      "centerRadiusDeg": 0.2621387029714947,
+      "independentLocal": {
+        "azDeg": 164.74013427663436,
+        "altDeg": -0.5844322842123991,
+        "topocentricDistanceKm": 152060024.18299198,
+        "radiusDeg": 0.2621386724377415,
+        "horizontalFraction": 0.999947977721356
+      },
+      "registeredActual": {
+        "azDeg": 164.74013427663436,
+        "altDeg": -0.5844322842123992,
+        "radiusDeg": 0.2621386724377415,
+        "topocentricDistanceKm": 152060024.18299198
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 75433646.58742332,
+          "y": -132030065.14563861,
+          "z": 269124.880517222
+        },
+        "centerDistanceKm": 152060006.4712585,
+        "centerRadiusDeg": 0.2621387029714947
+      },
+      "topocentricMinusCenterRadiusDeg": -3.053375319250762e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.1102230246251565e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2018-08-01T18:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        75433646.58742332,
+        -132030065.14563861,
+        269124.880517222
+      ],
+      "centerDistanceKm": 152060006.4712585,
+      "centerRadiusDeg": 0.2621387029714947,
+      "independentLocal": {
+        "azDeg": 29.740870935508628,
+        "altDeg": -0.015232423006176592,
+        "topocentricDistanceKm": 152060006.92323154,
+        "radiusDeg": 0.26213870219232566,
+        "horizontalFraction": 0.999999964660311
+      },
+      "registeredActual": {
+        "azDeg": 29.740870935508628,
+        "altDeg": -0.015232423006176589,
+        "radiusDeg": 0.26213870219232566,
+        "topocentricDistanceKm": 152060006.92323154
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 75433646.58742332,
+          "y": -132030065.14563861,
+          "z": 269124.880517222
+        },
+        "centerDistanceKm": 152060006.4712585,
+        "centerRadiusDeg": 0.2621387029714947
+      },
+      "topocentricMinusCenterRadiusDeg": -7.791690626035574e-10,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 3.469446951953614e-18,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T00:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        124248408.25281116,
+        79232515.78149633,
+        -3463392.8067624494
+      ],
+      "centerDistanceKm": 147402352.76329964,
+      "centerRadiusDeg": 0.2704218830309024,
+      "independentLocal": {
+        "azDeg": 33.05327139996419,
+        "altDeg": 9.758709635760791,
+        "topocentricDistanceKm": 147402058.26490042,
+        "radiusDeg": 0.27042242331781535,
+        "horizontalFraction": 0.9855303045448518
+      },
+      "registeredActual": {
+        "azDeg": 33.05327139996419,
+        "altDeg": 9.758709635760791,
+        "radiusDeg": 0.27042242331781535,
+        "topocentricDistanceKm": 147402058.26490042
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 124248408.25281116,
+          "y": 79232515.78149633,
+          "z": -3463392.8067624494
+        },
+        "centerDistanceKm": 147402352.76329964,
+        "centerRadiusDeg": 0.2704218830309024
+      },
+      "topocentricMinusCenterRadiusDeg": 5.40286912931176e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T00:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        124248408.25281116,
+        79232515.78149633,
+        -3463392.8067624494
+      ],
+      "centerDistanceKm": 147402352.76329964,
+      "centerRadiusDeg": 0.2704218830309024,
+      "independentLocal": {
+        "azDeg": 347.4536914986262,
+        "altDeg": 6.227113774815752,
+        "topocentricDistanceKm": 147402164.2975329,
+        "radiusDeg": 0.2704222287900452,
+        "horizontalFraction": 0.9940997447017972
+      },
+      "registeredActual": {
+        "azDeg": 347.4536914986262,
+        "altDeg": 6.227113774815752,
+        "radiusDeg": 0.2704222287900452,
+        "topocentricDistanceKm": 147402164.2975329
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 124248408.25281116,
+          "y": 79232515.78149633,
+          "z": -3463392.8067624494
+        },
+        "centerDistanceKm": 147402352.76329964,
+        "centerRadiusDeg": 0.2704218830309024
+      },
+      "topocentricMinusCenterRadiusDeg": 3.4575914276135933e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T00:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        124248408.25281116,
+        79232515.78149633,
+        -3463392.8067624494
+      ],
+      "centerDistanceKm": 147402352.76329964,
+      "centerRadiusDeg": 0.2704218830309024,
+      "independentLocal": {
+        "azDeg": 257.51441696808223,
+        "altDeg": 1.2376301930441722,
+        "topocentricDistanceKm": 147402315.22684637,
+        "radiusDeg": 0.2704219518951786,
+        "horizontalFraction": 0.9997667134800577
+      },
+      "registeredActual": {
+        "azDeg": 257.51441696808223,
+        "altDeg": 1.237630193044172,
+        "radiusDeg": 0.2704219518951786,
+        "topocentricDistanceKm": 147402315.22684637
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 124248408.25281116,
+          "y": 79232515.78149633,
+          "z": -3463392.8067624494
+        },
+        "centerDistanceKm": 147402352.76329964,
+        "centerRadiusDeg": 0.2704218830309024
+      },
+      "topocentricMinusCenterRadiusDeg": 6.886427617036617e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T00:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        124248408.25281116,
+        79232515.78149633,
+        -3463392.8067624494
+      ],
+      "centerDistanceKm": 147402352.76329964,
+      "centerRadiusDeg": 0.2704218830309024,
+      "independentLocal": {
+        "azDeg": 122.52737217021688,
+        "altDeg": 1.2919120900614542,
+        "topocentricDistanceKm": 147402313.58123702,
+        "radiusDeg": 0.2704219549142099,
+        "horizontalFraction": 0.9997458019210224
+      },
+      "registeredActual": {
+        "azDeg": 122.52737217021688,
+        "altDeg": 1.291912090061454,
+        "radiusDeg": 0.2704219549142099,
+        "topocentricDistanceKm": 147402313.58123702
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 124248408.25281116,
+          "y": 79232515.78149633,
+          "z": -3463392.8067624494
+        },
+        "centerDistanceKm": 147402352.76329964,
+        "centerRadiusDeg": 0.2704218830309024
+      },
+      "topocentricMinusCenterRadiusDeg": 7.188330747309735e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T06:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        128274717.96968845,
+        72555395.75331007,
+        -3453156.5429225266
+      ],
+      "centerDistanceKm": 147413069.34336755,
+      "centerRadiusDeg": 0.27040222385623747,
+      "independentLocal": {
+        "azDeg": 29.988815822538115,
+        "altDeg": 10.02986644018176,
+        "topocentricDistanceKm": 147412766.7448968,
+        "radiusDeg": 0.2704027789228624,
+        "horizontalFraction": 0.9847171020311754
+      },
+      "registeredActual": {
+        "azDeg": 29.988815822538115,
+        "altDeg": 10.02986644018176,
+        "radiusDeg": 0.2704027789228624,
+        "topocentricDistanceKm": 147412766.7448968
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 128274717.96968845,
+          "y": 72555395.75331007,
+          "z": -3453156.5429225266
+        },
+        "centerDistanceKm": 147413069.34336755,
+        "centerRadiusDeg": 0.27040222385623747
+      },
+      "topocentricMinusCenterRadiusDeg": 5.550666249409808e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T06:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        128274717.96968845,
+        72555395.75331007,
+        -3453156.5429225266
+      ],
+      "centerDistanceKm": 147413069.34336755,
+      "centerRadiusDeg": 0.27040222385623747,
+      "independentLocal": {
+        "azDeg": 344.40565577462644,
+        "altDeg": 6.158803719140202,
+        "topocentricDistanceKm": 147412882.93690273,
+        "radiusDeg": 0.2704025657876606,
+        "horizontalFraction": 0.9942283596860485
+      },
+      "registeredActual": {
+        "azDeg": 344.40565577462644,
+        "altDeg": 6.158803719140203,
+        "radiusDeg": 0.2704025657876606,
+        "topocentricDistanceKm": 147412882.93690273
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 128274717.96968845,
+          "y": 72555395.75331007,
+          "z": -3453156.5429225266
+        },
+        "centerDistanceKm": 147413069.34336755,
+        "centerRadiusDeg": 0.27040222385623747
+      },
+      "topocentricMinusCenterRadiusDeg": 3.4193142312011204e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T06:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        128274717.96968845,
+        72555395.75331007,
+        -3453156.5429225266
+      ],
+      "centerDistanceKm": 147413069.34336755,
+      "centerRadiusDeg": 0.27040222385623747,
+      "independentLocal": {
+        "azDeg": 254.4828619117261,
+        "altDeg": 1.2078843832440374,
+        "topocentricDistanceKm": 147413032.708703,
+        "radiusDeg": 0.2704022910563223,
+        "horizontalFraction": 0.9997777921550102
+      },
+      "registeredActual": {
+        "azDeg": 254.4828619117261,
+        "altDeg": 1.2078843832440374,
+        "radiusDeg": 0.2704022910563223,
+        "topocentricDistanceKm": 147413032.708703
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 128274717.96968845,
+          "y": 72555395.75331007,
+          "z": -3453156.5429225266
+        },
+        "centerDistanceKm": 147413069.34336755,
+        "centerRadiusDeg": 0.27040222385623747
+      },
+      "topocentricMinusCenterRadiusDeg": 6.720008483007689e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T06:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        128274717.96968845,
+        72555395.75331007,
+        -3453156.5429225266
+      ],
+      "centerDistanceKm": 147413069.34336755,
+      "centerRadiusDeg": 0.27040222385623747,
+      "independentLocal": {
+        "azDeg": 119.49559053643863,
+        "altDeg": 1.292369249713556,
+        "topocentricDistanceKm": 147413030.14744654,
+        "radiusDeg": 0.2704022957545146,
+        "horizontalFraction": 0.9997456219943243
+      },
+      "registeredActual": {
+        "azDeg": 119.49559053643863,
+        "altDeg": 1.2923692497135557,
+        "radiusDeg": 0.2704022957545146,
+        "topocentricDistanceKm": 147413030.1474465
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 128274717.96968845,
+          "y": 72555395.75331007,
+          "z": -3453156.5429225266
+        },
+        "centerDistanceKm": 147413069.34336755,
+        "centerRadiusDeg": 0.27040222385623747
+      },
+      "topocentricMinusCenterRadiusDeg": 7.189827710973873e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 2.220446049250313e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 2.9802322387695312e-08,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T12:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        131941338.58969426,
+        65674272.86546887,
+        -3442796.2675883844
+      ],
+      "centerDistanceKm": 147422792.64546755,
+      "centerRadiusDeg": 0.27038438928681946,
+      "independentLocal": {
+        "azDeg": 26.920023187520435,
+        "altDeg": 10.276561259345431,
+        "topocentricDistanceKm": 147422482.68354383,
+        "radiusDeg": 0.27038495778550475,
+        "horizontalFraction": 0.9839581005871638
+      },
+      "registeredActual": {
+        "azDeg": 26.920023187520435,
+        "altDeg": 10.276561259345433,
+        "radiusDeg": 0.27038495778550475,
+        "topocentricDistanceKm": 147422482.68354383
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 131941338.58969426,
+          "y": 65674272.86546887,
+          "z": -3442796.2675883844
+        },
+        "centerDistanceKm": 147422792.64546755,
+        "centerRadiusDeg": 0.27038438928681946
+      },
+      "topocentricMinusCenterRadiusDeg": 5.684986852938501e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 1.7763568394002505e-15,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T12:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        131941338.58969426,
+        65674272.86546887,
+        -3442796.2675883844
+      ],
+      "centerDistanceKm": 147422792.64546755,
+      "centerRadiusDeg": 0.27038438928681946,
+      "independentLocal": {
+        "azDeg": 341.3586286108342,
+        "altDeg": 6.076927319427425,
+        "topocentricDistanceKm": 147422608.70762977,
+        "radiusDeg": 0.27038472664544827,
+        "horizontalFraction": 0.9943806554396009
+      },
+      "registeredActual": {
+        "azDeg": 341.3586286108342,
+        "altDeg": 6.0769273194274245,
+        "radiusDeg": 0.27038472664544827,
+        "topocentricDistanceKm": 147422608.70762977
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 131941338.58969426,
+          "y": 65674272.86546887,
+          "z": -3442796.2675883844
+        },
+        "centerDistanceKm": 147422792.64546755,
+        "centerRadiusDeg": 0.27038438928681946
+      },
+      "topocentricMinusCenterRadiusDeg": 3.3735862881023593e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T12:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        131941338.58969426,
+        65674272.86546887,
+        -3442796.2675883844
+      ],
+      "centerDistanceKm": 147422792.64546755,
+      "centerRadiusDeg": 0.27038438928681946,
+      "independentLocal": {
+        "azDeg": 251.45157474779467,
+        "altDeg": 1.1784764029748933,
+        "topocentricDistanceKm": 147422756.90235966,
+        "radiusDeg": 0.27038445484284584,
+        "horizontalFraction": 0.9997884801107305
+      },
+      "registeredActual": {
+        "azDeg": 251.45157474779467,
+        "altDeg": 1.1784764029748933,
+        "radiusDeg": 0.27038445484284584,
+        "topocentricDistanceKm": 147422756.90235966
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 131941338.58969426,
+          "y": 65674272.86546887,
+          "z": -3442796.2675883844
+        },
+        "centerDistanceKm": 147422792.64546755,
+        "centerRadiusDeg": 0.27038438928681946
+      },
+      "topocentricMinusCenterRadiusDeg": 6.555602638513847e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T12:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        131941338.58969426,
+        65674272.86546887,
+        -3442796.2675883844
+      ],
+      "centerDistanceKm": 147422792.64546755,
+      "centerRadiusDeg": 0.27038438928681946,
+      "independentLocal": {
+        "azDeg": 116.46404647653485,
+        "altDeg": 1.2929252605127868,
+        "topocentricDistanceKm": 147422753.4326914,
+        "radiusDeg": 0.2703844612065265,
+        "horizontalFraction": 0.9997454030764878
+      },
+      "registeredActual": {
+        "azDeg": 116.46404647653485,
+        "altDeg": 1.2929252605127868,
+        "radiusDeg": 0.2703844612065265,
+        "topocentricDistanceKm": 147422753.4326914
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 131941338.58969426,
+          "y": 65674272.86546887,
+          "z": -3442796.2675883844
+        },
+        "centerDistanceKm": 147422792.64546755,
+        "centerRadiusDeg": 0.27038438928681946
+      },
+      "topocentricMinusCenterRadiusDeg": 7.19197070231381e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T18:00:00Z",
+      "latitudeDeg": -80,
+      "longitudeDeg": 0,
+      "directSpiceMoonToSunKm": [
+        135237965.63377488,
+        58608487.82397181,
+        -3432310.769850917
+      ],
+      "centerDistanceKm": 147431485.61618567,
+      "centerRadiusDeg": 0.27036844655236536,
+      "independentLocal": {
+        "azDeg": 23.847187294059037,
+        "altDeg": 10.498046928254011,
+        "topocentricDistanceKm": 147431169.0481541,
+        "radiusDeg": 0.2703690270988181,
+        "horizontalFraction": 0.9832611189520989
+      },
+      "registeredActual": {
+        "azDeg": 23.847187294059037,
+        "altDeg": 10.498046928254011,
+        "radiusDeg": 0.2703690270988181,
+        "topocentricDistanceKm": 147431169.0481541
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 135237965.63377488,
+          "y": 58608487.82397181,
+          "z": -3432310.769850917
+        },
+        "centerDistanceKm": 147431485.61618567,
+        "centerRadiusDeg": 0.27036844655236536
+      },
+      "topocentricMinusCenterRadiusDeg": 5.805464527441906e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T18:00:00Z",
+      "latitudeDeg": -85,
+      "longitudeDeg": 45,
+      "directSpiceMoonToSunKm": [
+        135237965.63377488,
+        58608487.82397181,
+        -3432310.769850917
+      ],
+      "centerDistanceKm": 147431485.61618567,
+      "centerRadiusDeg": 0.27036844655236536,
+      "independentLocal": {
+        "azDeg": 338.3127069238626,
+        "altDeg": 5.981710310470397,
+        "topocentricDistanceKm": 147431304.5496749,
+        "radiusDeg": 0.2703687786055528,
+        "horizontalFraction": 0.9945552117825207
+      },
+      "registeredActual": {
+        "azDeg": 338.3127069238626,
+        "altDeg": 5.981710310470396,
+        "radiusDeg": 0.2703687786055528,
+        "topocentricDistanceKm": 147431304.5496749
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 135237965.63377488,
+          "y": 58608487.82397181,
+          "z": -3432310.769850917
+        },
+        "centerDistanceKm": 147431485.61618567,
+        "centerRadiusDeg": 0.27036844655236536
+      },
+      "topocentricMinusCenterRadiusDeg": 3.3205318744622403e-07,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 8.881784197001252e-16,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T18:00:00Z",
+      "latitudeDeg": -89.5,
+      "longitudeDeg": 135,
+      "directSpiceMoonToSunKm": [
+        135237965.63377488,
+        58608487.82397181,
+        -3432310.769850917
+      ],
+      "centerDistanceKm": 147431485.61618567,
+      "centerRadiusDeg": 0.27036844655236536,
+      "independentLocal": {
+        "azDeg": 248.42052653161352,
+        "altDeg": 1.1494764958819004,
+        "topocentricDistanceKm": 147431450.75227204,
+        "radiusDeg": 0.27036851048833077,
+        "horizontalFraction": 0.9997987618279988
+      },
+      "registeredActual": {
+        "azDeg": 248.42052653161352,
+        "altDeg": 1.1494764958819004,
+        "radiusDeg": 0.27036851048833077,
+        "topocentricDistanceKm": 147431450.75227204
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 135237965.63377488,
+          "y": 58608487.82397181,
+          "z": -3432310.769850917
+        },
+        "centerDistanceKm": 147431485.61618567,
+        "centerRadiusDeg": 0.27036844655236536
+      },
+      "topocentricMinusCenterRadiusDeg": 6.393596541087732e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    },
+    {
+      "utc": "2026-01-01T18:00:00Z",
+      "latitudeDeg": -89.9,
+      "longitudeDeg": -90,
+      "directSpiceMoonToSunKm": [
+        135237965.63377488,
+        58608487.82397181,
+        -3432310.769850917
+      ],
+      "centerDistanceKm": 147431485.61618567,
+      "centerRadiusDeg": 0.27036844655236536,
+      "independentLocal": {
+        "azDeg": 113.43271278649343,
+        "altDeg": 1.2935668468782908,
+        "topocentricDistanceKm": 147431446.38396,
+        "radiusDeg": 0.2703685184992593,
+        "horizontalFraction": 0.9997451503480307
+      },
+      "registeredActual": {
+        "azDeg": 113.43271278649343,
+        "altDeg": 1.2935668468782908,
+        "radiusDeg": 0.2703685184992593,
+        "topocentricDistanceKm": 147431446.38396
+      },
+      "newGenerator": {
+        "vectorKm": {
+          "x": 135237965.63377488,
+          "y": 58608487.82397181,
+          "z": -3432310.769850917
+        },
+        "centerDistanceKm": 147431485.61618567,
+        "centerRadiusDeg": 0.27036844655236536
+      },
+      "topocentricMinusCenterRadiusDeg": 7.194689394252052e-08,
+      "absoluteResiduals": {
+        "azDeg": 0.0,
+        "altDeg": 0.0,
+        "radiusDeg": 0.0,
+        "topocentricDistanceKm": 0.0,
+        "vectorComponentKm": 0.0,
+        "centerDistanceKm": 0.0,
+        "centerRadiusDeg": 0.0
+      }
+    }
+  ],
+  "actualRegisteredOutputs": [
+    {
+      "scenarioId": "solar-validation",
+      "timesUtc": [
+        "2000-01-01T00:00:00Z",
+        "2000-01-01T06:00:00Z",
+        "2000-01-01T12:00:00Z",
+        "2000-01-01T18:00:00Z",
+        "2009-04-01T00:00:00Z",
+        "2009-04-01T06:00:00Z",
+        "2009-04-01T12:00:00Z",
+        "2009-04-01T18:00:00Z",
+        "2018-08-01T00:00:00Z",
+        "2018-08-01T06:00:00Z",
+        "2018-08-01T12:00:00Z",
+        "2018-08-01T18:00:00Z",
+        "2026-01-01T00:00:00Z",
+        "2026-01-01T06:00:00Z",
+        "2026-01-01T12:00:00Z",
+        "2026-01-01T18:00:00Z"
+      ],
+      "sunAzDeg": [
+        248.6747605830231,
+        245.66096336080363,
+        242.64290784325303,
+        239.6202892785605,
+        109.12447369377028,
+        106.10800841087347,
+        103.0951754926437,
+        100.0855397572397,
+        308.4760834770763,
+        305.4396762945901,
+        302.4077195236344,
+        299.3799876842422,
+        33.05327139996419,
+        29.988815822538115,
+        26.920023187520435,
+        23.847187294059037
+      ],
+      "sunAltDeg": [
+        -4.307157477652327,
+        -4.789499288475888,
+        -5.2604671272693535,
+        -5.718712035478449,
+        -4.693406020661806,
+        -4.192297983051944,
+        -3.683606379678257,
+        -3.1687589609013016,
+        6.178219398841173,
+        5.748296865807238,
+        5.302099962049986,
+        4.840876571481099,
+        9.758709635760791,
+        10.02986644018176,
+        10.276561259345433,
+        10.498046928254011
+      ],
+      "sunRadiusDeg": [
+        0.2713078568419175,
+        0.27134041886359106,
+        0.27137200579683485,
+        0.2714025492386757,
+        0.2668909179023407,
+        0.2668363661790407,
+        0.26678120774775765,
+        0.26672555744089516,
+        0.2620350684987218,
+        0.2620684992690822,
+        0.26210314753524666,
+        0.26213895574622476,
+        0.27042242331781535,
+        0.2704027789228624,
+        0.27038495778550475,
+        0.2703690270988181
+      ],
+      "earthAzDeg": [
+        5.770602539858365,
+        5.494734926879493,
+        5.2077597208272755,
+        4.910651477871502,
+        358.66515042876574,
+        358.9176431144431,
+        359.16790570600983,
+        359.41546306233477,
+        354.4013211951963,
+        354.1793974560021,
+        353.9715567358755,
+        353.7784973163981,
+        358.67483705443726,
+        359.1594187267785,
+        359.65153274544184,
+        0.1483070543099424
+      ],
+      "earthAltDeg": [
+        16.50936415640262,
+        16.48576675920931,
+        16.443470763467847,
+        16.38272251021491,
+        14.530877306074055,
+        14.241058057928205,
+        13.933709962969925,
+        13.610068317974696,
+        4.574659414721949,
+        4.3357917691439125,
+        4.11154879470746,
+        3.9027481155084383,
+        16.289221294309215,
+        16.310590745746076,
+        16.302779638575746,
+        16.265660237739173
+      ],
+      "quality": {
+        "dataKind": "real",
+        "model": "SPICE DE421 geometric positions; aberration correction NONE",
+        "frame": "ME_DE421_LOCAL_NORTH_EAST",
+        "warnings": []
+      },
+      "registration": {
+        "siteId": "south-0",
+        "latitudeDeg": -80.0,
+        "longitudeDeg": 0.0,
+        "observerHeightM": 2.0,
+        "surfaceHeightM": 0.0,
+        "observerRadiusM": 1737402.0,
+        "terrainSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bodyFixedFrame": "MOON_ME_DE421",
+        "localFrame": "ME_DE421_LOCAL_NORTH_EAST",
+        "aberrationCorrection": "NONE",
+        "kernelHashes": {
+          "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+          "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+          "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+          "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+        }
+      }
+    },
+    {
+      "scenarioId": "solar-validation",
+      "timesUtc": [
+        "2000-01-01T00:00:00Z",
+        "2000-01-01T06:00:00Z",
+        "2000-01-01T12:00:00Z",
+        "2000-01-01T18:00:00Z",
+        "2009-04-01T00:00:00Z",
+        "2009-04-01T06:00:00Z",
+        "2009-04-01T12:00:00Z",
+        "2009-04-01T18:00:00Z",
+        "2018-08-01T00:00:00Z",
+        "2018-08-01T06:00:00Z",
+        "2018-08-01T12:00:00Z",
+        "2018-08-01T18:00:00Z",
+        "2026-01-01T00:00:00Z",
+        "2026-01-01T06:00:00Z",
+        "2026-01-01T12:00:00Z",
+        "2026-01-01T18:00:00Z"
+      ],
+      "sunAzDeg": [
+        203.37403597024345,
+        200.3198132708104,
+        197.26443256798328,
+        194.20801739166754,
+        64.60183578689036,
+        61.56155251543174,
+        58.52094157703047,
+        55.479938138073905,
+        263.9230114502115,
+        260.8843338860826,
+        257.84498508664774,
+        254.8048255467546,
+        347.4536914986262,
+        344.40565577462644,
+        341.3586286108342,
+        338.3127069238626
+      ],
+      "sunAltDeg": [
+        -5.221667357566579,
+        -5.315687748497061,
+        -5.396497201900457,
+        -5.463837346190322,
+        0.7763239848920058,
+        1.009681062775772,
+        1.2362105621545827,
+        1.45526448075012,
+        -0.6127832662280522,
+        -0.8830196497066429,
+        -1.1510257274075275,
+        -1.4160668177139066,
+        6.227113774815752,
+        6.158803719140203,
+        6.0769273194274245,
+        5.981710310470396
+      ],
+      "sunRadiusDeg": [
+        0.27130780581018554,
+        0.2713403895065002,
+        0.2713719982089758,
+        0.27140256345273744,
+        0.2668912140102757,
+        0.26683664774305854,
+        0.266781473980879,
+        0.2667258076009531,
+        0.26203471440370174,
+        0.2620681533064444,
+        0.26210281068734975,
+        0.26213862897077933,
+        0.2704222287900452,
+        0.2704025657876606,
+        0.27038472664544827,
+        0.2703687786055528
+      ],
+      "earthAzDeg": [
+        320.0742641116121,
+        319.80800352365713,
+        319.5323097623865,
+        319.24807728209396,
+        313.2903807756219,
+        313.55418032650823,
+        313.81714780856055,
+        314.07876036392776,
+        309.637313658472,
+        309.4282366661492,
+        309.2322508617313,
+        309.0500510129336,
+        313.1931078783596,
+        313.66258981835847,
+        314.14119625680263,
+        314.62623444772504
+      ],
+      "earthAltDeg": [
+        10.400929938614548,
+        10.357957713000866,
+        10.295705135859498,
+        10.214500790280713,
+        7.970289330530806,
+        7.695767982789412,
+        7.403769229941298,
+        7.095495025070042,
+        -2.1956545324954417,
+        -2.4451974633532942,
+        -2.6793548366011017,
+        -2.8972922026513004,
+        9.724935609441395,
+        9.774332621400868,
+        9.795521785586626,
+        9.788227111403952
+      ],
+      "quality": {
+        "dataKind": "real",
+        "model": "SPICE DE421 geometric positions; aberration correction NONE",
+        "frame": "ME_DE421_LOCAL_NORTH_EAST",
+        "warnings": []
+      },
+      "registration": {
+        "siteId": "south-1",
+        "latitudeDeg": -85.0,
+        "longitudeDeg": 45.0,
+        "observerHeightM": 2.0,
+        "surfaceHeightM": 0.0,
+        "observerRadiusM": 1737402.0,
+        "terrainSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bodyFixedFrame": "MOON_ME_DE421",
+        "localFrame": "ME_DE421_LOCAL_NORTH_EAST",
+        "aberrationCorrection": "NONE",
+        "kernelHashes": {
+          "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+          "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+          "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+          "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+        }
+      }
+    },
+    {
+      "scenarioId": "solar-validation",
+      "timesUtc": [
+        "2000-01-01T00:00:00Z",
+        "2000-01-01T06:00:00Z",
+        "2000-01-01T12:00:00Z",
+        "2000-01-01T18:00:00Z",
+        "2009-04-01T00:00:00Z",
+        "2009-04-01T06:00:00Z",
+        "2009-04-01T12:00:00Z",
+        "2009-04-01T18:00:00Z",
+        "2018-08-01T00:00:00Z",
+        "2018-08-01T06:00:00Z",
+        "2018-08-01T12:00:00Z",
+        "2018-08-01T18:00:00Z",
+        "2026-01-01T00:00:00Z",
+        "2026-01-01T06:00:00Z",
+        "2026-01-01T12:00:00Z",
+        "2026-01-01T18:00:00Z"
+      ],
+      "sunAzDeg": [
+        113.2669858653167,
+        110.22404989748374,
+        107.18079837404451,
+        104.13724142241438,
+        334.62940819364934,
+        331.5801971511671,
+        328.5313815265485,
+        325.4829669831453,
+        173.8926059561358,
+        170.84204137723614,
+        167.79122130387987,
+        164.74013427663436,
+        257.51441696808223,
+        254.4828619117261,
+        251.45157474779467,
+        248.42052653161352
+      ],
+      "sunAltDeg": [
+        -0.8273213994769026,
+        -0.7979967856208292,
+        -0.7682191332433738,
+        -0.7380517983621774,
+        -0.9166292091082098,
+        -0.9322951218192885,
+        -0.9492863334631343,
+        -0.9675649449613047,
+        -0.5789828470583385,
+        -0.5822129961730842,
+        -0.5840248584464632,
+        -0.5844322842123992,
+        1.237630193044172,
+        1.2078843832440374,
+        1.1784764029748933,
+        1.1494764958819004
+      ],
+      "sunRadiusDeg": [
+        0.27130805147465414,
+        0.2713406421161062,
+        0.27137225705293133,
+        0.27140282780181124,
+        0.2668911222759532,
+        0.26683654255936706,
+        0.26678135565812977,
+        0.26672567648636697,
+        0.26203471616913326,
+        0.26206816902145164,
+        0.26210284031588704,
+        0.2621386724377415,
+        0.2704219518951786,
+        0.2704022910563223,
+        0.27038445484284584,
+        0.27036851048833077
+      ],
+      "earthAzDeg": [
+        230.51935772516597,
+        230.25413991896602,
+        229.97859838894857,
+        229.69361160789444,
+        223.67699207672194,
+        223.9226570612257,
+        224.1666781405601,
+        224.40862209821523,
+        219.42828735561883,
+        219.20322910216169,
+        218.9921438468315,
+        218.7958015916202,
+        223.6828068290614,
+        224.14995358181037,
+        224.6244444372268,
+        225.10364780723572
+      ],
+      "earthAltDeg": [
+        6.231455889164779,
+        6.201575128583768,
+        6.152999952091093,
+        6.086024392403568,
+        4.164068543526505,
+        3.8750730173742687,
+        3.568752252666675,
+        3.246333988485338,
+        -5.763681209508336,
+        -5.999735454973953,
+        -6.22119858106743,
+        -6.427291039977717,
+        5.9207191355762845,
+        5.943357994696948,
+        5.937591557202337,
+        5.903308087833847
+      ],
+      "quality": {
+        "dataKind": "real",
+        "model": "SPICE DE421 geometric positions; aberration correction NONE",
+        "frame": "ME_DE421_LOCAL_NORTH_EAST",
+        "warnings": []
+      },
+      "registration": {
+        "siteId": "south-2",
+        "latitudeDeg": -89.5,
+        "longitudeDeg": 135.0,
+        "observerHeightM": 2.0,
+        "surfaceHeightM": 0.0,
+        "observerRadiusM": 1737402.0,
+        "terrainSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bodyFixedFrame": "MOON_ME_DE421",
+        "localFrame": "ME_DE421_LOCAL_NORTH_EAST",
+        "aberrationCorrection": "NONE",
+        "kernelHashes": {
+          "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+          "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+          "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+          "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+        }
+      }
+    },
+    {
+      "scenarioId": "solar-validation",
+      "timesUtc": [
+        "2000-01-01T00:00:00Z",
+        "2000-01-01T06:00:00Z",
+        "2000-01-01T12:00:00Z",
+        "2000-01-01T18:00:00Z",
+        "2009-04-01T00:00:00Z",
+        "2009-04-01T06:00:00Z",
+        "2009-04-01T12:00:00Z",
+        "2009-04-01T18:00:00Z",
+        "2018-08-01T00:00:00Z",
+        "2018-08-01T06:00:00Z",
+        "2018-08-01T12:00:00Z",
+        "2018-08-01T18:00:00Z",
+        "2026-01-01T00:00:00Z",
+        "2026-01-01T06:00:00Z",
+        "2026-01-01T12:00:00Z",
+        "2026-01-01T18:00:00Z"
+      ],
+      "sunAzDeg": [
+        338.27319791124233,
+        335.2302947330914,
+        332.187050753993,
+        329.1434770651669,
+        199.62596731170848,
+        196.57612047647885,
+        193.52666877719798,
+        190.4776191786986,
+        38.892865808175074,
+        35.8424578604232,
+        32.79179719266762,
+        29.740870935508628,
+        122.52737217021688,
+        119.49559053643863,
+        116.46404647653485,
+        113.43271278649343
+      ],
+      "sunAltDeg": [
+        -0.5368930466618669,
+        -0.5343262082527305,
+        -0.532052886217022,
+        -0.5300589881267715,
+        -1.4625900647945742,
+        -1.467872090270265,
+        -1.4729642265811267,
+        -1.4778628741020043,
+        -0.00398847565695925,
+        -0.007522975981870364,
+        -0.011268026677246964,
+        -0.015232423006176589,
+        1.291912090061454,
+        1.2923692497135557,
+        1.2929252605127868,
+        1.2935668468782908
+      ],
+      "sunRadiusDeg": [
+        0.27130806773642707,
+        0.271340656883246,
+        0.27137227028279004,
+        0.2714028394560785,
+        0.26689109269792777,
+        0.2668365135558726,
+        0.26678132731085424,
+        0.2667256488750067,
+        0.2620347462028068,
+        0.26206819904688405,
+        0.26210287024822937,
+        0.26213870219232566,
+        0.2704219549142099,
+        0.2704022957545146,
+        0.2703844612065265,
+        0.2703685184992593
+      ],
+      "earthAzDeg": [
+        95.57613100540664,
+        95.31049632824843,
+        95.03437289800843,
+        94.74864379601924,
+        88.71324573536236,
+        88.95676161791889,
+        89.19848178396877,
+        89.43798164807369,
+        84.38979002815067,
+        84.16315955013103,
+        83.95061072995098,
+        83.75291656194811,
+        88.73290026718908,
+        89.20054371948125,
+        89.67530777714789,
+        90.15455355787532
+      ],
+      "earthAltDeg": [
+        6.539656553152048,
+        6.512022210826379,
+        6.4657740787944595,
+        6.401197916907267,
+        4.527990250945732,
+        4.237080900719868,
+        3.928852741680563,
+        3.604537100142908,
+        -5.3677872844308565,
+        -5.602209246648971,
+        -5.822147212446052,
+        -6.026826092152258,
+        6.2845986378375445,
+        6.3035904481864184,
+        6.294095071256341,
+        6.256020833727443
+      ],
+      "quality": {
+        "dataKind": "real",
+        "model": "SPICE DE421 geometric positions; aberration correction NONE",
+        "frame": "ME_DE421_LOCAL_NORTH_EAST",
+        "warnings": []
+      },
+      "registration": {
+        "siteId": "south-3",
+        "latitudeDeg": -89.9,
+        "longitudeDeg": -90.0,
+        "observerHeightM": 2.0,
+        "surfaceHeightM": 0.0,
+        "observerRadiusM": 1737402.0,
+        "terrainSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bodyFixedFrame": "MOON_ME_DE421",
+        "localFrame": "ME_DE421_LOCAL_NORTH_EAST",
+        "aberrationCorrection": "NONE",
+        "kernelHashes": {
+          "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+          "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+          "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+          "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+        }
+      }
+    }
+  ],
+  "actualNewGeneratorOutput": {
+    "schemaVersion": "1.0.0",
+    "timesUtc": [
+      "2000-01-01T00:00:00Z",
+      "2000-01-01T06:00:00Z",
+      "2000-01-01T12:00:00Z",
+      "2000-01-01T18:00:00Z",
+      "2009-04-01T00:00:00Z",
+      "2009-04-01T06:00:00Z",
+      "2009-04-01T12:00:00Z",
+      "2009-04-01T18:00:00Z",
+      "2018-08-01T00:00:00Z",
+      "2018-08-01T06:00:00Z",
+      "2018-08-01T12:00:00Z",
+      "2018-08-01T18:00:00Z",
+      "2026-01-01T00:00:00Z",
+      "2026-01-01T06:00:00Z",
+      "2026-01-01T12:00:00Z",
+      "2026-01-01T18:00:00Z"
+    ],
+    "sunPositionMoonFixedKm": [
+      {
+        "x": -54384985.726442434,
+        "y": -136474957.94335315,
+        "z": 1613168.273158595
+      },
+      {
+        "x": -61545675.984324835,
+        "y": -133379627.11893357,
+        "z": 1601019.592921868
+      },
+      {
+        "x": -68532138.17642653,
+        "y": -129909014.06798258,
+        "z": 1588974.8810777217
+      },
+      {
+        "x": -75324717.27658592,
+        "y": -126072878.85934737,
+        "z": 1577015.0636160076
+      },
+      {
+        "x": -50147906.08864838,
+        "y": 140636399.55980074,
+        "z": 3564917.132771561
+      },
+      {
+        "x": -42603309.710727654,
+        "y": 143134274.4003948,
+        "z": 3575104.184441114
+      },
+      {
+        "x": -34936036.7515682,
+        "y": 145227732.77278692,
+        "z": 3585516.714309331
+      },
+      {
+        "x": -27167749.682061173,
+        "y": 146910786.7261484,
+        "z": 3596153.928160661
+      },
+      {
+        "x": 95511207.32920358,
+        "y": -118398304.08260292,
+        "z": 215496.25031845272
+      },
+      {
+        "x": 89063988.26012005,
+        "y": -123297362.90894705,
+        "z": 233428.29503937066
+      },
+      {
+        "x": 82365111.25655437,
+        "y": -127845583.99208291,
+        "z": 251304.34739729762
+      },
+      {
+        "x": 75433646.58742332,
+        "y": -132030065.14563861,
+        "z": 269124.880517222
+      },
+      {
+        "x": 124248408.25281116,
+        "y": 79232515.78149633,
+        "z": -3463392.8067624494
+      },
+      {
+        "x": 128274717.96968845,
+        "y": 72555395.75331007,
+        "z": -3453156.5429225266
+      },
+      {
+        "x": 131941338.58969426,
+        "y": 65674272.86546887,
+        "z": -3442796.2675883844
+      },
+      {
+        "x": 135237965.63377488,
+        "y": 58608487.82397181,
+        "z": -3432310.769850917
+      }
+    ],
+    "sunDistanceKm": [
+      146920873.70412308,
+      146903228.1009855,
+      146886114.865636,
+      146869570.68498617,
+      149352328.40630022,
+      149382876.78434,
+      149413777.6791,
+      149444967.13626063,
+      152120332.54549676,
+      152100914.50700852,
+      152080794.48916724,
+      152060006.4712585,
+      147402352.76329964,
+      147413069.34336755,
+      147422792.64546755,
+      147431485.61618567
+    ],
+    "sunAngularRadiusDeg": [
+      0.27130809778109855,
+      0.27134068679137147,
+      0.27137230007053015,
+      0.27140286913880357,
+      0.2668911719260651,
+      0.26683659303762436,
+      0.26678140703535175,
+      0.26672572883126466,
+      0.2620347463940497,
+      0.26206819942284154,
+      0.26210287082000433,
+      0.2621387029714947,
+      0.2704218830309024,
+      0.27040222385623747,
+      0.27038438928681946,
+      0.27036844655236536
+    ],
+    "frame": "MOON_ME_DE421",
+    "ephemerisKernel": "DE421",
+    "aberrationCorrection": "NONE",
+    "dataKind": "real",
+    "origin": "MOON",
+    "direction": "MOON_TO_SUN",
+    "units": "km",
+    "source": {
+      "name": "NASA/JPL NAIF DE421 SPICE kernels",
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/",
+      "kernelHashes": {
+        "moon_080317.tf": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993",
+        "moon_pa_de421_1900-2050.bpc": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf",
+        "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+        "de421.bsp": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+      }
+    },
+    "coverage": {
+      "startUtc": "1899-12-31T23:59:19Z",
+      "endUtc": "2050-12-31T23:58:49Z"
+    },
+    "warnings": [
+      "Geometric Moon-center vectors; not observer/topocentric directions or apparent positions.",
+      "UTC conversion uses naif0012.tls; future leap seconds are not predicted and pre-1972 UTC uses LSK extrapolation, not validated historical clocks."
+    ],
+    "numericalLimitations": [
+      "IEEE-754 double precision SPICE evaluation; no interpolation, extrapolation, or fallback data.",
+      "Solar angular radius uses a fixed 695700 km photospheric radius and Moon-center distance."
+    ]
+  }
+}

@@ -1,5 +1,7 @@
 # Offline lunar ephemeris module
 
+New polar-shadow input: [Solar vectors v1.0.0](./SOLAR_CONTRACT.md), explicit DE421 / MOON_ME_DE421 / NONE. This is separate from the IAU_MOON API below; no implicit frame conversion.
+
 Pure entry point: `computeSkySeries(scenario, dataset)` from `index.ts`. No network calls or implicit synthetic fallback. Root application is not wired to this module yet.
 
 ## Reproduce checks
