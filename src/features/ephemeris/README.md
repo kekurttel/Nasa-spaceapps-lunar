@@ -67,6 +67,19 @@ Additional low-level coordinate argument codes are declared as the `EphemerisErr
 
 Agent 1’s sample budget counts half-open state intervals; this module can include one additional zero-duration end boundary. Budget adapters must account for that extra boundary; this is not an extra mission interval.
 
+## Prepared observer projection
+
+`createLocalSkyProjector(latDeg, lonDeg, surfaceElevationM, observerHeightM)` prepares a per-call observer/basis closure for repeated target projections. It caches no global site data. Every target still receives finite, distance-overflow and zero-direction checks. `localSkyDirection` retains its one-shot API and target-before-site validation order. `computeSkySeries` initializes its projector only after the first successful vector sample, preserving out-of-range error precedence. Projection arithmetic and angular-radius calculation remain unchanged.
+
+Reproduce exact full-series comparisons against pinned pre-optimization code and local-only timing:
+
+```sh
+node --experimental-strip-types src/features/ephemeris/tools/compare_prepared_series.ts
+node --experimental-strip-types src/features/ephemeris/tools/benchmark_observer.ts
+```
+
+Both tools require Git history containing commit `f4252d39970d2a5cf458a96541a4b28247fc563f` and a Node version supporting `node:module.stripTypeScriptTypes`. Benchmark compares coordinate projection only; it does not measure app or full-series speedup.
+
 ## Review evidence
 
 `fixtures/validation-report.json`: independent Horizons comparison. `interpolation-spice-report.json`: direct SPICE vs linear interpolation, same model. `date-coverage-report.json` when present: diagnostic date sweep, not extension of bundled demo coverage. `residual-diagnosis.json`: controlled correction-choice comparison, not proof assigning every residual to a single cause.

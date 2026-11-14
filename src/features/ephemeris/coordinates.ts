@@ -10,8 +10,7 @@ export type EphemerisErrorCode =
   | 'EPHEMERIS_OBSERVER_RADIUS'
   | 'EPHEMERIS_DISTANCE_RANGE'
   | 'EPHEMERIS_ZERO_DIRECTION'
-  | 'EPHEMERIS_RADIUS_RANGE'
-  | 'EPHEMERIS_DISTANCE_RANGE';
+  | 'EPHEMERIS_RADIUS_RANGE';
 
 export class EphemerisCoordinateError extends RangeError {
   readonly code: EphemerisErrorCode;
@@ -57,6 +56,16 @@ export function localSkyDirection(
   assertFinite('targetMoonFixedKm.x', targetMoonFixedKm?.x);
   assertFinite('targetMoonFixedKm.y', targetMoonFixedKm?.y);
   assertFinite('targetMoonFixedKm.z', targetMoonFixedKm?.z);
+  return createLocalSkyProjector(latDeg, lonDeg, surfaceElevationM, observerHeightM)(targetMoonFixedKm);
+}
+
+/** Prepare one observer for repeated Moon-fixed target projections. */
+export function createLocalSkyProjector(
+  latDeg: number,
+  lonDeg: number,
+  surfaceElevationM: number,
+  observerHeightM: number,
+): (targetMoonFixedKm: Vec3) => LocalSkyDirection {
   assertFinite('latDeg', latDeg);
   assertFinite('lonDeg', lonDeg);
   assertFinite('surfaceElevationM', surfaceElevationM);
@@ -75,21 +84,33 @@ export function localSkyDirection(
     y: radiusKm * cosLat * Math.sin(lon),
     z: radiusKm * Math.sin(lat),
   };
-  const dx = targetMoonFixedKm.x - observer.x;
-  const dy = targetMoonFixedKm.y - observer.y;
-  const dz = targetMoonFixedKm.z - observer.z;
-  const distanceKm = Math.hypot(dx, dy, dz);
-  if (!Number.isFinite(distanceKm)) throw new EphemerisCoordinateError('EPHEMERIS_DISTANCE_RANGE', 'Observer-to-target distance overflow');
-  if (distanceKm === 0) throw new EphemerisCoordinateError('EPHEMERIS_ZERO_DIRECTION', 'Target vector coincides with observer (zero direction)');
+  const northX = -Math.sin(lat) * Math.cos(lon);
+  const northY = Math.sin(lat) * Math.sin(lon);
+  const northZ = Math.cos(lat);
+  const eastX = -Math.sin(lon);
+  const eastY = Math.cos(lon);
+  const upX = cosLat * Math.cos(lon);
+  const upY = cosLat * Math.sin(lon);
+  const upZ = Math.sin(lat);
+  return (targetMoonFixedKm: Vec3): LocalSkyDirection => {
+    assertFinite('targetMoonFixedKm.x', targetMoonFixedKm?.x);
+    assertFinite('targetMoonFixedKm.y', targetMoonFixedKm?.y);
+    assertFinite('targetMoonFixedKm.z', targetMoonFixedKm?.z);
+    const dx = targetMoonFixedKm.x - observer.x;
+    const dy = targetMoonFixedKm.y - observer.y;
+    const dz = targetMoonFixedKm.z - observer.z;
+    const distanceKm = Math.hypot(dx, dy, dz);
+    if (!Number.isFinite(distanceKm)) throw new EphemerisCoordinateError('EPHEMERIS_DISTANCE_RANGE', 'Observer-to-target distance overflow');
+    if (distanceKm === 0) throw new EphemerisCoordinateError('EPHEMERIS_ZERO_DIRECTION', 'Target vector coincides with observer (zero direction)');
 
-  const north = -Math.sin(lat) * Math.cos(lon) * dx
-    - Math.sin(lat) * Math.sin(lon) * dy + Math.cos(lat) * dz;
-  const east = -Math.sin(lon) * dx + Math.cos(lon) * dy;
-  const up = cosLat * Math.cos(lon) * dx + cosLat * Math.sin(lon) * dy + Math.sin(lat) * dz;
-  const horizontal = Math.hypot(north, east);
-  const altitude = Math.atan2(up, horizontal) * 180 / Math.PI;
-  const azimuth = ((Math.atan2(east, north) * 180 / Math.PI) % 360 + 360) % 360;
-  return { altitude, azimuth, distanceKm };
+    const north = northX * dx - northY * dy + northZ * dz;
+    const east = eastX * dx + eastY * dy;
+    const up = upX * dx + upY * dy + upZ * dz;
+    const horizontal = Math.hypot(north, east);
+    const altitude = Math.atan2(up, horizontal) * 180 / Math.PI;
+    const azimuth = ((Math.atan2(east, north) * 180 / Math.PI) % 360 + 360) % 360;
+    return { altitude, azimuth, distanceKm };
+  };
 }
 
 /** Angular radius in degrees for a sphere of radius radiusKm at distanceKm. */

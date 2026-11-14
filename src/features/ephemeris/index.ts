@@ -1,4 +1,5 @@
-import { localSkyDirection, angularRadiusDeg } from './coordinates.ts';
+import { createLocalSkyProjector, angularRadiusDeg } from './coordinates.ts';
+export { createLocalSkyProjector } from './coordinates.ts';
 import { datasetWarnings } from './dataQuality.ts';
 import { buildScenarioTimes } from './scenario.ts';
 import type { Scenario } from './scenario.ts';
@@ -67,15 +68,17 @@ export function computeSkySeries(scenario: Scenario, dataset?: MoonFixedDataset)
       warnings,
     },
   };
+  let project: ReturnType<typeof createLocalSkyProjector> | undefined;
+  let warnedZenith = false;
   for (const time of timesUtc) {
     const sample = sampleVectors(time);
-    const args = [scenario.site.latDeg, scenario.site.lonDeg,
-      scenario.site.surfaceElevationM ?? 0, scenario.site.observerHeightM] as const;
-    const sun = localSkyDirection(sample.sunKm, ...args);
-    const earth = localSkyDirection(sample.earthKm, ...args);
-    if (Math.abs(sun.altitude) > 89.999999 || Math.abs(earth.altitude) > 89.999999) {
-      const warning = 'Azimuth is undefined at zenith/nadir; output uses the atan2 numerical convention, not a meaningful compass bearing.';
-      if (!warnings.includes(warning)) warnings.push(warning);
+    project ??= createLocalSkyProjector(scenario.site.latDeg, scenario.site.lonDeg,
+      scenario.site.surfaceElevationM ?? 0, scenario.site.observerHeightM);
+    const sun = project(sample.sunKm);
+    const earth = project(sample.earthKm);
+    if (!warnedZenith && (Math.abs(sun.altitude) > 89.999999 || Math.abs(earth.altitude) > 89.999999)) {
+      warnings.push('Azimuth is undefined at zenith/nadir; output uses the atan2 numerical convention, not a meaningful compass bearing.');
+      warnedZenith = true;
     }
     result.sunAltDeg.push(sun.altitude);
     result.sunAzDeg.push(sun.azimuth);
