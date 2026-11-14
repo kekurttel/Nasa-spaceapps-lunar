@@ -5,7 +5,7 @@ Dört kaynağın birlikte kullanımı kullanıcı proje şartıdır; NASA şart�
 | Kaynak | Bu oturumdaki yeni kanıt | Durum / sınır |
 |---|---|---|
 | QuickMap | HTTPS HTML 200, 8160 bayt, hash `access-2026-11-14.json`; başlangıç UI ve sınırlı tarayıcı tekrarı kaydedildi | erişildi; tekrar DOM'u boş bıraktı, hedef/katman/ürün/koşullar doğrulanamadı, bilimsel inceleme engellendi; kanıt `portal-inspection.md` |
-| Moon Trek | HTTPS HTML 200, 8029 bayt; gerçek tarayıcıda varsayılan LRO WAC WMTS capabilities 200, bazı karolar 200/404 | erişildi; hedef koordinat/ürün metadata/koşullar/LOLA/3D doğrulanmadı, hedef incelemesi engellendi; kanıt `portal-inspection.md` ve `portal-evidence/` |
+| Moon Trek | HTTPS HTML 200; WAC WMTS ve bazı karolar erişilebilir; yeni resmi güney-kutup FGDC kaydı: `LRO_WAC_Mosaic_SPole60_100mp`, edition 1, 100 m grid, 20110315, erişim/kullanım kısıtı None | Ürün metadata ve katalog kapsaması doğrulandı; hedefin haritada gösterimi, geçerli hedef pikseli, LOLA/3D ve temporal hesap doğrulanmadı. Güney ürününde metadata `Standard_Parallel: 90.0` çelişkisi var; dönüşüm için onay değil. Kanıt `moon-trek-target-check.md`, `portal-evidence/moon-trek-spole-fgdc.html` |
 | JPL Horizons | İki yeni gerçek erişim sorgusu: Güneş 10 ve Dünya 399, coord@301, 0°E/-89°, 2026-11-14 00:00–01:00 UT | ham yanıt + sorgu manifesti saklandı; tablo/hedef/gözlemci/sütun doğrulandı; proje hedef analizi veya arazi birleşimi değil |
 | LRO/LOLA | NASA/PDS HTTPS 200; mevcut Git nesnelerinden gerçek LDEM_4_FLOAT raster + PDS etiket + kernel; bağımsız 56/56 terrain/registration testi | entegre edildi, yerel yazılım/kayıt doğrulandı; yaklaşık 7.58 km/piksel ve kutup ekstrapolasyonu hassas iniş hesabına uygun değil; yeni raster indirilmedi |
 
