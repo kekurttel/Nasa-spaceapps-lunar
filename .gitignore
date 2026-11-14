@@ -29,6 +29,7 @@ backend/data/*.bsp
 data/raw/*.img
 data/raw/*.tif
 data/raw/*.bsp
+data/raw/polar/*.jp2
 data/kernels/*.bsp
 data/kernels/*.bpc
 *.part
