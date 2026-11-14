@@ -29,6 +29,14 @@ Prior Playwright retry recorded `WMTSCapabilities.xml` HTTP 200 for default WAC 
 
 Official south-polar FGDC response saved as `portal-evidence/moon-trek-spole-fgdc.html`: 14994 bytes, SHA-256 `d87b1fe397039d0315836498ad650e18efedd78102a2be5259c6f5a2c844d43b`. Local capture integrity only, not a publisher checksum. Six content assertions passed: product filename, dimensions, grid spacing, publication date, use-constraint field and value. HTML generator timestamps may vary between requests.
 
+## Target tile check (WMTS rendered imagery only)
+
+Retrieved south-polar service capabilities directly: `https://trek.nasa.gov/tiles/Moon/SP/LRO_WAC_Mosaic_SPole60_100mp/1.0.0/WMTSCapabilities.xml` (HTTP 200, 6,133 bytes). Published matrix set `default028mm` declares `SupportedCRS` `urn:ogc:def:crs:EPSG::0` (not a usable EPSG identifier), top-left `(-1095930, 1095930)`, tile size 256×256, matrix 4 dimensions 32×16, and scale denominator `1.9111502511160688E+06`. Using only that service-declared matrix, WMTS pixel resolution is scale × 0.00028 m = 535.1220703124992 coordinate units/pixel.
+
+Independent coordinate calculation for the proposed center, using south-polar stereographic geometry, Moon radius 1,737,400 m from catalog, and latitude/longitude `-85.29,31.95`, yields `(x,y)=(75621.5123,121255.0490)` m. This is a calculation, not an assertion that FGDC `Standard_Parallel: 90.0` defines the service projection. Applying the explicit WMTS top-left and resolution gives global pixel `(col,row)=(2189.3164,1821.4068)`, tile `(matrix=4,row=7,col=8)`, within declared matrix bounds. Requested `https://trek.nasa.gov/tiles/Moon/SP/LRO_WAC_Mosaic_SPole60_100mp/1.0.0//default/default028mm/4/7/8.png`: HTTP 200, 62,853 bytes, 256×256 8-bit grayscale+alpha PNG. This confirms service delivery of the requested tile index only. Its association with the proposed target is conditional on an unverified projection assumption; it does not prove target coverage, correct geodetic registration, identify Mons Mouton, or certify data pixel as non-NoData. Tile pixel requires inspection of alpha/value and an independently trusted transform before asserting validity; this check did not establish that.
+
+This is a rendered WAC image mosaic, not DEM/elevation. It provides no elevation, slope, illumination, freshness guarantee, or landing suitability. Catalog acquisition dates and mosaic provenance remain the temporal evidence; tile HTTP success is not a temporal/quality assessment. Existing FGDC `Standard_Parallel: 90.0` inconsistency remains unresolved and is not used to validate the transform above.
+
 ## Outcome and limits
 
 - Portal starts and exposes initial global bounds. Target coordinate was not selected; target map state remains **unverified**.

@@ -2,7 +2,7 @@
 
 ## Scope and method
 
-Checked current official portal startup and bundled client configuration for proposed coordinates `-85.29,31.95`. Target remains a proposal; no claim that QuickMap location is Mons Mouton or that it is an approved landing site. No browser interaction, layer query, tile fetch, product metadata retrieval, or computation completed in this check. No large data downloaded.
+Checked official portal startup, bundled client configuration, and a direct bounded request for the configured map endpoint for proposed coordinates `-85.29,31.95`. Target remains a proposal; no claim that QuickMap location is Mons Mouton or that it is an approved landing site. No successful browser interaction, layer response, target tile, product metadata, or computation obtained. No large data downloaded.
 
 ## Live access observed
 
