@@ -1,0 +1,29 @@
+{
+  "samples": 10000,
+  "datasetSamples": 25,
+  "repetitions": 5,
+  "method": "Same interpolation; per-call full validation/snapshot vs one validated sampler, median wall time. 100 exact-output equivalence checks.",
+  "previousPerSampleValidation": {
+    "runsMs": [
+      814.8195000000001,
+      811.0463000000001,
+      776.2026999999998,
+      797.2055999999998,
+      837.0015000000003
+    ],
+    "medianMs": 811.0463000000001
+  },
+  "optimizedOneValidation": {
+    "runsMs": [
+      28.07800000000043,
+      26.746900000000096,
+      23.666400000000067,
+      26.099600000000464,
+      24.751500000000306
+    ],
+    "medianMs": 26.099600000000464
+  },
+  "speedup": 31.075047127158488,
+  "node": "v24.22.0",
+  "platform": "win32"
+}

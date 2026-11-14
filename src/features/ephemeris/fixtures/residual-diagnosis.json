@@ -1,0 +1,3124 @@
+{
+  "method": {
+    "kernelConvention": "%TEMP%/opencode/kernels (same kernels cited by fixtures/kernel-report.md)",
+    "kernels": [
+      "naif0012.tls",
+      "pck00011.tpc",
+      "de440s.bsp"
+    ],
+    "utcToEt": "spice.str2et for every row",
+    "spkpos": "SUN/EARTH relative to MOON, IAU_MOON, each of NONE, LT+S, CN+S",
+    "observer": "identical spherical body-fixed observer subtraction for every correction; radius 1737.4 + 0.002 km",
+    "localConversion": "north/east/up projection then atan2 azimuth and altitude",
+    "reference": "78 Horizons airless apparent measurements; raw response headers retained below"
+  },
+  "horizonsHeaders": [
+    "Target body name: Sun (10)                        {source: DE441}",
+    "Center body name: Moon (301)                      {source: DE441}",
+    "Center-site name: (user defined site below)"
+  ],
+  "results": {
+    "NONE": {
+      "sun": {
+        "count": 39,
+        "directionMaxDeg": 0.0077568809367573825,
+        "directionMedianDeg": 0.007750939355435912,
+        "azimuthCircularMaxDeg": 0.010406759709326252,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.004514419862402974,
+            "directionResidualDeg": 0.007756481834376114,
+            "localAzimuthDeg": 92.49892258013759,
+            "localAltitudeDeg": 57.44799959570571,
+            "referenceAzimuthDeg": 92.503437,
+            "referenceAltitudeDeg": 57.455366
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.004526599788448493,
+            "directionResidualDeg": 0.007755625555499485,
+            "localAzimuthDeg": 92.50448140021153,
+            "localAltitudeDeg": 57.53214680951847,
+            "referenceAzimuthDeg": 92.509008,
+            "referenceAltitudeDeg": 57.539512
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.004537694950158766,
+            "directionResidualDeg": 0.007754146363839614,
+            "localAzimuthDeg": 92.51007130504985,
+            "localAltitudeDeg": 57.61629347610816,
+            "referenceAzimuthDeg": 92.514609,
+            "referenceAltitudeDeg": 57.623657
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.004550465487341171,
+            "directionResidualDeg": 0.007753459363310485,
+            "localAzimuthDeg": 92.51569253451264,
+            "localAltitudeDeg": 57.70043959328309,
+            "referenceAzimuthDeg": 92.520243,
+            "referenceAltitudeDeg": 57.707802
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.004562669026711319,
+            "directionResidualDeg": 0.0077522404963528335,
+            "localAzimuthDeg": 92.5213453309733,
+            "localAltitudeDeg": 57.784585158846184,
+            "referenceAzimuthDeg": 92.525908,
+            "referenceAltitudeDeg": 57.791946
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.004574060653055767,
+            "directionResidualDeg": 0.007751401070896233,
+            "localAzimuthDeg": 92.52702993934696,
+            "localAltitudeDeg": 57.86873017052432,
+            "referenceAzimuthDeg": 92.531604,
+            "referenceAltitudeDeg": 57.87609
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.004586392876831269,
+            "directionResidualDeg": 0.007750286520781057,
+            "localAzimuthDeg": 92.53274660712316,
+            "localAltitudeDeg": 57.95287462596426,
+            "referenceAzimuthDeg": 92.537333,
+            "referenceAltitudeDeg": 57.960233
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.004599415587961175,
+            "directionResidualDeg": 0.007749805924264772,
+            "localAzimuthDeg": 92.53849558441205,
+            "localAltitudeDeg": 58.03701852290975,
+            "referenceAzimuthDeg": 92.543095,
+            "referenceAltitudeDeg": 58.044376
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.004611876034744,
+            "directionResidualDeg": 0.007748803535605946,
+            "localAzimuthDeg": 92.54427712396527,
+            "localAltitudeDeg": 58.121161859001404,
+            "referenceAzimuthDeg": 92.548889,
+            "referenceAltitudeDeg": 58.128518
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.004623518788207548,
+            "directionResidualDeg": 0.007747239929141981,
+            "localAzimuthDeg": 92.55009148121181,
+            "localAltitudeDeg": 58.20530463179865,
+            "referenceAzimuthDeg": 92.554715,
+            "referenceAltitudeDeg": 58.212659
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.004636085691657854,
+            "directionResidualDeg": 0.007746355321164453,
+            "localAzimuthDeg": 92.55593891430834,
+            "localAltitudeDeg": 58.28944683898255,
+            "referenceAzimuthDeg": 92.560575,
+            "referenceAltitudeDeg": 58.2968
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.004649315846450008,
+            "directionResidualDeg": 0.007746108048411902,
+            "localAzimuthDeg": 92.56181968415353,
+            "localAltitudeDeg": 58.37358847805226,
+            "referenceAzimuthDeg": 92.566469,
+            "referenceAltitudeDeg": 58.380941
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.004661945557074887,
+            "directionResidualDeg": 0.007744393301770502,
+            "localAzimuthDeg": 92.56773405444291,
+            "localAltitudeDeg": 58.45772954657986,
+            "referenceAzimuthDeg": 92.572396,
+            "referenceAltitudeDeg": 58.46508
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.010406759709326252,
+            "directionResidualDeg": 0.007756126626005283,
+            "localAzimuthDeg": 176.51046624029067,
+            "localAltitudeDeg": 43.6008335180663,
+            "referenceAzimuthDeg": 176.520873,
+            "referenceAltitudeDeg": 43.599
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.01040267317080179,
+            "directionResidualDeg": 0.007755467866457337,
+            "localAzimuthDeg": 176.6266313268292,
+            "localAltitudeDeg": 43.60451074738984,
+            "referenceAzimuthDeg": 176.637034,
+            "referenceAltitudeDeg": 43.602666
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.010398721820592982,
+            "directionResidualDeg": 0.007754811542937261,
+            "localAzimuthDeg": 176.7428102781794,
+            "localAltitudeDeg": 43.608067453278494,
+            "referenceAzimuthDeg": 176.753209,
+            "referenceAltitudeDeg": 43.606212
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.010394372923741457,
+            "directionResidualDeg": 0.00775401493060591,
+            "localAzimuthDeg": 176.85900262707625,
+            "localAltitudeDeg": 43.61150360780743,
+            "referenceAzimuthDeg": 176.869397,
+            "referenceAltitudeDeg": 43.609637
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.010389094151378231,
+            "directionResidualDeg": 0.007752457614660579,
+            "localAzimuthDeg": 176.97520790584863,
+            "localAltitudeDeg": 43.61481918402622,
+            "referenceAzimuthDeg": 176.985597,
+            "referenceAltitudeDeg": 43.612942
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.010384353662374224,
+            "directionResidualDeg": 0.007751406110384324,
+            "localAzimuthDeg": 177.09142564633763,
+            "localAltitudeDeg": 43.618014155956935,
+            "referenceAzimuthDeg": 177.10181,
+            "referenceAltitudeDeg": 43.616126
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.010380620093769721,
+            "directionResidualDeg": 0.007750939355435912,
+            "localAzimuthDeg": 177.20765537990624,
+            "localAltitudeDeg": 43.62108849859555,
+            "referenceAzimuthDeg": 177.218036,
+            "referenceAltitudeDeg": 43.61919
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.01037536230003866,
+            "directionResidualDeg": 0.007749518499617266,
+            "localAzimuthDeg": 177.32389663769996,
+            "localAltitudeDeg": 43.62404218791922,
+            "referenceAzimuthDeg": 177.334272,
+            "referenceAltitudeDeg": 43.622133
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.010371049613979721,
+            "directionResidualDeg": 0.00774887232599104,
+            "localAzimuthDeg": 177.44014895038603,
+            "localAltitudeDeg": 43.626875200879766,
+            "referenceAzimuthDeg": 177.45052,
+            "referenceAltitudeDeg": 43.624955
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.010366151800610623,
+            "directionResidualDeg": 0.007747673902496049,
+            "localAzimuthDeg": 177.5564118481994,
+            "localAltitudeDeg": 43.62958751540598,
+            "referenceAzimuthDeg": 177.566778,
+            "referenceAltitudeDeg": 43.627657
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.010361138761112443,
+            "directionResidualDeg": 0.007746495404191712,
+            "localAzimuthDeg": 177.67268486123888,
+            "localAltitudeDeg": 43.632179110410654,
+            "referenceAzimuthDeg": 177.683046,
+            "referenceAltitudeDeg": 43.630238
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.010356480936479784,
+            "directionResidualDeg": 0.007745662518980781,
+            "localAzimuthDeg": 177.78896751906353,
+            "localAltitudeDeg": 43.63464996578195,
+            "referenceAzimuthDeg": 177.799324,
+            "referenceAltitudeDeg": 43.632698
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.010351648939263214,
+            "directionResidualDeg": 0.007744800543010888,
+            "localAzimuthDeg": 177.90525935106075,
+            "localAltitudeDeg": 43.637000062392005,
+            "referenceAzimuthDeg": 177.915611,
+            "referenceAltitudeDeg": 43.635037
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.007459146014070939,
+            "directionResidualDeg": 0.0077568809367573825,
+            "localAzimuthDeg": 347.52392414601405,
+            "localAltitudeDeg": 1.8317872111030642,
+            "referenceAzimuthDeg": 347.516465,
+            "referenceAltitudeDeg": 1.833929
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.007458116130237613,
+            "directionResidualDeg": 0.007755898089120376,
+            "localAzimuthDeg": 347.43968211613026,
+            "localAltitudeDeg": 1.8315151915516485,
+            "referenceAzimuthDeg": 347.432224,
+            "referenceAltitudeDeg": 1.833657
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.007457302726493253,
+            "directionResidualDeg": 0.007755144115263455,
+            "localAzimuthDeg": 347.3554403027265,
+            "localAltitudeDeg": 1.8312420963095417,
+            "referenceAzimuthDeg": 347.347983,
+            "referenceAltitudeDeg": 1.833384
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0074567053122223115,
+            "directionResidualDeg": 0.007754618448686018,
+            "localAzimuthDeg": 347.2711987053122,
+            "localAltitudeDeg": 1.8309679257276898,
+            "referenceAzimuthDeg": 347.263742,
+            "referenceAltitudeDeg": 1.83311
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.007455323373449119,
+            "directionResidualDeg": 0.007753083670030997,
+            "localAzimuthDeg": 347.18695732337346,
+            "localAltitudeDeg": 1.8306926801593326,
+            "referenceAzimuthDeg": 347.179502,
+            "referenceAltitudeDeg": 1.832834
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.007454156443657212,
+            "directionResidualDeg": 0.007752052267937416,
+            "localAzimuthDeg": 347.10271615644365,
+            "localAltitudeDeg": 1.830416359960414,
+            "referenceAzimuthDeg": 347.095262,
+            "referenceAltitudeDeg": 1.832558
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.007453204106866451,
+            "directionResidualDeg": 0.007750971291000609,
+            "localAzimuthDeg": 347.0184752041069,
+            "localAltitudeDeg": 1.8301389654894444,
+            "referenceAzimuthDeg": 347.011022,
+            "referenceAltitudeDeg": 1.83228
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.007452465820506404,
+            "directionResidualDeg": 0.007750392611392948,
+            "localAzimuthDeg": 346.9342344658205,
+            "localAltitudeDeg": 1.829860497107036,
+            "referenceAzimuthDeg": 346.926782,
+            "referenceAltitudeDeg": 1.832002
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.007451941114993588,
+            "directionResidualDeg": 0.007749763144864962,
+            "localAzimuthDeg": 346.849993941115,
+            "localAltitudeDeg": 1.829580955176604,
+            "referenceAzimuthDeg": 346.842542,
+            "referenceAltitudeDeg": 1.831722
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.007450629571508216,
+            "directionResidualDeg": 0.007748398078054689,
+            "localAzimuthDeg": 346.7657536295715,
+            "localAltitudeDeg": 1.8293003400640202,
+            "referenceAzimuthDeg": 346.758303,
+            "referenceAltitudeDeg": 1.831441
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.007449530618600875,
+            "directionResidualDeg": 0.007747257343520474,
+            "localAzimuthDeg": 346.6815135306186,
+            "localAltitudeDeg": 1.8290186521373581,
+            "referenceAzimuthDeg": 346.674064,
+            "referenceAltitudeDeg": 1.831159
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.007448643835459734,
+            "directionResidualDeg": 0.007746340434775103,
+            "localAzimuthDeg": 346.5972736438355,
+            "localAltitudeDeg": 1.8287358917675016,
+            "referenceAzimuthDeg": 346.589825,
+            "referenceAltitudeDeg": 1.830876
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.00744796869662423,
+            "directionResidualDeg": 0.007745646743934153,
+            "localAzimuthDeg": 346.5130339686966,
+            "localAltitudeDeg": 1.8284520593275675,
+            "referenceAzimuthDeg": 346.505586,
+            "referenceAltitudeDeg": 1.830592
+          }
+        ]
+      },
+      "earth": {
+        "count": 39,
+        "directionMaxDeg": 0.002271296338810484,
+        "directionMedianDeg": 0.0022664067247742978,
+        "azimuthCircularMaxDeg": 0.014004608669608842,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.013811541405004846,
+            "directionResidualDeg": 0.0022707512417029334,
+            "localAzimuthDeg": 190.974964458595,
+            "localAltitudeDeg": 83.28992027655369,
+            "referenceAzimuthDeg": 190.988776,
+            "referenceAltitudeDeg": 83.288323
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.013827408306099187,
+            "directionResidualDeg": 0.0022707318481827088,
+            "localAzimuthDeg": 190.8654945916939,
+            "localAltitudeDeg": 83.29144374309251,
+            "referenceAzimuthDeg": 190.879322,
+            "referenceAltitudeDeg": 83.289848
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.013843678498801637,
+            "directionResidualDeg": 0.002270966145647326,
+            "localAzimuthDeg": 190.7559483215012,
+            "localAltitudeDeg": 83.29296552072256,
+            "referenceAzimuthDeg": 190.769792,
+            "referenceAltitudeDeg": 83.291371
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.013860274212504464,
+            "directionResidualDeg": 0.0022707198667716436,
+            "localAzimuthDeg": 190.6463257257875,
+            "localAltitudeDeg": 83.29448557275217,
+            "referenceAzimuthDeg": 190.660186,
+            "referenceAltitudeDeg": 83.292893
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.013876116174060371,
+            "directionResidualDeg": 0.002271280617274347,
+            "localAzimuthDeg": 190.53662688382593,
+            "localAltitudeDeg": 83.29600386250867,
+            "referenceAzimuthDeg": 190.550503,
+            "referenceAltitudeDeg": 83.294412
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.01389212322038702,
+            "directionResidualDeg": 0.002271296338810484,
+            "localAzimuthDeg": 190.4268518767796,
+            "localAltitudeDeg": 83.29752035333195,
+            "referenceAzimuthDeg": 190.440744,
+            "referenceAltitudeDeg": 83.29593
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.013908212814499166,
+            "directionResidualDeg": 0.002270736161754681,
+            "localAzimuthDeg": 190.3170007871855,
+            "localAltitudeDeg": 83.29903500858619,
+            "referenceAzimuthDeg": 190.330909,
+            "referenceAltitudeDeg": 83.297447
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.013924300034631187,
+            "directionResidualDeg": 0.002270966775433616,
+            "localAzimuthDeg": 190.20707369996538,
+            "localAltitudeDeg": 83.30054779163869,
+            "referenceAzimuthDeg": 190.220998,
+            "referenceAltitudeDeg": 83.298961
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.013940298276224894,
+            "directionResidualDeg": 0.0022712549864182833,
+            "localAzimuthDeg": 190.09707070172377,
+            "localAltitudeDeg": 83.3020586658773,
+            "referenceAzimuthDeg": 190.111011,
+            "referenceAltitudeDeg": 83.300473
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.013957119550155994,
+            "directionResidualDeg": 0.0022709537889801833,
+            "localAzimuthDeg": 189.98699188044984,
+            "localAltitudeDeg": 83.30356759471714,
+            "referenceAzimuthDeg": 190.000949,
+            "referenceAltitudeDeg": 83.301984
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.013972673252510504,
+            "directionResidualDeg": 0.002271258522287512,
+            "localAzimuthDeg": 189.87683732674748,
+            "localAltitudeDeg": 83.3050745415756,
+            "referenceAzimuthDeg": 189.89081,
+            "referenceAltitudeDeg": 83.303492
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.013988867742028788,
+            "directionResidualDeg": 0.002270908950859498,
+            "localAzimuthDeg": 189.76660713225797,
+            "localAltitudeDeg": 83.30657946990728,
+            "referenceAzimuthDeg": 189.780596,
+            "referenceAltitudeDeg": 83.304999
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.014004608669608842,
+            "directionResidualDeg": 0.0022711810600388577,
+            "localAzimuthDeg": 189.6563013913304,
+            "localAltitudeDeg": 83.30808234317034,
+            "referenceAzimuthDeg": 189.670306,
+            "referenceAltitudeDeg": 83.306503
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0013598058242507705,
+            "directionResidualDeg": 0.002266119490428064,
+            "localAzimuthDeg": 217.13519419417574,
+            "localAltitudeDeg": 31.073768912037345,
+            "referenceAzimuthDeg": 217.136554,
+            "referenceAltitudeDeg": 31.071825
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0013578365191619923,
+            "directionResidualDeg": 0.002266330419911935,
+            "localAzimuthDeg": 217.12121016348084,
+            "localAltitudeDeg": 31.078419201410536,
+            "referenceAzimuthDeg": 217.122568,
+            "referenceAltitudeDeg": 31.076474
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0013562033142022756,
+            "directionResidualDeg": 0.002266806156595403,
+            "localAzimuthDeg": 217.1072277966858,
+            "localAltitudeDeg": 31.083090625072497,
+            "referenceAzimuthDeg": 217.108584,
+            "referenceAltitudeDeg": 31.081144
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.00135385830125756,
+            "directionResidualDeg": 0.0022662154267197735,
+            "localAzimuthDeg": 217.09324714169875,
+            "localAltitudeDeg": 31.087783168564876,
+            "referenceAzimuthDeg": 217.094601,
+            "referenceAltitudeDeg": 31.085836
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0013517535575431339,
+            "directionResidualDeg": 0.00226582213851281,
+            "localAzimuthDeg": 217.07926824644247,
+            "localAltitudeDeg": 31.09249681733697,
+            "referenceAzimuthDeg": 217.08062,
+            "referenceAltitudeDeg": 31.090549
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0013498410973511454,
+            "directionResidualDeg": 0.002266452515623325,
+            "localAzimuthDeg": 217.06529115890265,
+            "localAltitudeDeg": 31.097231556727255,
+            "referenceAzimuthDeg": 217.066641,
+            "referenceAltitudeDeg": 31.095282
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0013480729377022271,
+            "directionResidualDeg": 0.0022663528390190466,
+            "localAzimuthDeg": 217.0513159270623,
+            "localAltitudeDeg": 31.10198737198927,
+            "referenceAzimuthDeg": 217.052664,
+            "referenceAltitudeDeg": 31.100037
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.001346400972693118,
+            "directionResidualDeg": 0.002266348888965185,
+            "localAzimuthDeg": 217.0373425990273,
+            "localAltitudeDeg": 31.10676424824019,
+            "referenceAzimuthDeg": 217.038689,
+            "referenceAltitudeDeg": 31.104813
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.0013447770617176502,
+            "directionResidualDeg": 0.0022664067247742978,
+            "localAzimuthDeg": 217.0233712229383,
+            "localAltitudeDeg": 31.111562170497493,
+            "referenceAzimuthDeg": 217.024716,
+            "referenceAltitudeDeg": 31.10961
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.001343153067438152,
+            "directionResidualDeg": 0.0022664924235506006,
+            "localAzimuthDeg": 217.00940184693255,
+            "localAltitudeDeg": 31.116381123694005,
+            "referenceAzimuthDeg": 217.010745,
+            "referenceAltitudeDeg": 31.114428
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0013414807034166643,
+            "directionResidualDeg": 0.002266571960163841,
+            "localAzimuthDeg": 216.9954345192966,
+            "localAltitudeDeg": 31.121221092615155,
+            "referenceAzimuthDeg": 216.996776,
+            "referenceAltitudeDeg": 31.119267
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0013397117308784345,
+            "directionResidualDeg": 0.002266611366517328,
+            "localAzimuthDeg": 216.98146928826912,
+            "localAltitudeDeg": 31.126082061980163,
+            "referenceAzimuthDeg": 216.982809,
+            "referenceAltitudeDeg": 31.124127
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0013377977516029205,
+            "directionResidualDeg": 0.002266576576014689,
+            "localAzimuthDeg": 216.9675062022484,
+            "localAltitudeDeg": 31.13096401635728,
+            "referenceAzimuthDeg": 216.968844,
+            "referenceAltitudeDeg": 31.129008
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0019045831776907107,
+            "directionResidualDeg": 0.0022622830218858407,
+            "localAzimuthDeg": 313.6804495831777,
+            "localAltitudeDeg": 6.6267495144836905,
+            "referenceAzimuthDeg": 313.678545,
+            "referenceAltitudeDeg": 6.62799
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0019038311883150527,
+            "directionResidualDeg": 0.0022627704967274538,
+            "localAzimuthDeg": 313.6933208311883,
+            "localAltitudeDeg": 6.627761482152863,
+            "referenceAzimuthDeg": 313.691417,
+            "referenceAltitudeDeg": 6.629004
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0019026596905291626,
+            "directionResidualDeg": 0.002262765598683616,
+            "localAzimuthDeg": 313.7061996596905,
+            "localAltitudeDeg": 6.628751715998776,
+            "referenceAzimuthDeg": 313.704297,
+            "referenceAltitudeDeg": 6.629996
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.001901015864063993,
+            "directionResidualDeg": 0.002262780006151265,
+            "localAzimuthDeg": 313.71908601586404,
+            "localAltitudeDeg": 6.629720207653378,
+            "referenceAzimuthDeg": 313.717185,
+            "referenceAltitudeDeg": 6.630967
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0018998468369204602,
+            "directionResidualDeg": 0.0022625021741248404,
+            "localAzimuthDeg": 313.7319798468369,
+            "localAltitudeDeg": 6.63066694885827,
+            "referenceAzimuthDeg": 313.73008,
+            "referenceAltitudeDeg": 6.631915
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0018990996407524108,
+            "directionResidualDeg": 0.0022629939690135352,
+            "localAzimuthDeg": 313.74488109964074,
+            "localAltitudeDeg": 6.631591931463502,
+            "referenceAzimuthDeg": 313.742982,
+            "referenceAltitudeDeg": 6.632842
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0018977212723712,
+            "directionResidualDeg": 0.0022628363993689566,
+            "localAzimuthDeg": 313.7577897212724,
+            "localAltitudeDeg": 6.632495147428771,
+            "referenceAzimuthDeg": 313.755892,
+            "referenceAltitudeDeg": 6.633747
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0018966585748216858,
+            "directionResidualDeg": 0.0022633713606537314,
+            "localAzimuthDeg": 313.7707056585748,
+            "localAltitudeDeg": 6.633376588823069,
+            "referenceAzimuthDeg": 313.768809,
+            "referenceAltitudeDeg": 6.634631
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.001894858321634274,
+            "directionResidualDeg": 0.0022626243778321124,
+            "localAzimuthDeg": 313.7836288583216,
+            "localAltitudeDeg": 6.6342362478246715,
+            "referenceAzimuthDeg": 313.781734,
+            "referenceAltitudeDeg": 6.635492
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0018942672529078664,
+            "directionResidualDeg": 0.002263317055896816,
+            "localAzimuthDeg": 313.7965592672529,
+            "localAltitudeDeg": 6.6350741167218095,
+            "referenceAzimuthDeg": 313.794665,
+            "referenceAltitudeDeg": 6.636332
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0018928319303199714,
+            "directionResidualDeg": 0.002263202464592591,
+            "localAzimuthDeg": 313.80949683193035,
+            "localAltitudeDeg": 6.635890187912537,
+            "referenceAzimuthDeg": 313.807604,
+            "referenceAltitudeDeg": 6.63715
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0018914989251470615,
+            "directionResidualDeg": 0.0022630662593489353,
+            "localAzimuthDeg": 313.8224414989252,
+            "localAltitudeDeg": 6.6366844539050485,
+            "referenceAzimuthDeg": 313.82055,
+            "referenceAltitudeDeg": 6.637946
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0018902146209143211,
+            "directionResidualDeg": 0.0022634260737995375,
+            "localAzimuthDeg": 313.8353932146209,
+            "localAltitudeDeg": 6.637456907317034,
+            "referenceAzimuthDeg": 313.833503,
+            "referenceAltitudeDeg": 6.638721
+          }
+        ]
+      }
+    },
+    "LT+S": {
+      "sun": {
+        "count": 39,
+        "directionMaxDeg": 0.0025610577328032693,
+        "directionMedianDeg": 0.002556447971241059,
+        "azimuthCircularMaxDeg": 0.004084658044916978,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.003970406263761106,
+            "directionResidualDeg": 0.0025609487384064757,
+            "localAzimuthDeg": 92.49946659373626,
+            "localAltitudeDeg": 57.45395313444419,
+            "referenceAzimuthDeg": 92.503437,
+            "referenceAltitudeDeg": 57.455366
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.003979924029465565,
+            "directionResidualDeg": 0.002560358740881646,
+            "localAzimuthDeg": 92.50502807597051,
+            "localAltitudeDeg": 57.53810049277914,
+            "referenceAzimuthDeg": 92.509008,
+            "referenceAltitudeDeg": 57.539512
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.003988337584530655,
+            "directionResidualDeg": 0.0025590033268272925,
+            "localAzimuthDeg": 92.51062066241546,
+            "localAltitudeDeg": 57.62224730318804,
+            "referenceAzimuthDeg": 92.514609,
+            "referenceAltitudeDeg": 57.623657
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.003998406872227633,
+            "directionResidualDeg": 0.002558668605372797,
+            "localAzimuthDeg": 92.51624459312777,
+            "localAltitudeDeg": 57.7063935634761,
+            "referenceAzimuthDeg": 92.520243,
+            "referenceAltitudeDeg": 57.707802
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.004007889320007507,
+            "directionResidualDeg": 0.0025578023887189213,
+            "localAzimuthDeg": 92.52190011067998,
+            "localAltitudeDeg": 57.790539271443066,
+            "referenceAzimuthDeg": 92.525908,
+            "referenceAltitudeDeg": 57.791946
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.004016539811061648,
+            "directionResidualDeg": 0.002556848720149086,
+            "localAzimuthDeg": 92.52758746018894,
+            "localAltitudeDeg": 57.87468442481268,
+            "referenceAzimuthDeg": 92.531604,
+            "referenceAltitudeDeg": 57.87609
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.00402611065152314,
+            "directionResidualDeg": 0.002556038059915519,
+            "localAzimuthDeg": 92.5333068893485,
+            "localAltitudeDeg": 57.95882902122843,
+            "referenceAzimuthDeg": 92.537333,
+            "referenceAltitudeDeg": 57.960233
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.004036351524291604,
+            "directionResidualDeg": 0.0025558077618568803,
+            "localAzimuthDeg": 92.5390586484757,
+            "localAltitudeDeg": 58.04297305843085,
+            "referenceAzimuthDeg": 92.543095,
+            "referenceAltitudeDeg": 58.044376
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.00404600946814071,
+            "directionResidualDeg": 0.0025550549238447353,
+            "localAzimuthDeg": 92.54484299053186,
+            "localAltitudeDeg": 58.1271165340573,
+            "referenceAzimuthDeg": 92.548889,
+            "referenceAltitudeDeg": 58.128518
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.004054828841788094,
+            "directionResidualDeg": 0.0025536703198860717,
+            "localAzimuthDeg": 92.55066017115823,
+            "localAltitudeDeg": 58.211259445663885,
+            "referenceAzimuthDeg": 92.554715,
+            "referenceAltitudeDeg": 58.212659
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0040645512734442946,
+            "directionResidualDeg": 0.002552971439973621,
+            "localAzimuthDeg": 92.55651044872656,
+            "localAltitudeDeg": 58.29540179092835,
+            "referenceAzimuthDeg": 92.560575,
+            "referenceAltitudeDeg": 58.2968
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.004074915646583577,
+            "directionResidualDeg": 0.002552841930081823,
+            "localAzimuthDeg": 92.56239408435341,
+            "localAltitudeDeg": 58.37954356734644,
+            "referenceAzimuthDeg": 92.566469,
+            "referenceAltitudeDeg": 58.380941
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.004084658044916978,
+            "directionResidualDeg": 0.0025516334131056285,
+            "localAzimuthDeg": 92.56831134195508,
+            "localAltitudeDeg": 58.46368477248688,
+            "referenceAzimuthDeg": 92.572396,
+            "referenceAltitudeDeg": 58.46508
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.002179420519979658,
+            "directionResidualDeg": 0.00256053159159704,
+            "localAzimuthDeg": 176.51869357948001,
+            "localAltitudeDeg": 43.60101627644042,
+            "referenceAzimuthDeg": 176.520873,
+            "referenceAltitudeDeg": 43.599
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.002174225892929371,
+            "directionResidualDeg": 0.002560240312023856,
+            "localAzimuthDeg": 176.63485977410707,
+            "localAltitudeDeg": 43.60468492087232,
+            "referenceAzimuthDeg": 176.637034,
+            "referenceAltitudeDeg": 43.602666
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0021692004236513185,
+            "directionResidualDeg": 0.002559619660719966,
+            "localAzimuthDeg": 176.75103979957635,
+            "localAltitudeDeg": 43.608233039440144,
+            "referenceAzimuthDeg": 176.753209,
+            "referenceAltitudeDeg": 43.606212
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0021638114110089646,
+            "directionResidualDeg": 0.00255919993955404,
+            "localAzimuthDeg": 176.86723318858898,
+            "localAltitudeDeg": 43.61166060429048,
+            "referenceAzimuthDeg": 176.869397,
+            "referenceAltitudeDeg": 43.609637
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0021575265588751336,
+            "directionResidualDeg": 0.0025579352773514334,
+            "localAzimuthDeg": 176.98343947344114,
+            "localAltitudeDeg": 43.61496758854434,
+            "referenceAzimuthDeg": 176.985597,
+            "referenceAltitudeDeg": 43.612942
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0021518140577256872,
+            "directionResidualDeg": 0.0025572466211883998,
+            "localAzimuthDeg": 177.09965818594227,
+            "localAltitudeDeg": 43.61815396629537,
+            "referenceAzimuthDeg": 177.10181,
+            "referenceAltitudeDeg": 43.616126
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0021471425751258266,
+            "directionResidualDeg": 0.002556525803445261,
+            "localAzimuthDeg": 177.2158888574249,
+            "localAltitudeDeg": 43.62121971261117,
+            "referenceAzimuthDeg": 177.218036,
+            "referenceAltitudeDeg": 43.61919
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.002140980994937536,
+            "directionResidualDeg": 0.0025554323356864485,
+            "localAzimuthDeg": 177.33213101900506,
+            "localAltitudeDeg": 43.624164803540644,
+            "referenceAzimuthDeg": 177.334272,
+            "referenceAltitudeDeg": 43.622133
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.002135798678324363,
+            "directionResidualDeg": 0.002555035271898342,
+            "localAzimuthDeg": 177.4483842013217,
+            "localAltitudeDeg": 43.62698921610734,
+            "referenceAzimuthDeg": 177.45052,
+            "referenceAltitudeDeg": 43.624955
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0021300654175036016,
+            "directionResidualDeg": 0.002553849138342072,
+            "localAzimuthDeg": 177.5646479345825,
+            "localAltitudeDeg": 43.62969292831197,
+            "referenceAzimuthDeg": 177.566778,
+            "referenceAltitudeDeg": 43.627657
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.002124251139775879,
+            "directionResidualDeg": 0.0025528597567926617,
+            "localAzimuthDeg": 177.68092174886021,
+            "localAltitudeDeg": 43.63227591913923,
+            "referenceAzimuthDeg": 177.683046,
+            "referenceAltitudeDeg": 43.630238
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0021188263111184824,
+            "directionResidualDeg": 0.0025522568354600004,
+            "localAzimuthDeg": 177.7972051736889,
+            "localAltitudeDeg": 43.63473816854928,
+            "referenceAzimuthDeg": 177.799324,
+            "referenceAltitudeDeg": 43.632698
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.002113261567956215,
+            "directionResidualDeg": 0.0025517950611183174,
+            "localAzimuthDeg": 177.91349773843206,
+            "localAltitudeDeg": 43.637079657486325,
+            "referenceAzimuthDeg": 177.915611,
+            "referenceAltitudeDeg": 43.635037
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0014957525710883601,
+            "directionResidualDeg": 0.0025610577328032693,
+            "localAzimuthDeg": 347.51796075257107,
+            "localAltitudeDeg": 1.8318495698597441,
+            "referenceAzimuthDeg": 347.516465,
+            "referenceAltitudeDeg": 1.833929
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0014945418707839053,
+            "directionResidualDeg": 0.0025603829711651604,
+            "localAzimuthDeg": 347.4337185418708,
+            "localAltitudeDeg": 1.8315775313358507,
+            "referenceAzimuthDeg": 347.432224,
+            "referenceAltitudeDeg": 1.833657
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0014935481056568278,
+            "directionResidualDeg": 0.0025598965103627797,
+            "localAzimuthDeg": 347.34947654810566,
+            "localAltitudeDeg": 1.8313044171444492,
+            "referenceAzimuthDeg": 347.347983,
+            "referenceAltitudeDeg": 1.833384
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0014927707856600136,
+            "directionResidualDeg": 0.002559597644923261,
+            "localAzimuthDeg": 347.26523477078564,
+            "localAltitudeDeg": 1.8310302276365094,
+            "referenceAzimuthDeg": 347.263742,
+            "referenceAltitudeDeg": 1.83311
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.001491209397613602,
+            "directionResidualDeg": 0.0025580905915343947,
+            "localAzimuthDeg": 347.1809932093976,
+            "localAltitudeDeg": 1.8307549631653268,
+            "referenceAzimuthDeg": 347.179502,
+            "referenceAltitudeDeg": 1.832834
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0014898634755695639,
+            "directionResidualDeg": 0.0025575828420973507,
+            "localAzimuthDeg": 347.09675186347556,
+            "localAltitudeDeg": 1.830478624086894,
+            "referenceAzimuthDeg": 347.095262,
+            "referenceAltitudeDeg": 1.832558
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.001488732604229881,
+            "directionResidualDeg": 0.002556447971241059,
+            "localAzimuthDeg": 347.01251073260426,
+            "localAltitudeDeg": 1.830201210759768,
+            "referenceAzimuthDeg": 347.011022,
+            "referenceAltitudeDeg": 1.83228
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0014878162417630847,
+            "directionResidualDeg": 0.00255631140054939,
+            "localAzimuthDeg": 346.92826981624177,
+            "localAltitudeDeg": 1.8299227235446112,
+            "referenceAzimuthDeg": 346.926782,
+            "referenceAltitudeDeg": 1.832002
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.001487113919154126,
+            "directionResidualDeg": 0.002555545919035304,
+            "localAzimuthDeg": 346.84402911391913,
+            "localAltitudeDeg": 1.8296431628048957,
+            "referenceAzimuthDeg": 346.842542,
+            "referenceAltitudeDeg": 1.831722
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0014856252182653407,
+            "directionResidualDeg": 0.0025543830242693217,
+            "localAzimuthDeg": 346.7597886252183,
+            "localAltitudeDeg": 1.8293625289065303,
+            "referenceAzimuthDeg": 346.758303,
+            "referenceAltitudeDeg": 1.831441
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.001484349568329435,
+            "directionResidualDeg": 0.002553403484078939,
+            "localAzimuthDeg": 346.6755483495683,
+            "localAltitudeDeg": 1.8290808222176362,
+            "referenceAzimuthDeg": 346.674064,
+            "referenceAltitudeDeg": 1.831159
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0014832865492735436,
+            "directionResidualDeg": 0.0025526066196837932,
+            "localAzimuthDeg": 346.5913082865493,
+            "localAltitudeDeg": 1.828798043109157,
+            "referenceAzimuthDeg": 346.589825,
+            "referenceAltitudeDeg": 1.830876
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0014824356361486934,
+            "directionResidualDeg": 0.0025519917095533293,
+            "localAzimuthDeg": 346.50706843563614,
+            "localAltitudeDeg": 1.8285141919542538,
+            "referenceAzimuthDeg": 346.505586,
+            "referenceAltitudeDeg": 1.830592
+          }
+        ]
+      },
+      "earth": {
+        "count": 39,
+        "directionMaxDeg": 0.0021045496127706305,
+        "directionMedianDeg": 0.0021006202772097453,
+        "azimuthCircularMaxDeg": 0.012233306972348146,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.012052202891766228,
+            "directionResidualDeg": 0.002099681958170107,
+            "localAzimuthDeg": 190.97672379710824,
+            "localAltitudeDeg": 83.28988025020001,
+            "referenceAzimuthDeg": 190.988776,
+            "referenceAltitudeDeg": 83.288323
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.01206704148913218,
+            "directionResidualDeg": 0.0020997584248139394,
+            "localAzimuthDeg": 190.86725495851087,
+            "localAltitudeDeg": 83.29140407229389,
+            "referenceAzimuthDeg": 190.879322,
+            "referenceAltitudeDeg": 83.289848
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.01208229227009383,
+            "directionResidualDeg": 0.002100099309391179,
+            "localAzimuthDeg": 190.7577097077299,
+            "localAltitudeDeg": 83.29292620595378,
+            "referenceAzimuthDeg": 190.769792,
+            "referenceAltitudeDeg": 83.291371
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.012097873454280261,
+            "directionResidualDeg": 0.0020999305397916097,
+            "localAzimuthDeg": 190.64808812654573,
+            "localAltitudeDeg": 83.29444661442975,
+            "referenceAzimuthDeg": 190.660186,
+            "referenceAltitudeDeg": 83.292893
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.012112705746915253,
+            "directionResidualDeg": 0.0021006202772097453,
+            "localAzimuthDeg": 190.53839029425308,
+            "localAltitudeDeg": 83.29596526104343,
+            "referenceAzimuthDeg": 190.550503,
+            "referenceAltitudeDeg": 83.294412
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.01212770803181229,
+            "directionResidualDeg": 0.0021007337894002587,
+            "localAzimuthDeg": 190.42861629196818,
+            "localAltitudeDeg": 83.29748210913793,
+            "referenceAzimuthDeg": 190.440744,
+            "referenceAltitudeDeg": 83.29593
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.012142797774203018,
+            "directionResidualDeg": 0.002100238974226182,
+            "localAzimuthDeg": 190.3187662022258,
+            "localAltitudeDeg": 83.29899712207127,
+            "referenceAzimuthDeg": 190.330909,
+            "referenceAltitudeDeg": 83.297447
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.012157890073439148,
+            "directionResidualDeg": 0.0021005788886143714,
+            "localAzimuthDeg": 190.20884010992657,
+            "localAltitudeDeg": 83.30051026321479,
+            "referenceAzimuthDeg": 190.220998,
+            "referenceAltitudeDeg": 83.298961
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.012172898335052196,
+            "directionResidualDeg": 0.002100980713767609,
+            "localAzimuthDeg": 190.09883810166494,
+            "localAltitudeDeg": 83.3020214959526,
+            "referenceAzimuthDeg": 190.111011,
+            "referenceAltitudeDeg": 83.300473
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.012188738720453784,
+            "directionResidualDeg": 0.0021007531843487497,
+            "localAzimuthDeg": 189.98876026127954,
+            "localAltitudeDeg": 83.30353078375269,
+            "referenceAzimuthDeg": 190.000949,
+            "referenceAltitudeDeg": 83.301984
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.012203312415522305,
+            "directionResidualDeg": 0.0021011771052000857,
+            "localAzimuthDeg": 189.87860668758447,
+            "localAltitudeDeg": 83.3050380899222,
+            "referenceAzimuthDeg": 189.89081,
+            "referenceAltitudeDeg": 83.303492
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.012218531905404006,
+            "directionResidualDeg": 0.002100904256971053,
+            "localAzimuthDeg": 189.7683774680946,
+            "localAltitudeDeg": 83.30654337796803,
+            "referenceAzimuthDeg": 189.780596,
+            "referenceAltitudeDeg": 83.304999
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.012233306972348146,
+            "directionResidualDeg": 0.0021012928304822696,
+            "localAzimuthDeg": 189.65807269302766,
+            "localAltitudeDeg": 83.30804661140161,
+            "referenceAzimuthDeg": 189.670306,
+            "referenceAltitudeDeg": 83.306503
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0011389340983498641,
+            "directionResidualDeg": 0.0020849867700126535,
+            "localAzimuthDeg": 217.13541506590164,
+            "localAltitudeDeg": 31.07366770104454,
+            "referenceAzimuthDeg": 217.136554,
+            "referenceAltitudeDeg": 31.071825
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0011369507339793472,
+            "directionResidualDeg": 0.0020853272922505993,
+            "localAzimuthDeg": 217.12143104926602,
+            "localAltitudeDeg": 31.078318009610076,
+            "referenceAzimuthDeg": 217.122568,
+            "referenceAltitudeDeg": 31.076474
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0011353039576817991,
+            "directionResidualDeg": 0.0020859233794096785,
+            "localAzimuthDeg": 217.10744869604233,
+            "localAltitudeDeg": 31.0829894526867,
+            "referenceAzimuthDeg": 217.108584,
+            "referenceAltitudeDeg": 31.081144
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0011329453456028205,
+            "directionResidualDeg": 0.0020854585876597903,
+            "localAzimuthDeg": 217.0934680546544,
+            "localAltitudeDeg": 31.087682015644788,
+            "referenceAzimuthDeg": 217.094601,
+            "referenceAltitudeDeg": 31.085836
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0011308269697565265,
+            "directionResidualDeg": 0.0020851846989692366,
+            "localAzimuthDeg": 217.07948917303025,
+            "localAltitudeDeg": 31.092395683927514,
+            "referenceAzimuthDeg": 217.08062,
+            "referenceAltitudeDeg": 31.090549
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0011289008456571992,
+            "directionResidualDeg": 0.0020859553767501203,
+            "localAzimuthDeg": 217.06551209915435,
+            "localAltitudeDeg": 31.097130442877926,
+            "referenceAzimuthDeg": 217.066641,
+            "referenceAltitudeDeg": 31.095282
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0011271189883643729,
+            "directionResidualDeg": 0.0020859664578420658,
+            "localAzimuthDeg": 217.05153688101163,
+            "localAltitudeDeg": 31.101886277743738,
+            "referenceAzimuthDeg": 217.052664,
+            "referenceAltitudeDeg": 31.100037
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0011254332895589414,
+            "directionResidualDeg": 0.0020860711958655847,
+            "localAzimuthDeg": 217.03756356671045,
+            "localAltitudeDeg": 31.106663173646712,
+            "referenceAzimuthDeg": 217.038689,
+            "referenceAltitudeDeg": 31.104813
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.0011237956069862776,
+            "directionResidualDeg": 0.0020862371669317847,
+            "localAzimuthDeg": 217.02359220439303,
+            "localAltitudeDeg": 31.111461115601077,
+            "referenceAzimuthDeg": 217.024716,
+            "referenceAltitudeDeg": 31.10961
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0011221583270355495,
+            "directionResidualDeg": 0.002086432343300135,
+            "localAzimuthDeg": 217.00962284167295,
+            "localAltitudeDeg": 31.116280088716938,
+            "referenceAzimuthDeg": 217.010745,
+            "referenceAltitudeDeg": 31.114428
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0011204721166109266,
+            "directionResidualDeg": 0.0020866235182252207,
+            "localAzimuthDeg": 216.9956555278834,
+            "localAltitudeDeg": 31.121120077424482,
+            "referenceAzimuthDeg": 216.996776,
+            "referenceAltitudeDeg": 31.119267
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0011186892580496988,
+            "directionResidualDeg": 0.0020867786415226714,
+            "localAzimuthDeg": 216.98169031074195,
+            "localAltitudeDeg": 31.125981066618202,
+            "referenceAzimuthDeg": 216.982809,
+            "referenceAltitudeDeg": 31.124127
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0011167618727085937,
+            "directionResidualDeg": 0.00208686558371079,
+            "localAzimuthDeg": 216.96772723812728,
+            "localAltitudeDeg": 31.130863041045753,
+            "referenceAzimuthDeg": 216.968844,
+            "referenceAltitudeDeg": 31.129008
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0016949968410244765,
+            "directionResidualDeg": 0.002102382156122102,
+            "localAzimuthDeg": 313.680239996841,
+            "localAltitudeDeg": 6.626730927143411,
+            "referenceAzimuthDeg": 313.678545,
+            "referenceAltitudeDeg": 6.62799
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0016942350757176428,
+            "directionResidualDeg": 0.0021029421702964844,
+            "localAzimuthDeg": 313.6931112350757,
+            "localAltitudeDeg": 6.627742977182255,
+            "referenceAzimuthDeg": 313.691417,
+            "referenceAltitudeDeg": 6.629004
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0016930543169451084,
+            "directionResidualDeg": 0.0021030114812161174,
+            "localAzimuthDeg": 313.70599005431694,
+            "localAltitudeDeg": 6.628733293494562,
+            "referenceAzimuthDeg": 313.704297,
+            "referenceAltitudeDeg": 6.629996
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0016914012693973746,
+            "directionResidualDeg": 0.002103154335605819,
+            "localAzimuthDeg": 313.71887640126937,
+            "localAltitudeDeg": 6.629701867676577,
+            "referenceAzimuthDeg": 313.717185,
+            "referenceAltitudeDeg": 6.630967
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0016902230545383645,
+            "directionResidualDeg": 0.002102925022358537,
+            "localAzimuthDeg": 313.7317702230545,
+            "localAltitudeDeg": 6.630648691473072,
+            "referenceAzimuthDeg": 313.73008,
+            "referenceAltitudeDeg": 6.631915
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.001689466706920939,
+            "directionResidualDeg": 0.0021034886831269046,
+            "localAzimuthDeg": 313.7446714667069,
+            "localAltitudeDeg": 6.631573756730066,
+            "referenceAzimuthDeg": 313.742982,
+            "referenceAltitudeDeg": 6.632842
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.001688079219491101,
+            "directionResidualDeg": 0.0021034136058499845,
+            "localAzimuthDeg": 313.7575800792195,
+            "localAltitudeDeg": 6.6324770554113694,
+            "referenceAzimuthDeg": 313.755892,
+            "referenceAltitudeDeg": 6.633747
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.001687007435407395,
+            "directionResidualDeg": 0.002104058958723276,
+            "localAzimuthDeg": 313.7704960074354,
+            "localAltitudeDeg": 6.633358579580575,
+            "referenceAzimuthDeg": 313.768809,
+            "referenceAltitudeDeg": 6.634631
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.0016851981255854298,
+            "directionResidualDeg": 0.0021033872176346212,
+            "localAzimuthDeg": 313.78341919812556,
+            "localAltitudeDeg": 6.634218321417894,
+            "referenceAzimuthDeg": 313.781734,
+            "referenceAltitudeDeg": 6.635492
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0016845985139752884,
+            "directionResidualDeg": 0.0021041521523767503,
+            "localAzimuthDeg": 313.796349598514,
+            "localAltitudeDeg": 6.635056273243398,
+            "referenceAzimuthDeg": 313.794665,
+            "referenceAltitudeDeg": 6.636332
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0016831541952342377,
+            "directionResidualDeg": 0.0021041294783859057,
+            "localAzimuthDeg": 313.80928715419526,
+            "localAltitudeDeg": 6.635872427391092,
+            "referenceAzimuthDeg": 313.807604,
+            "referenceAltitudeDeg": 6.63715
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0016818122214772302,
+            "directionResidualDeg": 0.002104071697602341,
+            "localAzimuthDeg": 313.8222318122215,
+            "localAltitudeDeg": 6.636666776401947,
+            "referenceAzimuthDeg": 313.82055,
+            "referenceAltitudeDeg": 6.637946
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.001680519457693208,
+            "directionResidualDeg": 0.0021045496127706305,
+            "localAzimuthDeg": 313.8351835194577,
+            "localAltitudeDeg": 6.637439312921874,
+            "referenceAzimuthDeg": 313.833503,
+            "referenceAltitudeDeg": 6.638721
+          }
+        ]
+      }
+    },
+    "CN+S": {
+      "sun": {
+        "count": 39,
+        "directionMaxDeg": 0.0025610577328059126,
+        "directionMedianDeg": 0.002556447971241059,
+        "azimuthCircularMaxDeg": 0.004084658044916978,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.003970406263761106,
+            "directionResidualDeg": 0.0025609487384172735,
+            "localAzimuthDeg": 92.49946659373624,
+            "localAltitudeDeg": 57.45395313444418,
+            "referenceAzimuthDeg": 92.503437,
+            "referenceAltitudeDeg": 57.455366
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.003979924029465565,
+            "directionResidualDeg": 0.0025603587408870605,
+            "localAzimuthDeg": 92.50502807597051,
+            "localAltitudeDeg": 57.53810049277913,
+            "referenceAzimuthDeg": 92.509008,
+            "referenceAltitudeDeg": 57.539512
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.003988337584530655,
+            "directionResidualDeg": 0.002559003326834237,
+            "localAzimuthDeg": 92.51062066241546,
+            "localAltitudeDeg": 57.622247303188026,
+            "referenceAzimuthDeg": 92.514609,
+            "referenceAltitudeDeg": 57.623657
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.003998406872227633,
+            "directionResidualDeg": 0.0025586686053780255,
+            "localAzimuthDeg": 92.51624459312777,
+            "localAltitudeDeg": 57.706393563476084,
+            "referenceAzimuthDeg": 92.520243,
+            "referenceAltitudeDeg": 57.707802
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.004007889320007507,
+            "directionResidualDeg": 0.0025578023887259005,
+            "localAzimuthDeg": 92.52190011067998,
+            "localAltitudeDeg": 57.79053927144305,
+            "referenceAzimuthDeg": 92.525908,
+            "referenceAltitudeDeg": 57.791946
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.004016539811061648,
+            "directionResidualDeg": 0.002556848720156019,
+            "localAzimuthDeg": 92.52758746018894,
+            "localAltitudeDeg": 57.87468442481266,
+            "referenceAzimuthDeg": 92.531604,
+            "referenceAltitudeDeg": 57.87609
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.00402611065152314,
+            "directionResidualDeg": 0.0025560380599223553,
+            "localAzimuthDeg": 92.5333068893485,
+            "localAltitudeDeg": 57.95882902122842,
+            "referenceAzimuthDeg": 92.537333,
+            "referenceAltitudeDeg": 57.960233
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.004036351524291604,
+            "directionResidualDeg": 0.002555807761863713,
+            "localAzimuthDeg": 92.5390586484757,
+            "localAltitudeDeg": 58.04297305843084,
+            "referenceAzimuthDeg": 92.543095,
+            "referenceAltitudeDeg": 58.044376
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.00404600946814071,
+            "directionResidualDeg": 0.002555054923851699,
+            "localAzimuthDeg": 92.54484299053186,
+            "localAltitudeDeg": 58.127116534057286,
+            "referenceAzimuthDeg": 92.548889,
+            "referenceAltitudeDeg": 58.128518
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.004054828841788094,
+            "directionResidualDeg": 0.0025536703198913253,
+            "localAzimuthDeg": 92.55066017115823,
+            "localAltitudeDeg": 58.21125944566387,
+            "referenceAzimuthDeg": 92.554715,
+            "referenceAltitudeDeg": 58.212659
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0040645512734442946,
+            "directionResidualDeg": 0.002552971439980576,
+            "localAzimuthDeg": 92.55651044872656,
+            "localAltitudeDeg": 58.29540179092834,
+            "referenceAzimuthDeg": 92.560575,
+            "referenceAltitudeDeg": 58.2968
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.004074915646583577,
+            "directionResidualDeg": 0.002552841930097389,
+            "localAzimuthDeg": 92.56239408435341,
+            "localAltitudeDeg": 58.37954356734641,
+            "referenceAzimuthDeg": 92.566469,
+            "referenceAltitudeDeg": 58.380941
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.004084658044916978,
+            "directionResidualDeg": 0.0025516334131125747,
+            "localAzimuthDeg": 92.56831134195508,
+            "localAltitudeDeg": 58.463684772486864,
+            "referenceAzimuthDeg": 92.572396,
+            "referenceAltitudeDeg": 58.46508
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0021794205200080796,
+            "directionResidualDeg": 0.002560531591615385,
+            "localAzimuthDeg": 176.51869357948,
+            "localAltitudeDeg": 43.601016276440426,
+            "referenceAzimuthDeg": 176.520873,
+            "referenceAltitudeDeg": 43.599
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.002174225892957793,
+            "directionResidualDeg": 0.0025602403120297324,
+            "localAzimuthDeg": 176.63485977410704,
+            "localAltitudeDeg": 43.604684920872316,
+            "referenceAzimuthDeg": 176.637034,
+            "referenceAltitudeDeg": 43.602666
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.00216920042367974,
+            "directionResidualDeg": 0.0025596196607306026,
+            "localAzimuthDeg": 176.75103979957632,
+            "localAltitudeDeg": 43.608233039440144,
+            "referenceAzimuthDeg": 176.753209,
+            "referenceAltitudeDeg": 43.606212
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0021638114110089646,
+            "directionResidualDeg": 0.00255919993955404,
+            "localAzimuthDeg": 176.86723318858898,
+            "localAltitudeDeg": 43.61166060429048,
+            "referenceAzimuthDeg": 176.869397,
+            "referenceAltitudeDeg": 43.609637
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0021575265588751336,
+            "directionResidualDeg": 0.0025579352773514334,
+            "localAzimuthDeg": 176.98343947344114,
+            "localAltitudeDeg": 43.61496758854434,
+            "referenceAzimuthDeg": 176.985597,
+            "referenceAltitudeDeg": 43.612942
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0021518140577256872,
+            "directionResidualDeg": 0.0025572466211883998,
+            "localAzimuthDeg": 177.09965818594227,
+            "localAltitudeDeg": 43.61815396629537,
+            "referenceAzimuthDeg": 177.10181,
+            "referenceAltitudeDeg": 43.616126
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0021471425751542483,
+            "directionResidualDeg": 0.002556525803456126,
+            "localAzimuthDeg": 177.21588885742486,
+            "localAltitudeDeg": 43.62121971261117,
+            "referenceAzimuthDeg": 177.218036,
+            "referenceAltitudeDeg": 43.61919
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.002140980994937536,
+            "directionResidualDeg": 0.0025554323356864485,
+            "localAzimuthDeg": 177.33213101900506,
+            "localAltitudeDeg": 43.624164803540644,
+            "referenceAzimuthDeg": 177.334272,
+            "referenceAltitudeDeg": 43.622133
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.002135798678352785,
+            "directionResidualDeg": 0.0025550352719090307,
+            "localAzimuthDeg": 177.44838420132166,
+            "localAltitudeDeg": 43.62698921610734,
+            "referenceAzimuthDeg": 177.45052,
+            "referenceAltitudeDeg": 43.624955
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0021300654175320233,
+            "directionResidualDeg": 0.0025538491383633637,
+            "localAzimuthDeg": 177.56464793458247,
+            "localAltitudeDeg": 43.62969292831197,
+            "referenceAzimuthDeg": 177.566778,
+            "referenceAltitudeDeg": 43.627657
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0021242511398043007,
+            "directionResidualDeg": 0.002552859756798322,
+            "localAzimuthDeg": 177.6809217488602,
+            "localAltitudeDeg": 43.632275919139225,
+            "referenceAzimuthDeg": 177.683046,
+            "referenceAltitudeDeg": 43.630238
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.002118826311146904,
+            "directionResidualDeg": 0.0025522568354706724,
+            "localAzimuthDeg": 177.79720517368887,
+            "localAltitudeDeg": 43.63473816854928,
+            "referenceAzimuthDeg": 177.799324,
+            "referenceAltitudeDeg": 43.632698
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0021132615679846367,
+            "directionResidualDeg": 0.0025517950611187667,
+            "localAzimuthDeg": 177.91349773843203,
+            "localAltitudeDeg": 43.63707965748632,
+            "referenceAzimuthDeg": 177.915611,
+            "referenceAltitudeDeg": 43.635037
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0014957525710883601,
+            "directionResidualDeg": 0.0025610577328059126,
+            "localAzimuthDeg": 347.51796075257107,
+            "localAltitudeDeg": 1.8318495698597408,
+            "referenceAzimuthDeg": 347.516465,
+            "referenceAltitudeDeg": 1.833929
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0014945418707839053,
+            "directionResidualDeg": 0.0025603829711651604,
+            "localAzimuthDeg": 347.4337185418708,
+            "localAltitudeDeg": 1.8315775313358507,
+            "referenceAzimuthDeg": 347.432224,
+            "referenceAltitudeDeg": 1.833657
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.0014935481056568278,
+            "directionResidualDeg": 0.0025598965103627797,
+            "localAzimuthDeg": 347.34947654810566,
+            "localAltitudeDeg": 1.8313044171444492,
+            "referenceAzimuthDeg": 347.347983,
+            "referenceAltitudeDeg": 1.833384
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0014927707856600136,
+            "directionResidualDeg": 0.0025595976449229287,
+            "localAzimuthDeg": 347.26523477078564,
+            "localAltitudeDeg": 1.8310302276365098,
+            "referenceAzimuthDeg": 347.263742,
+            "referenceAltitudeDeg": 1.83311
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.001491209397613602,
+            "directionResidualDeg": 0.0025580905915343947,
+            "localAzimuthDeg": 347.1809932093976,
+            "localAltitudeDeg": 1.8307549631653268,
+            "referenceAzimuthDeg": 347.179502,
+            "referenceAltitudeDeg": 1.832834
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0014898634755695639,
+            "directionResidualDeg": 0.0025575828420976833,
+            "localAzimuthDeg": 347.09675186347556,
+            "localAltitudeDeg": 1.8304786240868938,
+            "referenceAzimuthDeg": 347.095262,
+            "referenceAltitudeDeg": 1.832558
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.001488732604229881,
+            "directionResidualDeg": 0.002556447971241059,
+            "localAzimuthDeg": 347.01251073260426,
+            "localAltitudeDeg": 1.830201210759768,
+            "referenceAzimuthDeg": 347.011022,
+            "referenceAltitudeDeg": 1.83228
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0014878162417630847,
+            "directionResidualDeg": 0.002556311400549723,
+            "localAzimuthDeg": 346.92826981624177,
+            "localAltitudeDeg": 1.8299227235446107,
+            "referenceAzimuthDeg": 346.926782,
+            "referenceAltitudeDeg": 1.832002
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.001487113919154126,
+            "directionResidualDeg": 0.002555545919035304,
+            "localAzimuthDeg": 346.84402911391913,
+            "localAltitudeDeg": 1.8296431628048957,
+            "referenceAzimuthDeg": 346.842542,
+            "referenceAltitudeDeg": 1.831722
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0014856252182653407,
+            "directionResidualDeg": 0.002554383024269655,
+            "localAzimuthDeg": 346.7597886252183,
+            "localAltitudeDeg": 1.8293625289065298,
+            "referenceAzimuthDeg": 346.758303,
+            "referenceAltitudeDeg": 1.831441
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0014843495683862784,
+            "directionResidualDeg": 0.0025534034841107104,
+            "localAzimuthDeg": 346.6755483495684,
+            "localAltitudeDeg": 1.8290808222176358,
+            "referenceAzimuthDeg": 346.674064,
+            "referenceAltitudeDeg": 1.831159
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0014832865492735436,
+            "directionResidualDeg": 0.0025526066196837932,
+            "localAzimuthDeg": 346.5913082865493,
+            "localAltitudeDeg": 1.828798043109157,
+            "referenceAzimuthDeg": 346.589825,
+            "referenceAltitudeDeg": 1.830876
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0014824356362055369,
+            "directionResidualDeg": 0.002551991709582912,
+            "localAzimuthDeg": 346.5070684356362,
+            "localAltitudeDeg": 1.8285141919542538,
+            "referenceAzimuthDeg": 346.505586,
+            "referenceAltitudeDeg": 1.830592
+          }
+        ]
+      },
+      "earth": {
+        "count": 39,
+        "directionMaxDeg": 0.0021043498429987252,
+        "directionMedianDeg": 0.0021004155454613757,
+        "azimuthCircularMaxDeg": 0.01223103729935815,
+        "measurements": [
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.012049902271769497,
+            "directionResidualDeg": 0.002099475393308729,
+            "localAzimuthDeg": 190.97672609772823,
+            "localAltitudeDeg": 83.28988021482422,
+            "referenceAzimuthDeg": 190.988776,
+            "referenceAltitudeDeg": 83.288323
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.012064745310141234,
+            "directionResidualDeg": 0.0020995524888538183,
+            "localAzimuthDeg": 190.86725725468986,
+            "localAltitudeDeg": 83.2914040374492,
+            "referenceAzimuthDeg": 190.879322,
+            "referenceAltitudeDeg": 83.289848
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.012079996511090485,
+            "directionResidualDeg": 0.002099893655274268,
+            "localAzimuthDeg": 190.7577120034889,
+            "localAltitudeDeg": 83.29292617157802,
+            "referenceAzimuthDeg": 190.769792,
+            "referenceAltitudeDeg": 83.291371
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.012095582200345234,
+            "directionResidualDeg": 0.0020997254897068105,
+            "localAzimuthDeg": 190.64809041779966,
+            "localAltitudeDeg": 83.29444658058323,
+            "referenceAzimuthDeg": 190.660186,
+            "referenceAltitudeDeg": 83.292893
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.012110414969100702,
+            "directionResidualDeg": 0.0021004155454613757,
+            "localAzimuthDeg": 190.5383925850309,
+            "localAltitudeDeg": 83.29596522766661,
+            "referenceAzimuthDeg": 190.550503,
+            "referenceAltitudeDeg": 83.294412
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.012125417732420374,
+            "directionResidualDeg": 0.0021005293272619583,
+            "localAzimuthDeg": 190.42861858226757,
+            "localAltitudeDeg": 83.29748207622728,
+            "referenceAzimuthDeg": 190.440744,
+            "referenceAltitudeDeg": 83.29593
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.012140512084272359,
+            "directionResidualDeg": 0.002100035104816932,
+            "localAzimuthDeg": 190.31876848791572,
+            "localAltitudeDeg": 83.29899708968881,
+            "referenceAzimuthDeg": 190.330909,
+            "referenceAltitudeDeg": 83.297447
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.012155609027246328,
+            "directionResidualDeg": 0.002100375674699139,
+            "localAzimuthDeg": 190.20884239097276,
+            "localAltitudeDeg": 83.30051023135583,
+            "referenceAzimuthDeg": 190.220998,
+            "referenceAltitudeDeg": 83.298961
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.012170617867326428,
+            "directionResidualDeg": 0.0021007777988155817,
+            "localAzimuthDeg": 190.09884038213266,
+            "localAltitudeDeg": 83.30202146456024,
+            "referenceAzimuthDeg": 190.111011,
+            "referenceAltitudeDeg": 83.300473
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.012186458849100745,
+            "directionResidualDeg": 0.002100550511987751,
+            "localAzimuthDeg": 189.9887625411509,
+            "localAltitudeDeg": 83.30353075282906,
+            "referenceAzimuthDeg": 190.000949,
+            "referenceAltitudeDeg": 83.301984
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.012201037284967242,
+            "directionResidualDeg": 0.0021009751063847614,
+            "localAzimuthDeg": 189.87860896271502,
+            "localAltitudeDeg": 83.30503805951848,
+            "referenceAzimuthDeg": 189.89081,
+            "referenceAltitudeDeg": 83.303492
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.012216261551458274,
+            "directionResidualDeg": 0.002100702874279383,
+            "localAzimuthDeg": 189.76837973844854,
+            "localAltitudeDeg": 83.30654334808621,
+            "referenceAzimuthDeg": 189.780596,
+            "referenceAltitudeDeg": 83.304999
+          },
+          {
+            "site": {
+              "latDeg": 0,
+              "lonDeg": 0
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.01223103729935815,
+            "directionResidualDeg": 0.0021010917557716664,
+            "localAzimuthDeg": 189.65807496270065,
+            "localAltitudeDeg": 83.3080465819862,
+            "referenceAzimuthDeg": 189.670306,
+            "referenceAltitudeDeg": 83.306503
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0011386410737372898,
+            "directionResidualDeg": 0.0020847807694819444,
+            "localAzimuthDeg": 217.13541535892625,
+            "localAltitudeDeg": 31.073667600816133,
+            "referenceAzimuthDeg": 217.136554,
+            "referenceAltitudeDeg": 31.071825
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0011366584027712179,
+            "directionResidualDeg": 0.002085121941024012,
+            "localAzimuthDeg": 217.12143134159723,
+            "localAltitudeDeg": 31.078317909591266,
+            "referenceAzimuthDeg": 217.122568,
+            "referenceAltitudeDeg": 31.076474
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.001135011806724151,
+            "directionResidualDeg": 0.0020857183004867794,
+            "localAzimuthDeg": 217.10744898819328,
+            "localAltitudeDeg": 31.082989352701905,
+            "referenceAzimuthDeg": 217.108584,
+            "referenceAltitudeDeg": 31.081144
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.0011326538935065855,
+            "directionResidualDeg": 0.0020852541557790463,
+            "localAzimuthDeg": 217.0934683461065,
+            "localAltitudeDeg": 31.087681915871784,
+            "referenceAzimuthDeg": 217.094601,
+            "referenceAltitudeDeg": 31.085836
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0011305357024582463,
+            "directionResidualDeg": 0.0020849805432251187,
+            "localAzimuthDeg": 217.07948946429755,
+            "localAltitudeDeg": 31.09239558419156,
+            "referenceAzimuthDeg": 217.08062,
+            "referenceAltitudeDeg": 31.090549
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.001128609763412669,
+            "directionResidualDeg": 0.002085751524315826,
+            "localAzimuthDeg": 217.0655123902366,
+            "localAltitudeDeg": 31.097130343175596,
+            "referenceAzimuthDeg": 217.066641,
+            "referenceAltitudeDeg": 31.095282
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0011268286139056727,
+            "directionResidualDeg": 0.0020857632330014623,
+            "localAzimuthDeg": 217.0515371713861,
+            "localAltitudeDeg": 31.101886178258177,
+            "referenceAzimuthDeg": 217.052664,
+            "referenceAltitudeDeg": 31.100037
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0011251436267514237,
+            "directionResidualDeg": 0.00208586859399154,
+            "localAzimuthDeg": 217.03756385637325,
+            "localAltitudeDeg": 31.106663074375888,
+            "referenceAzimuthDeg": 217.038689,
+            "referenceAltitudeDeg": 31.104813
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.0011235061381000833,
+            "directionResidualDeg": 0.002086034825312659,
+            "localAzimuthDeg": 217.0235924938619,
+            "localAltitudeDeg": 31.111461016368725,
+            "referenceAzimuthDeg": 217.024716,
+            "referenceAltitudeDeg": 31.10961
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0011218690526106911,
+            "directionResidualDeg": 0.002086230265518181,
+            "localAzimuthDeg": 217.00962313094738,
+            "localAltitudeDeg": 31.116279989525626,
+            "referenceAzimuthDeg": 217.010745,
+            "referenceAltitudeDeg": 31.114428
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0011201835624774503,
+            "directionResidualDeg": 0.0020864220712721194,
+            "localAzimuthDeg": 216.99565581643753,
+            "localAltitudeDeg": 31.121119978450405,
+            "referenceAzimuthDeg": 216.996776,
+            "referenceAltitudeDeg": 31.119267
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.001118401426225546,
+            "directionResidualDeg": 0.002086577835715211,
+            "localAzimuthDeg": 216.98169059857378,
+            "localAltitudeDeg": 31.125980967865942,
+            "referenceAzimuthDeg": 216.982809,
+            "referenceAltitudeDeg": 31.124127
+          },
+          {
+            "site": {
+              "latDeg": 45,
+              "lonDeg": 30
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0011164742428775298,
+            "directionResidualDeg": 0.0020866650639182996,
+            "localAzimuthDeg": 216.9677275257571,
+            "localAltitudeDeg": 31.130862942336393,
+            "referenceAzimuthDeg": 216.968844,
+            "referenceAltitudeDeg": 31.129008
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:00",
+            "azimuthCircularResidualDeg": 0.0016947256464732163,
+            "directionResidualDeg": 0.0021021769002119665,
+            "localAzimuthDeg": 313.68023972564646,
+            "localAltitudeDeg": 6.626730909662812,
+            "referenceAzimuthDeg": 313.678545,
+            "referenceAltitudeDeg": 6.62799
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:10",
+            "azimuthCircularResidualDeg": 0.0016939645198021935,
+            "directionResidualDeg": 0.0021027375264252397,
+            "localAzimuthDeg": 313.6931109645198,
+            "localAltitudeDeg": 6.627742959808886,
+            "referenceAzimuthDeg": 313.691417,
+            "referenceAltitudeDeg": 6.629004
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:20",
+            "azimuthCircularResidualDeg": 0.001692783924795549,
+            "directionResidualDeg": 0.00210280709278606,
+            "localAzimuthDeg": 313.7059897839248,
+            "localAltitudeDeg": 6.6287332761978774,
+            "referenceAzimuthDeg": 313.704297,
+            "referenceAltitudeDeg": 6.629996
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:30",
+            "azimuthCircularResidualDeg": 0.001691131521170064,
+            "directionResidualDeg": 0.0021029506380913867,
+            "localAzimuthDeg": 313.71887613152114,
+            "localAltitudeDeg": 6.629701850486899,
+            "referenceAzimuthDeg": 313.717185,
+            "referenceAltitudeDeg": 6.630967
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:40",
+            "azimuthCircularResidualDeg": 0.0016899534750791645,
+            "directionResidualDeg": 0.002102721550519807,
+            "localAzimuthDeg": 313.73176995347507,
+            "localAltitudeDeg": 6.630648674358936,
+            "referenceAzimuthDeg": 313.73008,
+            "referenceAltitudeDeg": 6.631915
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 00:50",
+            "azimuthCircularResidualDeg": 0.0016891972949792944,
+            "directionResidualDeg": 0.0021032854633164146,
+            "localAzimuthDeg": 313.74467119729496,
+            "localAltitudeDeg": 6.631573739694604,
+            "referenceAzimuthDeg": 313.742982,
+            "referenceAltitudeDeg": 6.632842
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:00",
+            "azimuthCircularResidualDeg": 0.0016878104606234956,
+            "directionResidualDeg": 0.002103211022128268,
+            "localAzimuthDeg": 313.75757981046064,
+            "localAltitudeDeg": 6.632477038481409,
+            "referenceAzimuthDeg": 313.755892,
+            "referenceAltitudeDeg": 6.633747
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:10",
+            "azimuthCircularResidualDeg": 0.0016867393318875656,
+            "directionResidualDeg": 0.002103857045657681,
+            "localAzimuthDeg": 313.77049573933186,
+            "localAltitudeDeg": 6.633358562759177,
+            "referenceAzimuthDeg": 313.768809,
+            "referenceAltitudeDeg": 6.634631
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:20",
+            "azimuthCircularResidualDeg": 0.001684930198678103,
+            "directionResidualDeg": 0.002103185571162026,
+            "localAzimuthDeg": 313.78341893019865,
+            "localAltitudeDeg": 6.634218304673884,
+            "referenceAzimuthDeg": 313.781734,
+            "referenceAltitudeDeg": 6.635492
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:30",
+            "azimuthCircularResidualDeg": 0.0016843307653857664,
+            "directionResidualDeg": 0.002103950766782621,
+            "localAzimuthDeg": 313.7963493307654,
+            "localAltitudeDeg": 6.635056256574648,
+            "referenceAzimuthDeg": 313.794665,
+            "referenceAltitudeDeg": 6.636332
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:40",
+            "azimuthCircularResidualDeg": 0.0016828871098368836,
+            "directionResidualDeg": 0.002103928744442467,
+            "localAzimuthDeg": 313.80928688710986,
+            "localAltitudeDeg": 6.635872410831494,
+            "referenceAzimuthDeg": 313.807604,
+            "referenceAltitudeDeg": 6.63715
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 01:50",
+            "azimuthCircularResidualDeg": 0.0016815458029100228,
+            "directionResidualDeg": 0.0021038716014914003,
+            "localAzimuthDeg": 313.82223154580294,
+            "localAltitudeDeg": 6.636666759948,
+            "referenceAzimuthDeg": 313.82055,
+            "referenceAltitudeDeg": 6.637946
+          },
+          {
+            "site": {
+              "latDeg": -89.5,
+              "lonDeg": 45
+            },
+            "utc": "2026-Jan-01 02:00",
+            "azimuthCircularResidualDeg": 0.0016802532242081725,
+            "directionResidualDeg": 0.0021043498429987252,
+            "localAzimuthDeg": 313.8351832532242,
+            "localAltitudeDeg": 6.637439296544035,
+            "referenceAzimuthDeg": 313.833503,
+            "referenceAltitudeDeg": 6.638721
+          }
+        ]
+      }
+    }
+  },
+  "limitations": [
+    "This is a controlled correction-only comparison, not an exact reproduction of Horizons apparent surface-observer processing.",
+    "The observer vector is spherical and correction is applied at the Moon center before the same observer subtraction; it is not a fully retarded/aberrated observer-site apparent direction.",
+    "The Horizons raw header identifies DE441 and the site/target; it does not establish an explicit lunar-fixed frame name in the inspected header. IAU_MOON residual may therefore include frame, kernel, site-model and other pipeline differences; no single cause is asserted."
+  ],
+  "interpretation": "Compare CN+S summaries with NONE to quantify whether corrections reduce baseline Sun bias; residual after corrections is not uniquely attributable to frame without a matched-frame experiment."
+}
