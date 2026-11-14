@@ -243,6 +243,19 @@ aynı görünürlük / analiz / HTTP / React / CSV
 
 Web API `horizonModel: "flat"` ve `"terrain"` kabul eder; dışarıdan terrain belgesi yüklemesi reddedilir. Terrain mevcut `runRegisteredAnalysis` ile üretilir. Her sonuç hesaplanan değerlerin yanında model, çerçeve ve uyarı taşır. CSV ayrıca kaynak kimlikleri ve zaman çözünürlüğünü içerir.
 
+## Temporal Shadow Intelligence
+
+Yeni izole modül: `src/features/analysis/illumination.mjs`. Açık zaman aralıklarından hücre bazlı aydınlanma/penumbra/umbra süreleri, görev döngüsü, kesintisiz süreler, geçişler, mevsimsel varyans, kapsama belirsizliği ve **Shadow Dynamics Fingerprint** üretir. Eksik örnekler karanlık sayılmaz. Kısa dönem gölgesi kalıcı PSR ilan edilmez.
+
+Deneysel `illumination-spatial.mjs`: sınır geometrisi hareketi ve 4-komşu tam aydınlık bileşenleri; fiziksel sınır takibi veya araç rotası değildir. Agent3 sürümlü 2D harita sözleşmesi henüz bulunmadığından gerçek raster entegrasyonu doğrulanmış sayılmaz. Mevcut `analyzeVisibility()` API'si değişmez.
+
+Sözleşme, normalizasyon, eksik veri politikası, hiyerarşik çalışma planı, benchmark ve açık doğrulama kapıları: [Agent5 handoff](docs/team/07-temporal-illumination-handoff.md).
+
+```bash
+node --test src/features/analysis/tests/*.test.mjs
+node scripts/benchmark-illumination.mjs
+```
+
 ## Kurulum ve kullanım
 
 ### Bilimsel verileri hazırlama

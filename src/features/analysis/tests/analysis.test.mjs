@@ -77,6 +77,15 @@ test('CSV keeps model/frame/source metadata and protects formula-like text cells
   assert.match(csv, /"unknown"/);
 });
 
+test('accepts fractional UTC with one or two digits without changing point API', () => {
+  for (const digits of ['1', '12', '123']) {
+    const startUtc = `2026-01-01T00:00:00.${digits}Z`;
+    const s = { ...scenario('fraction'), startUtc, stepSeconds: 10 };
+    const v = series('fraction', [startUtc], [1], [true]);
+    assert.ok(analyzeVisibility(s, v).metrics.durationSeconds > 0);
+  }
+});
+
 test('CSV guards whitespace-prefixed formulas and escapes multiline Unicode metadata without mutation', () => {
   const metadata = [' =1+1', '\t=1+1', '\ttext', '\rtext', '\ntext', '=HYPERLINK("bad","click")', 'Ay, Dünya "ufuk"\r\nİzmir'];
   for (const model of metadata) {

@@ -10,7 +10,7 @@ function utcMillis(value, label) {
   }
   const millis = Date.parse(value);
   if (!Number.isFinite(millis)) fail(`${label} must be a valid UTC timestamp`);
-  const normalizedInput = value.includes('.') ? value.padEnd(value.indexOf('.') + 4, '0') : `${value.slice(0, -1)}.000Z`;
+  const normalizedInput = value.includes('.') ? value.replace(/\.(\d{1,3})Z$/, (_, digits) => `.${digits.padEnd(3, '0')}Z`) : `${value.slice(0, -1)}.000Z`;
   if (new Date(millis).toISOString() !== normalizedInput) fail(`${label} must be a valid round-tripping UTC timestamp`);
   return millis;
 }
