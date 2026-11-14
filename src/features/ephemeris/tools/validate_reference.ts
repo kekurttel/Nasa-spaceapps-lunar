@@ -8,7 +8,17 @@ const rad = Math.PI / 180;
 function direction(az: number, alt: number) {
   return [Math.cos(alt * rad) * Math.sin(az * rad), Math.cos(alt * rad) * Math.cos(az * rad), Math.sin(alt * rad)];
 }
-const measurements = [];
+interface DirectionMeasurement {
+  site: { latDeg: number; lonDeg: number };
+  body: string;
+  timeUtc: string;
+  referenceAzDeg: number;
+  referenceAltDeg: number;
+  actualAzDeg: number;
+  actualAltDeg: number;
+  separationDeg: number;
+}
+const measurements: DirectionMeasurement[] = [];
 for (const record of reference.records) {
   const series = computeSkySeries({ id: 'independent-reference', site: {
     id: 'reference', name: 'Reference', ...record.site, surfaceElevationM: 0,

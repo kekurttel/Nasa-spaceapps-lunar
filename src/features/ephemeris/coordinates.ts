@@ -8,6 +8,7 @@ export type EphemerisErrorCode =
   | 'EPHEMERIS_LONGITUDE_RANGE'
   | 'EPHEMERIS_POLAR_AZIMUTH'
   | 'EPHEMERIS_OBSERVER_RADIUS'
+  | 'EPHEMERIS_DISTANCE_RANGE'
   | 'EPHEMERIS_ZERO_DIRECTION'
   | 'EPHEMERIS_RADIUS_RANGE'
   | 'EPHEMERIS_DISTANCE_RANGE';
@@ -67,7 +68,7 @@ export function localSkyDirection(
   const lat = radians(latDeg);
   const lon = radians(lonDeg);
   const radiusKm = LUNAR_REFERENCE_RADIUS_KM + (surfaceElevationM + observerHeightM) / 1_000;
-  if (radiusKm <= 0) throw new EphemerisCoordinateError('EPHEMERIS_OBSERVER_RADIUS', 'Observer radius must be positive');
+  if (!Number.isFinite(radiusKm) || radiusKm <= 0) throw new EphemerisCoordinateError('EPHEMERIS_OBSERVER_RADIUS', 'Observer radius must be positive');
   const cosLat = Math.cos(lat);
   const observer = {
     x: radiusKm * cosLat * Math.cos(lon),
@@ -78,6 +79,7 @@ export function localSkyDirection(
   const dy = targetMoonFixedKm.y - observer.y;
   const dz = targetMoonFixedKm.z - observer.z;
   const distanceKm = Math.hypot(dx, dy, dz);
+  if (!Number.isFinite(distanceKm)) throw new EphemerisCoordinateError('EPHEMERIS_DISTANCE_RANGE', 'Observer-to-target distance overflow');
   if (distanceKm === 0) throw new EphemerisCoordinateError('EPHEMERIS_ZERO_DIRECTION', 'Target vector coincides with observer (zero direction)');
 
   const north = -Math.sin(lat) * Math.cos(lon) * dx

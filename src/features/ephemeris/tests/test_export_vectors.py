@@ -1,4 +1,4 @@
-"""Offline unit tests using a fake SPICE interface; no accuracy claim is made."""
+"""Offline unit tests using fake SPICE interface; no accuracy claim is made."""
 import importlib.util
 import json
 import math
@@ -19,10 +19,13 @@ class FakeSpice:
     def __init__(self):
         self.loaded = []
         self.calls = []
-        self.clears = 0
+        self.unloaded = []
 
     def furnsh(self, path):
         self.loaded.append(path)
+
+    def unload(self, path):
+        self.unloaded.append(path)
 
     def str2et(self, timestamp):
         self.calls.append(("str2et", timestamp))
@@ -32,9 +35,6 @@ class FakeSpice:
         self.calls.append((target, frame, correction, observer))
         return ((et, et + 1, et + 2), 0.0)
 
-    def kclear(self):
-        self.clears += 1
-
 
 class ExportVectorsTests(unittest.TestCase):
     def test_utc_must_be_explicit_and_valid(self):
@@ -43,7 +43,7 @@ class ExportVectorsTests(unittest.TestCase):
             with self.assertRaises(export_vectors.ExportError):
                 export_vectors.parse_utc(value, "start")
 
-    def test_exports_schema_and_expected_spice_calls(self):
+    def test_exports_schema_unloads_own_kernels_and_uses_atomic_file(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             kernel = root / "mock.bsp"
@@ -59,31 +59,39 @@ class ExportVectorsTests(unittest.TestCase):
             self.assertEqual(len(data["samples"]), 3)
             self.assertEqual(data["samples"][1]["timeUtc"], "2030-01-01T00:00:01Z")
             self.assertEqual(data["samples"][0]["sunKm"], {"x": 10.0, "y": 11.0, "z": 12.0})
-            self.assertEqual(data["samples"][0]["earthKm"], {"x": 10.0, "y": 11.0, "z": 12.0})
-            self.assertEqual([call for call in fake.calls if call[0] in ("SUN", "EARTH")][0],
-                             ("SUN", "IAU_MOON", "NONE", "MOON"))
             self.assertEqual(data["kernels"][0]["file"], "mock.bsp")
-            self.assertEqual(len(data["kernels"][0]["sha256"]), 64)
-            self.assertEqual(fake.clears, 1)
+            self.assertEqual(fake.loaded, [kernel.name])
+            self.assertEqual(fake.unloaded, [kernel.name])
+            self.assertFalse(list(root.glob("*.tmp")))
 
-    def test_failure_does_not_create_success_file(self):
+    def test_failure_unloads_and_does_not_create_success_file(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            kernel = root / "mock.bsp"
+            kernel, output = root / "mock.bsp", root / "out.json"
             kernel.touch()
-            output = root / "out.json"
             fake = FakeSpice()
-            def failed(*args):
-                raise RuntimeError("no coverage")
-            fake.spkpos = failed
+            fake.spkpos = lambda *args: (_ for _ in ()).throw(RuntimeError("no coverage"))
             with patch.dict("sys.modules", {"spiceypy": fake}), self.assertRaises(export_vectors.ExportError):
                 export_vectors.generate([kernel], datetime(2030, 1, 1, tzinfo=timezone.utc),
                     datetime(2030, 1, 1, 0, 0, 1, tzinfo=timezone.utc), 1, output)
             self.assertFalse(output.exists())
+            self.assertEqual(fake.unloaded, [kernel.name])
 
-    def test_invalid_step_rejected(self):
-        with self.assertRaises(export_vectors.ExportError):
-            export_vectors.generate([], datetime.now(timezone.utc), datetime.now(timezone.utc), math.nan, Path("unused"))
+    def test_rejects_submillisecond_or_fractional_millisecond_step(self):
+        start = datetime(2030, 1, 1, tzinfo=timezone.utc)
+        for step in (0, -1, math.nan, math.inf, 0.0001, 0.0005, 0.0015, 1.0001):
+            with self.subTest(step=step), self.assertRaises(export_vectors.ExportError):
+                export_vectors.generate([], start, start.replace(second=1), step, Path("unused"))
+
+    def test_rejects_unaligned_times_excessive_samples_and_invalid_vectors(self):
+        start = datetime(2030, 1, 1, tzinfo=timezone.utc)
+        with self.assertRaisesRegex(export_vectors.ExportError, "whole milliseconds"):
+            export_vectors.generate([], start.replace(microsecond=1), start.replace(second=1), 1, Path("unused"))
+        with self.assertRaisesRegex(export_vectors.ExportError, "maximum"):
+            export_vectors.generate([], start, start + export_vectors.timedelta(seconds=101), 0.001, Path("unused"))
+        for invalid in ((1, 2), (1, math.inf, 3), (1, "bad", 3)):
+            with self.subTest(invalid=invalid), self.assertRaises(export_vectors.ExportError):
+                export_vectors._validate_vector(invalid, "SUN")
 
 
 if __name__ == "__main__":

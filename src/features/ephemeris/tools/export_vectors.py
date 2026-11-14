@@ -3,6 +3,7 @@
 
 Requires spiceypy and explicitly supplied SPICE kernels (including suitable
 leap-second, ephemeris, and lunar orientation/PCK kernels). No downloads occur.
+SPICE kernel loading is process-global; run this CLI sequentially.
 """
 from __future__ import annotations
 
@@ -10,12 +11,15 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import sys
+import tempfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Sequence
 
 SOURCE_URL = "https://naif.jpl.nasa.gov/naif/"
+MAX_SAMPLES = 100_000
 
 
 class ExportError(Exception):
@@ -47,13 +51,38 @@ def digest_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _validate_vector(vector: object, target: str) -> dict[str, float]:
+    try:
+        values = list(vector)  # type: ignore[arg-type]
+    except (TypeError, ValueError) as exc:
+        raise ExportError(f"SPICE returned invalid {target} vector; expected three finite coordinates") from exc
+    if len(values) != 3:
+        raise ExportError(f"SPICE returned invalid {target} vector; expected three finite coordinates")
+    try:
+        coordinates = [float(value) for value in values]
+    except (TypeError, ValueError, OverflowError) as exc:
+        raise ExportError(f"SPICE returned invalid {target} vector; expected three finite coordinates") from exc
+    if not all(math.isfinite(value) for value in coordinates):
+        raise ExportError(f"SPICE returned invalid {target} vector; expected three finite coordinates")
+    return dict(zip(("x", "y", "z"), coordinates))
+
+
 def generate(kernels: Sequence[Path], start: datetime, end: datetime, step_seconds: float, output: Path) -> None:
+    if start.tzinfo is None or start.utcoffset() != timedelta(0) or start.microsecond % 1000:
+        raise ExportError("--start-utc must be UTC and aligned to whole milliseconds")
+    if end.tzinfo is None or end.utcoffset() != timedelta(0) or end.microsecond % 1000:
+        raise ExportError("--end-utc must be UTC and aligned to whole milliseconds")
     if end <= start:
         raise ExportError("--end-utc must be later than --start-utc")
     if not math.isfinite(step_seconds) or step_seconds <= 0:
         raise ExportError("--step-seconds must be a finite number greater than zero")
-    if not kernels:
-        raise ExportError("provide at least one kernel using --kernels")
+    step_ms = step_seconds * 1000
+    if not math.isfinite(step_ms) or not step_ms.is_integer() or step_ms < 1:
+        raise ExportError("--step-seconds must be a whole number of milliseconds")
+    duration_ms = (end - start) // timedelta(milliseconds=1)
+    sample_count = duration_ms // int(step_ms) + 1
+    if sample_count > MAX_SAMPLES:
+        raise ExportError(f"requested interval exceeds maximum of {MAX_SAMPLES} samples")
     resolved: list[Path] = []
     for kernel in kernels:
         path = kernel.expanduser().resolve()
@@ -70,24 +99,31 @@ def generate(kernels: Sequence[Path], start: datetime, end: datetime, step_secon
     loaded: list[Path] = []
     try:
         for kernel in resolved:
+            # SpiceyPy accepts Unicode paths inconsistently on Windows. Load ASCII
+            # basename from kernel directory and restore process working directory.
+            previous_cwd = Path.cwd()
             try:
-                spice.furnsh(str(kernel))
+                os.chdir(kernel.parent)
+                spice.furnsh(kernel.name)
             except Exception as exc:
                 raise ExportError(f"could not load kernel {kernel}: {exc}") from exc
+            finally:
+                os.chdir(previous_cwd)
             loaded.append(kernel)
         samples = []
-        current = start
-        while current <= end:
+        for index in range(sample_count):
+            current = start + timedelta(milliseconds=index * int(step_ms))
             utc_text = iso_utc(current)
             try:
                 et = spice.str2et(utc_text)
-                sun = spice.spkpos("SUN", et, "IAU_MOON", "NONE", "MOON")[0]
-                earth = spice.spkpos("EARTH", et, "IAU_MOON", "NONE", "MOON")[0]
+                sun = _validate_vector(spice.spkpos("SUN", et, "IAU_MOON", "NONE", "MOON")[0], "SUN")
+                earth = _validate_vector(spice.spkpos("EARTH", et, "IAU_MOON", "NONE", "MOON")[0], "EARTH")
+            except ExportError:
+                raise
             except Exception as exc:
                 raise ExportError(f"SPICE coverage/conversion failed at {utc_text}; check loaded LSK, SPK, and lunar PCK kernels: {exc}") from exc
-            samples.append({"timeUtc": utc_text, "sunKm": dict(zip(("x", "y", "z"), map(float, sun))),
-                            "earthKm": dict(zip(("x", "y", "z"), map(float, earth)))})
-            current += timedelta(seconds=step_seconds)
+            samples.append({"timeUtc": utc_text, "sunKm": sun, "earthKm": earth})
+            current += timedelta(milliseconds=int(step_ms))
         if len(samples) < 2:
             raise ExportError("requested interval produces fewer than two samples; use a shorter step or longer interval")
         dataset = {
@@ -104,17 +140,23 @@ def generate(kernels: Sequence[Path], start: datetime, end: datetime, step_secon
             "samples": samples,
         }
         output.parent.mkdir(parents=True, exist_ok=True)
-        # Write alongside destination, then atomically replace: never leave partial JSON on failure.
-        temporary = output.with_name(output.name + ".tmp")
+        temporary_name = None
         try:
-            temporary.write_text(json.dumps(dataset, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-            temporary.replace(output)
+            with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n",
+                                             dir=output.parent, prefix=f".{output.name}.", suffix=".tmp",
+                                             delete=False) as temporary:
+                temporary_name = Path(temporary.name)
+                temporary.write(json.dumps(dataset, indent=2, allow_nan=False) + "\n")
+            temporary_name.replace(output)
         finally:
-            if temporary.exists():
-                temporary.unlink()
+            if temporary_name is not None and temporary_name.exists():
+                temporary_name.unlink()
     finally:
-        for _ in loaded:
-            spice.kclear()
+        for kernel in reversed(loaded):
+            try:
+                spice.unload(kernel.name)
+            except Exception:
+                pass
 
 
 def main(argv: Sequence[str] | None = None) -> int:
