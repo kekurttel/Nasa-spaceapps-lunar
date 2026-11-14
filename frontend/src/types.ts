@@ -14,6 +14,9 @@ export interface EphemerisPoint {
   sun_visible: boolean;
   earth_visible: boolean;
   solar_flux_pct: number;
+  sun_visible_fraction?: number;
+  sun_horizon?: number;
+  earth_horizon?: number;
 }
 
 export interface SiteSummary {
@@ -36,6 +39,7 @@ export interface SiteEphemeris {
   site: SiteRequest;
   data: EphemerisPoint[];
   summary: SiteSummary;
+  provenance?: { site_id?: string; interpolated?: boolean; terrain_source?: string; [key: string]: unknown };
 }
 
 export interface CompareResponse {

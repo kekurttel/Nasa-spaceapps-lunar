@@ -1,12 +1,25 @@
 import axios from 'axios';
 import { CompareResponse, PresetSite, SiteEphemeris, SiteRequest } from '../types';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+import { API_BASE } from './config';
 
 const api = axios.create({
   baseURL: API_BASE,
   timeout: 30000,
 });
+
+export interface HorizonProfile {
+  site_id: string;
+  azimuths_deg: number[];
+  elevations_deg: number[];
+  source: string;
+  observer_height_m: number;
+}
+
+export const fetchHorizon = async (id: string): Promise<HorizonProfile> => {
+  const response = await api.get<HorizonProfile>(`/terrain/${encodeURIComponent(id)}`);
+  return response.data;
+};
 
 export const getPresetSites = async (): Promise<PresetSite[]> => {
   const res = await api.get<PresetSite[]>('/presets');

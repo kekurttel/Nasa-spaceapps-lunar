@@ -1,155 +1,85 @@
-from fastapi import APIRouter, HTTPException, Query
+from math import ceil
 from typing import List
-from app.models import (
-    EphemerisRequest,
-    CompareResponse,
-    SiteEphemeris,
-    EphemerisPoint,
-    PresetSite,
-    SiteRequest
-)
-from app.ephemeris import get_ephemeris_data
+
+from fastapi import APIRouter, HTTPException, Query
+from app.models import EphemerisRequest, CompareResponse, SiteEphemeris, EphemerisPoint, PresetSite, SiteRequest
+from app.reference_data import data_dir
 from app.analysis import calculate_site_summary
+from app.reference_data import catalog, status, reference_ephemeris, utc_datetime
 
 router = APIRouter(prefix="/api", tags=["Lunar Ephemeris & Landing Sites"])
 
-# Verified NASA Artemis & CLPS South Pole Candidate Landing Sites
-PRESET_SITES: List[PresetSite] = [
-    PresetSite(
-        id="shackleton-rim",
-        name="Shackleton Crater Rim",
-        lat=-89.90,
-        lon=0.00,
-        description="Peak of Eternal Light candidate on the rim of Shackleton; high illumination and near-constant direct Earth visibility.",
-        feature_type="Crater Rim",
-        elevation_m=4200.0
-    ),
-    PresetSite(
-        id="nobile-ridge-1",
-        name="Nobile Rim / Ridge 1",
-        lat=-85.20,
-        lon=35.50,
-        description="Primary landing area for VIPER rover mission; favorable slope, near Permanently Shadowed Regions (PSRs).",
-        feature_type="Ridge",
-        elevation_m=2850.0
-    ),
-    PresetSite(
-        id="de-gerlache-rim",
-        name="de Gerlache Rim 2",
-        lat=-88.30,
-        lon=-68.80,
-        description="Prominent Artemis III candidate site offering high solar illumination and long communication windows.",
-        feature_type="Crater Rim",
-        elevation_m=3400.0
-    ),
-    PresetSite(
-        id="mons-mouton",
-        name="Mons Mouton (Leibnitz Plateau)",
-        lat=-84.50,
-        lon=31.20,
-        description="Flat elevated plateau with excellent line-of-sight to Earth and manageable slopes for lunar surface mobility.",
-        feature_type="Plateau",
-        elevation_m=6000.0
-    ),
-    PresetSite(
-        id="faustini-rim",
-        name="Faustini Rim A",
-        lat=-87.10,
-        lon=76.80,
-        description="Rim adjacent to deep volatile-rich cold traps with periodic high solar visibility.",
-        feature_type="Crater Rim",
-        elevation_m=2100.0
-    ),
-    PresetSite(
-        id="haworth-connecting-ridge",
-        name="Connecting Ridge",
-        lat=-89.44,
-        lon=-137.30,
-        description="Narrow ridge between Shackleton and de Gerlache; one of the highest cumulative illumination sites on the Moon.",
-        feature_type="Ridge",
-        elevation_m=3900.0
-    ),
-    PresetSite(
-        id="malapert-mountain",
-        name="Malapert Mountain (Peak)",
-        lat=-86.04,
-        lon=2.70,
-        description="High altitude peak serving as ideal communications relay with uninterrupted view of Earth.",
-        feature_type="Mountain Peak",
-        elevation_m=5000.0
-    ),
-    PresetSite(
-        id="amundsen-rim",
-        name="Amundsen Rim",
-        lat=-84.40,
-        lon=82.80,
-        description="Large crater rim providing extended communication coverage and science exploration targets.",
-        feature_type="Crater Rim",
-        elevation_m=3100.0
-    )
-]
 
 @router.get("/presets", response_model=List[PresetSite])
 async def get_presets():
-    """Returns curated NASA candidate lunar landing sites."""
-    return PRESET_SITES
+    """Reference coordinates, including explicitly labelled computed points."""
+    return [PresetSite(**{k: v for k, v in site.items() if k != "profile"}) for site in catalog()]
+
+
+@router.get("/data/status")
+async def data_status():
+    return status()
+
+
+@router.get("/terrain/{site_id}")
+async def terrain(site_id: str):
+    site = next((site for site in catalog() if site["id"] == site_id), None)
+    if site is None:
+        raise HTTPException(404, "No local skyline for this site")
+    return site["profile"]
+
+
+def validate_window(start, end, step, site_count=1):
+    try:
+        first, last = utc_datetime(start), utc_datetime(end)
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise HTTPException(422, "Dates must be ISO 8601") from exc
+    hours = (last - first).total_seconds() / 3600
+    if hours <= 0:
+        raise HTTPException(422, "end_date must be after start_date")
+    if (ceil(hours / step) + 1) * site_count > 100000:
+        raise HTTPException(422, "Request exceeds 100000 samples; shorten range or increase step")
+    return first, last
+
+
+def build_site(site, start, end, step):
+    first, last = validate_window(start, end, step)
+    try:
+        local = reference_ephemeris(site.lat, site.lon, first, last, step)
+        if local is not None:
+            raw, provenance = local
+            source = provenance["engine"] + ("_INTERPOLATED" if provenance["interpolated"] else "")
+        else:
+            if not (data_dir() / "horizons.json").is_file() or not catalog():
+                raise HTTPException(503, "Local LunaNav dataset unavailable; configure LUNANAV_DATA_DIR")
+            raise HTTPException(422, "Unsupported coordinates or dates: exact /api/presets coordinates and in-range /api/data/status coverage required; no geometric fallback")
+    except (ValueError, KeyError, OSError) as exc:
+        raise HTTPException(503, f"Reference data unavailable or invalid: {exc}") from exc
+    points = [EphemerisPoint(**point) for point in raw]
+    return SiteEphemeris(site=site, data=points,
+                         summary=calculate_site_summary(points, step_hours=step),
+                         provenance=provenance), source
+
 
 @router.post("/ephemeris", response_model=CompareResponse)
 async def compute_ephemeris(req: EphemerisRequest):
-    """
-    Computes Sun and Earth topocentric positions for one or more landing sites
-    over the requested timeframe, returning full ephemeris time-series and
-    mission feasibility summaries.
-    """
     if not req.sites:
-        raise HTTPException(status_code=400, detail="At least one site must be provided.")
-    
-    site_results: List[SiteEphemeris] = []
-    engine_sources = set()
+        raise HTTPException(400, "At least one site must be provided.")
+    validate_window(req.start_date, req.end_date, req.step_hours, len(req.sites))
+    results = [build_site(site, req.start_date, req.end_date, req.step_hours) for site in req.sites]
+    return CompareResponse(sites=[result[0] for result in results], query_start=req.start_date,
+                           query_end=req.end_date, step_hours=req.step_hours,
+                           source=", ".join(sorted({result[1] for result in results})))
 
-    for site in req.sites:
-        raw_pts, source = get_ephemeris_data(
-            lat=site.lat,
-            lon=site.lon,
-            start_str=req.start_date,
-            stop_str=req.end_date,
-            step_hours=req.step_hours
-        )
-        engine_sources.add(source)
-        
-        typed_pts = [EphemerisPoint(**pt) for pt in raw_pts]
-        summary = calculate_site_summary(typed_pts, step_hours=req.step_hours)
-        
-        site_results.append(SiteEphemeris(
-            site=site,
-            data=typed_pts,
-            summary=summary
-        ))
-
-    return CompareResponse(
-        sites=site_results,
-        query_start=req.start_date,
-        query_end=req.end_date,
-        step_hours=req.step_hours,
-        source=", ".join(engine_sources)
-    )
 
 @router.get("/ephemeris/single", response_model=SiteEphemeris)
 async def compute_single_site(
-    lat: float = Query(..., ge=-90.0, le=90.0),
-    lon: float = Query(..., ge=-180.0, le=360.0),
+    lat: float = Query(..., ge=-90, le=90),
+    lon: float = Query(..., ge=-180, le=360),
     name: str = Query("Target Site"),
-    start_date: str = Query("2026-06-01T00:00:00"),
-    end_date: str = Query("2026-06-30T00:00:00"),
-    step_hours: int = Query(2, ge=1, le=24)
+    start_date: str = Query("2026-11-01T00:00:00Z"),
+    end_date: str = Query("2026-11-02T00:00:00Z"),
+    step_hours: float = Query(2, ge=0.25, le=24),
 ):
-    """Convenience endpoint for single-site query."""
-    raw_pts, _ = get_ephemeris_data(lat, lon, start_date, end_date, step_hours)
-    typed_pts = [EphemerisPoint(**pt) for pt in raw_pts]
-    summary = calculate_site_summary(typed_pts, step_hours=step_hours)
-    
-    return SiteEphemeris(
-        site=SiteRequest(name=name, lat=lat, lon=lon),
-        data=typed_pts,
-        summary=summary
-    )
+    result, _ = build_site(SiteRequest(name=name, lat=lat, lon=lon), start_date, end_date, step_hours)
+    return result

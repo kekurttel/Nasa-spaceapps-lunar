@@ -1,0 +1,67 @@
+.scenario-controls {
+  --scenario-ink: #e9f0f5;
+  --scenario-muted: #92a4b3;
+  --scenario-line: rgba(174, 199, 216, 0.18);
+  color: var(--scenario-ink);
+}
+
+.scenario-controls__header { margin-bottom: 1rem; }
+.scenario-controls__header h2 { margin: 0; font-size: 1.05rem; font-weight: 650; }
+.scenario-controls__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.scenario-card {
+  min-width: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--scenario-line);
+  border-radius: 12px;
+  background: rgba(12, 24, 35, 0.72);
+}
+.scenario-card legend { padding: 0 .5rem 0 0; font-size: .9rem; font-weight: 650; }
+.scenario-card__marker {
+  display: inline-grid;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-right: .55rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: .75rem;
+}
+.scenario-card--a .scenario-card__marker { color: #83c7dc; }
+.scenario-card--b .scenario-card__marker { color: #e6b574; }
+.scenario-card__name { margin: .15rem 0 1rem; color: var(--scenario-muted); font-size: .85rem; }
+.scenario-card__field + .scenario-card__field { margin-top: 1rem; }
+.scenario-card__field label, .scenario-card__label { display: block; margin-bottom: .45rem; color: var(--scenario-muted); font-size: .78rem; }
+.scenario-card input[type='date'] {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.65rem;
+  padding: .55rem .7rem;
+  color: var(--scenario-ink);
+  color-scheme: dark;
+  border: 1px solid var(--scenario-line);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .035);
+  font: inherit;
+}
+.scenario-card__presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .4rem; }
+.scenario-card__presets button {
+  min-height: 2.5rem;
+  padding: .4rem .25rem;
+  color: var(--scenario-muted);
+  border: 1px solid var(--scenario-line);
+  border-radius: 7px;
+  background: transparent;
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+}
+.scenario-card__presets button span { font-size: .68rem; }
+.scenario-card__presets button:hover { border-color: rgba(174, 199, 216, .5); color: var(--scenario-ink); }
+.scenario-card__presets button.is-selected { color: var(--scenario-ink); border-color: #83c7dc; background: rgba(131, 199, 220, .12); }
+.scenario-card--b .scenario-card__presets button.is-selected { border-color: #e6b574; background: rgba(230, 181, 116, .12); }
+.scenario-card button:focus-visible, .scenario-card input:focus-visible { outline: 2px solid #9bd9ef; outline-offset: 2px; }
+
+@media (max-width: 640px) {
+  .scenario-controls__grid { grid-template-columns: minmax(0, 1fr); }
+}

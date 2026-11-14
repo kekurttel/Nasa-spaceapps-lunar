@@ -1,5 +1,6 @@
 import React from 'react';
 import { SiteEphemeris } from '../types';
+import { useI18n } from '../i18n';
 
 interface ComparePanelProps {
   sites: SiteEphemeris[];
@@ -14,45 +15,27 @@ export const ComparePanel: React.FC<ComparePanelProps> = ({
   onSelectActiveIndex,
   onRemoveSite,
 }) => {
+  const { t } = useI18n();
   if (!sites || sites.length === 0) return null;
 
   return (
-    <section className="instrument-panel compare-panel" aria-label="Landing site comparison">
+    <section className="instrument-panel compare-panel" aria-label={t('landingSiteComparison')}>
       <div className="panel-heading">
-        <h3>Landing site comparison</h3>
-        <p>Illumination, direct communication windows and blackout duration across candidate locations</p>
+        <h3>{t('landingSiteComparison')}</h3>
+        <p>{t('comparisonDescription')}</p>
       </div>
       <div className="table-scroll">
         <table className="comparison-table">
           <thead>
             <tr>
-              <th scope="col">Landing site</th>
-              <th scope="col">Coords (lat, lon)</th>
-              <th scope="col">Sunlight %</th>
-              <th scope="col">Earth comm %</th>
-              <th scope="col">Max dark blackout</th>
-              <th scope="col">Max comm blackout</th>
-              <th scope="col">Feasibility score</th>
-              <th scope="col">Action</th>
+              {(['landingSite', 'coordinates', 'sunlight', 'earthComm', 'maxDarkBlackout', 'maxCommBlackout', 'action'] as const).map(key => <th scope="col" key={key}>{t(key)}</th>)}
             </tr>
           </thead>
           <tbody>
             {sites.map((item, idx) => {
               const summary = item.summary;
-              // Preserve the existing composite score and blackout penalty.
-              const score = Math.max(
-                5,
-                Math.min(
-                  99,
-                  Math.round(
-                    summary.sun_percentage * 0.45 +
-                      summary.earth_percentage * 0.45 -
-                      Math.min(30, (summary.max_continuous_dark_hours / (summary.total_hours || 1)) * 30)
-                  )
-                )
-              );
               const isActive = idx === activeSiteIndex;
-              const siteName = item.site.name || `Site #${idx + 1}`;
+              const siteName = item.site.name || `${t('site')} #${idx + 1}`;
 
               return (
                 <tr key={idx} className={isActive ? 'comparison-row is-active' : 'comparison-row'} onClick={() => onSelectActiveIndex(idx)}>
@@ -61,20 +44,19 @@ export const ComparePanel: React.FC<ComparePanelProps> = ({
                       onClick={(event) => { event.stopPropagation(); onSelectActiveIndex(idx); }}>
                       <span className="selection-indicator" aria-hidden="true" />
                       {siteName}
-                      {isActive && <span className="active-site-label">Active</span>}
+                      {isActive && <span className="active-site-label">{t('active')}</span>}
                     </button>
                   </th>
                   <td className="numeric muted">{item.site.lat.toFixed(2)}°, {item.site.lon.toFixed(2)}°</td>
-                  <td className="numeric data-sun">{summary.sun_percentage}% <span className="muted">({summary.sun_hours}h)</span></td>
-                  <td className="numeric data-earth">{summary.earth_percentage}% <span className="muted">({summary.earth_visible_hours}h)</span></td>
-                  <td className="numeric">{summary.max_continuous_dark_hours} hrs</td>
-                  <td className="numeric">{summary.max_continuous_no_comm_hours} hrs</td>
-                  <td className="numeric"><span className="feasibility-score">{score} / 100</span></td>
+                  <td className="numeric data-sun">{summary.sun_percentage}% <span className="muted">({summary.sun_hours} {t('hours')})</span></td>
+                  <td className="numeric data-earth">{summary.earth_percentage}% <span className="muted">({summary.earth_visible_hours} {t('hours')})</span></td>
+                  <td className="numeric">{summary.max_continuous_dark_hours} {t('hours')}</td>
+                  <td className="numeric">{summary.max_continuous_no_comm_hours} {t('hours')}</td>
                   <td>
                     {sites.length > 1 && (
-                      <button type="button" className="remove-site" aria-label={`Remove ${siteName} from comparison`}
+                      <button type="button" className="remove-site" aria-label={t('removeSite').replace('{site}', siteName)}
                         onClick={(event) => { event.stopPropagation(); onRemoveSite(idx); }}>
-                        Remove
+                        {t('remove')}
                       </button>
                     )}
                   </td>

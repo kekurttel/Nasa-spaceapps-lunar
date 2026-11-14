@@ -1,0 +1,4 @@
+# Preserve scientific artifact bytes and SHA-256 identities.
+data/lunanav/** -text
+frontend/public/terrain-data/*.bin -text
+frontend/public/textures/*.jpg -text

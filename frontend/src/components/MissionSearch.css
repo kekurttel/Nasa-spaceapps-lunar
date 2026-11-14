@@ -1,0 +1,65 @@
+.mission-search {
+  --mission-ink: #e9f0f5;
+  --mission-muted: #a7b8c5;
+  --mission-line: rgba(174, 199, 216, .24);
+  padding: 1.25rem;
+  color: var(--mission-ink);
+  border: 1px solid var(--mission-line);
+  border-radius: 12px;
+  background: #0c1823;
+  min-width: 0;
+}
+.mission-search h2 { margin: 0; font-size: 1.15rem; font-weight: 650; }
+.mission-search h3 { margin: 1.25rem 0 .5rem; font-size: 1rem; }
+.mission-search p { color: var(--mission-muted); line-height: 1.6; font-size: .875rem; }
+.mission-search header p { margin: .5rem 0 1.25rem; }
+.mission-search fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.mission-search legend { font-weight: 600; font-size: .9rem; margin-bottom: .8rem; }
+.mission-search__fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 1rem; }
+.mission-search__field { display: flex; flex-direction: column; gap: .4rem; min-width: 0; color: var(--mission-muted); font-size: .8rem; }
+.mission-search__field input {
+  box-sizing: border-box; width: 100%; min-width: 0; min-height: 44px;
+  padding: .55rem .7rem; color: var(--mission-ink); color-scheme: dark;
+  border: 1px solid var(--mission-line); border-radius: 7px;
+  background: rgba(255, 255, 255, .035); font: inherit; font-size: .9rem;
+}
+.mission-search details { border-top: 1px solid var(--mission-line); margin-top: 1rem; padding-top: .5rem; }
+.mission-search summary { cursor: pointer; padding: .65rem 0; font-size: .875rem; font-weight: 600; }
+.mission-search__checks { display: flex; flex-wrap: wrap; column-gap: 1.5rem; margin-top: 1rem; }
+.mission-search__checks label { display: flex; align-items: center; gap: .6rem; min-height: 44px; font-size: .875rem; cursor: pointer; }
+.mission-search input[type='checkbox'] { width: 18px; height: 18px; accent-color: #83c7dc; flex-shrink: 0; }
+.mission-search p.mission-search__hint { font-size: .8rem; }
+.mission-search__actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.mission-search button {
+  min-height: 44px; border: 1px solid #83c7dc; border-radius: 7px;
+  padding: .6rem 1.1rem; color: #08141c; background: #83c7dc;
+  font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+}
+.mission-search button:hover:not(:disabled) { background: #a6deed; }
+.mission-search button:disabled { opacity: .65; cursor: wait; }
+.mission-search button.mission-search__cancel { background: transparent; color: var(--mission-ink); border-color: var(--mission-line); }
+.mission-search button.mission-search__cancel:hover { background: rgba(255, 255, 255, .07); }
+.mission-search :is(input, button, summary, [tabindex]):focus-visible { outline: 2px solid #9bd9ef; outline-offset: 3px; }
+.mission-search__status { color: var(--mission-muted); margin-top: 1rem; font-size: .875rem; line-height: 1.5; }
+.mission-search__status:empty { display: none; }
+.mission-search__error { margin-top: 1rem; padding: 1rem; border: 1px solid #dba99e; border-radius: 7px; color: #ffd0c6; overflow-wrap: anywhere; }
+.mission-search__error p { margin-bottom: 0; color: #ffd0c6; }
+.mission-search p.mission-search__empty { padding: .75rem 1rem; border-left: 3px solid #e6b574; color: #edcfa7; }
+.mission-search__table { max-width: 100%; overflow-x: auto; border: 1px solid var(--mission-line); border-radius: 7px; }
+.mission-search table { border-collapse: collapse; width: 100%; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.mission-search caption { text-align: left; padding: .8rem; color: var(--mission-ink); font-weight: 600; }
+.mission-search th, .mission-search td { text-align: left; vertical-align: top; padding: .8rem; border-top: 1px solid var(--mission-line); }
+.mission-search thead th { font-size: .75rem; color: var(--mission-muted); font-weight: 600; min-width: 85px; background: #101f2b; }
+.mission-search tbody th { font-weight: 600; }
+.mission-search td small, .mission-search th small { display: block; font-size: .75rem; font-weight: 400; margin-top: .35rem; color: var(--mission-muted); line-height: 1.4; }
+.mission-search time { white-space: nowrap; }
+.mission-search__go { color: #a4d8bd; }
+.mission-search__no { color: #edcfa7; }
+.mission-search__provenance { color: var(--mission-muted); font-size: .8rem; line-height: 1.6; }
+.mission-search__provenance code { overflow-wrap: anywhere; color: var(--mission-ink); }
+.mission-search__provenance ul { padding-left: 1.3rem; }
+.mission-search__provenance li + li { margin-top: .5rem; }
+@media (max-width: 480px) {
+  .mission-search { padding: 1rem; }
+  .mission-search__actions button { width: 100%; }
+}

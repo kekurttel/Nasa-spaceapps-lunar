@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "source": "Locally supplied LunaNav snapshot; MIT, Copyright (c) 2026 yutuf",
+  "scope": "Byte-identical runtime subset, not regenerated scientific results",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1062,
+      "sha256": "258c496b393f80c8cafd03788cc5098c64abcae223099d99e4622581a0aed9be"
+    },
+    {
+      "path": "data/derived_sites.yaml",
+      "bytes": 14440,
+      "sha256": "dc16168964c4f66836781d5b829e4b08d094eee4afbfd16f6fa40d7f46f44b98"
+    },
+    {
+      "path": "data/dsn.npz",
+      "bytes": 258661,
+      "sha256": "08be26bdce1f79899adfcf202abdfb82bf1e8b930889e650b6bad97d9ecbbb52"
+    },
+    {
+      "path": "data/earth_distance.npz",
+      "bytes": 107988,
+      "sha256": "439437f8fd6d71ce334b06672e089d22cd10e5ef4da7a8846ecb1ae255effeeb"
+    },
+    {
+      "path": "data/horizons.json",
+      "bytes": 258118,
+      "sha256": "9e6f0bbfa23255c9dc96f7447878e9286d8f7ef961e8e05d973bcf2274fb7fef"
+    },
+    {
+      "path": "data/landed_missions.yaml",
+      "bytes": 1328,
+      "sha256": "646e57a350c7afeb2530a14fb92c2228a23218b2feff29e8b96dbba4ff4e62b9"
+    },
+    {
+      "path": "data/series/apollo_11.npz",
+      "bytes": 301141,
+      "sha256": "2d61a43195580c479ed9c7e27025c4507bfd1cb3065ede05f40f7cad20920c28"
+    },
+    {
+      "path": "data/series/artemis_de_gerlache_rim_2.npz",
+      "bytes": 458538,
+      "sha256": "286480fa191635c63ee3fda17dcf59bac7db0f520ef6e6ad35e838303f29d965"
+    },
+    {
+      "path": "data/series/artemis_de_gerlache_rim_2_derived.npz",
+      "bytes": 458517,
+      "sha256": "77b6e4163592b51fa638a5b12a7484e5866c347435ae79211d64aa6ef3115591"
+    },
+    {
+      "path": "data/series/artemis_de_gerlache_rim_2_region_best.npz",
+      "bytes": 455639,
+      "sha256": "a78b3d262be972ed18111c0347d49b352ff4a84c252a7c918857940d036aaf87"
+    },
+    {
+      "path": "data/series/artemis_haworth.npz",
+      "bytes": 450776,
+      "sha256": "6d44d6553549dbd9c90560ca7c995fe955f23e2c3cd1819feb7b660f80b087f2"
+    },
+    {
+      "path": "data/series/artemis_haworth_derived.npz",
+      "bytes": 459548,
+      "sha256": "3fa796d2babb9cb39c5759a24d8ae2bd314f9cd4f53af431344997fa21c04379"
+    },
+    {
+      "path": "data/series/artemis_haworth_region_best.npz",
+      "bytes": 458589,
+      "sha256": "e442ee5d47d8cace87f7e20d771ccab5f4296d95aad2dbc271faec7ca229bede"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton.npz",
+      "bytes": 456236,
+      "sha256": "212a793f30365b295b36802fcc9175e247138ff104e3eb7daa5e253159aa4c4c"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton_derived.npz",
+      "bytes": 446474,
+      "sha256": "28413a7d1279b0ccf506fada4ecc173f2ab07099502f5987af8029fd93d09085"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton_plateau.npz",
+      "bytes": 443641,
+      "sha256": "37ddbbfcaff8fda5fcee02a14e84aa0197bd8658f9a08e7f17fc7b7fddc7d71e"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton_plateau_derived.npz",
+      "bytes": 446587,
+      "sha256": "a6e40339f1cfa34e4c61194f04e5b380f22971888ce2e3b160de8749377d7a93"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton_plateau_region_best.npz",
+      "bytes": 443870,
+      "sha256": "7ec834661ce596dd7925391823fe70c206f83492fcd88560908b24cd5585c061"
+    },
+    {
+      "path": "data/series/artemis_mons_mouton_region_best.npz",
+      "bytes": 446489,
+      "sha256": "6fa033ac787cb86d45de9e6e58b6095c92513066dec0e33635df3c7e06297ea5"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_1.npz",
+      "bytes": 448629,
+      "sha256": "c9952f1a043854f336ae3d5aa5612c0a958f6e7e877518f4ba763d8bef36748f"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_1_derived.npz",
+      "bytes": 452123,
+      "sha256": "ebb43d1015dd778b26baab2b61f46991bb0017a2e7baf76f9a4c197680449870"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_1_region_best.npz",
+      "bytes": 450495,
+      "sha256": "a8295bd900bf4e4ee7e0cbc101fe66108b466e05022d34b5e9bc2ad458348455"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_2.npz",
+      "bytes": 450212,
+      "sha256": "4b9a259e67e45b58f2d48cd8f686665458f0559002127d47ec6ee00bcc58e088"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_2_derived.npz",
+      "bytes": 452818,
+      "sha256": "5cce40f82b941f64e27bd76b7cd190b2662058f713848a42638464ca8534f5bd"
+    },
+    {
+      "path": "data/series/artemis_nobile_rim_2_region_best.npz",
+      "bytes": 447952,
+      "sha256": "369ac90026699fd37ef3613e24927e2335d8d83fa0ff732bee65b50eae01178c"
+    },
+    {
+      "path": "data/series/artemis_peak_near_cabeus_b.npz",
+      "bytes": 451779,
+      "sha256": "e861a27179c7ddbcad557109aa0fde4fdd207b04900c422dc13b5dc74abf5eb7"
+    },
+    {
+      "path": "data/series/artemis_peak_near_cabeus_b_derived.npz",
+      "bytes": 458818,
+      "sha256": "0d3fc10995ce21bc2ca659c53ddbf41df467722d849cb385cb989cf960fd2a1c"
+    },
+    {
+      "path": "data/series/artemis_peak_near_cabeus_b_region_best.npz",
+      "bytes": 451791,
+      "sha256": "efd3075baaba0da5e0cedcf86c738b583ae6211a8e9a220e29839a8a906d4623"
+    },
+    {
+      "path": "data/series/artemis_slater_plain.npz",
+      "bytes": 448665,
+      "sha256": "6d8fae62913a41143def7830da0936694bff9d1efb8376f670e2ee044cf1cfa2"
+    },
+    {
+      "path": "data/series/artemis_slater_plain_derived.npz",
+      "bytes": 459106,
+      "sha256": "157008db6a9f3b7d48e8e1678b3323133bfb6ef035399f52677e0f25d6d5b4bd"
+    },
+    {
+      "path": "data/series/artemis_slater_plain_region_best.npz",
+      "bytes": 453523,
+      "sha256": "5e04b288da99b62cc5376521ceebbbe558308769eec4cb5b4feeaa971f91bfc6"
+    },
+    {
+      "path": "data/series/de_gerlache_rim.npz",
+      "bytes": 457640,
+      "sha256": "9829960fbb248d58ec23687e47891f24e64a3413ac5cd35920aa34a44b81463f"
+    },
+    {
+      "path": "data/series/de_gerlache_rim_derived.npz",
+      "bytes": 454110,
+      "sha256": "0c3e4fdfc9582fc200c8daf055d450a43c7843c14a80fe209d8cdbb3222344ba"
+    },
+    {
+      "path": "data/series/malapert_massif.npz",
+      "bytes": 457687,
+      "sha256": "b31ebbbcf82b5ff3ccde7f7759d13ac14a926bdba535117f4ac7e3d6f297d4d0"
+    },
+    {
+      "path": "data/series/malapert_massif_derived.npz",
+      "bytes": 454372,
+      "sha256": "45b310e5cc493cda8b591261a50b860c9e881d21e905c33cb596aeba334817c3"
+    },
+    {
+      "path": "data/series/malapert_massif_region_best.npz",
+      "bytes": 457161,
+      "sha256": "38dab3a399181d768f665e8f2439512f0679ae307acb7746ecee4917cbe950ec"
+    },
+    {
+      "path": "data/series/mons_mouton.npz",
+      "bytes": 448251,
+      "sha256": "72426c3f967213b973ce3fdf266b9fbe94f8b3053510e3f574be866b3432f6e2"
+    },
+    {
+      "path": "data/series/mons_mouton_derived.npz",
+      "bytes": 448711,
+      "sha256": "630ac64b5c6e198fd7d2650981a8d74121d2d2caba1a4b66eda01dc254a00532"
+    },
+    {
+      "path": "data/series/shackleton_ridge.npz",
+      "bytes": 450276,
+      "sha256": "fe26483bd78440a34b6473e630d457ca117e7fab225715b0852ef8268658a1f3"
+    },
+    {
+      "path": "data/sites.yaml",
+      "bytes": 8722,
+      "sha256": "41f6ed648feed43d620d2e55539efb2c5c7c812753bc675c44897f3478fc8345"
+    },
+    {
+      "path": "web/public/data/atlas.bin",
+      "bytes": 4087086,
+      "sha256": "2093489d1e473d5085ff8bdab6dd14fdf619906e1bc0fa3163b23cfa78845d68"
+    },
+    {
+      "path": "web/public/data/dsn.bin",
+      "bytes": 19008,
+      "sha256": "4eeb675dc2d19b0424e286e6204e09167bb413ac68d2f4b6ba1cf151b712163e"
+    },
+    {
+      "path": "web/public/data/engine_expected.json",
+      "bytes": 4778,
+      "sha256": "e7fdbffc1f09013c0dcb243a4506fb9d766329051f990d76634a9eb045dccacf"
+    },
+    {
+      "path": "web/public/data/ephem.bin",
+      "bytes": 532224,
+      "sha256": "feb824705d9a47aeda1f30610fdb364e00279dabd68c29d9085809a13a075c4b"
+    },
+    {
+      "path": "web/public/data/manifest.json",
+      "bytes": 91907,
+      "sha256": "f83c6b8a80cd200df79fe26d6034fed3d97382d076563710e11b677aefccc088"
+    },
+    {
+      "path": "web/public/data/psr.bin",
+      "bytes": 6390796,
+      "sha256": "56dd7bf4a8b2d8b64310a57aea8ef3114042090890f86224e46c54d08704064d"
+    },
+    {
+      "path": "web/public/data/thermal.bin",
+      "bytes": 4793100,
+      "sha256": "20936ad4ec2293514a3f3ecfc98d10a54e4b6425f9bae25de452fbdf300b82fc"
+    }
+  ]
+}

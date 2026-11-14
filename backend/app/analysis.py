@@ -27,7 +27,10 @@ def calculate_site_summary(points: List[EphemerisPoint], step_hours: int = 1) ->
             avg_earth_elevation_when_visible=0.0,
         )
 
-    total_hours = len(points) * step_hours
+    # Samples represent left-held intervals; final endpoint has zero duration.
+    durations = [max(0.0, (points[i + 1].timestamp - pt.timestamp) / 3600.0)
+                 if i + 1 < len(points) else 0.0 for i, pt in enumerate(points)]
+    total_hours = sum(durations)
     sun_count = 0
     earth_count = 0
     
@@ -45,17 +48,17 @@ def calculate_site_summary(points: List[EphemerisPoint], step_hours: int = 1) ->
     curr_no_comm_streak = 0
     max_no_comm_streak = 0
 
-    for pt in points:
+    for pt, duration in zip(points, durations):
         # Sunlight evaluation
         if pt.sun_visible:
             sun_count += 1
             sun_elevations_visible.append(pt.sun_elevation)
-            curr_sun_streak += step_hours
+            curr_sun_streak += duration
             if curr_sun_streak > max_sun_streak:
                 max_sun_streak = curr_sun_streak
             curr_dark_streak = 0
         else:
-            curr_dark_streak += step_hours
+            curr_dark_streak += duration
             if curr_dark_streak > max_dark_streak:
                 max_dark_streak = curr_dark_streak
             curr_sun_streak = 0
@@ -64,19 +67,19 @@ def calculate_site_summary(points: List[EphemerisPoint], step_hours: int = 1) ->
         if pt.earth_visible:
             earth_count += 1
             earth_elevations_visible.append(pt.earth_elevation)
-            curr_comm_streak += step_hours
+            curr_comm_streak += duration
             if curr_comm_streak > max_comm_streak:
                 max_comm_streak = curr_comm_streak
             curr_no_comm_streak = 0
         else:
-            curr_no_comm_streak += step_hours
+            curr_no_comm_streak += duration
             if curr_no_comm_streak > max_no_comm_streak:
                 max_no_comm_streak = curr_no_comm_streak
             curr_comm_streak = 0
 
-    sun_hours = sun_count * step_hours
+    sun_hours = sum(d for pt, d in zip(points, durations) if pt.sun_visible)
     dark_hours = total_hours - sun_hours
-    earth_hours = earth_count * step_hours
+    earth_hours = sum(d for pt, d in zip(points, durations) if pt.earth_visible)
     no_earth_hours = total_hours - earth_hours
 
     sun_pct = round((sun_hours / total_hours) * 100.0, 1) if total_hours > 0 else 0.0

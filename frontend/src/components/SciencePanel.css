@@ -1,0 +1,38 @@
+.science-panel {
+  padding: 20px;
+  color: #e2e5e9;
+  background: #191c21;
+  border: 1px solid #363c44;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.science-panel__header h3 { margin: 0 0 8px; font-size: 1.05rem; }
+.science-panel p { margin: 8px 0 12px; line-height: 1.6; }
+.science-panel__header p,
+.science-panel__note { color: #b6beca; font-size: 0.875rem; }
+.science-panel__sections { display: grid; gap: 24px; }
+.science-panel__sections > section { min-width: 0; padding-top: 16px; border-top: 1px solid #363c44; }
+.science-panel h4 { margin: 0 0 8px; font-size: 0.95rem; color: #b8dce1; }
+.science-panel__sample { font-size: 0.82rem; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.science-panel__table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 0.82rem; }
+.science-panel__table th,
+.science-panel__table td { padding: 9px 8px; border-bottom: 1px solid #343a43; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.science-panel__table th { width: 34%; color: #bbc5d1; font-weight: 500; }
+.science-panel__table td { white-space: pre-wrap; }
+.science-panel__table .science-panel__table { margin-top: 8px; }
+.science-panel__table details { white-space: normal; }
+.science-panel summary { cursor: pointer; line-height: 1.6; color: #b8dce1; }
+.science-panel__missing { color: #abb4c1; font-style: italic; }
+.science-panel__error { color: #f0bdac; }
+.science-panel button { min-height: 44px; padding: 8px 14px; color: #e2e5e9; background: #252c35; border: 1px solid #778594; border-radius: 4px; font: inherit; cursor: pointer; }
+.science-panel button:hover { background: #34404d; }
+.science-panel button:focus-visible,
+.science-panel summary:focus-visible { outline: 2px solid #a6dbe4; outline-offset: 4px; }
+.science-panel__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 600px) {
+  .science-panel { padding: 14px; }
+  .science-panel__table th,
+  .science-panel__table td { padding: 8px 4px; }
+}

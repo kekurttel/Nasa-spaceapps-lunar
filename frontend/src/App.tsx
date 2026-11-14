@@ -1,27 +1,48 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { MoonMap } from './components/MoonMap';
 import { HorizonChart } from './components/HorizonChart';
-import { TimelineBar } from './components/TimelineBar';
+import { ScenarioControls, ScenarioDuration } from './components/ScenarioControls';
 import { ComparePanel } from './components/ComparePanel';
-import { getPresetSites, fetchEphemerisMulti } from './services/api';
-import { PresetSite, SiteEphemeris, SiteRequest } from './types';
+import LunarSurface3D from './components/LunarSurface3D';
+import MeasuredTerrain from './components/MeasuredTerrain';
+import { MeasuredHorizon } from './components/MeasuredHorizon';
+import { DataStatus } from './components/DataStatus';
+import SciencePanel from './components/SciencePanel';
+import MissionSearch from './components/MissionSearch';
+import { DisplayOptions, DisplayPreset, DisplayLayer, DisplayAid } from './components/DisplayOptions';
+import { useI18n, Language } from './i18n';
+import { AnalysisSummary } from './components/AnalysisSummary';
+import { VisibilityTimeline } from './components/VisibilityTimeline';
+import { exportCsv } from './utils/exportCsv';
+import { getPresetSites, fetchEphemerisMulti, fetchHorizon, HorizonProfile } from './services/api';
+import { EphemerisPoint, PresetSite, SiteEphemeris, SiteRequest } from './types';
 
 export const App: React.FC = () => {
   const [presets, setPresets] = useState<PresetSite[]>([]);
   const [selectedSites, setSelectedSites] = useState<SiteRequest[]>([
-    { name: 'Shackleton Crater Rim', lat: -89.9, lon: 0 },
-    { name: 'Nobile Rim / Ridge 1', lat: -85.2, lon: 35.5 },
+    { name: 'Shackleton – de Gerlache connecting ridge', lat: -89.4395, lon: -137.1934 },
+    { name: 'Malapert Massif', lat: -86, lon: 0 },
   ]);
   const [activeSiteIdx, setActiveSiteIdx] = useState(0);
-  const [startDate, setStartDate] = useState('2026-06-01T00:00');
-  const [endDate, setEndDate] = useState('2026-06-30T00:00');
   const [stepHours, setStepHours] = useState(2);
   const [ephemerisData, setEphemerisData] = useState<SiteEphemeris[]>([]);
   const [dataSource, setDataSource] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [catalogError, setCatalogError] = useState(false);
+  const { language, setLanguage, t } = useI18n();
+  const text = (en: string, tr: string) => language === 'tr' ? tr : en;
+  const [periods, setPeriods] = useState<[{ startDate: string; durationDays: ScenarioDuration }, { startDate: string; durationDays: ScenarioDuration }]>([{ startDate: '2027-01-01', durationDays: 30 }, { startDate: '2027-01-01', durationDays: 30 }]);
+  const startDate = `${periods[0].startDate}T00:00`;
+  const [pinnedMoment, setPinnedMoment] = useState<EphemerisPoint>();
+  const [view3d, setView3d] = useState(true);
+  const [measuredView, setMeasuredView] = useState(true);
+  const [horizon, setHorizon] = useState<HorizonProfile>();
+  const [displayPreset, setDisplayPreset] = useState<DisplayPreset>('survey');
+  const [displayLayers, setDisplayLayers] = useState<Record<DisplayLayer, boolean>>({ lrocBrightness: false, lolaSkyline: false, yaleStars: false });
+  const [displayAids, setDisplayAids] = useState<Record<DisplayAid, boolean>>({ liftShadows: true, fineGroundTexture: false, azimuthElevationGrid: true, rangeRings: false });
   const requestId = useRef(0);
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   useEffect(() => {
     let mounted = true;
@@ -35,26 +56,33 @@ export const App: React.FC = () => {
     setEphemerisData([]);
     setDataSource('');
     setErrorMsg(null);
-    if (!startDate || !endDate || startDate >= endDate) {
+    if (periods.some(period => !period.startDate || !Number.isFinite(Date.parse(`${period.startDate}T00:00:00Z`)))) {
       setLoading(false);
       setErrorMsg('Choose an end date after the start date');
       return;
     }
     setLoading(true);
     try {
-      const res = await fetchEphemerisMulti(selectedSites, startDate, endDate, stepHours);
+      const responses = await Promise.all(selectedSites.slice(0, 2).map((site, index) => {
+        const period = periods[index];
+        const end = new Date(Date.parse(`${period.startDate}T00:00:00Z`) + period.durationDays * 86400000).toISOString();
+        return fetchEphemerisMulti([site], `${period.startDate}T00:00:00Z`, end, stepHours);
+      }));
       if (id !== requestId.current) return;
-      setEphemerisData(res.sites);
-      setDataSource(res.source);
-    } catch {
-      if (id === requestId.current) setErrorMsg('Ephemeris service unavailable. Check the backend connection, then retry. No substitute data is shown.');
+      const sites = responses.map(response => response.sites[0]);
+      if (sites.some(site => !site || !site.summary || !Array.isArray(site.data))) throw new Error('Incomplete response');
+      setEphemerisData(sites);
+      setDataSource(Array.from(new Set(responses.map(response => response.source))).join(' / '));
+    } catch (error: unknown) {
+      const detail = (error as { response?: { data?: { detail?: unknown } } })?.response?.data?.detail;
+      if (id === requestId.current) setErrorMsg(typeof detail === 'string' ? detail : 'service');
     } finally {
       if (id === requestId.current) setLoading(false);
     }
-  }, [selectedSites, startDate, endDate, stepHours]);
+  }, [selectedSites, stepHours, periods]);
 
   useEffect(() => {
-    runSimulation();
+    setEphemerisData([]); setDataSource(''); setLoading(false); setErrorMsg(null); setPinnedMoment(undefined);
     return () => { requestId.current += 1; };
   }, [runSimulation]);
 
@@ -65,19 +93,26 @@ export const App: React.FC = () => {
   };
   const handleAddSite = (preset: PresetSite) => {
     if (selectedSites.some(s => Math.abs(s.lat - preset.lat) < 0.01 && Math.abs(s.lon - preset.lon) < 0.01)) return;
-    setSelectedSites([...selectedSites, { name: preset.name, lat: preset.lat, lon: preset.lon }]);
-    setActiveSiteIdx(selectedSites.length);
+    setSelectedSites(current => current.map((site, index) => index === activeSiteIdx ? { name: preset.name, lat: preset.lat, lon: preset.lon } : site));
   };
-  const handleRemoveSite = (index: number) => {
-    if (selectedSites.length <= 1) return;
-    setSelectedSites(selectedSites.filter((_, i) => i !== index));
-    setActiveSiteIdx(current => current === index ? 0 : current > index ? current - 1 : current);
-  };
+  const handleRemoveSite = () => {};
   const activeSite = selectedSites[activeSiteIdx] || selectedSites[0];
   const activeEphemeris = ephemerisData[activeSiteIdx];
   const summary = activeEphemeris?.summary;
+  const horizonId = activeEphemeris?.provenance?.site_id || presets.find(site => Math.abs(site.lat - activeSite.lat) < 1e-6 && Math.abs(site.lon - activeSite.lon) < 1e-6)?.id;
+  useEffect(() => {
+    let cancelled = false;
+    setHorizon(undefined);
+    if (horizonId && typeof fetchHorizon === 'function') fetchHorizon(horizonId).then(profile => { if (!cancelled) setHorizon(profile); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [horizonId]);
+  const downloadCsv = () => {
+    const csv = ephemerisData.map((site, index) => exportCsv([site], dataSource, `${periods[index].startDate}T00:00Z`, new Date(Date.parse(`${periods[index].startDate}T00:00:00Z`) + periods[index].durationDays * 86400000).toISOString())).join('\r\n');
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    const link = document.createElement('a'); link.href = url; link.download = `lunarsight-${startDate.slice(0, 10)}.csv`; link.click(); URL.revokeObjectURL(url);
+  };
   const handleExportJSON = () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify({ source: dataSource, startUtc: startDate, endUtc: endDate, stepHours, sites: ephemerisData }, null, 2)], { type: 'application/json' }));
+    const url = URL.createObjectURL(new Blob([JSON.stringify({ source: dataSource, periods, stepHours, sites: ephemerisData }, null, 2)], { type: 'application/json' }));
     const link = document.createElement('a');
     link.href = url;
     link.download = `lunarsight-${startDate.slice(0, 10)}.json`;
@@ -85,49 +120,54 @@ export const App: React.FC = () => {
     URL.revokeObjectURL(url);
   };
   const metrics = [
-    { label: 'Solar illumination', value: summary ? `${summary.sun_percentage}%` : '—', detail: summary ? `${summary.sun_hours} h illuminated` : 'Awaiting ephemeris', tone: 'sun' },
-    { label: 'Earth visibility', value: summary ? `${summary.earth_percentage}%` : '—', detail: summary ? `${summary.earth_visible_hours} h line of sight` : 'Awaiting ephemeris', tone: 'earth' },
-    { label: 'Longest darkness', value: summary ? `${summary.max_continuous_dark_hours} h` : '—', detail: 'Continuous interval without sunlight' },
-    { label: 'Longest communication gap', value: summary ? `${summary.max_continuous_no_comm_hours} h` : '—', detail: 'Continuous interval without Earth visibility' },
+    { label: t('solarIllumination'), value: summary ? `${summary.sun_percentage}%` : '—', detail: summary ? `${summary.sun_hours} ${t('illuminatedHours')}` : t('awaitingEphemeris'), tone: 'sun' },
+    { label: t('earthVisibility'), value: summary ? `${summary.earth_percentage}%` : '—', detail: summary ? `${summary.earth_visible_hours} ${t('lineOfSightHours')}` : t('awaitingEphemeris'), tone: 'earth' },
+    { label: t('longestDarkness'), value: summary ? `${summary.max_continuous_dark_hours} h` : '—', detail: t('continuousWithoutSunlight') },
+    { label: t('longestCommunicationGap'), value: summary ? `${summary.max_continuous_no_comm_hours} h` : '—', detail: t('continuousWithoutEarth') },
   ];
 
   return (
     <div className="mission-shell">
-      <a className="skip-link" href="#mission">Skip to mission controls</a>
+      <a className="skip-link" href="#mission">{t('skipToControls')}</a>
       <header className="app-header">
         <a className="wordmark" href="#mission" aria-label="LunarSight mission console"><span className="lunar-mark" aria-hidden="true" />LunarSight</a>
-        <span className="header-context">Lunar landing site navigator</span>
-        <div className="header-actions"><span className={`connection-state ${errorMsg ? 'is-offline' : ''}`} role="status">{loading ? 'Calculating' : errorMsg ? 'Service unavailable' : dataSource ? 'Results available' : 'Not connected'}</span><button className="button secondary" onClick={handleExportJSON} disabled={!ephemerisData.length}>Export JSON</button></div>
+        <span className="header-context">{t('appContext')}</span>
+        <div className="header-actions"><span className={`connection-state ${errorMsg ? 'is-offline' : ''}`} role="status">{loading ? t('calculating') : errorMsg ? t('unavailable') : dataSource ? t('resultsAvailable') : t('notConnected')}</span><label className="language-picker">{t('language')}<select value={language} onChange={event => setLanguage(event.target.value as Language)} aria-label={t('language')}><option value="en">English</option><option value="tr">Türkçe</option></select></label><button className="button secondary" onClick={handleExportJSON} disabled={!ephemerisData.length}>{t('exportJson')}</button><button className="button secondary" onClick={downloadCsv} disabled={!ephemerisData.length}>CSV</button></div>
       </header>
       <main id="mission">
-        <div className="page-intro"><div><p className="eyebrow">Mission workspace / South pole</p><h1>Lunar site assessment</h1></div><nav className="workspace-nav" aria-label="Workspace sections"><a href="#terrain">Terrain</a><a href="#geometry">Geometry</a><a href="#comparison">Comparison</a></nav></div>
+        <div className="page-intro"><div><p className="eyebrow">{t('workspaceSouthPole')}</p><h1>{t('assessment')}</h1></div><nav className="workspace-nav" aria-label="Workspace sections"><a href="#terrain">{text('Surface', 'Yüzey')}</a><a href="#geometry">{t('geometry')}</a><a href="#comparison">{t('comparison')}</a><a href="#method">{text('Data & method', 'Veri ve yöntem')}</a></nav></div>
         <div className="workspace-grid">
         <aside className="scenario-sidebar" aria-label="Scenario setup">
-        <div className="sidebar-heading"><h2>Mission setup</h2><span className="meta">UTC</span></div>
+        <div className="sidebar-heading"><h2>{t('missionSetup')}</h2><span className="meta">UTC</span></div>
         <section className="mission-controls" aria-label="Mission controls">
-          <label>Mission start date <span>UTC</span><input aria-label="Mission start date UTC" type="datetime-local" value={startDate} onChange={e => setStartDate(e.target.value)} /></label>
-          <label>Mission end date <span>UTC</span><input aria-label="Mission end date UTC" type="datetime-local" value={endDate} onChange={e => setEndDate(e.target.value)} /></label>
-          <label>Sampling interval<select value={stepHours} onChange={e => setStepHours(Number(e.target.value))}>{[1, 2, 4, 6, 12].map(h => <option key={h} value={h}>{h} {h === 1 ? 'hour' : 'hours'}</option>)}</select></label>
-          <div className="control-action"><button className="button primary" disabled={loading} onClick={runSimulation}>{loading ? 'Calculating…' : 'Run analysis'}</button></div>
+          <label>{t('samplingInterval')}<select value={stepHours} onChange={e => setStepHours(Number(e.target.value))}>{[0.25, 1, 2, 4, 6, 12].map(h => <option key={h} value={h}>{h === 0.25 ? text('15 min · interpolated', '15 dk · interpolasyon') : `${h} ${t('hours')}`}</option>)}</select></label>
+          <div className="control-action"><button className="button primary" disabled={loading} onClick={runSimulation}>{loading ? t('calculating') : t('runAnalysis')}</button></div>
         </section>
-        <div className="candidate-list"><h2>Compared sites <span>{selectedSites.length}</span></h2>{selectedSites.map((site, index) => <button key={`${site.lat}-${site.lon}`} className={`candidate-item ${index === activeSiteIdx ? 'is-selected' : ''}`} aria-pressed={index === activeSiteIdx} onClick={() => setActiveSiteIdx(index)}><span>{site.name}</span><small>{site.lat.toFixed(3)}° / {site.lon.toFixed(3)}°</small></button>)}</div>
-        <p className="sidebar-note">Select a site to inspect its terrain and visibility. All mission dates use UTC.</p>
+        <div className="candidate-list"><h2>{t('comparedSites')} <span>{selectedSites.length}</span></h2>{selectedSites.map((site, index) => <button key={`${site.lat}-${site.lon}`} className={`candidate-item ${index === activeSiteIdx ? 'is-selected' : ''}`} aria-pressed={index === activeSiteIdx} onClick={() => { setActiveSiteIdx(index); setPinnedMoment(undefined); }}><span>{index === 0 ? 'A' : 'B'} · {site.name}</span><small>{site.lat.toFixed(3)}° / {site.lon.toFixed(3)}°</small></button>)}</div>
+        <p className="sidebar-note">{t('selectSiteNote')}</p>
+        <div className="coordinate-inputs"><label>{t('latitude')}<input aria-label={t('latitude')} type="number" min="-90" max="90" step="0.001" value={activeSite.lat} onChange={event => { if (event.target.value !== '') handleSelectMapSite({ ...activeSite, lat: Math.max(-90, Math.min(90, Number(event.target.value))) }); }} /></label><label>{t('longitude')}<input aria-label={t('longitude')} type="number" min="-180" max="180" step="0.001" value={activeSite.lon} onChange={event => { if (event.target.value !== '') handleSelectMapSite({ ...activeSite, lon: Math.max(-180, Math.min(180, Number(event.target.value))) }); }} /></label></div>
         </aside>
         <div className="observation-grid" id="terrain">
-          <section className="map-section" aria-labelledby="map-title"><div className="section-heading"><div><span className="section-index">01</span><h2 id="map-title">Landing region</h2></div><span className="meta">NASA Moon Trek</span></div>
-            <div className="site-selector"><label htmlFor="candidate">Candidate site</label><select id="candidate" value="" onChange={e => { const site = presets.find(p => p.id === e.target.value); if (site) handleAddSite(site); }}><option value="" disabled>{catalogError ? 'Catalog unavailable' : 'Add a landing site'}</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select></div>
-            <MoonMap selectedSite={activeSite} presetSites={presets} onSelectSite={handleSelectMapSite} />
+          <section className="map-section" aria-labelledby="map-title"><div className="section-heading"><div><h2 id="map-title">{text('Surface explorer', 'Yüzey keşfi')}</h2></div><span className="meta">{text('Illustrative 3D / NASA 2D', 'Temsili 3D / NASA 2D')}</span></div>
+            <div className="site-selector"><label htmlFor="candidate">{t('candidateSite')}</label><select id="candidate" value="" onChange={e => { const site = presets.find(p => p.id === e.target.value); if (site) handleAddSite(site); }}><option value="" disabled>{catalogError ? t('catalogUnavailable') : text('Choose region', 'Bölge seçin')}</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select></div>
+            <div className="surface-toolbar"><div className="surface-switch" role="group" aria-label={text('Surface view', 'Yüzey görünümü')}><button type="button" aria-pressed={!view3d} onClick={() => setView3d(false)}>2D</button><button type="button" aria-pressed={view3d} onClick={() => setView3d(true)}>3D</button><button type="button" aria-pressed={view3d && measuredView} onClick={() => { setMeasuredView(true); setView3d(true); }}>{text('Measured terrain', 'Ölçülmüş arazi')}</button><button type="button" aria-pressed={view3d && !measuredView} onClick={() => { setMeasuredView(false); setView3d(true); }}>{text('Globe', 'Küre')}</button></div><details className="display-disclosure"><summary>{text('Display options', 'Görünüm seçenekleri')}</summary><DisplayOptions language={language} availableAids={{ liftShadows: view3d, fineGroundTexture: view3d, azimuthElevationGrid: view3d, rangeRings: view3d }} preset={displayPreset} onPresetChange={setDisplayPreset} layers={displayLayers} onLayerChange={(key, value) => setDisplayLayers(current => ({ ...current, [key]: value }))} aids={displayAids} onAidChange={(key, value) => setDisplayAids(current => ({ ...current, [key]: value }))} /></details></div>
+            {view3d && measuredView ? <MeasuredTerrain site={activeSite} moment={pinnedMoment || activeEphemeris?.data[0]} language={language} /> : view3d ? <LunarSurface3D language={language} gridVisible={displayAids.azimuthElevationGrid} liftShadows={displayAids.liftShadows} fineTexture={displayAids.fineGroundTexture} rangeRings={displayAids.rangeRings} preset={displayPreset} moment={pinnedMoment} selectedSite={{ ...activeSite, name: activeSite.name || `Site ${activeSiteIdx + 1}`, id: String(activeSiteIdx), selected: true }} markers={presets.map(site => ({ ...site, id: site.id }))} onSelectSite={site => handleSelectMapSite(site)} /> : <MoonMap selectedSite={activeSite} presetSites={presets} onSelectSite={handleSelectMapSite} />}
             <div className="coordinate-readout"><span>{activeSite.name}</span><strong>{activeSite.lat.toFixed(3)}° <span>lat</span> / {activeSite.lon.toFixed(3)}° <span>lon</span></strong></div>
           </section>
         </div>
-        <aside className="site-inspector" aria-label="Selected site details"><p className="eyebrow">Selected landing site</p><h2>{activeSite.name}</h2><div className="inspector-coordinates"><span>Latitude<strong>{activeSite.lat.toFixed(3)}°</strong></span><span>Longitude<strong>{activeSite.lon.toFixed(3)}°</strong></span></div><section className="metrics" aria-label="Selected site metrics">{metrics.map(metric => <div className="metric" key={metric.label}><span>{metric.label}</span><strong className={metric.tone}>{metric.value}</strong><small>{metric.detail}</small></div>)}</section>{errorMsg && <div className="error-notice" role="alert"><strong>Analysis unavailable</strong><span>{errorMsg}</span><button className="button secondary" onClick={runSimulation}>Retry analysis</button></div>}</aside>
+        <aside className="site-inspector" aria-label={t('selectedLandingSite')}><p className="eyebrow">{t('selectedLandingSite')}</p><h2>{activeSite.name}</h2><div className="inspector-coordinates"><span>{t('latitude')}<strong>{activeSite.lat.toFixed(3)}°</strong></span><span>{t('longitude')}<strong>{activeSite.lon.toFixed(3)}°</strong></span></div><section className="metrics" aria-label={t('assessment')}>{metrics.map(metric => <div className="metric" key={metric.label}><span>{metric.label}</span><strong className={metric.tone}>{metric.value}</strong><small>{metric.detail}</small></div>)}</section>{errorMsg && <div className="error-notice" role="alert"><strong>{t('analysisUnavailable')}</strong><span>{errorMsg === 'service' ? t('serviceError') : errorMsg}</span><button className="button secondary" onClick={runSimulation}>{t('retryAnalysis')}</button></div>}</aside>
         </div>
-        <section className="geometry-section" id="geometry" aria-labelledby="geometry-title"><div className="section-heading"><div><h2 id="geometry-title">Sun & Earth geometry</h2></div><span className="meta">Elevation / time · UTC</span></div><HorizonChart data={activeEphemeris?.data || []} siteName={activeSite.name || 'Selected site'} /></section>
-        {activeEphemeris && <TimelineBar data={activeEphemeris.data} />}
-        <div id="comparison"><ComparePanel sites={ephemerisData} activeSiteIndex={activeSiteIdx} onSelectActiveIndex={setActiveSiteIdx} onRemoveSite={handleRemoveSite} /></div>
-        <section className="provenance"><span>Data provenance</span><p>{dataSource || 'No calculation source received. Scientific results remain empty until the service responds.'}</p><span>Map imagery: NASA Moon Trek / LROC / USGS</span></section>
+        {activeEphemeris && <><VisibilityTimeline key={activeSiteIdx} data={activeEphemeris.data} onPinMoment={point => { setPinnedMoment(point); setView3d(true); }} labels={{ title: t('missionTimeline'), sun: t('sunElevation'), earth: t('earthElevation'), both: text('Both visible', 'İkisi birlikte görünür'), empty: t('noEphemeris'), selected: t('selected'), visible: text('Visible', 'Görünür'), notVisible: text('Not visible', 'Görünmez'), time: t('time'), elevation: t('elevation'), azimuth: text('Azimuth', 'Azimut'), solarFlux: t('solarFluxEfficiency'), pinHint: text('Click to pin moment in 3D.', 'Anı 3D görünümde sabitlemek için tıklayın.') }} /><AnalysisSummary sites={ephemerisData.map(item => ({ name: item.site.name, data: item.data, summary: item.summary }))} /></>}
+        <section className="scenario-section" id="comparison"><h2>{text('Mission analysis', 'Görev analizi')}</h2><p>{text('Compare sunlight and geometric Earth visibility for two regions and independent periods.', 'İki bölgenin Güneş ve geometrik Dünya görünürlüğünü bağımsız dönemlerde karşılaştırın.')}</p><ScenarioControls scenarios={[{ site: selectedSites[0], ...periods[0] }, { site: selectedSites[1] || selectedSites[0], ...periods[1] }]} onStartDateChange={(i, value) => setPeriods(current => current.map((period, index) => index === i ? { ...period, startDate: value } : period) as typeof current)} onDurationChange={(i, value) => setPeriods(current => current.map((period, index) => index === i ? { ...period, durationDays: value } : period) as typeof current)} labels={{ title: t('missionSetup'), scenarioA: text('Scenario A', 'Senaryo A'), scenarioB: text('Scenario B', 'Senaryo B'), startDate: `${t('missionStart')} · UTC`, duration: text('Duration', 'Süre'), days: text('days', 'gün'), presets: { 7: '7', 30: '30', 90: '90', 365: '365' }, scenarioNames: [selectedSites[0].name || 'A', selectedSites[1]?.name || 'B'] }} /><div className="analysis-actions"><p>{text('Native data is hourly, November 2026–December 2028. 15-minute output interpolates hourly samples. Choose catalog points for terrain-aware analysis.', 'Kaynak saatliktir; Kasım 2026–Aralık 2028 kapsamlıdır. 15 dakikalık çıktı saatlik örneklerden interpolasyondur. Arazi ufuklu analiz için katalog noktalarını seçin.')}</p><button className="button primary" disabled={loading} onClick={runSimulation}>{loading ? t('calculating') : t('runAnalysis')}</button></div>{!ephemerisData.length && <div className="analysis-ready"><h3>{text('Your comparison starts here', 'Karşılaştırmanız burada başlıyor')}</h3><p>{text('Choose two regions, set each period, then run analysis. No example results are substituted.', 'İki bölgeyi seçin, dönemleri ayarlayın, analizi çalıştırın. Sonuç yerine örnek veri kullanılmaz.')}</p></div>}</section>
+        {activeEphemeris && <section className="geometry-section" id="geometry" aria-labelledby="geometry-title"><div className="section-heading"><div><h2 id="geometry-title">{t('sunEarthGeometry')}</h2></div><span className="meta">{t('elevationTimeUtc')}</span></div><HorizonChart data={activeEphemeris.data} siteName={activeSite.name || t('site')} /></section>}
+        {horizon && <MeasuredHorizon profile={horizon.azimuths_deg.map((azimuth, index) => ({ azimuth, elevation: horizon.elevations_deg[index] }))} data={activeEphemeris?.data || []} language={language} onPin={point => { setPinnedMoment(point); setMeasuredView(true); setView3d(true); }} />}
+        <MissionSearch language={language} />
+        <SciencePanel site={activeSite} moment={pinnedMoment || activeEphemeris?.data[0]} language={language} />
+        <ComparePanel sites={ephemerisData} activeSiteIndex={activeSiteIdx} onSelectActiveIndex={setActiveSiteIdx} onRemoveSite={handleRemoveSite} />
+        <section id="method" className="method-section"><h2>{text('Data & method', 'Veri ve yöntem')}</h2><details><summary>{text('Interpretation limits', 'Yorumlama sınırları')}</summary><p>{text('Local terrain uses measured 200 m LOLA elevations. The globe remains illustrative. Skyline profiles use a 2 m observer and 150 km ray distance; Apollo 11 assumes a flat horizon. Earth visibility is geometric, not guaranteed communications. No landing safety certification.', 'Yerel arazi ölçülmüş 200 m LOLA yüksekliklerini kullanır. Küre temsilidir. Ufuk profilleri 2 m gözlem yüksekliği ve 150 km tarama mesafesine dayanır; Apollo 11 düz ufuk varsayar. Dünya görünürlüğü geometriktir; iletişim garantisi değildir. İniş güvenliği sertifikasyonu sağlamaz.')}</p></details><DataStatus /></section>
+        <section className="provenance"><span>{t('dataProvenance')}</span><p>{dataSource || t('noSource')}</p><span>{t('mapImagery')}</span></section>
       </main>
-      <footer className="app-footer"><span>LunarSight · NASA Space Apps 2026</span><span>Site assessment, not flight certification</span></footer>
+      <footer className="app-footer"><span>LunarSight · NASA Space Apps 2026</span><span>{t('certification')}</span></footer>
     </div>
   );
 };

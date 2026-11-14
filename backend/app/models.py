@@ -10,7 +10,7 @@ class EphemerisRequest(BaseModel):
     sites: List[SiteRequest]
     start_date: str = Field(..., description="Start date/time in ISO or YYYY-MM-DD format")
     end_date: str = Field(..., description="End date/time in ISO or YYYY-MM-DD format")
-    step_hours: int = Field(default=2, ge=1, le=24, description="Step size in hours")
+    step_hours: float = Field(default=2, ge=0.25, le=24, description="Step hours; sub-hour local reference values are interpolated")
 
 class EphemerisPoint(BaseModel):
     datetime: str
@@ -21,7 +21,10 @@ class EphemerisPoint(BaseModel):
     earth_azimuth: float
     sun_visible: bool
     earth_visible: bool
-    solar_flux_pct: float  # Approximated solar power factor based on elevation
+    solar_flux_pct: float  # Engine-specific; reference engine uses visible disk percent
+    sun_visible_fraction: Optional[float] = None
+    sun_horizon: Optional[float] = None
+    earth_horizon: Optional[float] = None
 
 class SiteSummary(BaseModel):
     total_hours: float
@@ -42,12 +45,13 @@ class SiteEphemeris(BaseModel):
     site: SiteRequest
     data: List[EphemerisPoint]
     summary: SiteSummary
+    provenance: Optional[dict] = None
 
 class CompareResponse(BaseModel):
     sites: List[SiteEphemeris]
     query_start: str
     query_end: str
-    step_hours: int
+    step_hours: float
     source: str  # 'JPL_HORIZONS' or 'ORBITAL_FALLBACK'
 
 class PresetSite(BaseModel):

@@ -1,6 +1,11 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import router as api_router
+from app.mission_router import router as mission_router
+from app.science_router import router as science_router
+from app.contracts_router import router as contracts_router
 
 app = FastAPI(
     title="Lunar Landing Site Navigator API",
@@ -8,16 +13,27 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for local dev and frontend deployments
+# Comma-separated browser origins; same-origin /api deployments need no override.
+cors_origins = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv(
+        "CORS_ALLOW_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000"
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=cors_origins,
+    # The API uses no cookie authentication; avoid credentialed wildcard CORS.
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(api_router)
+app.include_router(mission_router)
+app.include_router(science_router)
+app.include_router(contracts_router)
 
 @app.get("/")
 def read_root():

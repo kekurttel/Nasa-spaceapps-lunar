@@ -29,3 +29,11 @@ backend/data/*.bsp
 
 # Logs
 *.log
+
+# Local reference checkout, browser profiles and generated previews
+/lmNasa-main/
+/lmNasa-main.zip
+/.taste-skill/
+/shots/
+/cache/
+/.pytest_cache/

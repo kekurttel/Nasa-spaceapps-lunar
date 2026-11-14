@@ -1,0 +1,39 @@
+.lunar3d {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  height: min(66vh, 620px);
+  overflow: hidden;
+  background: #111416;
+  color: #e6e5df;
+  font-family: inherit;
+  isolation: isolate;
+}
+.lunar3d-stage { position: absolute; inset: 0; }
+.lunar3d-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.lunar3d-stage canvas:active { cursor: grabbing; }
+.lunar3d-stage canvas:focus-visible { outline: 2px solid #f3c66a; outline-offset: -4px; }
+.lunar3d-reset { position: absolute; z-index: 2; right: 24px; top: 24px; border: 1px solid #626767; background: #191e21; color: #e6e5df; padding: 7px 10px; font: inherit; font-size: 11px; cursor: pointer; }
+.lunar3d-reset:focus-visible { outline: 2px solid #f3c66a; outline-offset: 3px; }
+.lunar3d-reset:disabled { opacity: .45; cursor: not-allowed; }
+.lunar3d-fallback { position: absolute; inset: 80px 24px 110px; display: grid; place-content: center; text-align: center; font-size: 14px; line-height: 1.7; background: #111416; z-index: 1; }
+.lunar3d-heading, .lunar3d-compass, .lunar3d-legend, .lunar3d-note, .lunar3d-hint { position: absolute; z-index: 1; pointer-events: none; }
+.lunar3d-heading { top: 22px; left: 24px; display: grid; gap: 5px; }
+.lunar3d-heading span { color: #a1a5a4; font-size: 10px; letter-spacing: .16em; }
+.lunar3d-heading strong { font-size: 16px; font-weight: 500; }
+.lunar3d-compass { top: 24px; right: 24px; display: grid; justify-items: center; gap: 5px; color: #c7c9c5; font-size: 10px; }
+.lunar3d-compass i { display: block; width: 1px; height: 28px; background: linear-gradient(#f3c66a 50%, #626767 50%); }
+.lunar3d-legend { left: 24px; bottom: 84px; display: flex; align-items: center; gap: 7px; color: #c9cbc7; font-size: 11px; }
+.lunar3d-legend i { width: 7px; height: 7px; border-radius: 50%; background: #f3c66a; margin-left: 4px; }
+.lunar3d-legend i.candidate { background: #d0d2cc; }
+.lunar3d-note { left: 24px; right: 24px; bottom: 43px; color: #b0b5b2; font-size: 10px; line-height: 1.5; }
+.lunar3d-hint { left: 24px; bottom: 18px; color: #a1a5a4; font-size: 10px; }
+.lunar3d-hint.is-dragging { color: #f3c66a; }
+@media (max-width: 560px) {
+  .lunar3d { min-height: 340px; height: 54vh; }
+  .lunar3d-heading { top: 16px; left: 16px; }
+  .lunar3d-compass { top: 18px; right: 18px; }
+  .lunar3d-legend, .lunar3d-note { left: 16px; }
+  .lunar3d-hint { right: 16px; font-size: 8px; }
+  .lunar3d-reset { right: 16px; top: 18px; }
+}
