@@ -16,7 +16,11 @@ node scripts/run-real-terrain.mjs --site-id Shackleton-reference-example --lat -
 
 The default site is an explicitly named Shackleton reference example, not a validated landing point. The runner uses frame `ME_DE421_LOCAL_NORTH_EAST`; its default horizon sampling settings come from `buildLolaHorizon`. Override sampling with `--azimuth-step`, `--distance-step`, or `--max-distance` (meters for distances). The result is the horizon document including the producer's coverage, sources, and provenance metadata. The producer must declare any sampling limits/coverage honestly; `loadTerrainHorizon` rejects mismatched site, observer height, frame, or non-full-circle coverage.
 
-## Optional visibility from supplied real ephemeris
+## Registered real sky and terrain
+
+Use the separate workflow in [registered-workflow.md](registered-workflow.md) to generate real SPICE sky directions at the DEM-derived observer position. It uses explicit `MOON_ME_DE421`, checks kernel/terrain hashes and registration before visibility, and retains coarse DEM warnings. The legacy runner below remains deliberately restrictive; do not bypass its real-sky rejection by relabeling inputs.
+
+## Optional visibility from supplied test ephemeris
 
 ```sh
 node scripts/run-real-terrain.mjs --site-id Shackleton-reference-example --lat -89.9 --lon 0 --height 2 --sky path/to/real-sky-series.json --output output/real-visibility.json

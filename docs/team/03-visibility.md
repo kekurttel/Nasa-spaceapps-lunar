@@ -1,5 +1,19 @@
 # Agent 3 — Ufuk ve görünürlük
 
+## Güncel depo durumu — 2026-11-14
+
+Önceki bölümler kronolojik çalışma kaydıdır; başlangıçtaki erişim ve boş depo ifadeleri güncel durum değildir. Teslim gerçek uygulama tabanı `e744dc637f78546efd5a0c2e6f638499fcb6cbd3` üzerine, `feat/horizon-visibility` dalına taşındı. İlk doğrulanmış LOLA/ufuk teslimi `3ff91e6` olarak commit edildi ve aynı GitHub dalına gönderildi. Ana dal değiştirilmedi.
+
+Gökyüzü/arazi eşleştirme güncellemesi ayrı Python SPICE üreticisi, JavaScript kayıt kapısı ve CLI üzerinden hazırlanıyor. Kabul için gerçek DE421 kernel içeriği, aynı `MOON_ME_DE421` düzeni, DEM'den türeyen yüzey yüksekliği ve aynı zamanlar denetlenmelidir. Bu başlık tek başına yeni eşleştirmenin doğrulama sonucu değildir; son test ve çalışma kanıtı aşağıya eklenecektir. Mevcut backend/UI otomatik olarak bu yeni CLI'ye geçirilmedi.
+
+### Eşleştirilmiş gerçek çalışma kanıtı
+
+`node scripts/run-registered-analysis.mjs --output output/registered-analysis.json` gerçek LOLA ve resmî DE421 ile çalıştırıldı. Örnek nokta: enlem `-89.9`, boylam `0`, gözlemci yüzeyden `2 m`; DEM yüzey yüksekliği `96.89049795269966 m`, merkezden gözlemci yarıçapı `1737498.8904979527 m`. `2026-11-14T00:00:00Z`, `00:05:00Z`, `00:10:00Z` örneklerinde tüm kayıt denetimleri `true`; sonuç `dataKind: real`, arazi modeli `terrain`. Bu üç örnekte Güneş görünür oranı `0`, Dünya merkezi görünürlüğü `false`; bu sonuçlar genel saha uygunluğu veya kesintisiz iletişim garantisi değildir.
+
+Gerçek DE421 SPK: `16790528` bayt, SHA-256 `08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3`. Bağımsız çerçeve denetimi `MOON_ME_DE421` kimliğini `31007`, dönüşüm diklik hatasını `4.44e-16` buldu. Python kabul testleri gerçek kernel üzerinde J2000 vektörlerinden bağımsız dönüşüm, güney kutbu ve gözlemci yüksekliği paralaksını kapsar; test atlaması kullanılmaz.
+
+Kapsam: aynı adlandırılmış koordinat düzeni, aynı modellenmiş gözlemci ve DEM yüksekliği doğrulandı. Yaklaşık `7.58 km/piksel` çözünürlük, kutup satırı uzatması, sınırlı mesafe/örnekleme ve `NONE` geometrik efemeris sınırları korunur. Genel görünürlük fonksiyonunun çağıran kaynak beyanı uyarısı kalır; kayıtlı CLI ayrıca yerel veri dosyalarının hash ve boyutlarını doğrular, imzalı süreç kimliği sağlamaz.
+
 ## Başlangıç durumu
 
 - Tarih: 2026-11-14.

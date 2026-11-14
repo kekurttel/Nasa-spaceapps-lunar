@@ -4,6 +4,17 @@
 
 An intuitive web tool that helps mission planners, educators, and the public evaluate lunar landing sites by visualizing **Sun and Earth positions** relative to the local horizon, enabling rapid assessment of **solar power availability** and **direct-to-Earth communication windows**.
 
+## Verified terrain/sky analysis CLI
+
+Separate from existing web backend: real LOLA terrain and geometric SPICE Sun/Earth directions share `MOON_ME_DE421`, DEM-derived surface height, and observer position. Registration is checked before visibility. See [registered workflow](docs/registered-workflow.md) and [frame evidence](docs/frame-registration-evidence.md).
+
+```sh
+python -m pip install -r scripts/requirements-registration.txt
+node scripts/run-registered-analysis.mjs --output output/registered-analysis.json
+```
+
+The bundled DEM is coarse (~7.58 km/pixel); polar extrapolation and near-field terrain are not landing-safety quality. This CLI does not replace the web backend's ephemeris path.
+
 ## 🚀 Features
 
 - **Interactive Moon Map** — Click anywhere on the lunar surface to select a landing site

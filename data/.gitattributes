@@ -2,3 +2,8 @@
 raw/*.img -text
 raw/*.lbl -text
 raw/horizons-*.json -text
+# Kernel manifest hashes cover exact downloaded bytes, including text kernels.
+kernels/*.tf -text
+kernels/*.tls -text
+kernels/*.bpc -text
+kernels/*.bsp -text

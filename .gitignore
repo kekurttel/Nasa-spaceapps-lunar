@@ -27,5 +27,8 @@ backend/data/*.tif
 backend/data/*.img
 backend/data/*.bsp
 
+# Generated analysis reports (reproduce using scripts/run-registered-analysis.mjs)
+output/
+
 # Logs
 *.log

@@ -1,5 +1,7 @@
 # Ana oturumun kod ve veri teftişi — 2026-11-14
 
+> Kronolojik ilk teslim denetimi. Aşağıdaki boş depo, commit yapılmadı ve eşleştirme yok ifadeleri bu ilk aşamanın durumudur. İlk teslim daha sonra uygulama tabanı üzerine `3ff91e6` olarak commit edilip `feat/horizon-visibility` dalına push edildi. Yeni SPICE eşleştirmesinin kapsamı ve güncel çalıştırma yolu için `registered-workflow.md`, `frame-registration-evidence.md` ve `team/03-visibility.md` belgelerine bakın. Tarihsel Horizons dosyaları yeniden etiketlenmedi.
+
 ## İncelemenin kapsamı
 
 Ana oturum horizon.mjs, terrain.mjs, visibility.mjs ve üç ajanın testlerini okudu. Testlerin geçtiği raporuna dayanmak yerine aşağıdaki karşı örnekleri kendisi çalıştırdı. Ağır düzeltme ve yeni modüller `9router/nasa/nasa-luna` uygulayıcılarına ayrıldı; ana oturum nasa-sol olduğuna ilişkin sapma kullanıcıya açıklandı.

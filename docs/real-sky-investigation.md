@@ -1,6 +1,10 @@
 # Real sky fixture investigation (JPL Horizons)
 
-## Outcome / scientific status
+## Scope update: registered SPICE path
+
+This investigation describes archived Horizons fixtures, not the new registered producer. Those raw responses remain unregistered and unchanged. The separate [registered workflow](registered-workflow.md) instead computes geometric Sun/Earth directions directly in `MOON_ME_DE421`, with radius `1737400 + sampled LOLA surface height + observer height` in metres. It does not assume Horizons `MEAN_ME` identity and does not claim agreement with apparent Horizons directions. Coarse DEM and polar limitations remain.
+
+## Outcome / scientific status of archived Horizons fixtures
 Two raw, unmodified JSON API responses were successfully retrieved from the official JPL Horizons API. They provide real Sun and Earth apparent topocentric azimuth, elevation, and angular diameter over 2026-11-14 00:00–00:10 UTC at five-minute steps for the *specified Horizons geodetic site* (east longitude 0°, latitude -89.9°, altitude 0.002 km). These are valuable API/data format reference fixtures, but they are **not certified as a surface-registered Agent3 sky fixture**. Horizons reports its site altitude relative to its lunar reference ellipsoid, while the LOLA raster supplies radius relative to a mean 1737.4 km reference sphere and explicitly distinguishes planetary radius from geoid-relative topography. No evidence found establishes that simply using `alt=0.002 km` is the LOLA surface point plus 2 m, or reconciles the two frames/datums. Do not represent this as exact 2 m above the LOLA terrain.
 
 ## Saved raw responses
