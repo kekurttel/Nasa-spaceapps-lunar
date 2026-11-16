@@ -59,6 +59,21 @@ Test tooling pins `httpx==0.27.2` (required `<0.28` for FastAPI 0.110.0 / Starle
 
 `/api/contracts/capabilities` and `/api/contracts/local-analysis` expose an opt-in transport adapter; the current frontend does **not** invoke it. Mapping fields is not a coordinate-frame transformation. Local series frame metadata remains unverified; `IAU_MOON` and `MOON_ME_DE421` requests are rejected. Independent engines retain independent frame assumptions and are not invoked or interchangeable through this adapter. Agent4 remains future integration work, not an integrated runtime engine.
 
+## Repository navigation
+
+- [Repository guide](docs/repository-guide.md): runtime paths, independent modules and historical notes.
+- [Contributing](CONTRIBUTING.md): development checks, review workflow and contributor attribution.
+
+## Team
+
+- [Furkan1DEV](https://github.com/Furkan1DEV)
+- [Memoli08](https://github.com/Memoli08)
+- [umuticoz08-ui](https://github.com/umuticoz08-ui)
+- [kekurttel](https://github.com/kekurttel)
+- [oguzerengunes](https://github.com/oguzerengunes)
+
+This is an informational team list; GitHub's automatically generated Contributors list is maintained separately and is not manually assigned here.
+
 ## Sources, integrity and license
 
 Source citations and terrain labels describe upstream metadata, not independently validated accuracy. SHA-256 hashes check artifact identity/integrity; they do **not** establish scientific provenance, frame correctness or model validity. See [backend limits](backend/README.md), [imagery credits](frontend/public/textures/SOURCES.md) and [terrain attribution](frontend/public/terrain-data/ATTRIBUTION.md).
